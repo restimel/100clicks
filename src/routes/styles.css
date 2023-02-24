@@ -12,8 +12,19 @@
 	--color-text: rgba(0, 0, 0, 0.7);
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
+
+	--color-missing: #ff6030;
+	--color-satisfied: #96a796f0;
+	--color-text-disabled: rgba(0, 0, 0, 0.3);
+
+	--color-bg-dashboard: rgba(0, 0, 0, 0.8);
+	--color-fg-dashboard: rgba(200, 245, 220, 0.9);
+
 	font-family: var(--font-body);
 	color: var(--color-text);
+
+	/* structure (should not be changed) */
+	--action-box-width: 270px
 }
 
 body {

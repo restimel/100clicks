@@ -4,11 +4,14 @@
 		"allowJs": true,
 		"checkJs": true,
 		"esModuleInterop": true,
+		"lib": ["DOM"],
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"sourceMap": true,
-		"strict": true
+		"strict": true,
+		// "typeRoots": [],
+		// "types": [],
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//

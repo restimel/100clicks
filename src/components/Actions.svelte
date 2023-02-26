@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { flip } from 'svelte/animate';
 	import { clickAction } from '../stores/currentClick';
     import ActionBox from './ActionBox.svelte';
 	import type { DisplayedAction } from '../stores/types';
@@ -7,11 +8,13 @@
 </script>
 
 <div class="actions">
-    {#each list as item}
-    <ActionBox
-        {...item}
-        on:click={clickAction}
-    />
+    {#each list as item (item.id)}
+        <div class="wrapper" animate:flip|local={{duration: 400}}>
+            <ActionBox
+                {...item}
+                on:click={clickAction}
+            />
+        </div>
     {/each}
 </div>
 
@@ -22,4 +25,7 @@
         gap: 1em;
         max-width: 100%;
 	}
+    .wrapper {
+        max-width: 100%;
+    }
 </style>

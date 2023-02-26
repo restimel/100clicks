@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { blur, slide } from 'svelte/transition';
     import Actions from './Actions.svelte';
     import Text from './Text.svelte';
     import {
@@ -7,34 +8,54 @@
     import type { Room } from '../stores/rooms';
 
     export let room: Room;
+    let expand = true;
 
     $: actionList = $actions.filter(({roomId}) => roomId === room.id);
     $: style = `--color-room:${room.color}; --color-bg-room:${room.bgColor};
-    --room-size:${actionList.length + 1};`
+        --room-size:${actionList.length + 1};`;
+    $: caretClass = expand ? 'fa-caret-down' : 'fa-caret-right';
 
+    function changeExpand() {
+        expand = !expand;
+    }
 </script>
 
-<div
-    class="room-box"
-    {style}
->
-	<div class="room-box__title">
-        <Text text={room.title} />
-    </div>
-    <div class="room-box__fluff">
-        <Text text={room.fluff} />
-	</div>
-    <div class="room-box__actions">
-        <Actions list={actionList} />
+<div class="room-box-cell">
+    <div
+        class="room-box"
+        {style}
+        transition:blur={{duration: 400}}
+    >
+        <div class="room-box__title">
+            <Text text={room.title} />
+        </div>
+        {#if expand}
+        <div class="room-box__fluff" transition:slide>
+            <Text text={room.fluff} />
+        </div>
+        <div class="room-box__actions" transition:slide>
+            <Actions list={actionList} />
+        </div>
+        {/if}
+        <div
+            class="room_box-caret fa-solid {caretClass}"
+            on:click={changeExpand}
+        ></div>
     </div>
 </div>
 
 <style>
-	.room-box {
+    .room-box-cell {
         position: relative;
+        max-width: 100%;
+    }
+
+	.room-box {
         /* cursor: not-allowed; */
         /* user-select: none; */
-        width: calc(var(--action-box-width) + 4em);
+        width: calc(var(--action-box-width) + 2em);
+        max-width: 100%;
+
         min-height: 30px;
         padding: 0.5em 1em;
         border: 2px solid var(--color-room, var(--color-theme-2));
@@ -46,7 +67,6 @@
         grid-template-rows: max-content 1fr max-content max-content;
         grid-template-areas: "title" "fluff" "actions";
         gap: 0.5em;
-
         grid-row: auto / span var(--room-size);
 	}
 
@@ -65,5 +85,12 @@
 
     .room-box__actions {
         grid-area: actions;
+    }
+
+    .room_box-caret {
+        position: absolute;
+        top: 1em;
+        right: 1em;
+        cursor: pointer;
     }
 </style>

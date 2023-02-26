@@ -29,3 +29,5 @@ export type DisplayedAction = {
     prerequisites: Array<[string, boolean]>;
     canPayCost: boolean;
 };
+
+type DashboardName = 'run' | 'logs';

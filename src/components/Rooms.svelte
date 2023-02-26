@@ -8,17 +8,18 @@
 </script>
 
 <div class="rooms">
-    {#each $rooms as room}
-    <RoomBox
-        {room}
-    />
+    {#each $rooms as room (room.id)}
+        <RoomBox
+            {room}
+        />
     {/each}
 </div>
 
 <style>
 	.rooms {
 		display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(calc(var(--action-box-width) + 2em), 1fr));
+        /* Add padding ×2 + padding of container ×2 */
+        grid-template-columns: repeat(auto-fill, minmax(calc(var(--action-box-width) + 4em), 1fr));
         gap: 1em;
         max-width: 100%;
         grid-auto-flow: dense;

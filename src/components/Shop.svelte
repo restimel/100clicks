@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { flip } from 'svelte/animate';
+    import { draw, fade, scale, slide } from 'svelte/transition';
     import { artifacts, type Artifact } from '../stores/artifacts';
     import { isDisplayed } from '../stores/items';
 	import { ownArtifacts, run, runOver, startRun, temporalEnergy } from '../stores/run';
@@ -33,6 +35,7 @@
             clearTimeout(timer);
             message = `You don't have enough temporal energy. You should get ${(cost - $temporalEnergy) / temporalDecimals} more.`;
             timer = window.setTimeout(() => message = '', 5000);
+            return;
         }
         $temporalEnergy -= cost;
         ownArtifacts.add(id);
@@ -41,7 +44,7 @@
 </script>
 
 {#if $runOver}
-<div class="shop">
+<div class="shop" transition:scale>
 	<header>End of run #{$run}</header>
     <div class="fluff">
         You are tired. You have to stop there! But you discover some odd artifacts:
@@ -50,18 +53,28 @@
         <label class="shop-currency">
             <Text text="Temporal energy :temporalEnergy:" />:
             <output>
-                <DigitValue value={$temporalEnergy} />
+                <DigitValue value={$temporalEnergy / temporalDecimals} />
             </output>
         </label>
     {/if}
 	<div class="shop-list">
-        {#each artifactList as artifact}
+        {#each artifactList as artifact (artifact.id)}
         {@const nb = $ownArtifacts.get(artifact.id) ?? 0n}
         {@const cost = artifact.cost(nb)}
-		    <div class="shop-item" on:click={buy.bind(null, artifact)}>
+		    <div
+                class="shop-item"
+                class:disabled={(cost * temporalDecimals) > $temporalEnergy}
+                on:click={buy.bind(null, artifact)}
+                out:slide={{ duration: 200 }}
+                animate:flip={{duration: 400}}
+            >
                 <header>
                     <Text text={artifact.title} />
                 </header>
+                <!-- <svg class="shop-item__illustration" viewBox="0 0 100 100" aria-hidden="true">
+                    <path d={artifact.icon} />
+                </svg> -->
+                <div class="shop-item__illustration {artifact.icon}"></div>
                 <p class="shop-item__fluff">
                     <Text text={artifact.fluff} />
                 </p>
@@ -72,16 +85,19 @@
                         <Text text="{cost}:temporalEnergy:" />
                     {/if}
                 </button>
+                {#if nb}
+                    <div class="shop-item__owned">×<DigitValue value={nb} /></div>
+                {/if}
             </div>
         {/each}
         {#if artifactList.length === 0}
-            <p class="empty-shop">
+            <p class="empty-shop" transition:fade>
                 There are no more artifacts. Come back later.
             </p>
         {/if}
 	</div>
     {#if message}
-        <div class="message">{message}</div>
+        <div class="message" transition:fade>{message}</div>
     {/if}
     <div class="next-run">
         <button disabled={!continueRun} title={titleRun} on:click={nextRun}>
@@ -89,7 +105,7 @@
         </button>
     </div>
 </div>
-<div class="mask"></div>
+<div class="mask" transition:fade></div>
 {/if}
 
 <style>
@@ -128,34 +144,50 @@
     .fluff {
         font-size: 0.9em;
         font-style: italic;
+        margin: 1em 0;
     }
 
 	.shop-list {
+        position: relative;
 		display: flex;
         flex-direction: row;
         justify-content: space-evenly;
         align-content: center;
         flex-wrap: wrap;
         margin: 0.5em 0;
+        min-height: var(--shop-box-size);
 	}
 
     .shop-item {
-        width: 200px;
-        height: 200px;
+        position: relative;
+        width: var(--shop-box-size);
+        height: var(--shop-box-size);
         border: 1px solid var(--color-theme-2);
         background: var(--color-bg-0);
         padding: 0.5em;
         box-shadow: 0 1px 3px #000000;
 
         display: grid;
-        grid-template-rows: max-content 1fr max-content;
-        grid-template-areas: "title" "fluff" "cost";
+        grid-template-rows: max-content 40px 1fr max-content;
+        grid-template-areas: "title" "illustration" "fluff" "cost";
 
         font-size: 0.8em;
+
+        cursor: pointer;
+    }
+    .shop-item.disabled {
+        cursor: not-allowed;
+        background-color: var(--color-bg-2);
     }
 
     .shop-item header {
         grid-area: title;
+    }
+
+    .shop-item__illustration {
+        grid-area: illustration;
+        font-size: 40px;
+        justify-self: center;
     }
 
     .shop-item__fluff {
@@ -168,7 +200,16 @@
         grid-area: cost;
     }
 
+    .shop-item__owned {
+        position: absolute;
+        top: 23%;
+        right: 10%;
+    }
+
     .empty-shop {
+        position: absolute;
+        top: 25%;
+
         font-size: 1.4em;
         opacity: 0.5;
         text-shadow: 0px 1px 10px #666666;
@@ -176,5 +217,15 @@
 
     .next-run {
         text-align: center;
+    }
+
+    .message {
+        color: var(--color-missing);
+        font-size: 0.9em;
+        margin: 0.5em 0;
+    }
+
+    button {
+        padding: 0.5em;
     }
 </style>

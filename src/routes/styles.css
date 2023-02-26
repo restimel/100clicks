@@ -24,7 +24,8 @@
 	color: var(--color-text);
 
 	/* structure (should not be changed) */
-	--action-box-width: 270px
+	--action-box-width: 270px;
+	--shop-box-size: 200px;
 }
 
 body {

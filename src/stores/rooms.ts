@@ -1,5 +1,4 @@
 import type {
-    Condition,
     ConditionalItem,
 } from './types';
 

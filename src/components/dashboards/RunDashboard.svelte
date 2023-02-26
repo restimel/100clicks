@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { clicks, energy, energyMax, lostClicks, run } from '../stores/run';
-	import { hadEnergy, hadLostClick } from '../stores/achievements';
-    import DigitValue from './DigitValue.svelte';
-    import Text from './Text.svelte';
+	import { clicks, energy, energyMax, lostClicks, run } from '../../stores/run';
+	import { hadEnergy, hadLostClick } from '../../stores/achievements';
+    import DigitValue from '../DigitValue.svelte';
+    import Text from '../Text.svelte';
 </script>
 
 <div class="dashboard">
@@ -38,19 +38,6 @@
 </div>
 
 <style>
-	.dashboard {
-		width: 300px;
-		height: 100px;
-		padding: 1em;
-		margin: 1em;
-		border: 2px solid var(--color-fg-dashboard);
-		border-top-right-radius: 1em;
-		border-top-left-radius: 1em;
-		color: var(--color-fg-dashboard);
-		background-color: var(--color-bg-dashboard);
-		box-shadow: inset 1px 2px 10px var(--color-fg-dashboard);
-	}
-
 	header {
 		font-size: 1.5em;
 		text-align: center;

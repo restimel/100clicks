@@ -1,5 +1,6 @@
 <script lang="ts">
     import { createEventDispatcher } from 'svelte';
+    import { scale } from 'svelte/transition';
     import type { Comparison } from '../stores/types';
     import DigitValue from './DigitValue.svelte';
     import Text from './Text.svelte';
@@ -29,6 +30,7 @@
     class="action-box"
     class:active={isActive}
     on:click={clicked}
+    transition:scale|local={{duration: 200}}
 >
 	<div class="action-box__title">
         <Text text={title} />

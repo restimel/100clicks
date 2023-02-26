@@ -16,6 +16,8 @@
         ':lostClicks:': ['fa-solid fa-ghost', 'Lost click'],
         ':energy:': ['fa-solid fa-bolt-lightning', 'Energy'],
         ':energyMax:': [['fa-solid fa-circle fa-stack-2x', 'fa-solid fa-bolt-lightning fa-stack-1x fa-inverse'], 'Energy max'],
+        ':temporalEnergy:': [['fa-solid fa-calendar fa-stack-2x', 'fa-solid fa-bolt-lightning fa-stack-1x fa-inverse'], 'Temporal energy'],
+        ':tEnergy:': [['fa-solid fa-calendar fa-stack-2x', 'fa-solid fa-bolt-lightning fa-stack-1x fa-inverse'], 'Temporal energy'],
         ':warning:': ['fa-solid fa-triangle-exclamation', '???'],
     };
 

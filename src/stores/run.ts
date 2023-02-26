@@ -84,6 +84,8 @@ export function startRun() {
 }
 
 export function endRun() {
-	temporalEnergy.update((value) => value + get(energy));
+	const bonusTEnergy = 100n + (get(ownArtifacts).get('vortex') ?? 0n) * 10n;
+	const gainTEnergy = get(energy) * bonusTEnergy / 100n;
+	temporalEnergy.update((value) => value + gainTEnergy);
 	runOver.set(true);
 }

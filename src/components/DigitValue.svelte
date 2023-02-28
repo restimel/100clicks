@@ -14,6 +14,9 @@
 	$: displayed_count1 = format(displayed_count_value0 + 1);
 	$: offset = modulo($displayed_count_value, 1);
 	$: title = numberValue >= 1000 ? formatNumber(numberValue) : '';
+	$: size = offset ?
+		(offset > 0.5 ? displayed_count1.length : displayed_count.length)
+		: displayed_count.length;
 
 	function modulo(nb: number, mod: number) {
 		// handle negative numbers
@@ -55,7 +58,7 @@
 </script>
 
 <div class="digitValue {className}" {title}>
-	<div class="digitValue-viewport">
+	<div class="digitValue-viewport" style={`--digit-length: ${size}ch`}>
 		<div class="digitValue-digits" style="transform: translate(0, {100 * offset}%)">
 			<strong class="hidden" aria-hidden="true">{displayed_count1}</strong>
 			<strong>{displayed_count}</strong>
@@ -66,10 +69,11 @@
 <style>
 	.digitValue {
 		display: inline-flex;
+		align-items: baseline;
 	}
 
 	.digitValue-viewport {
-		width: 2.4em;
+		width: var(--digit-length, 1ch);
 		height: 1em;
 		overflow: hidden;
 		text-align: center;
@@ -83,7 +87,7 @@
 		height: 100%;
 		font-weight: 400;
 		/* color: var(--color-theme-1); */
-		align-items: center;
+		align-items: baseline;
 		justify-content: center;
 	}
 

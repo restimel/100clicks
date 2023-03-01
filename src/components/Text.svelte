@@ -5,7 +5,7 @@
 
     type Chunk = {
         content: string | string[];
-        type: 'text' | 'icon';
+        type: 'text' | 'icon' | 'line-feed';
         title?: string;
     };
 
@@ -22,7 +22,7 @@
     };
 
     function splitText(rawText: string): Chunk[] {
-        const splittedText = rawText.split(/(:\w+:)/);
+        const splittedText = rawText.split(/(:\w+:|[\n])/);
         const chunks: Chunk[] = [];
 
         splittedText.forEach((str) => {
@@ -32,6 +32,11 @@
                     type: 'icon',
                     content: icon[0],
                     title: icon[1],
+                });
+            } else if (str === '\n') {
+                chunks.push({
+                    type: 'line-feed',
+                    content: '\n',
                 });
             } else {
                 if (str.trim()) {
@@ -62,6 +67,8 @@
         {:else}
             <i class="{content} fa-fw" title={title}></i>
         {/if}
+    {:else if type === 'line-feed'}
+        <br>
     {/if}
 {/each}
 

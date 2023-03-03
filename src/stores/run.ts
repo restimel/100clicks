@@ -40,6 +40,7 @@ export const ghostClicks = writable<Array<Map<string, bigint>>>(new Array(100));
 /* }}} */
 /* {{{ Permanent states */
 
+export const totalOwnArtifacts = writable<Map<string, bigint>>(new Map());
 function createArtifacts() {
 	const { subscribe, set, update } = writable<Map<string, bigint>>(new Map());
 
@@ -51,6 +52,7 @@ function createArtifacts() {
 			update((map) => {
 				const value = map.get(id) ?? 0n;
 				map.set(id, value + 1n);
+				totalOwnArtifacts.update((map) => (map.set(id, (map.get(id) || 0n) + 1n), map));
 				return map;
 			});
 		},
@@ -59,8 +61,9 @@ function createArtifacts() {
 				const value = map.get(id) ?? 0n;
 				if (value <= 1n) {
 					map.delete(id);
+				} else {
+					map.set(id, value - 1n);
 				}
-				map.set(id, value - 1n);
 				return map;
 			});
 		},

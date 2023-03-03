@@ -89,7 +89,9 @@ export const accessibleList = derived(
     return updatedActions;
 });
 
-export const logs= writable<Log[]>([]);
+export const logs = writable<Log[]>([]);
+
+export const usingArtifact = writable<Set<string>>(new Set());
 
 /* }}} */
 
@@ -140,6 +142,22 @@ function doAction(id: string): boolean {
     return true;
 }
 
+export function useArtifact(name: string, useIt?: boolean) {
+    const useArtifact = useIt ?? !get(usingArtifact).has(name);
+
+    if (!useArtifact) {
+        usingArtifact.update((set) => (set.delete(name), set));
+        return;
+    }
+    const artifact = getArtifact(name);
+    const nbOwn = get(ownArtifacts).get(name) ?? 0n;
+
+    if (!artifact?.usable || nbOwn <= 0n) {
+        return;
+    }
+    usingArtifact.update((set) => (set.add(name), set));
+}
+
 export function clickAction(event: CustomEvent<string>) {
     const nbClicks = get(clicks);
     if (nbClicks >= 100) {
@@ -172,6 +190,12 @@ export function clickAction(event: CustomEvent<string>) {
     /* Remember the action for further replay */
     ghosts.set(id, (ghosts.get(id) ?? 0n) + 1n);
     ghostClicks.update((arr) => (arr[clickIdx] = ghosts, arr));
+
+    /* Use artifacts */
+    get(usingArtifact).forEach((artifactName) => {
+        ownArtifacts.use(artifactName);
+    });
+    usingArtifact.update((set) => (set.clear(), set));
 
     /* Check max */
     energy.checkMax();

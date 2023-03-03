@@ -1,13 +1,15 @@
 import type {
-    ConditionalItem,
+    ConditionalItem, IconDesc,
 } from './types';
 
 export type Artifact = ConditionalItem & {
     type: 'artifact';
     title: string;
     fluff: string;
-    icon: string;
-    cost: (n: bigint) => bigint;
+    desc: string;
+    icon: IconDesc;
+    usable: boolean;
+    cost: (current: bigint, total: bigint) => bigint;
 };
 type ArtifactDefinition = Partial<Artifact>;
 
@@ -24,7 +26,9 @@ function addArtifacts(artifacts: ArtifactDefinition[]) {
             type: 'artifact',
             title: artifact.title ?? '',
             fluff: artifact.fluff ?? '',
+            desc: artifact.desc ?? '',
             icon: artifact.icon ?? 'fa-brands fa-codepen',
+            usable: artifact.usable ?? false,
             isVisible: artifact.isVisible ?? [['artifact', 'TDM']],
             isHidden: artifact.isHidden ?? [['artifact', id]],
             cost: artifact.cost ?? (() => 0n),
@@ -36,13 +40,13 @@ addArtifacts([{
     id: 'TDM',
     title: 'Temporal Dimensional Machine',
     fluff: 'It transports back in time, always on the same amount of time: a run. But it did not replace the temporal line.',
-    // icon: 'fa-solid fa-yin-yang',
+    icon: 'fa-solid fa-clock-rotate-left',
     isVisible: [],
 }, {
     id: 'vortex',
     title: 'Energy vortex',
     fluff: 'It generates more power through Time.',
-    // desc: '+10% :temporalEnergy:',
+    desc: '+10% :temporalEnergy:',
     isHidden: [],
     cost: (n: bigint) => (n + 1n) * (n + 2n),
 }]);

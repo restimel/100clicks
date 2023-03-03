@@ -123,7 +123,7 @@ addActions([{
     description: 'Energy: +5:energy:',
     action: () => energy.update((n) => n + 5n),
 }, {
-    title: 'Small food',
+    title: 'Apples',
     roomId: 'kitchen',
     cost: [
         ['click', 10n],

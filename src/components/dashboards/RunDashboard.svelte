@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { tooltip } from '../../helpers/tooltip';
 	import { clicks, energy, energyMax, lostClicks, run } from '../../stores/run';
 	import { hadEnergy, hadLostClick } from '../../stores/achievements';
     import DigitValue from '../DigitValue.svelte';
@@ -27,7 +28,7 @@
 	{/if}
 	{#if $hadLostClick}
 		<div class="dashboard-item">
-			<label for="lostClick-dashboard" title="Lost clicks are clicks in previous run which are not able to repeat their actions">
+			<label for="lostClick-dashboard" use:tooltip={'Lost clicks are clicks in previous run which are not able to repeat their actions'}>
 				<Text text="Lost clicks :lostClick:" />:
 			</label>
 			<output id="lostClick-dashboard">

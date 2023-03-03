@@ -1,10 +1,19 @@
 <script lang="ts">
     import { flip } from 'svelte/animate';
-    import { draw, fade, scale, slide } from 'svelte/transition';
+    import { fade, scale, slide } from 'svelte/transition';
+    import { tooltip } from '../helpers/tooltip';
     import { artifacts, type Artifact } from '../stores/artifacts';
     import { isDisplayed } from '../stores/items';
-	import { ownArtifacts, run, runOver, startRun, temporalEnergy } from '../stores/run';
+	import {
+        ownArtifacts,
+        run,
+        runOver,
+        startRun,
+        temporalEnergy,
+        totalOwnArtifacts,
+    } from '../stores/run';
     import DigitValue from './DigitValue.svelte';
+    import Icon from './Icon.svelte';
     import Text from './Text.svelte';
 
     const temporalDecimals = 100n;
@@ -18,9 +27,7 @@
     let timer = 0;
 
     function updateList() {
-        console.log('updateList', artifactInitialList);
         artifactList = artifactInitialList.filter(isDisplayed);
-        console.log('updateList', artifactList);
     }
 
     function nextRun() {
@@ -30,7 +37,8 @@
     function buy(artifact: Artifact) {
         const id = artifact.id;
         const nb = $ownArtifacts.get(id) ?? 0n;
-        const cost = artifact.cost(nb) * temporalDecimals;
+        const total = $totalOwnArtifacts.get(id) ?? 0n;
+        const cost = artifact.cost(nb, total) * temporalDecimals;
         if ($temporalEnergy < cost) {
             clearTimeout(timer);
             message = `You don't have enough temporal energy. You should get ${(cost - $temporalEnergy) / temporalDecimals} more.`;
@@ -60,7 +68,8 @@
 	<div class="shop-list">
         {#each artifactList as artifact (artifact.id)}
         {@const nb = $ownArtifacts.get(artifact.id) ?? 0n}
-        {@const cost = artifact.cost(nb)}
+        {@const total = $totalOwnArtifacts.get(artifact.id) ?? 0n}
+        {@const cost = artifact.cost(nb, total)}
 		    <div
                 class="shop-item"
                 class:disabled={(cost * temporalDecimals) > $temporalEnergy}
@@ -74,7 +83,10 @@
                 <!-- <svg class="shop-item__illustration" viewBox="0 0 100 100" aria-hidden="true">
                     <path d={artifact.icon} />
                 </svg> -->
-                <div class="shop-item__illustration {artifact.icon}"></div>
+                <Icon
+                    class="shop-item__illustration"
+                    icon={artifact.icon}
+                />
                 <p class="shop-item__fluff">
                     <Text text={artifact.fluff} />
                 </p>
@@ -100,7 +112,7 @@
         <div class="message" transition:fade>{message}</div>
     {/if}
     <div class="next-run">
-        <button disabled={!continueRun} title={titleRun} on:click={nextRun}>
+        <button disabled={!continueRun} use:tooltip={titleRun} on:click={nextRun}>
             Wake up for next run
         </button>
     </div>
@@ -138,7 +150,6 @@
 	header {
 		font-size: 1.5em;
 		text-align: center;
-		margin-bottom: 0.5em;
 	}
 
     .fluff {
@@ -184,10 +195,11 @@
         grid-area: title;
     }
 
-    .shop-item__illustration {
+    .shop-item :global(.shop-item__illustration) {
         grid-area: illustration;
         font-size: 40px;
         justify-self: center;
+        height: 100%;
     }
 
     .shop-item__fluff {

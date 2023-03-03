@@ -1,15 +1,20 @@
 <script lang="ts">
+    import { flip } from 'svelte/animate';
+    import { scale } from 'svelte/transition';
+    import { receive, send } from '../helpers/transitionMove';
     import Run from './dashboards/RunDashboard.svelte';
     import Logs from './dashboards/Logs.svelte';
+    import Artifacts from './dashboards/Artifacts.svelte';
     import Collapsed from './dashboards/Collapsed.svelte';
     import Icon from './Icon.svelte';
 
-    import type { DashboardName } from '../stores/types';
     import type { SvelteComponent } from 'svelte';
+    import type { DashboardName } from '../stores/types';
 
     /* list of dashboard that can be displayed */
 	let displayDashboards: Map<DashboardName, boolean> = new Map([
         ['run', true],
+        ['artifacts', true],
         ['logs', true],
     ]);
 
@@ -19,8 +24,13 @@
         return hideDashboards.get(name) && displayDashboards.get(name);
     });
 
+    $: expandedDashboard = Array.from(displayDashboards.keys()).filter((dashboard) => {
+        return displayDashboards.get(dashboard) && !hideDashboards.get(dashboard);
+    });
+
     const dashboards: Map<DashboardName, typeof SvelteComponent> = new Map([
         ['run', Run],
+        ['artifacts', Artifacts],
         ['logs', Logs],
     ]);
 
@@ -37,16 +47,26 @@
 </script>
 
 <div class="header-panels">
-    <div class="dashboard-item">
-        <Collapsed list={collapsedDashboards} on:expand={expandDashboard} />
-    </div>
-    {#each Array.from(displayDashboards) as [dashboard, displayed] (dashboard)}
-    {#if displayed && !hideDashboards.get(dashboard)}
-        <div class="dashboard-item">
-            <svelte:component this={dashboards.get(dashboard)} />
-            <div class="reduce fa-solid fa-circle-minus" on:click={() => reduceDashboard(dashboard)}></div>
+    {#if collapsedDashboards.length}
+        <div class="dashboard-item"
+            transition:scale
+        >
+            <Collapsed list={collapsedDashboards} on:expand={expandDashboard} />
         </div>
     {/if}
+    {#each expandedDashboard as dashboard (dashboard)}
+        <div class="dashboard-item"
+            in:receive={{key: dashboard}}
+            out:send={{key: dashboard}}
+            animate:flip
+        >
+            <svelte:component this={dashboards.get(dashboard)} />
+            <Icon
+                icon="fa-solid fa-circle-minus"
+                class="reduce"
+                on:click={() => reduceDashboard(dashboard)}
+            />
+        </div>
     {/each}
 </div>
 
@@ -69,7 +89,7 @@
 		box-shadow: inset 1px 2px 10px var(--color-fg-dashboard);
     }
 
-    .reduce {
+    .header-panels :global(.reduce) {
         position: absolute;
         top: 1em;
         right: 1em;

@@ -41,4 +41,4 @@ export type DisplayedAction = {
     canPayCost: boolean;
 };
 
-type DashboardName = 'run' | 'logs';
+type DashboardName = 'run' | 'logs' | 'artifacts';

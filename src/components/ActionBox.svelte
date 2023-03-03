@@ -1,6 +1,7 @@
 <script lang="ts">
     import { createEventDispatcher } from 'svelte';
     import { scale } from 'svelte/transition';
+    import { tooltip } from '../helpers/tooltip';
     import type { Comparison } from '../stores/types';
     import DigitValue from './DigitValue.svelte';
     import Text from './Text.svelte';
@@ -62,7 +63,7 @@
 	<div class="action-box__fluff">
         {fluff}
 	</div>
-    <div class="cost" title="cost" class:requirement-missing={!canPayCost}>
+    <div class="cost" use:tooltip={'cost'} class:requirement-missing={!canPayCost}>
         {#each cost as [type, value]}
             <DigitValue value={value} /><Text text={`:${type}:`} />
         {/each}

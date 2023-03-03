@@ -1,15 +1,18 @@
 <script lang="ts">
+    import Icon from "./Icon.svelte";
+    import type { IconDesc } from "../stores/types";
+
 	export let text: string;
 
     $: chunkText = splitText(text);
 
     type Chunk = {
-        content: string | string[];
+        content: string | IconDesc;
         type: 'text' | 'icon' | 'line-feed';
         title?: string;
     };
 
-    const icons: Record<string, [string | string[], string]> = {
+    const icons: Record<string, [IconDesc, string]> = {
         ':click:': ['fa-regular fa-hand-pointer', 'Click'],
         ':clicks:': ['fa-regular fa-hand-pointer', 'Click'],
         ':lostClick:': ['fa-solid fa-ghost', 'Lost click'],
@@ -58,15 +61,7 @@
             {content}
         </span>
     {:else if type === 'icon'}
-        {#if Array.isArray(content)}
-            <span class="fa-stack small fa-fw" title={title}>
-                {#each content as classNames}
-                    <i class={classNames}></i>
-                {/each}
-            </span>
-        {:else}
-            <i class="{content} fa-fw" title={title}></i>
-        {/if}
+        <Icon icon={content} title={title} />
     {:else if type === 'line-feed'}
         <br>
     {/if}

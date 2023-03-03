@@ -1,6 +1,7 @@
 <script lang="ts">
     import { createEventDispatcher } from 'svelte';
     import type { DashboardName } from '../../stores/types';
+    import Icon from '../Icon.svelte';
     import Text from '../Text.svelte';
 
     const dispatch = createEventDispatcher<{expand: DashboardName}>();
@@ -21,7 +22,7 @@
     {#each list as name (name)}
     <div class="dashboard-collapsed__item" on:click={() => expand(name)}>
         <Text text={titles[name]} />
-        <i class="item__icon fa-solid fa-circle-plus"></i>
+        <Icon icon="fa-solid fa-circle-plus" class="item__icon" />
     </div>
     {/each}
 </div>

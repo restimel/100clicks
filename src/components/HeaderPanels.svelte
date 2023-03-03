@@ -2,6 +2,7 @@
     import Run from './dashboards/RunDashboard.svelte';
     import Logs from './dashboards/Logs.svelte';
     import Collapsed from './dashboards/Collapsed.svelte';
+    import Icon from './Icon.svelte';
 
     import type { DashboardName } from '../stores/types';
     import type { SvelteComponent } from 'svelte';

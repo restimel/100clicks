@@ -1,4 +1,15 @@
 
+export type IconDefinition = {
+    /** Example: 'fa-regular fa-hand-pointer' */
+    icon: string;
+    /** Example: 'fa-stack-2x' */
+    size?: string;
+    /** Example: 'shrink-8' up-7' */
+    transformation?: string;
+};
+type IconStrDefinition = string | IconDefinition;
+export type IconDesc = IconStrDefinition | IconStrDefinition[];
+
 export type ConditionType = 'energy' | 'energyMax' | 'click' | 'lostClicks'
     | 'run';
 export type Comparison = [ConditionType, bigint];

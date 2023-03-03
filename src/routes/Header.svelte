@@ -2,6 +2,7 @@
 	import { page } from '$app/stores';
 	// import logo from '$lib/images/svelte-logo.svg';
 	import github from '$lib/images/github.svg';
+    import Icon from '../components/Icon.svelte';
 </script>
 
 <header>
@@ -24,7 +25,9 @@
 				<a href="/about">About</a>
 			</li>
 			<li aria-current={$page.url.pathname.startsWith('/howToPlay') ? 'page' : undefined}>
-				<a href="/howToPlay"><i class="fa-solid fa-question"></i></a>
+				<a href="/howToPlay">
+					<Icon icon="fa-solid fa-question" />
+				</a>
 			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">

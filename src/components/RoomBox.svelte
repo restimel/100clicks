@@ -6,6 +6,7 @@
         accessibleList as actions,
     } from '../stores/currentClick';
     import type { Room } from '../stores/rooms';
+    import Icon from './Icon.svelte';
 
     export let room: Room;
     let expand = true;
@@ -37,10 +38,11 @@
             <Actions list={actionList} />
         </div>
         {/if}
-        <div
-            class="room_box-caret fa-solid {caretClass}"
+        <Icon
+            icon="fa-solid {caretClass}"
+            class="room_box-caret"
             on:click={changeExpand}
-        ></div>
+        />
     </div>
 </div>
 
@@ -87,7 +89,7 @@
         grid-area: actions;
     }
 
-    .room_box-caret {
+    .room-box-cell :global(.room_box-caret) {
         position: absolute;
         top: 1em;
         right: 1em;

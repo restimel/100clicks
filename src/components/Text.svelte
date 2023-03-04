@@ -8,7 +8,7 @@
 
     type Chunk = {
         content: string | IconDesc;
-        type: 'text' | 'icon' | 'line-feed';
+        type: 'text' | 'icon' | 'line-feed' | 'italic' | 'bold';
         title?: string;
     };
 
@@ -25,7 +25,7 @@
     };
 
     function splitText(rawText: string): Chunk[] {
-        const splittedText = rawText.split(/(:\w+:|[\n])/);
+        const splittedText = rawText.split(/(:\w+:|[\n]|_\w.*\w_|\*{2}\w.*\w\*{2})/);
         const chunks: Chunk[] = [];
 
         splittedText.forEach((str) => {
@@ -40,6 +40,16 @@
                 chunks.push({
                     type: 'line-feed',
                     content: '\n',
+                });
+            } else if (str.startsWith('_') && str.endsWith('_')) {
+                chunks.push({
+                    type: 'italic',
+                    content: str.slice(1, -1),
+                });
+            } else if (str.startsWith('*') && str.endsWith('*')) {
+                chunks.push({
+                    type: 'bold',
+                    content: str.slice(2, -2),
                 });
             } else {
                 if (str.trim()) {
@@ -64,11 +74,22 @@
         <Icon icon={content} title={title} />
     {:else if type === 'line-feed'}
         <br>
+    {:else if type === 'italic'}
+        <span class="text-italic">
+            <svelte:self text={content} />
+        </span>
+    {:else if type === 'bold'}
+        <span class="text-bold">
+            <svelte:self text={content} />
+        </span>
     {/if}
 {/each}
 
 <style>
-.fa-stack.small {
-    font-size: 0.5em;
+.text-italic {
+    font-style: italic;
+}
+.text-bold {
+    font-weight: bold;
 }
 </style>

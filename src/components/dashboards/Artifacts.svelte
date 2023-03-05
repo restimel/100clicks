@@ -54,7 +54,7 @@
                     <div
                         class="artifact-dashboard__item active-artifact"
                         class:usingArtifact={isUsed}
-                        use:tooltip={`${artifact.title}\n${artifact.desc}\n\nowned: ${count}`}
+                        use:tooltip={`**${artifact.title}**\n${artifact.desc}\n\nowned: ${count}`}
                         transition:blur
                         on:click={() => useArtifact(artifact.id)}
                     >
@@ -87,7 +87,7 @@
                 {#each passiveArtifact as {artifact, count} (artifact.id)}
                     <div
                         class="artifact-dashboard__item passive-artifact"
-                        use:tooltip={`${artifact.title}\n${artifact.desc}\n\nowned: ${count}`}
+                        use:tooltip={`**${artifact.title}**\n${artifact.desc}\n\nowned: ${count}`}
                         transition:blur
                     >
                         <Icon icon={artifact.icon} />
@@ -119,6 +119,7 @@
 
     .artifact-dashboard__item {
         cursor: default;
+        min-width: 1.2em;
     }
 
     .active-artifact {

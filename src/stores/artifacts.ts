@@ -49,6 +49,39 @@ addArtifacts([{
     desc: '+10% :temporalEnergy:',
     isHidden: [],
     cost: (n: bigint) => (n + 1n) * (n + 2n),
+}, {
+    id: 'double',
+    title: 'Double click',
+    icon: [{
+        icon: 'fa-solid fa-hand-pointer fa-inverse',
+        transformation: 'right-6 grow-8',
+    }, {
+        icon: 'fa-solid fa-hand-pointer',
+        size: 'fa-stack-2x',
+        transformation: 'left-6',
+    }],
+    fluff: 'Click faster to gain time.',
+    desc: 'The next click will be repeated\n_(it counts for only one click but both cost must be paid)_',
+    isHidden: [],
+    cost: (n: bigint) => 5n * (n + 1n),
+    usable: true,
+}, {
+    id: 'past',
+    title: 'Click in time',
+    icon: [{
+        icon: 'fa-solid fa-hand-pointer',
+        transformation: 'shrink-3',
+    }, {
+        icon: 'fa-solid fa-rotate-left',
+        size: 'fa-stack-2x',
+        transformation: 'left-6',
+    }],
+    fluff: 'Even faster that it goes through time.',
+    desc: 'The next click will be repeated in the previous click round\n_(it will allow to open room faster)_',
+    isHidden: [],
+    isVisible: [['artifact', 'double']],
+    cost: (n: bigint, t: bigint) => t + 5n * (n + 1n),
+    usable: true,
 }]);
 
 export const artifacts = artifactList;

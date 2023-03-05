@@ -91,7 +91,31 @@ export const accessibleList = derived(
 
 export const logs = writable<Log[]>([]);
 
-export const usingArtifact = writable<Set<string>>(new Set());
+export const usingArtifact = (() => {
+	const value = writable<Set<string>>(new Set());
+    const { set, subscribe, update } = value;
+
+	return {
+		subscribe,
+		set,
+		update,
+		add: (id: string) => {
+			update((set) => {
+				set.add(id);
+				return set;
+			});
+		},
+		delete: (id: string) => {
+			update((set) => {
+				set.delete(id);
+				return set;
+			});
+		},
+		has: (id: string) => {
+			return get(value).has(id);
+		},
+	};
+})();
 
 /* }}} */
 
@@ -143,10 +167,10 @@ function doAction(id: string): boolean {
 }
 
 export function useArtifact(name: string, useIt?: boolean) {
-    const useArtifact = useIt ?? !get(usingArtifact).has(name);
+    const useArtifact = useIt ?? !usingArtifact.has(name);
 
     if (!useArtifact) {
-        usingArtifact.update((set) => (set.delete(name), set));
+        usingArtifact.delete(name);
         return;
     }
     const artifact = getArtifact(name);
@@ -155,7 +179,7 @@ export function useArtifact(name: string, useIt?: boolean) {
     if (!artifact?.usable || nbOwn <= 0n) {
         return;
     }
-    usingArtifact.update((set) => (set.add(name), set));
+    usingArtifact.add(name);
 }
 
 export function clickAction(event: CustomEvent<string>) {
@@ -170,7 +194,13 @@ export function clickAction(event: CustomEvent<string>) {
     if (!doAction(id)) {
         return;
     }
-
+    if (usingArtifact.has('double')) {
+        /* repeat the action */
+        if (!doAction(id)) {
+            /* If the action cannot be repeated do not use the artifact */
+            usingArtifact.delete('double');
+        }
+    }
 
     /* Replay */
     const clickIdx = Number(get(clicks));
@@ -188,8 +218,20 @@ export function clickAction(event: CustomEvent<string>) {
     }
 
     /* Remember the action for further replay */
-    ghosts.set(id, (ghosts.get(id) ?? 0n) + 1n);
-    ghostClicks.update((arr) => (arr[clickIdx] = ghosts, arr));
+    let ghostsRec = ghosts;
+    let clickUpdateIdx = clickIdx;
+    if (usingArtifact.has('past')) {
+        clickUpdateIdx = clickIdx - 1;
+        ghostsRec = get(ghostClicks)[clickUpdateIdx];
+        if (!ghostsRec) {
+            /* Do not use the past artifact when there is no previous click index */
+            usingArtifact.delete('past');
+            ghostsRec = ghosts;
+        }
+    }
+
+    ghostsRec.set(id, (ghosts.get(id) ?? 0n) + 1n);
+    ghostClicks.update((arr) => (arr[clickUpdateIdx] = ghostsRec, arr));
 
     /* Use artifacts */
     get(usingArtifact).forEach((artifactName) => {

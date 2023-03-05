@@ -18,7 +18,7 @@ const actionList: Map<string, Action> = new Map();
 function addActions(actions: ActionDefinition[]) {
     let idx = 0;
     for (const action of actions) {
-        const id = action.id ?? `action-${idx}`;
+        const id = action.id?.toLowerCase() ?? `action-${idx}`;
         idx++;
         actionList.set(id, {
             id,
@@ -44,6 +44,7 @@ addActions([{
     action: () => energy.update((n) => n + 1n),
     isHidden: [],
 }, {
+    id: 'light on',
     title: 'Light on',
     roomId: '',
     cost: [
@@ -234,11 +235,11 @@ addActions([{
 export const list = actionList;
 
 export function getAction(id: string): Action | undefined {
-    if (actionList.has(id)) {
-        return actionList.get(id);
+    const searchValue = id.toLowerCase();
+    if (actionList.has(searchValue)) {
+        return actionList.get(searchValue);
     }
 
-    const searchValue = id.toLowerCase();
     for (const action of actionList.values()) {
         if (action.title.toLowerCase() === searchValue) {
             return action;

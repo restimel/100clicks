@@ -56,7 +56,7 @@
 
 {#if iconsDef.length > 1}
     <span
-        class={`fa-stack small fa-fw ${$$props.class}`}
+        class={`fa-stack small fa-fw ${$$props.class ?? ''}`}
         title={title}
         on:click={() => dispatch('click')}
     >
@@ -70,7 +70,7 @@
     </span>
 {:else}
     <i
-        class={`${$$props.class} ${iconsDef[0].icon} ${iconsDef[0].size} fa-fw`}
+        class={`${$$props.class ?? ''} ${iconsDef[0].icon} ${iconsDef[0].size} fa-fw`}
         data-fa-transform={iconsDef[0].transformation}
         style={getStyle(iconsDef[0].transformation)}
         title={title}

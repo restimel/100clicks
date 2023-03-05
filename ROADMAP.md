@@ -15,5 +15,5 @@
 ## Code structure
 * multi-language
 * save current state to restore it at next connection
-* svelte store helpers
 * user settings (sounds, localstorage, language)
+* svelte store helpers → update Array store

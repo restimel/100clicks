@@ -31,7 +31,7 @@ export const conditionMap: Record<ConditionType, Writable<bigint>> = {
 export function checkComparison(actionId: string, [type, value]: Comparison): boolean {
     if (type === 'click') {
         /* compare with number of clicks */
-        const currentValue = get(actionClicked).get(actionId) ?? 0n;
+        const currentValue = actionClicked.get(actionId) ?? 0n;
         return value > currentValue;
     }
     const store = conditionMap[type];
@@ -44,7 +44,7 @@ export function checkCondition(item: ConditionalItem, condition: Condition): boo
         case 'isDone': {
             if (item.type === "action") {
                 /* Action */
-                const value = !!get(actionOpened).get(item.id);
+                const value = !!actionOpened.get(item.id);
                 return value === condition[1];
             } else {
                 /* Room */
@@ -58,7 +58,7 @@ export function checkCondition(item: ConditionalItem, condition: Condition): boo
                 return false;
             }
             const actionId = targetAction.id;
-            return !!get(actionOpened).get(actionId);
+            return !!actionOpened.get(actionId);
         }
         case 'artifact': {
             const targetArtifact = getArtifact(condition[1]);

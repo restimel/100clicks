@@ -1,4 +1,5 @@
 import { get, writable } from 'svelte/store';
+import { writableArray, writableIncMap, writableMap } from '../helpers/SvelteStore';
 
 export const run = writable(1n);
 export const runOver = writable(false);
@@ -33,15 +34,15 @@ export const energy = createEnergy();
 /* }}} */
 /* {{{ Memorize */
 
-export const actionOpened = writable<Map<string, boolean>>(new Map());
-export const actionClicked = writable<Map<string, bigint>>(new Map());
-export const ghostClicks = writable<Array<Map<string, bigint>>>(new Array(100));
+export const actionOpened = writableMap<string, boolean>();
+export const actionClicked = writableMap<string, bigint>();
+export const ghostClicks = writableArray<Map<string, bigint>>(new Array(100));
 
 /* }}} */
 /* {{{ Permanent states */
 
-export const totalOwnArtifacts = writable<Map<string, bigint>>(new Map());
-function createArtifacts() {
+export const totalOwnArtifacts = writableIncMap<string>();
+export const ownArtifacts = (() => {
 	const { subscribe, set, update } = writable<Map<string, bigint>>(new Map());
 
 	return {
@@ -52,7 +53,7 @@ function createArtifacts() {
 			update((map) => {
 				const value = map.get(id) ?? 0n;
 				map.set(id, value + 1n);
-				totalOwnArtifacts.update((map) => (map.set(id, (map.get(id) || 0n) + 1n), map));
+				totalOwnArtifacts.inc(id, 1n);
 				return map;
 			});
 		},
@@ -68,15 +69,14 @@ function createArtifacts() {
 			});
 		},
 	};
-}
-export const ownArtifacts = createArtifacts();
+})();
 export const temporalEnergy = writable(0n);
 
 /* }}} */
 
 export function startRun() {
-	actionOpened.update((map) => (map.clear(), map));
-	actionClicked.update((map) => (map.clear(), map));
+	actionOpened.clear();
+	actionClicked.clear();
 
 	lostClicks.set(0n);
 	energy.set(0n);

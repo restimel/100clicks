@@ -1,4 +1,5 @@
-import { derived, get, writable } from 'svelte/store';
+import { derived, get } from 'svelte/store';
+import { writableArray, writableSet } from '../helpers/SvelteStore';
 import { getAction, list } from '../stores/actions';
 import { rooms } from './rooms';
 import {
@@ -63,7 +64,7 @@ export const accessibleList = derived(
                             return [condition[1], false];
                         }
                         const actionId = targetAction.id;
-                        const isDone = !!get(actionOpened).get(actionId);
+                        const isDone = !!actionOpened.get(actionId);
                         const actionName = targetAction.title || actionId;
                         return [actionName, isDone];
                     }
@@ -89,33 +90,8 @@ export const accessibleList = derived(
     return updatedActions;
 });
 
-export const logs = writable<Log[]>([]);
-
-export const usingArtifact = (() => {
-	const value = writable<Set<string>>(new Set());
-    const { set, subscribe, update } = value;
-
-	return {
-		subscribe,
-		set,
-		update,
-		add: (id: string) => {
-			update((set) => {
-				set.add(id);
-				return set;
-			});
-		},
-		delete: (id: string) => {
-			update((set) => {
-				set.delete(id);
-				return set;
-			});
-		},
-		has: (id: string) => {
-			return get(value).has(id);
-		},
-	};
-})();
+export const logs = writableArray<Log>();
+export const usingArtifact = writableSet<string>();
 
 /* }}} */
 
@@ -125,14 +101,14 @@ function checkCost(action: Action): boolean {
 }
 function payCost(action: Action) {
     const id = action.id;
-    const nbClick = (get(actionClicked).get(id) ?? 0n) + 1n;
+    const nbClick = (actionClicked.get(id) ?? 0n) + 1n;
     action.cost.forEach(([type, value]) => {
         if (type === 'click') {
             const isDone = value <= nbClick;
             if (isDone) {
-                logs.update((list) => (list.push(['open', id]), list));
+                logs.push(['open', id]);
             }
-            actionOpened.update((map) => (map.set(id, isDone), map));
+            actionOpened.$set(id, isDone);
             return;
         }
         const store = conditionMap[type];
@@ -140,13 +116,13 @@ function payCost(action: Action) {
     });
 
     /* Register the action as used */
-    if (!get(actionOpened).has(id)) {
-        logs.update((list) => (list.push(['open', id]), list));
-        actionOpened.update((map) => (map.set(id, true), map));
+    if (!actionOpened.has(id)) {
+        logs.push(['open', id]);
+        actionOpened.$set(id, true);
     }
 
     /* Register action clicked */
-    actionClicked.update((map) => (map.set(id, nbClick), map));
+    actionClicked.$set(id, nbClick);
 }
 
 function doAction(id: string): boolean {
@@ -204,7 +180,7 @@ export function clickAction(event: CustomEvent<string>) {
 
     /* Replay */
     const clickIdx = Number(get(clicks));
-    const ghosts = get(ghostClicks)[clickIdx] ?? new Map();
+    const ghosts = ghostClicks.at(clickIdx) ?? new Map<string, bigint>();
     let currentLostClicks = 0n;
     for (const [actionId, times] of ghosts) {
         for (let replay = 0n; replay < times; replay++) {
@@ -222,16 +198,17 @@ export function clickAction(event: CustomEvent<string>) {
     let clickUpdateIdx = clickIdx;
     if (usingArtifact.has('past')) {
         clickUpdateIdx = clickIdx - 1;
-        ghostsRec = get(ghostClicks)[clickUpdateIdx];
-        if (!ghostsRec) {
+        const pastGhosts = ghostClicks.at(clickUpdateIdx);
+        if (pastGhosts) {
+            ghostsRec = pastGhosts;
+        } else {
             /* Do not use the past artifact when there is no previous click index */
             usingArtifact.delete('past');
-            ghostsRec = ghosts;
         }
     }
 
     ghostsRec.set(id, (ghosts.get(id) ?? 0n) + 1n);
-    ghostClicks.update((arr) => (arr[clickUpdateIdx] = ghostsRec, arr));
+    ghostClicks.change(clickUpdateIdx, ghostsRec);
 
     /* Use artifacts */
     get(usingArtifact).forEach((artifactName) => {

@@ -26,6 +26,7 @@
 	/* structure (should not be changed) */
 	--action-box-width: 270px;
 	--shop-box-size: 200px;
+	--mask-z-index: 1000;
 }
 
 body {
@@ -98,6 +99,13 @@ button {
 
 button:focus:not(:focus-visible) {
 	outline: none;
+}
+
+button.disabled {
+	cursor: not-allowed;
+	opacity: 0.5;
+	color: gray;
+	/* Do not set pointer-events: none; in order to let tooltip work */
 }
 
 @media (min-width: 720px) {

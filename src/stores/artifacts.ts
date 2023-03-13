@@ -1,3 +1,5 @@
+
+import { $t } from '../locales/i18n';
 import type {
     ConditionalItem, IconDesc,
 } from './types';
@@ -38,20 +40,20 @@ function addArtifacts(artifacts: ArtifactDefinition[]) {
 
 addArtifacts([{
     id: 'TDM',
-    title: 'Temporal Dimensional Machine',
-    fluff: 'It transports back in time, always on the same amount of time: a run. But it did not replace the temporal line.',
+    title: $t('artifact.tdm.title'),
+    fluff: $t('artifact.tdm.fluff'),
     icon: 'fa-solid fa-clock-rotate-left',
     isVisible: [],
 }, {
     id: 'vortex',
-    title: 'Energy vortex',
-    fluff: 'It generates more power through Time.',
-    desc: '+10% :temporalEnergy:',
+    title: $t('artifact.vortex.title'),
+    fluff: $t('artifact.vortex.fluff'),
+    desc: $t('artifact.vortex.desc'),
     isHidden: [],
     cost: (n: bigint) => (n + 1n) * (n + 2n),
 }, {
     id: 'double',
-    title: 'Double click',
+    title: $t('artifact.double.title'),
     icon: [{
         icon: 'fa-solid fa-hand-pointer fa-inverse',
         transformation: 'right-6 grow-8',
@@ -60,14 +62,14 @@ addArtifacts([{
         size: 'fa-stack-2x',
         transformation: 'left-6',
     }],
-    fluff: 'Click faster to gain time.',
-    desc: 'The next click will be repeated\n_(it counts for only one click but both cost must be paid)_',
+    fluff: $t('artifact.double.fluff'),
+    desc: $t('artifact.double.desc'),
     isHidden: [],
     cost: (n: bigint) => 5n * (n + 1n),
     usable: true,
 }, {
     id: 'past',
-    title: 'Click in time',
+    title: $t('artifact.past.title'),
     icon: [{
         icon: 'fa-solid fa-hand-pointer',
         transformation: 'shrink-3',
@@ -76,8 +78,8 @@ addArtifacts([{
         size: 'fa-stack-2x',
         transformation: 'left-6',
     }],
-    fluff: 'Even faster that it goes through time.',
-    desc: 'The next click will be repeated in the previous click round\n_(it will allow to open room faster)_',
+    fluff: $t('artifact.past.fluff'),
+    desc: $t('artifact.past.desc'),
     isHidden: [],
     isVisible: [['artifact', 'double']],
     cost: (n: bigint, t: bigint) => t + 5n * (n + 1n),

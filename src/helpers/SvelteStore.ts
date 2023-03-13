@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { get, writable } from 'svelte/store';
 
 /* Types */
@@ -18,20 +17,20 @@ type WritableMapExtension<ID, VALUE> = {
 
     /** Removes the specified element from the Map object by key.
      * @param key
-     * @returns boolean
+     * @returns {Boolean}
      */
     $delete: (key: ID) => boolean;
 
     /** Returns a specified element from the Map object.
      * @param key
-     * @returns value
+     * @returns {Value}
      */
     $get: (key: ID) => VALUE | undefined;
 
     /** Returns a boolean indicating whether an element with the specified
      * key exists or not.
      * @param key
-     * @returns boolean
+     * @returns {Boolean}
      */
     $has: (key: ID) => boolean;
 
@@ -51,20 +50,20 @@ type WritableMapExtension<ID, VALUE> = {
 
     /** Removes the specified element from the Map object by key.
      * @param key
-     * @returns boolean
+     * @returns {Boolean}
      */
     delete: (key: ID) => boolean;
 
     /** Returns a specified element from the Map object.
      * @param key
-     * @returns value
+     * @returns {Value}
      */
     get: (key: ID) => VALUE | undefined;
 
     /** Returns a boolean indicating whether an element with the specified
      * key exists or not.
      * @param key
-     * @returns boolean
+     * @returns {Boolean}
      */
     has: (key: ID) => boolean;
 
@@ -172,13 +171,13 @@ type WritableSetExtension<VALUE> = {
 
     /** Removes the specified element from the Set object.
      * @param value
-     * @returns boolean
+     * @returns {Boolean}
      */
     $delete: (value: VALUE) => boolean;
 
     /** Returns a boolean indicating whether an element exists or not.
      * @param value
-     * @returns boolean
+     * @returns {Boolean}
      */
     $has: (value: VALUE) => boolean;
 
@@ -196,13 +195,13 @@ type WritableSetExtension<VALUE> = {
 
     /** Removes the specified element from the Set object.
      * @param value
-     * @returns boolean
+     * @returns {Boolean}
      */
     delete: (value: VALUE) => boolean;
 
     /** Returns a boolean indicating whether an element exists or not.
      * @param value
-     * @returns boolean
+     * @returns {Boolean}
      */
     has: (value: VALUE) => boolean;
 
@@ -300,7 +299,7 @@ type WritableArrayExtension<VALUE> = {
      * negative integers.
      * Negative integers count back from the last item in the array.
      * @param key {number}
-     * @returns value
+     * @returns {Value}
      */
     $at: (key: number) => VALUE | undefined;
 
@@ -311,7 +310,7 @@ type WritableArrayExtension<VALUE> = {
     /** adds one or more elements to the end of the array and returns the new
      * length of the array.
      * @param ...elements the elements to add to the array
-     * @returns {number} the new length of the array.
+     * @returns {Number} the new length of the array.
      */
     $push: (...elements: VALUE[]) => number;
 
@@ -320,7 +319,7 @@ type WritableArrayExtension<VALUE> = {
      * negative integers.
      * Negative integers count back from the last item in the array.
      * @param key {number}
-     * @returns value
+     * @returns {Value}
      */
     at: (key: number) => VALUE | undefined;
 
@@ -331,7 +330,7 @@ type WritableArrayExtension<VALUE> = {
     /** adds one or more elements to the end of the array and returns the new
      * length of the array.
      * @param ...elements the elements to add to the array
-     * @returns {number} the new length of the array.
+     * @returns {Number} the new length of the array.
      */
      push: (...elements: VALUE[]) => number;
 

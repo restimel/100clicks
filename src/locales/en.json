@@ -1,0 +1,168 @@
+{
+  "action": {
+    "apples": {
+      "description": "Energy: +2:energy:",
+      "title": "Apples"
+    },
+    "bedroom1": {
+      "fluff": "A closed door. This is a door leading to a bedroom.",
+      "title": "Bedroom 1"
+    },
+    "bedroom2": {
+      "fluff": "A closed door. This is a door leading to a bedroom.",
+      "title": "Bedroom 2"
+    },
+    "control-room": {
+      "fluff": "A closed door. \"Control room\" is written on the door.",
+      "title": "Control room"
+    },
+    "dynamo": {
+      "description": "Energy: +1:energy:",
+      "fluff": "A small wheel generating electricity.",
+      "title": "Dynamo"
+    },
+    "generator": {
+      "description": "Energy: +4:energy:",
+      "fluff": "It generates electricity",
+      "title": "Generator"
+    },
+    "ghost-analysis": {
+      "fluff": "Time fluctuations generates some modifications in the Time wave.\\nBut what is the Time?",
+      "title": "Ghost analysis"
+    },
+    "gym-room": {
+      "fluff": "A closed door. \"Gym room\" is written on the door.",
+      "title": "Gym room"
+    },
+    "kitchen": {
+      "fluff": "A closed door. \"Kitchen\" is written on the door.",
+      "title": "Kitchen"
+    },
+    "laboratory": {
+      "fluff": "A closed door. \"Laboratory\" is written on the door.",
+      "title": "Laboratory"
+    },
+    "light-on": {
+      "fluff": "Switch the light on, so you can see where to walk",
+      "title": "Light on"
+    },
+    "reactor": {
+      "fluff": "This is the heart of the vessel.",
+      "title": "Reactor"
+    },
+    "repair-room": {
+      "fluff": "A closed door. \"Repair Station\" is written on the door. Something blocks the door behind.",
+      "title": "Repair station"
+    },
+    "search-energy-past": {
+      "description": "Energy: +10:energy:",
+      "fluff": "When lost actions generates energy!",
+      "title": "Energy of the past"
+    },
+    "sleeping-ghost": {
+      "description": "Energy: +25:energy:",
+      "fluff": "When lost actions generates energy!",
+      "title": "Sleeping ghost"
+    }
+  },
+  "artifact": {
+    "double": {
+      "desc": "The next click will be repeated\n_(it counts for only one click but both cost must be paid)_",
+      "fluff": "Click faster to gain time.",
+      "title": "Double click"
+    },
+    "past": {
+      "desc": "The next click will be repeated in the previous click round\n_(it will allow to open room faster)_",
+      "fluff": "Even faster that it goes through time.",
+      "title": "Click in time"
+    },
+    "tdm": {
+      "fluff": "It travels back in time, always on the same amount of time: a run. But it did not replace the temporal line.",
+      "title": "Temporal Dimensional Machine"
+    },
+    "vortex": {
+      "desc": "+10% :temporalEnergy:",
+      "fluff": "It generates more power through Time.",
+      "title": "Energy vortex"
+    }
+  },
+  "component": {
+    "action": {
+      "require": "Require:"
+    },
+    "artifacts": {
+      "consumable": "Consumable",
+      "header": "Artifacts",
+      "passive": "Passive",
+      "tooltip-details": "**{title}**\n{desc}\n\nowned: {count}"
+    },
+    "header": {
+      "about": "About",
+      "game": "Game",
+      "github": "Get the source code on Github"
+    },
+    "logs": {
+      "action-complete": "Action \"{name}\" has been completed",
+      "header": "Logs"
+    },
+    "run-dashboard": {
+      "header": "Run #{run}",
+      "title": "Resources"
+    },
+    "shop": {
+      "disabled-continue-run": "You should own a temporal machine to run again.",
+      "end-of-run": "End of run #{run}",
+      "fluff": "You are tired. You have to stop there! But you discover some odd artifacts:",
+      "no-artifacts": "There are no more artifacts. Come back later.",
+      "not-enough-TE": "You don't have enough temporal energy. You should get {missing} more.",
+      "run-again": "Travel back to next run"
+    }
+  },
+  "ressources": {
+    "click": "Click",
+    "click--icon": "Click :click:",
+    "cost-free": "Free",
+    "energy": "Energy",
+    "energy--icon": "Energy :energy:",
+    "energy-max": "Energy max",
+    "lost-click": "Lost click",
+    "lost-click--details": "Lost clicks are clicks in previous run which are not able to repeat their actions",
+    "lost-click--icon": "Lost clicks :lostClick:",
+    "temporal-energy": "Temporal energy",
+    "temporal-energy--icon": "Temporal energy :temporalEnergy:"
+  },
+  "room": {
+    "bedroom1": {
+      "fluff": "This is a bedroom of a crew.",
+      "title": "A bedroom"
+    },
+    "control-room": {
+      "fluff": "The heart of the vessel.",
+      "title": "The Control room"
+    },
+    "corridor": {
+      "fluff": "A corridor made of metal. It leads to several doors",
+      "title": "A corridor"
+    },
+    "corridor-dark": {
+      "fluff": "It is dark and you can\\'t see anything.",
+      "title": "Dark place"
+    },
+    "gym-room": {
+      "fluff": "Many accessories for sport.",
+      "title": "A gym room"
+    },
+    "kitchen": {
+      "fluff": "A table is in the center. Pantry contains some food.",
+      "title": "The kitchen"
+    },
+    "laboratory": {
+      "fluff": "A room filled of many electronic tools.",
+      "title": "The laboratory"
+    },
+    "repair-room": {
+      "fluff": "Dirty place but full of useful tools.",
+      "title": "A repair station"
+    }
+  }
+}

@@ -1,16 +1,13 @@
 <script>
+	import { _ } from 'svelte-i18n';
 	import { page } from '$app/stores';
 	// import logo from '$lib/images/svelte-logo.svg';
 	import github from '$lib/images/github.svg';
     import Icon from '../components/Icon.svelte';
+    import Languages from '../components/Languages.svelte';
 </script>
 
 <header>
-	<!-- <div class="corner">
-		<a href="https://kit.svelte.dev">
-			<img src={logo} alt="SvelteKit" />
-		</a>
-	</div> -->
 	<div></div>
 
 	<nav>
@@ -19,10 +16,13 @@
 		</svg>
 		<ul>
 			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">Game</a>
+				<a href="/">{ $_('component.header.game') }</a>
 			</li>
 			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href="/about">About</a>
+				<a href="/about">{ $_('component.header.about') }</a>
+			</li>
+			<li>
+				<Languages class="header-item" />
 			</li>
 			<li aria-current={$page.url.pathname.startsWith('/howToPlay') ? 'page' : undefined}>
 				<a href="/howToPlay">
@@ -36,7 +36,10 @@
 	</nav>
 
 	<div class="corner">
-		<a href="https://github.com/restimel/100clicks">
+		<a
+			href="https://github.com/restimel/100clicks"
+			title={$_('component.header.github')}
+		>
 			<img src={github} alt="GitHub" />
 		</a>
 	</div>
@@ -46,7 +49,7 @@
 	header {
 		display: flex;
 		justify-content: space-between;
-		z-index: 1010;
+		z-index: calc(var(--mask-z-index, 1000) + 10);
 	}
 
 	.corner {
@@ -114,6 +117,7 @@
 		border-top: var(--size) solid var(--color-theme-1);
 	}
 
+	:global(.header-item),
 	nav a {
 		display: flex;
 		height: 100%;

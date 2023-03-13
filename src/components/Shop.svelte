@@ -1,6 +1,7 @@
 <script lang="ts">
     import { flip } from 'svelte/animate';
     import { fade, scale, slide } from 'svelte/transition';
+    import { _ } from 'svelte-i18n'
     import { tooltip } from '../helpers/tooltip';
     import { artifacts, type Artifact } from '../stores/artifacts';
     import { isDisplayed } from '../stores/items';
@@ -20,7 +21,7 @@
 
     let artifactList: Artifact[] = [];
     $: continueRun = $ownArtifacts.has('TDM');
-    $: titleRun = !continueRun ? 'You should own a temporal machine to run again' : '';
+    $: titleRun = !continueRun ? $_('component.shop.disabled-continue-run') : '';
     $: artifactInitialList = $runOver ? (artifactList = Array.from(artifacts.values()).filter(isDisplayed)) : [];
 
     let message = '';
@@ -31,7 +32,9 @@
     }
 
     function nextRun() {
-        startRun();
+        if (continueRun) {
+            startRun();
+        }
     }
 
     function buy(artifact: Artifact) {
@@ -41,7 +44,9 @@
         const cost = artifact.cost(nb, total) * temporalDecimals;
         if ($temporalEnergy < cost) {
             clearTimeout(timer);
-            message = `You don't have enough temporal energy. You should get ${(cost - $temporalEnergy) / temporalDecimals} more.`;
+            message = $_('component.shop.not-enough-TE'), {
+                values: { missing: (cost - $temporalEnergy) / temporalDecimals, },
+            };
             timer = window.setTimeout(() => message = '', 5000);
             return;
         }
@@ -53,13 +58,13 @@
 
 {#if $runOver}
 <div class="shop" transition:scale>
-	<header>End of run #{$run}</header>
+	<header>{ $_('component.shop.end-of-run', {values: {run: Number($run)}}) }</header>
     <div class="fluff">
-        You are tired. You have to stop there! But you discover some odd artifacts:
+        {$_('component.shop.fluff')}
     </div>
     {#if $temporalEnergy > 0n}
         <label class="shop-currency">
-            <Text text="Temporal energy :temporalEnergy:" />:
+            <Text text={$_('ressources.temporal-energy--icon')} />:
             <output>
                 <DigitValue value={$temporalEnergy / temporalDecimals} />
             </output>
@@ -78,7 +83,7 @@
                 animate:flip={{duration: 400}}
             >
                 <header>
-                    <Text text={artifact.title} />
+                    <Text text={$_(artifact.title)} />
                 </header>
                 <!-- <svg class="shop-item__illustration" viewBox="0 0 100 100" aria-hidden="true">
                     <path d={artifact.icon} />
@@ -88,11 +93,11 @@
                     icon={artifact.icon}
                 />
                 <p class="shop-item__fluff">
-                    <Text text={artifact.fluff} />
+                    <Text text={$_(artifact.fluff)} />
                 </p>
                 <button class="shop-item__cost">
                     {#if cost === 0n}
-                        Free
+                        {$_('ressources.cost-free')}
                     {:else}
                         <Text text="{cost}:temporalEnergy:" />
                     {/if}
@@ -104,7 +109,7 @@
         {/each}
         {#if artifactList.length === 0}
             <p class="empty-shop" transition:fade>
-                There are no more artifacts. Come back later.
+                {$_('component.shop.no-artifacts')}
             </p>
         {/if}
 	</div>
@@ -112,8 +117,8 @@
         <div class="message" transition:fade>{message}</div>
     {/if}
     <div class="next-run">
-        <button disabled={!continueRun} use:tooltip={titleRun} on:click={nextRun}>
-            Wake up for next run
+        <button class:disabled={!continueRun} use:tooltip={titleRun} on:click={nextRun}>
+            {$_('component.shop.run-again')}
         </button>
     </div>
 </div>
@@ -128,7 +133,7 @@
         max-width: 95vw;
         max-height: 95vh;
         transform: translate(-50%, -50%);
-        z-index: 1000;
+        z-index: var(--mask-z-index, 1000);
 
         padding: 1em;
 		border: 2px solid var(--color-theme-2);
@@ -142,7 +147,7 @@
         left: 0;
         width: 100vw;
         height: 100vh;
-        z-index: 990;
+        z-index: calc(var(--mask-z-index, 1000) - 10);
 
         background-color: #CCCCCCCC;
     }
@@ -179,8 +184,9 @@
         box-shadow: 0 1px 3px #000000;
 
         display: grid;
-        grid-template-rows: max-content 40px 1fr max-content;
+        grid-template-rows: max-content 40px minmax(0, 1fr) max-content;
         grid-template-areas: "title" "illustration" "fluff" "cost";
+        row-gap: 5px;;
 
         font-size: 0.8em;
 
@@ -206,6 +212,9 @@
         grid-area: fluff;
         font-style: italic;
         font-size: 0.9em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0;
     }
 
     .shop-item__cost {

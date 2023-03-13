@@ -1,5 +1,6 @@
 <script lang="ts">
     import { blur, slide } from 'svelte/transition';
+    import { _ } from 'svelte-i18n';
     import { tooltip } from '../../helpers/tooltip';
     import { ownArtifacts } from '../../stores/run';
     import { getArtifact } from '../../stores/artifacts';
@@ -33,14 +34,14 @@
 </script>
 
 <div class="artifact-dashboard">
-	<header>Artifacts</header>
+	<header>{$_('component.artifacts.header')}</header>
     {#if activeArtifact.length}
     <div>
         <span
             class="artifact-type"
             on:click={() => consumableHidden = !consumableHidden}
         >
-            Consumable
+            {$_('component.artifacts.consumable')}
             {#if consumableHidden}
                 <span transition:blur>
                     (<DigitValue value={activeArtifact.length} />)
@@ -54,7 +55,11 @@
                     <div
                         class="artifact-dashboard__item active-artifact"
                         class:usingArtifact={isUsed}
-                        use:tooltip={`**${artifact.title}**\n${artifact.desc}\n\nowned: ${count}`}
+                        use:tooltip={$_('component.artifacts.tooltip-details', { values: {
+                            title: $_(artifact.title),
+                            desc: $_(artifact.desc),
+                            count: Number(count),
+                        }})}
                         transition:blur
                         on:click={() => useArtifact(artifact.id)}
                     >
@@ -75,7 +80,7 @@
             class="artifact-type"
             on:click={() => passiveHidden = !passiveHidden}
         >
-            Passive
+            {$_('component.artifacts.passive')}
             {#if passiveHidden}
                 <span transition:blur>
                     (<DigitValue value={passiveArtifact.length} />)
@@ -87,7 +92,11 @@
                 {#each passiveArtifact as {artifact, count} (artifact.id)}
                     <div
                         class="artifact-dashboard__item passive-artifact"
-                        use:tooltip={`**${artifact.title}**\n${artifact.desc}\n\nowned: ${count}`}
+                        use:tooltip={$_('component.artifacts.tooltip-details', { values: {
+                            title: $_(artifact.title),
+                            desc: $_(artifact.desc),
+                            count: Number(count),
+                        }})}
                         transition:blur
                     >
                         <Icon icon={artifact.icon} />

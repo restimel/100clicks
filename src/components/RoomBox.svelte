@@ -1,5 +1,6 @@
 <script lang="ts">
     import { blur, slide } from 'svelte/transition';
+    import { _ } from 'svelte-i18n';
     import Actions from './Actions.svelte';
     import Text from './Text.svelte';
     import {
@@ -28,11 +29,11 @@
         transition:blur={{duration: 400}}
     >
         <div class="room-box__title">
-            <Text text={room.title} />
+            <Text text={$_(room.title)} />
         </div>
         {#if expand}
         <div class="room-box__fluff" transition:slide>
-            <Text text={room.fluff} />
+            <Text text={$_(room.fluff)} />
         </div>
         <div class="room-box__actions" transition:slide>
             <Actions list={actionList} />

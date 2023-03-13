@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { _ } from 'svelte-i18n';
     import { logs } from '../../stores/currentClick';
     import { getAction } from '../../stores/actions';
     import Text from '../Text.svelte';
@@ -11,13 +12,15 @@
             case 'open':
                 const action = getAction(value);
                 const name = action?.title || value;
-                return `"${name}" has been completed`;
+                return $_('component.logs.action-complete', { values: {
+                    name,
+                }});
         }
     }
 </script>
 
 <div class="log-dashboard">
-	<header>Logs</header>
+	<header>{$_('component.logs.header')}</header>
     {#each $logs as log (log)}
 	<div class="log-dashboard__item" transition:slide>
         <Text text={sentence(log)} />

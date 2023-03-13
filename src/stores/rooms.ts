@@ -1,3 +1,4 @@
+import { $t } from '../locales/i18n';
 import type {
     ConditionalItem,
 } from './types';
@@ -33,8 +34,8 @@ function addRooms(rooms: RoomDefinition[]) {
 
 addRooms([{
     id: '',
-    title: 'Dark place',
-    fluff: 'It is dark and you can\'t see anything.',
+    title: $t('room.corridor-dark.title'),
+    fluff: $t('room.corridor-dark.fluff'),
     isHidden: [
         ['action', 'light on'],
     ],
@@ -42,8 +43,8 @@ addRooms([{
     bgColor: '#383838',
 }, {
     id: '',
-    title: 'A corridor',
-    fluff: 'A corridor made of metal. It leads to several doors',
+    title: $t('room.corridor.title'),
+    fluff: $t('room.corridor.fluff'),
     isVisible: [
         ['action', 'light on'],
     ],
@@ -51,8 +52,8 @@ addRooms([{
     bgColor: '#FFFFFF',
 }, {
     id: 'controlRoom',
-    title: 'The Control room',
-    fluff: 'The heart of the vessel.',
+    title: $t('room.control-room.title'),
+    fluff: $t('room.control-room.fluff'),
     isVisible: [
         ['action', 'control room'],
     ],
@@ -60,8 +61,8 @@ addRooms([{
     bgColor: '#3d0882',
 }, {
     id: 'laboratory',
-    title: 'The laboratory',
-    fluff: 'A room filled of many electronic tools.',
+    title: $t('room.laboratory.title'),
+    fluff: $t('room.laboratory.fluff'),
     isVisible: [
         ['action', 'laboratory'],
     ],
@@ -69,8 +70,8 @@ addRooms([{
     bgColor: '#CCFFFF',
 }, {
     id: 'kitchen',
-    title: 'The kitchen',
-    fluff: 'A table is in the center. Pantry contains some food.',
+    title: $t('room.kitchen.title'),
+    fluff: $t('room.kitchen.fluff'),
     isVisible: [
         ['action', 'kitchen'],
     ],
@@ -78,8 +79,8 @@ addRooms([{
     bgColor: '#CCCC66',
 }, {
     id: 'repairStation',
-    title: 'A repair station',
-    fluff: 'A table is in the center. Pantry contains some food.',
+    title: $t('room.repair-room.title'),
+    fluff: $t('room.repair-room.fluff'),
     isVisible: [
         ['action', 'repair station'],
     ],
@@ -87,8 +88,8 @@ addRooms([{
     bgColor: '#FFCC66',
 }, {
     id: 'gym',
-    title: 'A gym room',
-    fluff: 'Many accessories for sport.',
+    title: $t('room.gym-room.title'),
+    fluff: $t('room.gym-room.fluff'),
     isVisible: [
         ['action', 'gym room'],
     ],
@@ -96,8 +97,8 @@ addRooms([{
     bgColor: '#CCCCFF',
 }, {
     id: 'bedroom1',
-    title: 'A bedroom',
-    fluff: 'This is a bedroom of a crew.',
+    title: $t('room.bedroom1.title'),
+    fluff: $t('room.bedroom1.fluff'),
     isVisible: [
         ['action', 'bedroom 1'],
     ],

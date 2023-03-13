@@ -1,6 +1,7 @@
 <script lang="ts">
     import { createEventDispatcher } from 'svelte';
     import { scale } from 'svelte/transition';
+    import { _ } from 'svelte-i18n';
     import { tooltip } from '../helpers/tooltip';
     import type { Comparison } from '../stores/types';
     import DigitValue from './DigitValue.svelte';
@@ -34,11 +35,11 @@
     transition:scale|local={{duration: 200}}
 >
 	<div class="action-box__title">
-        <Text text={title} />
+        <Text text={$_(title)} />
     </div>
     {#if prerequisites.length > 0}
     <div class="requirement">
-        Require:
+        {$_('component.action.require')}
         <span
             class:requirement-missing={missingRequires > 0}
             class:requirement-satisfied={missingRequires === 0}
@@ -51,17 +52,17 @@
                 class:requirement-missing={!isSatisfied}
                 class:requirement-satisfied={isSatisfied}
             >
-                <Text text={desc} />
+                <Text text={$_(desc)} />
             </li>
             {/each}
         </ul>
     </div>
     {/if}
 	<div class="action-box__description">
-        <Text text={description} />
+        <Text text={$_(description)} />
 	</div>
 	<div class="action-box__fluff">
-        {fluff}
+        {$_(fluff)}
 	</div>
     <div class="cost" use:tooltip={'cost'} class:requirement-missing={!canPayCost}>
         {#each cost as [type, value]}

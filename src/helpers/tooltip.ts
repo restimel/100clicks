@@ -1,15 +1,15 @@
-import { SvelteComponent } from 'svelte';
 import Tooltip from './tooltip/Tooltip.svelte';
+import type { SvelteComponent } from 'svelte';
 
-export function tooltip(element, content: string) {
+export function tooltip(element: HTMLElement, content: string) {
 	let title: string = content ?? '';
 	let tooltipComponent: SvelteComponent;
 
-	function create(event) {
+	function create(event: MouseEvent) {
         /* remove potential previous tooltip */
 
         destroy();
-		tooltipComponent = new (Tooltip as any)({
+		tooltipComponent = new Tooltip({
 			props: {
 				title: title,
 				x: event.pageX,
@@ -18,24 +18,24 @@ export function tooltip(element, content: string) {
 			target: document.body,
 		});
 	}
-	function mouseMove(event) {
-		tooltipComponent.$set({
+	function mouseMove(event: MouseEvent) {
+		tooltipComponent?.$set({
 			x: event.pageX,
 			y: event.pageY,
 		});
 	}
 	function destroy() {
 		tooltipComponent?.$destroy();
-        tooltipComponent = null;
+        (tooltipComponent as unknown) = null;
 	}
 
-	element.addEventListener('mouseover', create);
+	element.addEventListener('mouseenter', create);
     element.addEventListener('mouseleave', destroy);
 	element.addEventListener('mousemove', mouseMove);
 
 	return {
 		destroy() {
-			element.removeEventListener('mouseover', create);
+			element.removeEventListener('mouseenter', create);
 			element.removeEventListener('mouseleave', destroy);
 			element.removeEventListener('mousemove', mouseMove);
 		},

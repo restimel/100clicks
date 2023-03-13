@@ -1,6 +1,9 @@
 <script lang="ts">
-    import Icon from "./Icon.svelte";
-    import type { IconDesc } from "../stores/types";
+    import { _ } from 'svelte-i18n';
+    import Icon from './Icon.svelte';
+    import { icons } from '../helpers/icons';
+
+    import type { IconDesc } from '../stores/types';
 
 	export let text: string;
 
@@ -10,18 +13,6 @@
         content: string | IconDesc;
         type: 'text' | 'icon' | 'line-feed' | 'italic' | 'bold';
         title?: string;
-    };
-
-    const icons: Record<string, [IconDesc, string]> = {
-        ':click:': ['fa-regular fa-hand-pointer', 'Click'],
-        ':clicks:': ['fa-regular fa-hand-pointer', 'Click'],
-        ':lostClick:': ['fa-solid fa-ghost', 'Lost click'],
-        ':lostClicks:': ['fa-solid fa-ghost', 'Lost click'],
-        ':energy:': ['fa-solid fa-bolt-lightning', 'Energy'],
-        ':energyMax:': [['fa-solid fa-circle fa-stack-2x', 'fa-solid fa-bolt-lightning fa-stack-1x fa-inverse'], 'Energy max'],
-        ':temporalEnergy:': [['fa-solid fa-calendar fa-stack-2x', 'fa-solid fa-bolt-lightning fa-stack-1x fa-inverse'], 'Temporal energy'],
-        ':tEnergy:': [['fa-solid fa-calendar fa-stack-2x', 'fa-solid fa-bolt-lightning fa-stack-1x fa-inverse'], 'Temporal energy'],
-        ':warning:': ['fa-solid fa-triangle-exclamation', '???'],
     };
 
     function splitText(rawText: string): Chunk[] {
@@ -71,7 +62,7 @@
             {content}
         </span>
     {:else if type === 'icon'}
-        <Icon icon={content} title={title} />
+        <Icon icon={content} title={$_(title ?? '')} />
     {:else if type === 'line-feed'}
         <br>
     {:else if type === 'italic'}

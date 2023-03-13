@@ -4,9 +4,12 @@
 	export let x: number;
 	export let y: number;
 </script>
-<aside style="--pos-x: {x}px;--pos-y: {y}px;">
-	<Text text={title} />
-</aside>
+
+{#if title}
+	<aside style="--pos-x: {x}px;--pos-y: {y}px;">
+		<Text text={title} />
+	</aside>
+{/if}
 
 <style>
 	aside {
@@ -18,5 +21,6 @@
 		border-radius: 4px;
 		padding: 4px;
 		position: fixed;
+		z-index: calc(var(--mask-z-index, 1000) * 2);
 	}
 </style>

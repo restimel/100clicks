@@ -1,0 +1,168 @@
+{
+  "action": {
+    "apples": {
+      "description": "",
+      "title": ""
+    },
+    "bedroom1": {
+      "fluff": "",
+      "title": ""
+    },
+    "bedroom2": {
+      "fluff": "",
+      "title": ""
+    },
+    "control-room": {
+      "fluff": "",
+      "title": ""
+    },
+    "dynamo": {
+      "description": "Énergie : +1:energy:",
+      "fluff": "Une petite roue permettant de générer de l'électricité.",
+      "title": "Dynamo"
+    },
+    "generator": {
+      "description": "",
+      "fluff": "",
+      "title": "Générateur"
+    },
+    "ghost-analysis": {
+      "fluff": "",
+      "title": ""
+    },
+    "gym-room": {
+      "fluff": "",
+      "title": ""
+    },
+    "kitchen": {
+      "fluff": "",
+      "title": ""
+    },
+    "laboratory": {
+      "fluff": "",
+      "title": ""
+    },
+    "light-on": {
+      "fluff": "Allumer la lumière, ainsi vous verrez où marcher",
+      "title": "Éclairer"
+    },
+    "reactor": {
+      "fluff": "",
+      "title": ""
+    },
+    "repair-room": {
+      "fluff": "",
+      "title": ""
+    },
+    "search-energy-past": {
+      "description": "",
+      "fluff": "",
+      "title": ""
+    },
+    "sleeping-ghost": {
+      "description": "Énergie : +25:energy:",
+      "fluff": "",
+      "title": ""
+    }
+  },
+  "artifact": {
+    "double": {
+      "desc": "Le prochain clic sera répété\n_(il ne compte que pour un clic mais les 2 doivent être payés)_",
+      "fluff": "Clic rapide pour gagner du temps.",
+      "title": "Double clic"
+    },
+    "past": {
+      "desc": "Le prochain clic sera répété dans l'action du précédent clic\n_(cela permet d'ouvrir les salles plus vite)_",
+      "fluff": "Tellement rapide que cela remonte le temps.",
+      "title": "Clic temporel"
+    },
+    "tdm": {
+      "fluff": "Voyage dans le temps, mais toujours de la même durée : un tour. Et sans modifier la ligne temporelle!",
+      "title": "Machine Dimensionnelle Temporelle"
+    },
+    "vortex": {
+      "desc": "+10% :temporalEnergy:",
+      "fluff": "Génère plus de force à travers le Temps.",
+      "title": "Vortex d'énergie"
+    }
+  },
+  "component": {
+    "action": {
+      "require": "Requis :"
+    },
+    "artifacts": {
+      "consumable": "Consommable",
+      "header": "Artefacts",
+      "passive": "Passif",
+      "tooltip-details": "**{title}**\n{desc}\n\npossédés: {count}"
+    },
+    "header": {
+      "about": "À propos",
+      "game": "Jeu",
+      "github": "Voir le code source sur Github"
+    },
+    "logs": {
+      "action-complete": "L'action \"{name}\" a été réalisée",
+      "header": "Registre"
+    },
+    "run-dashboard": {
+      "header": "Tour #{run}",
+      "title": "Ressources"
+    },
+    "shop": {
+      "disabled-continue-run": "Vous devez posséder une machine temporelle pour recommencer le tour.",
+      "end-of-run": "Fin du tour #{run}",
+      "fluff": "La fatigue est là. Vous devez vous arrêter ! Mais vous découvrez quelques artefacts étranges :",
+      "no-artifacts": "Il n'y a pas d'autres artefacts. Revenez plus tard.",
+      "not-enough-TE": "Vous n'avez pas assez d'énergie temporelle. Il vous en manque {missing}.",
+      "run-again": "Voyager temporellement vers le prochain tour"
+    }
+  },
+  "ressources": {
+    "click": "Clic",
+    "click--icon": "Clic :click:",
+    "cost-free": "Gratuit",
+    "energy": "Énergie",
+    "energy--icon": "Énergie :energy:",
+    "energy-max": "Énergie max",
+    "lost-click": "Clic perdu",
+    "lost-click--details": "Les clics perdus correspondent aux clics des tours précédents qui n'ont pas pu répéter leurs actions.",
+    "lost-click--icon": "Clics perdus :lostClick:",
+    "temporal-energy": "Énergie temporelle",
+    "temporal-energy--icon": "Énergie temporelle :temporalEnergy:"
+  },
+  "room": {
+    "bedroom1": {
+      "fluff": "C'est une chambre pour un membre de l'équipage.",
+      "title": "Une chambre"
+    },
+    "control-room": {
+      "fluff": "Le coeur du vaisseau.",
+      "title": "La salle de contrôle"
+    },
+    "corridor": {
+      "fluff": "Un couloir fait de métla. Il mène à plusieurs portes.",
+      "title": ""
+    },
+    "corridor-dark": {
+      "fluff": "Il fait sombre et vous ne pouvez rien voir.",
+      "title": "Une pièce sombre"
+    },
+    "gym-room": {
+      "fluff": "",
+      "title": ""
+    },
+    "kitchen": {
+      "fluff": "",
+      "title": "La cuisine"
+    },
+    "laboratory": {
+      "fluff": "",
+      "title": ""
+    },
+    "repair-room": {
+      "fluff": "",
+      "title": ""
+    }
+  }
+}

@@ -1,6 +1,7 @@
 <script lang="ts">
     import { createEventDispatcher } from 'svelte';
     import { flip } from 'svelte/animate';
+    import { _ } from 'svelte-i18n';
     import { receive, send } from '../../helpers/transitionMove';
     import type { DashboardName } from '../../stores/types';
     import Icon from '../Icon.svelte';
@@ -11,11 +12,11 @@
 
     export let list: DashboardName[] = [];
 
-    const titles: Record<DashboardName, string> = {
-        run: 'Run',
-        logs: 'Logs',
-        artifacts: 'Artifcats',
-    };
+    $: titles = {
+        run: $_('component.run-dashboard.title'),
+        logs: $_('component.logs.header'),
+        artifacts: $_('component.artifacts.header'),
+    } as Record<DashboardName, string>;
 
     function expand(name: DashboardName) {
         dispatch('expand', name);

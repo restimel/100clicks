@@ -1,6 +1,5 @@
 <script lang="ts">
 	import {
-        // accessibleList as actions,
         accessibleRooms as rooms,
     } from '../stores/currentClick';
     import RoomBox from './RoomBox.svelte';

@@ -1,3 +1,4 @@
+import { $t } from '../locales/i18n';
 import { energy, energyMax } from './run';
 import type { Comparison, Condition, ConditionalItem } from './types';
 
@@ -37,80 +38,87 @@ function addActions(actions: ActionDefinition[]) {
 }
 
 addActions([{
-    title: 'Dynamo',
+    title: $t('action.dynamo.title'),
     roomId: '',
-    fluff: 'A small wheel generating electricity.',
-    description: 'Energy: +1:energy:',
+    fluff: $t('action.dynamo.fluff'),
+    description: $t('action.dynamo.description'),
     action: () => energy.update((n) => n + 1n),
     isHidden: [],
 }, {
     id: 'light on',
-    title: 'Light on',
+    title: $t('action.light-on.title'),
     roomId: '',
     cost: [
         ['energy', 1n],
     ],
-    fluff: 'Switch the light on, so you can see where to walk',
+    fluff: $t('action.light-on.fluff'),
 }, {
-    title: 'Laboratory',
+    id: 'laboratory',
+    title: $t('action.laboratory.title'),
     roomId: '',
     cost: [
         ['energy', 5n],
     ],
-    fluff: 'A closed door. "Laboratory" is written on the door.',
+    fluff: $t('action.laboratory.fluff'),
     isVisible: [['action', 'Light on']],
 }, {
-    title: 'Kitchen',
+    id: 'kitchen',
+    title: $t('action.kitchen.title'),
     roomId: '',
     cost: [
         ['energy', 5n],
     ],
-    fluff: 'A closed door. "Kitchen" is written on the door.',
+    fluff: $t('action.kitchen.fluff'),
     isVisible: [['action', 'Light on']],
 }, {
-    title: 'Repair station',
+    id: 'repair station',
+    title: $t('action.repair-room.title'),
     roomId: '',
     cost: [
         ['click', 50n],
     ],
-    fluff: 'A closed door. "Repair Station" is written on the door. Something blocks the door behind.',
+    fluff: $t('action.repair-room.fluff'),
     isVisible: [['action', 'Light on']],
 }, {
-    title: 'Control room',
+    id: 'control room',
+    title: $t('action.control-room.title'),
     roomId: '',
     cost: [
         ['energy', 5n],
         ['click', 2n],
     ],
-    fluff: 'A closed door. "Control room" is written on the door.',
+    fluff: $t('action.control-room.fluff'),
     isVisible: [['action', 'Light on']],
 }, {
-    title: 'Bedroom 1',
+    id: 'bedroom1',
+    title: $t('action.bedroom1.title'),
     roomId: '',
     cost: [
         ['energy', 2n],
         ['click', 5n],
     ],
-    fluff: 'A closed door. This is a door leading to a bedroom.',
+    fluff: $t('action.bedroom1.fluff'),
     requirements: [['action', 'Control room']],
     isVisible: [['action', 'Light on']],
 }, {
-    title: 'Bedroom 2',
+    id: 'bedroom2',
+    title: $t('action.bedroom2.title'),
     roomId: '',
     cost: [
         ['energy', 1n],
         ['click', 10n],
     ],
-    fluff: 'A closed door. This is a door leading to a bedroom.',
+    fluff: $t('action.bedroom2.fluff'),
     requirements: [['action', 'Control room']],
     isVisible: [['action', 'Light on']],
 }, {
-    title: 'Gym room',
+    id: 'gym room',
+    title: $t('action.gym-room.title'),
     roomId: '',
     cost: [
         ['energy', 1n],
     ],
-    fluff: 'A closed door. "Gym room" is written on the door.',
+    fluff: $t('action.gym-room.fluff'),
     requirements: [['action', 'Control room']],
     isVisible: [['action', 'Light on']],
 }, {
@@ -124,13 +132,13 @@ addActions([{
     description: 'Energy: +5:energy:',
     action: () => energy.update((n) => n + 5n),
 }, {
-    title: 'Apples',
+    title: $t('action.apples.title'),
     roomId: 'kitchen',
     cost: [
         ['click', 10n],
     ],
     isVisible: [['action', 'Kitchen']],
-    description: 'Energy: +2:energy:',
+    description: $t('action.apples.description'),
     action: () => energy.update((n) => n + 2n),
 }, {
     title: 'Gym tool',
@@ -140,7 +148,7 @@ addActions([{
         ['energy', 20n],
         ['click', 200n],
     ],
-    isVisible: [['action', 'Gym room']],
+    isVisible: [['action', 'gym room']],
     description: 'Energy max: +1:energyMax:',
     action: () => energyMax.update((n) => n + 1n),
 }, {
@@ -152,15 +160,16 @@ addActions([{
     ],
     isVisible: [
         ['energyMax', 200n],
-        ['action', 'Gym room'],
+        ['action', 'gym room'],
     ],
     isHidden: [],
     description: 'Energy max: +10:energyMax:',
     action: () => energyMax.update((n) => n + 10n),
 }, {
-    title: 'Ghost analysis',
+    id: 'ghost analysis',
+    title: $t('action.ghost-analysis.title'),
     roomId: 'laboratory',
-    fluff: 'What is the Time?',
+    fluff: $t('action.ghost-analysis.fluff'),
     cost: [
         ['energy', 1n],
         ['click', 10n],
@@ -169,9 +178,9 @@ addActions([{
         ['action', 'Laboratory'],
     ],
 }, {
-    title: 'Generator',
+    title: $t('action.generator.title'),
     roomId: 'repairStation',
-    fluff: 'It generates electricity',
+    fluff: $t('action.generator.fluff'),
     cost: [
         ['energy', 1n],
     ],
@@ -179,12 +188,12 @@ addActions([{
         ['action', 'Repair station'],
     ],
     isHidden: [],
-    description: 'Energy: +4:energy:',
+    description: $t('action.generator.description'),
     action: () => energy.update((n) => n + 4n),
 }, {
-    title: 'Energy of the past',
+    title: $t('action.search-energy-past.title'),
     roomId: 'laboratory',
-    fluff: 'When lost actions generates energy!',
+    fluff: $t('action.search-energy-past.fluff'),
     cost: [
         ['lostClicks', 20n],
     ],
@@ -192,12 +201,12 @@ addActions([{
         ['action', 'Ghost analysis'],
     ],
     isHidden: [],
-    description: 'Energy: +10:energy:',
+    description: $t('action.search-energy-past.description'),
     action: () => energy.update((n) => n + 10n),
 }, {
-    title: 'Sleeping ghost',
+    title: $t('action.sleeping-ghost.title'),
     roomId: 'laboratory',
-    fluff: 'When lost actions generates energy!',
+    fluff: $t('action.sleeping-ghost.fluff'),
     cost: [
         ['lostClicks', 5n],
         ['energy', 5n],
@@ -210,12 +219,12 @@ addActions([{
         ['action', 'Ghost analysis'],
     ],
     isHidden: [],
-    description: 'Energy: +25:energy:',
+    description: $t('action.sleeping-ghost.description'),
     action: () => energy.update((n) => n + 25n),
 }, {
-    title: 'Reactor',
+    title: $t('action.reactor.title'),
     roomId: '',
-    fluff: 'This is the heart of the vessel.',
+    fluff: $t('action.reactor.fluff'),
     cost: [
         ['energy', 500n],
         ['click', 10n],

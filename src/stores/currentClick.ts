@@ -71,8 +71,8 @@ export const accessibleList = derived(
                     case 'artifact': {
                         const id = condition[1];
                         const hasArtifact = get(ownArtifacts).get(id);
-                        const artifact = getArtifact(id)?.title ?? id;
-                        return [artifact, !!hasArtifact];
+                        const artifactName = getArtifact(id)?.title ?? id;
+                        return [artifactName, !!hasArtifact];
                     }
                     case 'isDone': {
                         return [action.title, true];

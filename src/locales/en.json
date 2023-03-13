@@ -27,7 +27,7 @@
       "title": "Generator"
     },
     "ghost-analysis": {
-      "fluff": "Time fluctuations generates some modifications in the Time wave.\\nBut what is the Time?",
+      "fluff": "Time fluctuations generates some modifications in the Time wave.\nBut what is the Time?",
       "title": "Ghost analysis"
     },
     "gym-room": {
@@ -145,7 +145,7 @@
       "title": "A corridor"
     },
     "corridor-dark": {
-      "fluff": "It is dark and you can\\'t see anything.",
+      "fluff": "It is dark and you can't see anything.",
       "title": "Dark place"
     },
     "gym-room": {

@@ -40,7 +40,7 @@ addRooms([{
         ['action', 'light on'],
     ],
     color: '#CCCCCC',
-    bgColor: '#383838',
+    bgColor: '#3B3B3B',
 }, {
     id: '',
     title: $t('room.corridor.title'),
@@ -49,7 +49,7 @@ addRooms([{
         ['action', 'light on'],
     ],
     color: '#000000',
-    bgColor: '#FFFFFF',
+    bgColor: '#ECECEC',
 }, {
     id: 'controlRoom',
     title: $t('room.control-room.title'),
@@ -57,8 +57,8 @@ addRooms([{
     isVisible: [
         ['action', 'control room'],
     ],
-    color: '#bdc482',
-    bgColor: '#3d0882',
+    color: '#DAA520',
+    bgColor: '#1E355F',
 }, {
     id: 'laboratory',
     title: $t('room.laboratory.title'),
@@ -67,7 +67,7 @@ addRooms([{
         ['action', 'laboratory'],
     ],
     color: '#000000',
-    bgColor: '#CCFFFF',
+    bgColor: '#87CEEB',
 }, {
     id: 'kitchen',
     title: $t('room.kitchen.title'),
@@ -76,7 +76,7 @@ addRooms([{
         ['action', 'kitchen'],
     ],
     color: '#000000',
-    bgColor: '#CCCC66',
+    bgColor: '#F5F5DC',
 }, {
     id: 'repairStation',
     title: $t('room.repair-room.title'),
@@ -85,7 +85,7 @@ addRooms([{
         ['action', 'repair station'],
     ],
     color: '#000000',
-    bgColor: '#FFCC66',
+    bgColor: '#CD7F32',
 }, {
     id: 'gym',
     title: $t('room.gym-room.title'),
@@ -94,16 +94,25 @@ addRooms([{
         ['action', 'gym room'],
     ],
     color: '#000000',
-    bgColor: '#CCCCFF',
+    bgColor: '#F0A830',
 }, {
     id: 'bedroom1',
     title: $t('room.bedroom1.title'),
     fluff: $t('room.bedroom1.fluff'),
     isVisible: [
-        ['action', 'bedroom 1'],
+        ['action', 'bedroom1'],
     ],
     color: '#000000',
-    bgColor: '#CCCCFF',
+    bgColor: '#b7c9d1',
+}, {
+    id: 'bedroom2',
+    title: $t('room.bedroom1.title'),
+    fluff: $t('room.bedroom1.fluff'),
+    isVisible: [
+        ['action', 'bedroom2'],
+    ],
+    color: '#000000',
+    bgColor: '#b7c9d1',
 }]);
 
 export const rooms = roomList;

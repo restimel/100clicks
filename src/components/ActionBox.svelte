@@ -80,7 +80,7 @@
         min-height: 50px;
         padding: 0.5em 1em;
         border: 2px solid var(--color-theme-2);
-        background-color: var(--color-bg-2);
+        background: var(--color-bg-action--disabled);
         color: var(--color-text-disabled);
         box-shadow: 0 3px 10px #00000066;
 
@@ -91,12 +91,12 @@
 	}
     .action-box.active {
         cursor: pointer;
-        background-color: var(--color-bg-0);
+        background: var(--color-bg-action);
         color: var(--color-text);
         box-shadow: 0 3px 10px #000000FF;
     }
     .action-box.active:active {
-        background-color: var(--color-bg-2);
+        background: var(--color-bg-action--active);
     }
 
     .action-box__title {

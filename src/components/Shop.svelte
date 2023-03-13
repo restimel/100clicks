@@ -126,7 +126,7 @@
 {/if}
 
 <style>
-	.shop {
+    .shop {
         position: fixed;
         top: 50%;
         left: 50%;
@@ -136,11 +136,17 @@
         z-index: var(--mask-z-index, 1000);
 
         padding: 1em;
-		border: 2px solid var(--color-theme-2);
-		box-shadow: 1px 2px 10px black;
-		background-color: var(--color-bg-1);
-		border-radius: 1em;
-	}
+        border: 2px solid var(--color-fg-shop);
+	    border-radius: 1em;
+        box-shadow: 1px 2px 10px black;
+        background-color: var(--color-bg-shop);
+        color: var(--color-fg-shop);
+        background-image: radial-gradient(
+            50% 50% at 50% 50%,
+            rgba(255, 255, 255, 0.45) 0%,
+            rgba(255, 255, 255, 0) 100%
+        );
+    }
     .mask {
         position: fixed;
         top: 0;
@@ -152,10 +158,10 @@
         background-color: #CCCCCCCC;
     }
 
-	header {
-		font-size: 1.5em;
-		text-align: center;
-	}
+    header {
+        font-size: 1.5em;
+        text-align: center;
+    }
 
     .fluff {
         font-size: 0.9em;
@@ -163,23 +169,24 @@
         margin: 1em 0;
     }
 
-	.shop-list {
+    .shop-list {
         position: relative;
-		display: flex;
+        display: flex;
         flex-direction: row;
         justify-content: space-evenly;
         align-content: center;
         flex-wrap: wrap;
         margin: 0.5em 0;
         min-height: var(--shop-box-size);
-	}
+    }
 
     .shop-item {
         position: relative;
         width: var(--shop-box-size);
         height: var(--shop-box-size);
-        border: 1px solid var(--color-theme-2);
-        background: var(--color-bg-0);
+        border: 1px solid var(--color-fg-shop);
+        background: var(--color-bg-artifact);
+        color: var(--color-text);
         padding: 0.5em;
         box-shadow: 0 1px 3px #000000;
 
@@ -194,7 +201,8 @@
     }
     .shop-item.disabled {
         cursor: not-allowed;
-        background-color: var(--color-bg-2);
+        background-color: var(--color-bg-artifact--disabled);
+        opacity: 0.5;
     }
 
     .shop-item header {

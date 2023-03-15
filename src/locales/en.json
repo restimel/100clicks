@@ -5,15 +5,15 @@
       "title": "Apples"
     },
     "bedroom1": {
-      "fluff": "A closed door. This is a door leading to a bedroom.",
+      "fluff": "A closed door.\nThis is a door leading to a bedroom.",
       "title": "Bedroom 1"
     },
     "bedroom2": {
-      "fluff": "A closed door. This is a door leading to a bedroom.",
+      "fluff": "A closed door.\nThis is a door leading to a bedroom.",
       "title": "Bedroom 2"
     },
     "control-room": {
-      "fluff": "A closed door. \"Control room\" is written on the door.",
+      "fluff": "A closed door.\n\"Control room\" is written on the door.",
       "title": "Control room"
     },
     "dynamo": {
@@ -28,18 +28,18 @@
     },
     "ghost-analysis": {
       "fluff": "Time fluctuations generates some modifications in the Time wave.\nBut what is the Time?",
-      "title": "Ghost analysis"
+      "title": "Ghosts analysis"
     },
     "gym-room": {
       "fluff": "A closed door. \"Gym room\" is written on the door.",
       "title": "Gym room"
     },
     "kitchen": {
-      "fluff": "A closed door. \"Kitchen\" is written on the door.",
+      "fluff": "A closed door.\n\"Kitchen\" is written on the door.",
       "title": "Kitchen"
     },
     "laboratory": {
-      "fluff": "A closed door. \"Laboratory\" is written on the door.",
+      "fluff": "A closed door.\n\"Laboratory\" is written on the door.",
       "title": "Laboratory"
     },
     "light-on": {
@@ -118,7 +118,7 @@
       "run-again": "Travel back to next run"
     }
   },
-  "ressources": {
+  "resources": {
     "click": "Click",
     "click--icon": "Click :click:",
     "cost-free": "Free",
@@ -153,11 +153,11 @@
       "title": "A gym room"
     },
     "kitchen": {
-      "fluff": "A table is in the center. Pantry contains some food.",
+      "fluff": "A table is in the center.\nPantry contains some food.",
       "title": "The kitchen"
     },
     "laboratory": {
-      "fluff": "A room filled of many electronic tools.",
+      "fluff": "A room filled of many devices: oscilloscopes, bobins, microscopes, ...",
       "title": "The laboratory"
     },
     "repair-room": {

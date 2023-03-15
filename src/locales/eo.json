@@ -1,0 +1,168 @@
+{
+  "action": {
+    "apples": {
+      "description": "Energio: 2:energy:",
+      "title": "Pomoj"
+    },
+    "bedroom1": {
+      "fluff": "Fermita pordo. \nĈi tio estas pordo kondukanta al dormoĉambro.",
+      "title": "Dormoĉambro 1"
+    },
+    "bedroom2": {
+      "fluff": "Fermita pordo.\nĈi tio estas pordo kondukanta al dormoĉambro.",
+      "title": "Dormoĉambro 2"
+    },
+    "control-room": {
+      "fluff": "Fermita pordo. \n\"Kontroloko\" estas skribita sur la pordo.",
+      "title": "Kontroloko"
+    },
+    "dynamo": {
+      "description": "",
+      "fluff": "",
+      "title": ""
+    },
+    "generator": {
+      "description": "Energio: +4:energy:",
+      "fluff": "Ĝi generas elektron",
+      "title": ""
+    },
+    "ghost-analysis": {
+      "fluff": "Tempofluktuoj generas kelkajn modifojn en la Tempo-ondo.\nSed kio estas la Tempo?",
+      "title": "Analizo de fantomoj"
+    },
+    "gym-room": {
+      "fluff": "",
+      "title": ""
+    },
+    "kitchen": {
+      "fluff": "Fermita pordo. \n\"Kuirejo\" estas skribita sur la pordo.",
+      "title": "Kuirejo"
+    },
+    "laboratory": {
+      "fluff": "Fermita pordo. \n\"Laboratorio\" estas skribita sur la pordo.",
+      "title": "Laboratorio"
+    },
+    "light-on": {
+      "fluff": "",
+      "title": ""
+    },
+    "reactor": {
+      "fluff": "",
+      "title": ""
+    },
+    "repair-room": {
+      "fluff": "",
+      "title": ""
+    },
+    "search-energy-past": {
+      "description": "",
+      "fluff": "",
+      "title": ""
+    },
+    "sleeping-ghost": {
+      "description": "",
+      "fluff": "",
+      "title": ""
+    }
+  },
+  "artifact": {
+    "double": {
+      "desc": "",
+      "fluff": "",
+      "title": ""
+    },
+    "past": {
+      "desc": "",
+      "fluff": "",
+      "title": ""
+    },
+    "tdm": {
+      "fluff": "",
+      "title": ""
+    },
+    "vortex": {
+      "desc": "",
+      "fluff": "",
+      "title": ""
+    }
+  },
+  "component": {
+    "action": {
+      "require": "Postuli:"
+    },
+    "artifacts": {
+      "consumable": "Konsumebla",
+      "header": "Artefaktoj",
+      "passive": "Pasivo",
+      "tooltip-details": "**{title}**\n{desc}\n\nposedata: {count}"
+    },
+    "header": {
+      "about": "Pri",
+      "game": "Ludo",
+      "github": "Akiru la fontkodon en Github"
+    },
+    "logs": {
+      "action-complete": "Ago \"{name}\" estis plenumita",
+      "header": "Ŝtipoj"
+    },
+    "run-dashboard": {
+      "header": "Ciklo #{run}",
+      "title": "Provizoj"
+    },
+    "shop": {
+      "disabled-continue-run": "",
+      "end-of-run": "",
+      "fluff": "",
+      "no-artifacts": "",
+      "not-enough-TE": "",
+      "run-again": ""
+    }
+  },
+  "resources": {
+    "click": "Klako",
+    "click--icon": "Klako :click:",
+    "cost-free": "",
+    "energy": "",
+    "energy--icon": "",
+    "energy-max": "",
+    "lost-click": "",
+    "lost-click--details": "",
+    "lost-click--icon": "",
+    "temporal-energy": "",
+    "temporal-energy--icon": ""
+  },
+  "room": {
+    "bedroom1": {
+      "fluff": "",
+      "title": ""
+    },
+    "control-room": {
+      "fluff": "",
+      "title": ""
+    },
+    "corridor": {
+      "fluff": "",
+      "title": "Koridoro"
+    },
+    "corridor-dark": {
+      "fluff": "",
+      "title": ""
+    },
+    "gym-room": {
+      "fluff": "",
+      "title": ""
+    },
+    "kitchen": {
+      "fluff": "Tablo estas en la centro. \nManĝejo enhavas iom da manĝaĵo.",
+      "title": ""
+    },
+    "laboratory": {
+      "fluff": "Ĉambro plenigita de multaj aparatoj: osciloskopoj, bobinoj, mikroskopoj, ...",
+      "title": "La laboratorio"
+    },
+    "repair-room": {
+      "fluff": "",
+      "title": ""
+    }
+  }
+}

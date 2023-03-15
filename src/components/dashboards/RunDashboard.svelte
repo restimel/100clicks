@@ -13,7 +13,7 @@
     }})}</header>
     <div class="dashboard-item">
         <label for="click-dashboard">
-            <Text text={$_('ressources.click--icon')} />:
+            <Text text={$_('resources.click--icon')} />:
         </label>
         <output id="click-dashboard">
             <DigitValue value={$clicks} /> / <DigitValue value={100} />
@@ -22,7 +22,7 @@
     {#if $hadEnergy}
         <div class="dashboard-item">
             <label for="energy-dashboard">
-                <Text text={$_('ressources.energy--icon')} />:
+                <Text text={$_('resources.energy--icon')} />:
             </label>
             <output id="energy-dashboard">
                 <DigitValue value={$energy} /> / <DigitValue value={$energyMax} />
@@ -31,8 +31,8 @@
     {/if}
     {#if $hadLostClick}
         <div class="dashboard-item">
-            <label for="lostClick-dashboard" use:tooltip={$_('ressources.lost-click--details')}>
-                <Text text={$_('ressources.lost-click--icon')} />:
+            <label for="lostClick-dashboard" use:tooltip={$_('resources.lost-click--details')}>
+                <Text text={$_('resources.lost-click--icon')} />:
             </label>
             <output id="lostClick-dashboard">
                 <DigitValue value={$lostClicks} />

@@ -64,7 +64,7 @@
     </div>
     {#if $temporalEnergy > 0n}
         <label class="shop-currency">
-            <Text text={$_('ressources.temporal-energy--icon')} />:
+            <Text text={$_('resources.temporal-energy--icon')} />:
             <output>
                 <DigitValue value={$temporalEnergy / temporalDecimals} />
             </output>
@@ -97,7 +97,7 @@
                 </p>
                 <button class="shop-item__cost">
                     {#if cost === 0n}
-                        {$_('ressources.cost-free')}
+                        {$_('resources.cost-free')}
                     {:else}
                         <Text text="{cost}:temporalEnergy:" />
                     {/if}

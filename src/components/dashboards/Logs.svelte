@@ -11,7 +11,7 @@
         switch (type) {
             case 'open':
                 const action = getAction(value);
-                const name = action?.title || value;
+                const name = $_(action?.title || value);
                 return $_('component.logs.action-complete', { values: {
                     name,
                 }});
@@ -22,9 +22,9 @@
 <div class="log-dashboard">
 	<header>{$_('component.logs.header')}</header>
     {#each $logs as log (log)}
-	<div class="log-dashboard__item" transition:slide>
-        <Text text={sentence(log)} />
-	</div>
+        <div class="log-dashboard__item" transition:slide>
+            <Text text={($_) && sentence(log)} />
+        </div>
     {/each}
 </div>
 

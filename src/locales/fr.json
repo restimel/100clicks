@@ -1,20 +1,20 @@
 {
   "action": {
     "apples": {
-      "description": "",
-      "title": ""
+      "description": "Énergie : 2 :energy:",
+      "title": "Pommes"
     },
     "bedroom1": {
-      "fluff": "",
-      "title": ""
+      "fluff": "Une porte fermée. \nIl s'agit d'une porte menant à une chambre.",
+      "title": "Chambre 1"
     },
     "bedroom2": {
-      "fluff": "",
-      "title": ""
+      "fluff": "Une porte fermée.\nIl s'agit d'une porte menant à une chambre.",
+      "title": "Chambre 2"
     },
     "control-room": {
-      "fluff": "",
-      "title": ""
+      "fluff": "Une porte fermée. \n\"Salle de contrôle\" est écrit sur la porte.",
+      "title": "Salle de contrôle"
     },
     "dynamo": {
       "description": "Énergie : +1:energy:",
@@ -22,25 +22,25 @@
       "title": "Dynamo"
     },
     "generator": {
-      "description": "",
-      "fluff": "",
+      "description": "Énergie : +4 :energy:",
+      "fluff": "Produit de l'électricité",
       "title": "Générateur"
     },
     "ghost-analysis": {
-      "fluff": "",
-      "title": ""
+      "fluff": "Les fluctuations temporelles génèrent quelques modifications dans l'onde temporelle.\nMais qu'est-ce que le Temps ?",
+      "title": "Analyse des fantômes"
     },
     "gym-room": {
       "fluff": "",
       "title": ""
     },
     "kitchen": {
-      "fluff": "",
-      "title": ""
+      "fluff": "Une porte fermée. \n\"Cuisine\" est écrit sur la porte.",
+      "title": "Cuisine"
     },
     "laboratory": {
-      "fluff": "",
-      "title": ""
+      "fluff": "Une porte fermée. \n\"Laboratoire\" est écrit sur la porte.",
+      "title": "Laboratoire"
     },
     "light-on": {
       "fluff": "Allumer la lumière, ainsi vous verrez où marcher",
@@ -94,7 +94,7 @@
       "consumable": "Consommable",
       "header": "Artefacts",
       "passive": "Passif",
-      "tooltip-details": "**{title}**\n{desc}\n\npossédés: {count}"
+      "tooltip-details": "**{title}**\n{desc}\n\npossédés : {count}"
     },
     "header": {
       "about": "À propos",
@@ -118,7 +118,7 @@
       "run-again": "Voyager temporellement vers le prochain tour"
     }
   },
-  "ressources": {
+  "resources": {
     "click": "Clic",
     "click--icon": "Clic :click:",
     "cost-free": "Gratuit",
@@ -142,7 +142,7 @@
     },
     "corridor": {
       "fluff": "Un couloir fait de métla. Il mène à plusieurs portes.",
-      "title": ""
+      "title": "Un couloir"
     },
     "corridor-dark": {
       "fluff": "Il fait sombre et vous ne pouvez rien voir.",
@@ -153,12 +153,12 @@
       "title": ""
     },
     "kitchen": {
-      "fluff": "",
+      "fluff": "Une table est au centre. \nLe garde-manger contient de la nourriture.",
       "title": "La cuisine"
     },
     "laboratory": {
-      "fluff": "",
-      "title": ""
+      "fluff": "Une salle remplie de nombreux appareils : oscilloscopes, bobines, microscopes, ...",
+      "title": "Le laboratoire"
     },
     "repair-room": {
       "fluff": "",

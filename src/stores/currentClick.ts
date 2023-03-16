@@ -11,6 +11,7 @@ import {
     ghostClicks,
     lostClicks,
     ownArtifacts,
+    ownEquipments,
 } from '../stores/run';
 import { checkComparison, conditionMap, isDisplayed } from './items';
 import { getArtifact } from './artifacts';
@@ -23,6 +24,7 @@ import type {
     Log,
 } from '../stores/types';
 import type { Room } from './rooms';
+import { getEquipment } from './equipments';
 
 
 /* {{{ exposed variables */
@@ -73,6 +75,12 @@ export const accessibleList = derived(
                         const hasArtifact = get(ownArtifacts).get(id);
                         const artifactName = getArtifact(id)?.title ?? id;
                         return [artifactName, !!hasArtifact];
+                    }
+                    case 'equipment': {
+                        const id = condition[1];
+                        const hasEquipment = ownEquipments.has(id);
+                        const equipmentName = getEquipment(id)?.title ?? id;
+                        return [equipmentName, !!hasEquipment];
                     }
                     case 'isDone': {
                         return [action.title, true];
@@ -137,7 +145,11 @@ function doAction(id: string): boolean {
     }
 
     payCost(action);
-    action.action();
+    const logItem = action.action(actionClicked.get(action.id) ?? 1n);
+
+    if (Array.isArray(logItem)) {
+        logs.push(logItem);
+    }
 
     return true;
 }

@@ -1,3 +1,5 @@
+/** Managed conditions for items (actions, rooms, equipments, ...)  */
+
 import { get, writable } from "svelte/store";
 import { getAction } from "./actions";
 import {
@@ -7,6 +9,7 @@ import {
     energyMax,
     lostClicks,
     ownArtifacts,
+    ownEquipments,
     run,
 } from "./run";
 
@@ -18,6 +21,7 @@ import type {
     ConditionType,
 } from "./types";
 import { getArtifact } from "./artifacts";
+import { getEquipment } from "./equipments";
 
 
 export const conditionMap: Record<ConditionType, Writable<bigint>> = {
@@ -48,7 +52,7 @@ export function checkCondition(item: ConditionalItem, condition: Condition): boo
                 return value === condition[1];
             } else {
                 /* Room */
-                console.warn('TODO: "isDone" for Room', item.id, condition[1]);
+                console.warn('TODO: "isDone" for Room', item.type, item.id, condition[1]);
                 return true;
             }
         }
@@ -67,6 +71,14 @@ export function checkCondition(item: ConditionalItem, condition: Condition): boo
             }
             const artifactId = targetArtifact.id;
             return !!get(ownArtifacts).get(artifactId);
+        }
+        case 'equipment': {
+            const targetEquipment = getEquipment(condition[1]);
+            if (!targetEquipment) {
+                return false;
+            }
+            const equipmentId = targetEquipment.id;
+            return ownEquipments.has(equipmentId);
         }
         default:
             return checkComparison(item.id, condition);

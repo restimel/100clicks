@@ -2,10 +2,11 @@ import { get, writable } from 'svelte/store';
 
 /* Types */
 import type { Writable } from 'svelte/store';
+import { emptyObj } from './common';
 
 /* Generic types */
 
-type ForEachCB<KEY, VALUE, OBJ> = (val: VALUE, key: KEY, map: OBJ) => void;
+type ForeachCB<KEY, VALUE, OBJ> = (val: VALUE, key: KEY, map: OBJ) => void;
 type ExtensionOption = Record<string | symbol, unknown>;
 
 /* }}} */
@@ -43,7 +44,7 @@ type WritableMapExtension<ID, VALUE> = {
 
     /** Executes a provided function once per each key/value pair in the Map
      * object, in insertion order. */
-    $forEach: (cb: ForEachCB<ID, VALUE, Map<ID, VALUE>>, ctx?: unknown) => void;
+    $forEach: (cb: ForeachCB<ID, VALUE, Map<ID, VALUE>>, ctx?: unknown) => void;
 
     /** Removes all elements from the Map object. */
     clear: () => void;
@@ -69,7 +70,7 @@ type WritableMapExtension<ID, VALUE> = {
 
     /** Executes a provided function once per each key/value pair in the Map
      * object, in insertion order. */
-    forEach: (cb: ForEachCB<ID, VALUE, Map<ID, VALUE>>, ctx?: unknown) => void;
+    forEach: (cb: ForeachCB<ID, VALUE, Map<ID, VALUE>>, ctx?: unknown) => void;
 };
 export type WritableMap<ID, VALUE, EXTENSION> = Writable<Map<ID, VALUE>> & WritableMapExtension<ID, VALUE> & EXTENSION;
 
@@ -118,7 +119,7 @@ export function writableMap<
             return result;
         }
 
-        const $forEach = (cb: ForEachCB<ID, VALUE, Map<ID, VALUE>>, ctx?: unknown) => {
+        const $forEach = (cb: ForeachCB<ID, VALUE, Map<ID, VALUE>>, ctx?: unknown) => {
             const map = get(value);
             map.forEach(cb, ctx);
         };
@@ -143,7 +144,7 @@ export function writableMap<
             forEach: $forEach,
         };
 
-        const extendedOptions: EXTENSION = options?.(value) ?? {} as EXTENSION;
+        const extendedOptions: EXTENSION = options?.(value) ?? emptyObj as EXTENSION;
 
         return {
             subscribe,
@@ -162,9 +163,11 @@ export function writableMap<
 
 type WritableSetExtension<VALUE> = {
     /** Adds an entry in the Set object.
-     * @param value
+     * @param value {VALUE}
+     * @returns {Boolean} (not standard) return true if the element is added,
+     * false if it was already in the collection
      */
-     $add: (value: VALUE) => void;
+    $add: (value: VALUE) => boolean;
 
     /** Removes all elements from the Set object. */
     $clear: () => void;
@@ -183,12 +186,14 @@ type WritableSetExtension<VALUE> = {
 
     /** Executes a provided function once per each value in the Set object,
      * in insertion order. */
-    $forEach: (cb: ForEachCB<VALUE, VALUE, Set<VALUE>>, ctx?: unknown) => void;
+    $forEach: (cb: ForeachCB<VALUE, VALUE, Set<VALUE>>, ctx?: unknown) => void;
 
     /** Adds an entry in the Set object.
-     * @param value
+     * @param value {VALUE}
+     * @returns {Boolean} (not standard) return true if the element is added,
+     * false if it was already in the collection
      */
-    add: (value: VALUE) => void;
+    add: (value: VALUE) => boolean;
 
     /** Removes all elements from the Set object. */
     clear: () => void;
@@ -207,8 +212,7 @@ type WritableSetExtension<VALUE> = {
 
     /** Executes a provided function once per each value in the Set object,
      * in insertion order. */
-    forEach: (cb: ForEachCB<VALUE, VALUE, Set<VALUE>>, ctx?: unknown) => void;
-
+    forEach: (cb: ForeachCB<VALUE, VALUE, Set<VALUE>>, ctx?: unknown) => void;
 };
 export type WritableSet<VALUE, EXTENSION> = Writable<Set<VALUE>> & WritableSetExtension<VALUE> & EXTENSION;
 
@@ -235,10 +239,12 @@ export function writableSet<
         const { subscribe, set, update } = value;
 
         const $add = (val: VALUE) => {
+            const result = !$has(val);
             update((set) => {
                 set.add(val);
                 return set;
             });
+            return result;
         };
 
         const $has = (val: VALUE) => get(value).has(val);
@@ -255,7 +261,7 @@ export function writableSet<
             return result;
         }
 
-        const $forEach = (cb: ForEachCB<VALUE, VALUE, Set<VALUE>>, ctx?: unknown) => {
+        const $forEach = (cb: ForeachCB<VALUE, VALUE, Set<VALUE>>, ctx?: unknown) => {
             const set = get(value);
             set.forEach(cb, ctx);
         };
@@ -277,7 +283,7 @@ export function writableSet<
             forEach: $forEach,
         };
 
-        const extendedOptions: EXTENSION = options?.(value) ?? {} as EXTENSION;
+        const extendedOptions: EXTENSION = options?.(value) ?? emptyObj as EXTENSION;
 
         return {
             subscribe,
@@ -305,7 +311,7 @@ type WritableArrayExtension<VALUE> = {
 
     /** Executes a provided function once per each value in the Array object,
      * in key order. */
-    $forEach: (cb: ForEachCB<number, VALUE, Array<VALUE>>, ctx?: unknown) => void;
+    $forEach: (cb: ForeachCB<number, VALUE, Array<VALUE>>, ctx?: unknown) => void;
 
     /** adds one or more elements to the end of the array and returns the new
      * length of the array.
@@ -325,7 +331,7 @@ type WritableArrayExtension<VALUE> = {
 
     /** Executes a provided function once per each value in the Array object,
      * in key order. */
-    forEach: (cb: ForEachCB<number, VALUE, Array<VALUE>>, ctx?: unknown) => void;
+    forEach: (cb: ForeachCB<number, VALUE, Array<VALUE>>, ctx?: unknown) => void;
 
     /** adds one or more elements to the end of the array and returns the new
      * length of the array.
@@ -403,7 +409,7 @@ export function writableArray<
         const value = writable<VALUE[]>(origValue ?? []);
         const { subscribe, set, update } = value;
 
-        const $forEach = (cb: ForEachCB<number, VALUE, VALUE[]>, ctx?: unknown) => {
+        const $forEach = (cb: ForeachCB<number, VALUE, VALUE[]>, ctx?: unknown) => {
             const arr = get(value);
             arr.forEach(cb, ctx);
         };
@@ -445,7 +451,7 @@ export function writableArray<
             },
         };
 
-        const extendedOptions: EXTENSION = options?.(value) ?? {} as EXTENSION;
+        const extendedOptions: EXTENSION = options?.(value) ?? emptyObj as EXTENSION;
 
         return {
             subscribe,

@@ -17,12 +17,13 @@ export type Condition =
     Comparison
     | ['action', string]
     | ['artifact', string]
+    | ['equipment', string]
     | ['isDone', boolean];
 
-export type LogType = 'open';
+export type LogType = 'open' | 'equipment';
 export type Log = [LogType, string];
 
-export type ItemType = 'action' | 'room' | 'artifact';
+export type ItemType = 'action' | 'room' | 'artifact' | 'equipment';
 export type ConditionalItem = {
     id: string;
     type: ItemType;
@@ -41,4 +42,4 @@ export type DisplayedAction = {
     canPayCost: boolean;
 };
 
-type DashboardName = 'run' | 'logs' | 'artifacts';
+type DashboardName = 'run' | 'logs' | 'artifacts' | 'equipments';

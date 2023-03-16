@@ -2,20 +2,22 @@
     import { createEventDispatcher } from 'svelte';
     import { flip } from 'svelte/animate';
     import { _ } from 'svelte-i18n';
+    import { emptyArray } from '../../helpers/common';
     import { receive, send } from '../../helpers/transitionMove';
-    import type { DashboardName } from '../../stores/types';
     import Icon from '../Icon.svelte';
     import Text from '../Text.svelte';
+    import type { DashboardName } from '../../stores/types';
 
     const dispatch = createEventDispatcher<{expand: DashboardName}>();
 
 
-    export let list: DashboardName[] = [];
+    export let list: DashboardName[] = emptyArray;
 
     $: titles = {
         run: $_('component.run-dashboard.title'),
         logs: $_('component.logs.header'),
         artifacts: $_('component.artifacts.header'),
+        equipments: $_('component.equipments.header'),
     } as Record<DashboardName, string>;
 
     function expand(name: DashboardName) {

@@ -54,8 +54,6 @@ addMessages('en', en);
 addMessages('eo', eo);
 addMessages('fr', fr);
 
-console.log('locale:', extractLocale(getLocaleFromNavigator()));
-
 init({
     fallbackLocale: defaultLocale,
     initialLocale: extractLocale(getLocaleFromNavigator()),

@@ -1,17 +1,18 @@
 <script lang="ts">
     import { blur, slide } from 'svelte/transition';
     import { _ } from 'svelte-i18n';
+    import { emptyArray } from '../../helpers/common';
     import { tooltip } from '../../helpers/tooltip';
     import { ownArtifacts } from '../../stores/run';
     import { getArtifact } from '../../stores/artifacts';
     import { useArtifact, usingArtifact } from '../../stores/currentClick';
     import DigitValue from '../DigitValue.svelte';
-
-    import type { Artifact } from '../../stores/artifacts';
     import Icon from '../Icon.svelte';
 
-    let passiveArtifact: Array<{artifact: Artifact; count: bigint}> = [];
-    let activeArtifact: Array<{artifact: Artifact; count: bigint}> = [];
+    import type { Artifact } from '../../stores/artifacts';
+
+    let passiveArtifact: Array<{artifact: Artifact; count: bigint}> = emptyArray;
+    let activeArtifact: Array<{artifact: Artifact; count: bigint}> = emptyArray;
     $: {
         passiveArtifact = [];
         activeArtifact = [];

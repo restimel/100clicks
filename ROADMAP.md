@@ -1,7 +1,6 @@
 # Roadmap
 
 ## Game Story
-* equipments
 * reader artifact + log actions
 * story
 

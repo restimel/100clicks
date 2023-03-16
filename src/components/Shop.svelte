@@ -2,6 +2,7 @@
     import { flip } from 'svelte/animate';
     import { fade, scale, slide } from 'svelte/transition';
     import { _ } from 'svelte-i18n'
+    import { emptyArray } from '../helpers/common';
     import { tooltip } from '../helpers/tooltip';
     import { artifacts, type Artifact } from '../stores/artifacts';
     import { isDisplayed } from '../stores/items';
@@ -19,10 +20,10 @@
 
     const temporalDecimals = 100n;
 
-    let artifactList: Artifact[] = [];
+    let artifactList: Artifact[] = emptyArray;
     $: continueRun = $ownArtifacts.has('TDM');
     $: titleRun = !continueRun ? $_('component.shop.disabled-continue-run') : '';
-    $: artifactInitialList = $runOver ? (artifactList = Array.from(artifacts.values()).filter(isDisplayed)) : [];
+    $: artifactInitialList = $runOver ? (artifactList = Array.from(artifacts.values()).filter(isDisplayed)) : emptyArray;
 
     let message = '';
     let timer = 0;

@@ -1,6 +1,7 @@
+import { emptyArray, noop } from '../helpers/common';
 import { $t } from '../locales/i18n';
-import { energy, energyMax } from './run';
-import type { Comparison, Condition, ConditionalItem } from './types';
+import { energy, energyMax, ownEquipments } from './run';
+import type { Comparison, Condition, ConditionalItem, Log } from './types';
 
 export type Action = ConditionalItem & {
     type: 'action';
@@ -10,7 +11,7 @@ export type Action = ConditionalItem & {
     cost: Comparison[];
     requirements: Condition[];
     roomId: string;
-    action: () => void;
+    action: (click: bigint) => Log | void;
 };
 type ActionDefinition = Partial<Action>;
 
@@ -27,12 +28,12 @@ function addActions(actions: ActionDefinition[]) {
             title: action.title ?? '',
             description: action.description ?? '',
             fluff: action.fluff ?? '',
-            cost: action.cost ?? [],
-            isVisible: action.isVisible ?? [],
+            cost: action.cost ?? emptyArray,
+            isVisible: action.isVisible ?? emptyArray,
             isHidden: action.isHidden ?? [['isDone', true]],
-            requirements: action.requirements ?? [],
+            requirements: action.requirements ?? emptyArray,
             roomId: action.roomId || '',
-            action: action.action ?? (() => {/* no actions */}),
+            action: action.action ?? noop,
         });
     }
 }
@@ -43,7 +44,7 @@ addActions([{
     fluff: $t('action.dynamo.fluff'),
     description: $t('action.dynamo.description'),
     action: () => energy.update((n) => n + 1n),
-    isHidden: [],
+    isHidden: emptyArray,
 }, {
     id: 'light on',
     title: $t('action.light-on.title'),
@@ -162,7 +163,7 @@ addActions([{
         ['energyMax', 200n],
         ['action', 'gym room'],
     ],
-    isHidden: [],
+    isHidden: emptyArray,
     description: 'Energy max: +10:energyMax:',
     action: () => energyMax.update((n) => n + 10n),
 }, {
@@ -178,6 +179,7 @@ addActions([{
         ['action', 'Laboratory'],
     ],
 }, {
+    id: 'generator',
     title: $t('action.generator.title'),
     roomId: 'repairStation',
     fluff: $t('action.generator.fluff'),
@@ -187,7 +189,7 @@ addActions([{
     isVisible: [
         ['action', 'Repair station'],
     ],
-    isHidden: [],
+    isHidden: emptyArray,
     description: $t('action.generator.description'),
     action: () => energy.update((n) => n + 4n),
 }, {
@@ -200,10 +202,11 @@ addActions([{
     isVisible: [
         ['action', 'Ghost analysis'],
     ],
-    isHidden: [],
+    isHidden: emptyArray,
     description: $t('action.search-energy-past.description'),
     action: () => energy.update((n) => n + 10n),
 }, {
+    id: 'sleeping-ghost',
     title: $t('action.sleeping-ghost.title'),
     roomId: 'laboratory',
     fluff: $t('action.sleeping-ghost.fluff'),
@@ -218,10 +221,11 @@ addActions([{
     isVisible: [
         ['action', 'Ghost analysis'],
     ],
-    isHidden: [],
+    isHidden: emptyArray,
     description: $t('action.sleeping-ghost.description'),
     action: () => energy.update((n) => n + 25n),
 }, {
+    id: 'reactor',
     title: $t('action.reactor.title'),
     roomId: '',
     fluff: $t('action.reactor.fluff'),
@@ -238,6 +242,52 @@ addActions([{
     ],
     action: () => {
         console.log('To be continued...');
+    },
+}, {
+    id: 'search-bedroom1',
+    title: $t('action.search-bedroom1.title'),
+    roomId: 'bedroom1',
+    fluff: $t('action.search-bedroom1.fluff'),
+    cost: [
+        ['click', 5n],
+        ['energy', 1n],
+    ],
+    isVisible: [
+        ['action', 'bedroom1'],
+    ],
+    action: (click) => {
+        if (click === 3n && ownEquipments.add('paper')) {
+            return ['equipment', 'paper'];
+        }
+        if (click === 4n && ownEquipments.add('pencil')) {
+            return ['equipment', 'pencil'];
+        }
+        if (click === 5n && ownEquipments.add('card-staff-1')) {
+            return ['equipment', 'card-staff-1'];
+        }
+    },
+}, {
+    id: 'search-bedroom2',
+    title: $t('action.search-bedroom2.title'),
+    roomId: 'bedroom2',
+    fluff: $t('action.search-bedroom2.fluff'),
+    cost: [
+        ['click', 5n],
+        ['energy', 1n],
+    ],
+    isVisible: [
+        ['action', 'bedroom2'],
+    ],
+    action: (click) => {
+        if (click === 1n && ownEquipments.add('paper')) {
+            return ['equipment', 'paper'];
+        }
+        if (click === 2n && ownEquipments.add('pencil')) {
+            return ['equipment', 'pencil'];
+        }
+        if (click === 5n && ownEquipments.add('card-staff-2')) {
+            return ['equipment', 'card-staff-2'];
+        }
     },
 }]);
 

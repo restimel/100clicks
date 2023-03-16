@@ -54,6 +54,14 @@
       "fluff": "",
       "title": ""
     },
+    "search-bedroom1": {
+      "fluff": "La chambre doit contenir des objets intéressants. \nVoyons ce que vous pouvez trouver.",
+      "title": "Fouiller la chambre"
+    },
+    "search-bedroom2": {
+      "fluff": "La chambre doit contenir des objets intéressants.\nVoyons ce que vous pouvez trouver.",
+      "title": "Fouiller la chambre"
+    },
     "search-energy-past": {
       "description": "",
       "fluff": "",
@@ -96,6 +104,10 @@
       "passive": "Passif",
       "tooltip-details": "**{title}**\n{desc}\n\npossédés : {count}"
     },
+    "equipments": {
+      "header": "",
+      "tooltip-details": "**{title}**\n_{fluff}_"
+    },
     "header": {
       "about": "À propos",
       "game": "Jeu",
@@ -103,6 +115,7 @@
     },
     "logs": {
       "action-complete": "L'action \"{name}\" a été réalisée",
+      "equipment-found": "Vous avez trouvé l'objet \"{name}\"",
       "header": "Registre"
     },
     "run-dashboard": {
@@ -116,6 +129,26 @@
       "no-artifacts": "Il n'y a pas d'autres artefacts. Revenez plus tard.",
       "not-enough-TE": "Vous n'avez pas assez d'énergie temporelle. Il vous en manque {missing}.",
       "run-again": "Voyager temporellement vers le prochain tour"
+    }
+  },
+  "equipment": {
+    "card1": {
+      "fluff": "ID: Matilda Copperwood\nIngénieur",
+      "title": "Une carte du personnel"
+    },
+    "card2": {
+      "": {
+        "fluff": "ID: Gaspard Dulaiton\nTuyauteur vapeur"
+      },
+      "title": "Une carte du personnel"
+    },
+    "paper": {
+      "fluff": "Des feuilles de papier vierges parfaites pour dessiner ou écrire quoi que ce soit.\nUne feuille de papier vierge est la façon dont Dieu nous dit à quel point il est difficile d'être Dieu.",
+      "title": "Des papiers"
+    },
+    "pencil": {
+      "fluff": "Avec un crayon, vous pouvez commencer n'importe quel rêve !",
+      "title": "Un crayon"
     }
   },
   "resources": {

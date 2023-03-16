@@ -6,15 +6,26 @@
 
     import type { Log } from '../../stores/types';
     import { slide } from 'svelte/transition';
+    import { getEquipment } from '../../stores/equipments';
 
     function sentence([type, value]: Log): string {
         switch (type) {
-            case 'open':
+            case 'open': {
                 const action = getAction(value);
                 const name = $_(action?.title || value);
                 return $_('component.logs.action-complete', { values: {
                     name,
                 }});
+            }
+            case 'equipment': {
+                const equipment = getEquipment(value);
+                const name = $_(equipment?.title || value);
+                return $_('component.logs.equipment-found', { values: {
+                    name,
+                }});
+            }
+            default:
+                return `:warning: type "${type}"" not managed`;
         }
     }
 </script>

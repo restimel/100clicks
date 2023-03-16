@@ -16,7 +16,7 @@
     };
 
     function splitText(rawText: string): Chunk[] {
-        const splittedText = rawText.split(/(:\w+:|[\n]|_\w.*\w_|\*{2}\w.*\w\*{2})/);
+        const splittedText = rawText.split(/(:\w+:|[\n]|_\w[\s\S]*\w_|\*{2}\w[\s\S]*\w\*{2})/);
         const chunks: Chunk[] = [];
 
         splittedText.forEach((str) => {

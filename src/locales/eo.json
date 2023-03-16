@@ -54,6 +54,14 @@
       "fluff": "",
       "title": ""
     },
+    "search-bedroom1": {
+      "fluff": "La dormoĉambro devus enhavi interesajn erojn. \nVidu kion vi povas trovi.",
+      "title": "Serĉu la ĉambron"
+    },
+    "search-bedroom2": {
+      "fluff": "La dormoĉambro devus enhavi interesajn erojn.\nVidu kion vi povas trovi.",
+      "title": "Serĉu la ĉambron"
+    },
     "search-energy-past": {
       "description": "",
       "fluff": "",
@@ -96,6 +104,10 @@
       "passive": "Pasivo",
       "tooltip-details": "**{title}**\n{desc}\n\nposedata: {count}"
     },
+    "equipments": {
+      "header": "",
+      "tooltip-details": "**{title}**\n_{fluff}_"
+    },
     "header": {
       "about": "Pri",
       "game": "Ludo",
@@ -103,6 +115,7 @@
     },
     "logs": {
       "action-complete": "Ago \"{name}\" estis plenumita",
+      "equipment-found": "Vi trovis la eron \"{name}\"",
       "header": "Ŝtipoj"
     },
     "run-dashboard": {
@@ -116,6 +129,26 @@
       "no-artifacts": "",
       "not-enough-TE": "",
       "run-again": ""
+    }
+  },
+  "equipment": {
+    "card1": {
+      "fluff": "ID: Matilda Copperwood\nInĝeniero",
+      "title": "Karto de dungitaro"
+    },
+    "card2": {
+      "": {
+        "fluff": "ID: Gaspard Dulaiton\nVaporinstalisto"
+      },
+      "title": "Karto de dungitaro"
+    },
+    "paper": {
+      "fluff": "Blankaj paperfolioj perfektaj por desegni aŭ skribi ion ajn.\nMalplena papero estas la maniero de Dio diri al ni kiom malfacile estas esti Dio.",
+      "title": "Paperoj"
+    },
+    "pencil": {
+      "fluff": "Per krajono vi povas komenci ajnajn sonĝojn!",
+      "title": "Krajono"
     }
   },
   "resources": {

@@ -54,6 +54,14 @@
       "fluff": "A closed door. \"Repair Station\" is written on the door. Something blocks the door behind.",
       "title": "Repair station"
     },
+    "search-bedroom1": {
+      "fluff": "The bedroom should contain intersting items.\nLet see what you can find.",
+      "title": "Search the room"
+    },
+    "search-bedroom2": {
+      "fluff": "The bedroom should contain intersting items.\nLet see what you can find.",
+      "title": "Search the room"
+    },
     "search-energy-past": {
       "description": "Energy: +10:energy:",
       "fluff": "When lost actions generates energy!",
@@ -96,6 +104,10 @@
       "passive": "Passive",
       "tooltip-details": "**{title}**\n{desc}\n\nowned: {count}"
     },
+    "equipments": {
+      "header": "Equipments",
+      "tooltip-details": "**{title}**\n_{fluff}_"
+    },
     "header": {
       "about": "About",
       "game": "Game",
@@ -103,6 +115,7 @@
     },
     "logs": {
       "action-complete": "Action \"{name}\" has been completed",
+      "equipment-found": "You found the item \"{name}\"",
       "header": "Logs"
     },
     "run-dashboard": {
@@ -116,6 +129,26 @@
       "no-artifacts": "There are no more artifacts. Come back later.",
       "not-enough-TE": "You don't have enough temporal energy. You should get {missing} more.",
       "run-again": "Travel back to next run"
+    }
+  },
+  "equipment": {
+    "card1": {
+      "fluff": "ID: Matilda Copperwood\nEngineer",
+      "title": "A staff card"
+    },
+    "card2": {
+      "": {
+        "fluff": "ID: Gaspard Dulaiton\nSteamfitter"
+      },
+      "title": "A staff card"
+    },
+    "paper": {
+      "fluff": "Blank paper sheets perfect to draw or to write anything.\nA blank piece of paper is God's way of telling us how hard it is to be God.",
+      "title": "Papers"
+    },
+    "pencil": {
+      "fluff": "With a pencil you can start any dreams!",
+      "title": "A pencil"
     }
   },
   "resources": {

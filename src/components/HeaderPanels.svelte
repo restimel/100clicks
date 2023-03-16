@@ -5,37 +5,41 @@
     import Run from './dashboards/RunDashboard.svelte';
     import Logs from './dashboards/Logs.svelte';
     import Artifacts from './dashboards/Artifacts.svelte';
+    import Equipments from './dashboards/Equipments.svelte';
     import Collapsed from './dashboards/Collapsed.svelte';
     import Icon from './Icon.svelte';
 
     import type { SvelteComponent } from 'svelte';
     import type { DashboardName } from '../stores/types';
 
-    /* list of dashboard that can be displayed */
+    /* list of dashboard that can be displayed
+     * (it also set the display order) */
 	let displayDashboards: Map<DashboardName, boolean> = new Map([
         ['run', true],
         ['artifacts', true],
+        ['equipments', true],
         ['logs', true],
     ]);
 
     /* list of dashboards that are collapsed */
-    let hideDashboards: Map<DashboardName, boolean> = new Map();
-    $: collapsedDashboards = Array.from(hideDashboards.keys()).filter((name) => {
-        return hideDashboards.get(name) && displayDashboards.get(name);
+    let hideDashboards: Set<DashboardName> = new Set();
+    $: collapsedDashboards = Array.from(hideDashboards).filter((name) => {
+        return hideDashboards.has(name) && displayDashboards.get(name);
     });
 
     $: expandedDashboard = Array.from(displayDashboards.keys()).filter((dashboard) => {
-        return displayDashboards.get(dashboard) && !hideDashboards.get(dashboard);
+        return displayDashboards.get(dashboard) && !hideDashboards.has(dashboard);
     });
 
     const dashboards: Map<DashboardName, typeof SvelteComponent> = new Map([
         ['run', Run],
         ['artifacts', Artifacts],
+        ['equipments', Equipments],
         ['logs', Logs],
     ]);
 
     function reduceDashboard(name: DashboardName) {
-        hideDashboards.set(name, true);
+        hideDashboards.add(name);
         hideDashboards = hideDashboards;
     }
 

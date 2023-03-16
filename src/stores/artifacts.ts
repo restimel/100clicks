@@ -1,4 +1,5 @@
 
+import { emptyArray } from '../helpers/common';
 import { $t } from '../locales/i18n';
 import type {
     ConditionalItem, IconDesc,
@@ -17,11 +18,15 @@ type ArtifactDefinition = Partial<Artifact>;
 
 const artifactList: Map<string, Artifact> = new Map();
 
+function free() {
+    return 0n;
+}
+
 // const defaultIcon = 'M50 100a50 50 0 1 1 0 -100a50 50 0 1 1 0 100zM50 19a6.5 6.5 0 0 0 0 14a6.5 6.5 0 0 0 0 -14zM50 50a23.5 23.5 0 0 0 0 47.8a47.8 47.8 0 0 0 0 -95.6a23.5 23.5 0 0 1 0 47.8zM50 66.5a6.5 6.5 0 0 0 0 14a6.5 6.5 0 0 0 0 -14z';
 function addArtifacts(artifacts: ArtifactDefinition[]) {
     let idx = 0;
     for (const artifact of artifacts) {
-        const id = artifact.id ?? `room-${idx}`;
+        const id = artifact.id ?? `artifact-${idx}`;
         idx++;
         artifactList.set(id, {
             id,
@@ -33,7 +38,7 @@ function addArtifacts(artifacts: ArtifactDefinition[]) {
             usable: artifact.usable ?? false,
             isVisible: artifact.isVisible ?? [['artifact', 'TDM']],
             isHidden: artifact.isHidden ?? [['artifact', id]],
-            cost: artifact.cost ?? (() => 0n),
+            cost: artifact.cost ?? free,
         });
     }
 }
@@ -43,13 +48,13 @@ addArtifacts([{
     title: $t('artifact.tdm.title'),
     fluff: $t('artifact.tdm.fluff'),
     icon: 'fa-solid fa-clock-rotate-left',
-    isVisible: [],
+    isVisible: emptyArray,
 }, {
     id: 'vortex',
     title: $t('artifact.vortex.title'),
     fluff: $t('artifact.vortex.fluff'),
     desc: $t('artifact.vortex.desc'),
-    isHidden: [],
+    isHidden: emptyArray,
     cost: (n: bigint) => (n + 1n) * (n + 2n),
 }, {
     id: 'double',
@@ -64,7 +69,7 @@ addArtifacts([{
     }],
     fluff: $t('artifact.double.fluff'),
     desc: $t('artifact.double.desc'),
-    isHidden: [],
+    isHidden: emptyArray,
     cost: (n: bigint) => 5n * (n + 1n),
     usable: true,
 }, {
@@ -80,7 +85,7 @@ addArtifacts([{
     }],
     fluff: $t('artifact.past.fluff'),
     desc: $t('artifact.past.desc'),
-    isHidden: [],
+    isHidden: emptyArray,
     isVisible: [['artifact', 'double']],
     cost: (n: bigint, t: bigint) => t + 5n * (n + 1n),
     usable: true,

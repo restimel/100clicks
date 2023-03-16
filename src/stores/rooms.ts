@@ -1,3 +1,4 @@
+import { emptyArray } from '../helpers/common';
 import { $t } from '../locales/i18n';
 import type {
     ConditionalItem,
@@ -26,8 +27,8 @@ function addRooms(rooms: RoomDefinition[]) {
             fluff: room.fluff ?? '',
             color: room.color ?? '#000000',
             bgColor: room.bgColor ?? '#FFFFFF',
-            isVisible: room.isVisible ?? [],
-            isHidden: room.isHidden ?? [],
+            isVisible: room.isVisible ?? emptyArray,
+            isHidden: room.isHidden ?? emptyArray,
         });
     }
 }

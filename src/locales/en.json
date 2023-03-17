@@ -31,7 +31,7 @@
       "title": "Ghosts analysis"
     },
     "gym-room": {
-      "fluff": "A closed door. \"Gym room\" is written on the door.",
+      "fluff": "A closed door.\n\"Gym room\" is written on the door.",
       "title": "Gym room"
     },
     "kitchen": {
@@ -51,7 +51,7 @@
       "title": "Reactor"
     },
     "repair-room": {
-      "fluff": "A closed door. \"Repair Station\" is written on the door. Something blocks the door behind.",
+      "fluff": "A closed door.\n\"Repair Station\" is written on the door.\nSomething blocks the door behind.",
       "title": "Repair station"
     },
     "search-bedroom1": {
@@ -149,6 +149,24 @@
     "pencil": {
       "fluff": "With a pencil you can start any dreams!",
       "title": "A pencil"
+    }
+  },
+  "page": {
+    "about": {
+      "author": "Author",
+      "header": "About **{gameTitle}**",
+      "introduction": "This is a simple game developed to test Svelte",
+      "last-release": "Last release",
+      "license": "License",
+      "purpose": "The goal is to progress in the adventure by clicking on actions. But you have only 100 clicks to do so. However after 100 clicks, you restart at the beginning but all previous clicks ar still triggering. So with all clicks cumulated it is possible to progress though the adventure.",
+      "title": "{gameTitle}: about"
+    },
+    "howto": {
+      "explanation": "For one run, you have 100 clicks.\nFor one click, you should choose an action. Some actions give you some ressources, and some other will unlock new actions.\nActions may have a cost in ressource to be clickable, and some may need several clicks on them to be completed.",
+      "explanation2": "Choosing some actions will complete the story.",
+      "explanation3": "When you have clicked 100 times. The run is over and you have to restart from the begining.\nBut all clicks done in previous runs will continue to be applied on actions.\nFor example, for an action that needs 2 clicks: On run #1, you clicked on it at click #10 and click #11 (which complete the action). So at run #2, if you do the same action at click #10 then the action will be completed immediately. And at run #3, this action will be completed at click #10 even if you choosed another action.\nThis mechanism helps you to progress faster and consequently to go further in the story with only 100 clicks.",
+      "header": "How to play **{gameTitle}**?",
+      "title": "{gameTitle}: How to play?"
     }
   },
   "resources": {

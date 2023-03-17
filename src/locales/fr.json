@@ -1,7 +1,7 @@
 {
   "action": {
     "apples": {
-      "description": "Énergie : 2 :energy:",
+      "description": "Énergie : +2 :energy:",
       "title": "Pommes"
     },
     "bedroom1": {
@@ -17,7 +17,7 @@
       "title": "Salle de contrôle"
     },
     "dynamo": {
-      "description": "Énergie : +1:energy:",
+      "description": "Énergie : +1 :energy:",
       "fluff": "Une petite roue permettant de générer de l'électricité.",
       "title": "Dynamo"
     },
@@ -31,8 +31,8 @@
       "title": "Analyse des fantômes"
     },
     "gym-room": {
-      "fluff": "",
-      "title": ""
+      "fluff": "Une porte fermée. \n\"Salle de gym\" est écrit sur la porte.",
+      "title": "Salle de sport"
     },
     "kitchen": {
       "fluff": "Une porte fermée. \n\"Cuisine\" est écrit sur la porte.",
@@ -47,12 +47,12 @@
       "title": "Éclairer"
     },
     "reactor": {
-      "fluff": "",
-      "title": ""
+      "fluff": "C'est le cœur du navire.",
+      "title": "Réacteur"
     },
     "repair-room": {
-      "fluff": "",
-      "title": ""
+      "fluff": "Une porte fermée. \n\"Repair Station\" est écrit sur la porte. \nQuelque chose bloque la porte derrière.",
+      "title": "Poste de réparation"
     },
     "search-bedroom1": {
       "fluff": "La chambre doit contenir des objets intéressants. \nVoyons ce que vous pouvez trouver.",
@@ -63,14 +63,14 @@
       "title": "Fouiller la chambre"
     },
     "search-energy-past": {
-      "description": "",
-      "fluff": "",
-      "title": ""
+      "description": "Énergie : +10 :energy:",
+      "fluff": "Quand les actions perdues génèrent de l'énergie !",
+      "title": "L'énergie du passé"
     },
     "sleeping-ghost": {
-      "description": "Énergie : +25:energy:",
-      "fluff": "",
-      "title": ""
+      "description": "Énergie : +25 :energy:",
+      "fluff": "Quand les actions perdues génèrent de l'énergie !",
+      "title": "Fantôme endormi"
     }
   },
   "artifact": {
@@ -85,27 +85,27 @@
       "title": "Clic temporel"
     },
     "tdm": {
-      "fluff": "Voyage dans le temps, mais toujours de la même durée : un tour. Et sans modifier la ligne temporelle!",
+      "fluff": "Voyage dans le temps, mais toujours de la même durée : un tour. Et sans modifier la ligne temporelle!",
       "title": "Machine Dimensionnelle Temporelle"
     },
     "vortex": {
-      "desc": "+10% :temporalEnergy:",
+      "desc": "+10% :temporalEnergy:",
       "fluff": "Génère plus de force à travers le Temps.",
       "title": "Vortex d'énergie"
     }
   },
   "component": {
     "action": {
-      "require": "Requis :"
+      "require": "Requis :"
     },
     "artifacts": {
       "consumable": "Consommable",
       "header": "Artefacts",
       "passive": "Passif",
-      "tooltip-details": "**{title}**\n{desc}\n\npossédés : {count}"
+      "tooltip-details": "**{title}**\n{desc}\n\npossédés : {count}"
     },
     "equipments": {
-      "header": "",
+      "header": "Équipements",
       "tooltip-details": "**{title}**\n_{fluff}_"
     },
     "header": {
@@ -125,7 +125,7 @@
     "shop": {
       "disabled-continue-run": "Vous devez posséder une machine temporelle pour recommencer le tour.",
       "end-of-run": "Fin du tour #{run}",
-      "fluff": "La fatigue est là. Vous devez vous arrêter ! Mais vous découvrez quelques artefacts étranges :",
+      "fluff": "La fatigue est là. Vous devez vous arrêter ! Mais vous découvrez quelques artefacts étranges :",
       "no-artifacts": "Il n'y a pas d'autres artefacts. Revenez plus tard.",
       "not-enough-TE": "Vous n'avez pas assez d'énergie temporelle. Il vous en manque {missing}.",
       "run-again": "Voyager temporellement vers le prochain tour"
@@ -151,18 +151,36 @@
       "title": "Un crayon"
     }
   },
+  "page": {
+    "about": {
+      "author": "Auteur",
+      "header": "À propos de **{gameTitle}**",
+      "introduction": "Ceci est un jeu simple développé pour tester Svelte",
+      "last-release": "Dernière version",
+      "license": "Licence",
+      "purpose": "Le but est de progresser dans l'aventure en cliquant sur les actions. \nMais vous n'avez que 100 clics pour le faire. \nCependant après 100 clics, vous redémarrez au début mais tous les clics précédents se déclenchent toujours. \nAinsi avec tous les clics cumulés il est possible de progresser dans l'aventure.",
+      "title": "{gameTitle} : à propos"
+    },
+    "howto": {
+      "explanation": "Pour un tour, vous avez 100 clics.\nPour un clic, vous devez choisir une action. Certaines actions vous donnent des ressources, et d'autres débloquent de nouvelles actions.\nLes actions peuvent avoir un coût en ressource pour être cliquables, et certaines peuvent nécessiter plusieurs clics dessus pour être réalisées.",
+      "explanation2": "Le choix de certaines actions complètera l'histoire.",
+      "explanation3": "Lorsque vous avez cliqué 100 fois. Le tour est terminé et vous devez recommencer depuis le début.\nMais tous les clics effectués lors des tours précédents continueront d'être appliqués aux actions.\nPar exemple, pour une action qui nécessite 2 clics : Au tour #1, vous avez cliqué dessus au clic #10 et au clic #11 (qui termine l'action). Ainsi, lors du tour #2, si vous effectuez la même action au clic #10, l'action sera terminée immédiatement. Et au tour #3, cette action sera terminée au clic #10 même si vous avez choisi une autre action.\nCe mécanisme vous aide à progresser plus vite et par conséquent à aller plus loin dans l'histoire en seulement 100 clics.",
+      "header": "Comment jouer à **{gameTitle}** ?",
+      "title": "{gameTitle} : Comment jouer ?"
+    }
+  },
   "resources": {
     "click": "Clic",
-    "click--icon": "Clic :click:",
+    "click--icon": "Clic :click:",
     "cost-free": "Gratuit",
     "energy": "Énergie",
-    "energy--icon": "Énergie :energy:",
+    "energy--icon": "Énergie :energy:",
     "energy-max": "Énergie max",
     "lost-click": "Clic perdu",
     "lost-click--details": "Les clics perdus correspondent aux clics des tours précédents qui n'ont pas pu répéter leurs actions.",
-    "lost-click--icon": "Clics perdus :lostClick:",
+    "lost-click--icon": "Clics perdus :lostClick:",
     "temporal-energy": "Énergie temporelle",
-    "temporal-energy--icon": "Énergie temporelle :temporalEnergy:"
+    "temporal-energy--icon": "Énergie temporelle :temporalEnergy:"
   },
   "room": {
     "bedroom1": {
@@ -182,20 +200,20 @@
       "title": "Une pièce sombre"
     },
     "gym-room": {
-      "fluff": "",
-      "title": ""
+      "fluff": "De nombreux accessoires pour le sport.",
+      "title": "Une salle de sport"
     },
     "kitchen": {
       "fluff": "Une table est au centre. \nLe garde-manger contient de la nourriture.",
       "title": "La cuisine"
     },
     "laboratory": {
-      "fluff": "Une salle remplie de nombreux appareils : oscilloscopes, bobines, microscopes, ...",
+      "fluff": "Une salle remplie de nombreux appareils : oscilloscopes, bobines, microscopes, ...",
       "title": "Le laboratoire"
     },
     "repair-room": {
-      "fluff": "",
-      "title": ""
+      "fluff": "Un endroit sale mais plein d'outils utiles.",
+      "title": "Un poste de réparation"
     }
   }
 }

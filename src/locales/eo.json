@@ -1,7 +1,7 @@
 {
   "action": {
     "apples": {
-      "description": "Energio: 2:energy:",
+      "description": "Energio: +2:energy:",
       "title": "Pomoj"
     },
     "bedroom1": {
@@ -17,22 +17,22 @@
       "title": "Kontroloko"
     },
     "dynamo": {
-      "description": "",
-      "fluff": "",
-      "title": ""
+      "description": "Energio: +1:energy:",
+      "fluff": "Malgranda rado generanta elektron.",
+      "title": "Dinamo"
     },
     "generator": {
       "description": "Energio: +4:energy:",
       "fluff": "Ĝi generas elektron",
-      "title": ""
+      "title": "Generatoro"
     },
     "ghost-analysis": {
       "fluff": "Tempofluktuoj generas kelkajn modifojn en la Tempo-ondo.\nSed kio estas la Tempo?",
       "title": "Analizo de fantomoj"
     },
     "gym-room": {
-      "fluff": "",
-      "title": ""
+      "fluff": "Fermita pordo. \n\"Gimsalono\" estas skribita sur la pordo.",
+      "title": "Gimnastikejo"
     },
     "kitchen": {
       "fluff": "Fermita pordo. \n\"Kuirejo\" estas skribita sur la pordo.",
@@ -43,16 +43,16 @@
       "title": "Laboratorio"
     },
     "light-on": {
-      "fluff": "",
-      "title": ""
+      "fluff": "Ŝaltu la lumon, por ke vi povu vidi kien promeni",
+      "title": "Lumo ŝaltita"
     },
     "reactor": {
-      "fluff": "",
-      "title": ""
+      "fluff": "Ĉi tio estas la koro de la ŝipo.",
+      "title": "Reaktoro"
     },
     "repair-room": {
-      "fluff": "",
-      "title": ""
+      "fluff": "Fermita pordo.\n\"Ripara Stacio\" estas skribita sur la pordo. \nIo blokas la pordon malantaŭe.",
+      "title": "Ripara stacidomo"
     },
     "search-bedroom1": {
       "fluff": "La dormoĉambro devus enhavi interesajn erojn. \nVidu kion vi povas trovi.",
@@ -63,24 +63,24 @@
       "title": "Serĉu la ĉambron"
     },
     "search-energy-past": {
-      "description": "",
-      "fluff": "",
-      "title": ""
+      "description": "Energio: +10:energy:",
+      "fluff": "Kiam perditaj agoj generas energion!",
+      "title": "Energio de la pasinteco"
     },
     "sleeping-ghost": {
-      "description": "",
-      "fluff": "",
-      "title": ""
+      "description": "Energio: +25:energy:",
+      "fluff": "Kiam perditaj agoj generas energion!",
+      "title": "Dormanta fantomo"
     }
   },
   "artifact": {
     "double": {
-      "desc": "",
-      "fluff": "",
-      "title": ""
+      "desc": "La sekva klako ripetiĝos\n_(ĝi validas por nur unu klako sed ambaŭ kostoj devas esti pagitaj)_",
+      "fluff": "Klaku pli rapide por gajni tempon.",
+      "title": "Duobla klako"
     },
     "past": {
-      "desc": "",
+      "desc": "La sekva klako ripetiĝos en la antaŭa klakrondo\n_(ĝi permesos malfermi ĉambron pli rapide)_",
       "fluff": "",
       "title": ""
     },
@@ -105,7 +105,7 @@
       "tooltip-details": "**{title}**\n{desc}\n\nposedata: {count}"
     },
     "equipments": {
-      "header": "",
+      "header": "Ekipaĵoj",
       "tooltip-details": "**{title}**\n_{fluff}_"
     },
     "header": {
@@ -151,6 +151,24 @@
       "title": "Krajono"
     }
   },
+  "page": {
+    "about": {
+      "author": "Aŭtoro",
+      "header": "Pri **{gameTitle}**",
+      "introduction": "Ĉi tio estas simpla ludo evoluigita por testi Svelte",
+      "last-release": "Lasta eldono",
+      "license": "Permesilo",
+      "purpose": "La celo estas progresi en la aventuro klakante sur agoj. \nSed vi havas nur 100 klakojn por fari tion. \nTamen post 100 klakoj, vi rekomencas ĉe la komenco sed ĉiuj antaŭaj klakoj ankoraŭ ekfunkcias. \nDo kun ĉiuj klakoj akumulitaj eblas progresi tamen la aventuron.",
+      "title": "{gameTitle}: pri"
+    },
+    "howto": {
+      "explanation": "Por unu ciklo, vi havas 100 klakojn.\nPor unu klako, vi devus elekti agon. Iuj agoj donas al vi kelkajn provizoj, kaj iuj aliaj malŝlosos novajn agojn.\nAgoj povas havi koston en provizo por esti klakeblaj, kaj iuj eble bezonas plurajn klakojn sur ili por esti kompletigitaj.",
+      "explanation2": "Elektante kelkajn agojn kompletigos la rakonton.",
+      "explanation3": "Kiam vi klakis 100 fojojn. La ciklo finiĝis kaj vi devas rekomenci de la komenco.\nSed ĉiuj klakoj faritaj en antaŭa cickloj daŭre estos aplikataj al agoj.\nEkzemple, por ago kiu bezonas 2 klakojn: Dum la ciklo #1, vi klakis sur ĝi ĉe klako #10 kaj klaku #11 (kiuj kompletigas la agon). Do ĉe ciklo #2, se vi faras la saman agon ĉe klako #10 tiam la ago estos finita tuj. Kaj ĉe ciklo #3, ĉi tiu ago estos kompletigita ĉe klako #10 eĉ se vi elektis alian agon.\nĈi tiu mekanismo helpas vin progresi pli rapide kaj sekve iri plu en la rakonto per nur 100 klakoj.",
+      "header": "Kiel ludi **{gameTitle}**?",
+      "title": "{gameTitle}: Kiel ludi?"
+    }
+  },
   "resources": {
     "click": "Klako",
     "click--icon": "Klako :click:",
@@ -182,8 +200,8 @@
       "title": ""
     },
     "gym-room": {
-      "fluff": "",
-      "title": ""
+      "fluff": "Multaj akcesoraĵoj por sporto.",
+      "title": "Trejnsalono"
     },
     "kitchen": {
       "fluff": "Tablo estas en la centro. \nManĝejo enhavas iom da manĝaĵo.",
@@ -194,8 +212,8 @@
       "title": "La laboratorio"
     },
     "repair-room": {
-      "fluff": "",
-      "title": ""
+      "fluff": "Malpura loko sed plena de utilaj iloj.",
+      "title": "Riparstacio"
     }
   }
 }

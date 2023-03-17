@@ -11,19 +11,26 @@
 	<meta name="description" content="game 100 clicks" />
 </svelte:head>
 
-<section>
-	<Shop />
+<section class="game">
 	<HeaderPanels />
 	<Rooms />
-
+	<Shop />
 </section>
 
 <style>
-	section {
-		display: flex;
-		flex-direction: column;
+	.game {
+		display: grid;
 		justify-content: center;
 		align-items: center;
-		flex: 0.6;
+		justify-items: center;
+		grid-template-rows: max-content 1fr;
+		grid-template-columns: 100%;
+		max-height: calc(100vh - 50px - 2rem);
+	}
+	.game :global(> *) {
+		max-width: 100%;
+		max-height: 100%;
+		width: 100%;
+		overflow: auto;
 	}
 </style>

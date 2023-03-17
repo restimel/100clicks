@@ -77,7 +77,8 @@
 <style>
     .header-panels {
         display: flex;
-        flex-direction: rows;
+        flex-direction: row;
+        justify-content: space-around;
     }
 
     .dashboard-item {

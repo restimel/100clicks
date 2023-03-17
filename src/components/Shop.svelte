@@ -132,6 +132,7 @@
         top: 50%;
         left: 50%;
         max-width: 95vw;
+        width: auto;
         max-height: 95vh;
         transform: translate(-50%, -50%);
         z-index: var(--mask-z-index, 1000);

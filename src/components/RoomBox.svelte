@@ -50,16 +50,19 @@
 
 <style>
     .room-box-cell {
-        position: relative;
         max-width: 100%;
+        width: 100%;
+        margin-bottom: 1em;
     }
 
 	.room-box {
+        position: relative;
         width: calc(var(--action-box-width) + 2em);
         max-width: 100%;
-
         min-height: 30px;
         padding: 0.5em 1em;
+        margin: auto;
+
         border: 2px solid var(--color-room, var(--color-theme-2));
         background-color: var(--color-bg-room, var(--color-bg-0));
         background-image: radial-gradient(

@@ -14,6 +14,7 @@
     export let cost: Comparison[];
     export let prerequisites: Array<[string, boolean]>;
     export let canPayCost: boolean;
+    export let roomId: string;
 
     const trigger = createEventDispatcher<{click: string}>();
 

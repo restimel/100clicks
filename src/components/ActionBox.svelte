@@ -80,7 +80,6 @@
         width: var(--action-box-width);
         min-height: 50px;
         padding: 0.5em 1em;
-        border: 2px solid var(--color-theme-2);
         background: var(--color-bg-action--disabled);
         color: var(--color-text-disabled);
         box-shadow: 0 3px 10px #00000066;
@@ -88,7 +87,6 @@
         display: grid;
         grid-template-rows: max-content 1fr max-content max-content;
         grid-template-areas: "title" "requirement" "description" "fluff";
-        gap: 0.5em;
 	}
     .action-box.active {
         cursor: pointer;

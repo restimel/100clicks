@@ -61,10 +61,9 @@
 		var(--color-wood-5) 50px
 	);
 
-	/* --color-bg-dashboard: rgba(0, 0, 0, 0.8); */
 	--color-bg-dashboard: #1F1F1FCC;
-	/* --color-fg-dashboard: rgba(200, 245, 220, 0.9); */
-	--color-fg-dashboard: #CD7F32EE;
+	--color-fg-dashboard: #e7c5a8;
+	--color-border-dashboard: #CD7F32EE;
 
 	--color-bg-shop: #43464B;
 	--color-fg-shop: #ECECEC;

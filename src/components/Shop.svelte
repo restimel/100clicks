@@ -131,9 +131,10 @@
         position: fixed;
         top: 50%;
         left: 50%;
-        max-width: 95vw;
         width: auto;
+        max-width: 95vw;
         max-height: 95vh;
+        overflow: auto;
         transform: translate(-50%, -50%);
         z-index: var(--mask-z-index, 1000);
 
@@ -179,6 +180,7 @@
         align-content: center;
         flex-wrap: wrap;
         margin: 0.5em 0;
+        gap: 0.5em;
         min-height: var(--shop-box-size);
     }
 

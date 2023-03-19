@@ -58,7 +58,7 @@
 </script>
 
 {#if $runOver}
-<div class="shop" transition:scale>
+<aside class="shop" transition:scale>
 	<header>{ $_('component.shop.end-of-run', {values: {run: Number($run)}}) }</header>
     <div class="fluff">
         {$_('component.shop.fluff')}
@@ -122,8 +122,8 @@
             {$_('component.shop.run-again')}
         </button>
     </div>
-</div>
-<div class="mask" transition:fade></div>
+</aside>
+<aside class="mask" transition:fade></aside>
 {/if}
 
 <style>

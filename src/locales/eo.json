@@ -119,12 +119,12 @@
       "header": "Ŝtipoj"
     },
     "run-dashboard": {
-      "header": "Ciklo #{run}",
+      "header": "Vico #{run}",
       "title": "Provizoj"
     },
     "shop": {
       "disabled-continue-run": "",
-      "end-of-run": "",
+      "end-of-run": "Fino de vico #{run}",
       "fluff": "",
       "no-artifacts": "",
       "not-enough-TE": "",
@@ -162,9 +162,9 @@
       "title": "{gameTitle}: pri"
     },
     "howto": {
-      "explanation": "Por unu ciklo, vi havas 100 klakojn.\nPor unu klako, vi devus elekti agon. Iuj agoj donas al vi kelkajn provizoj, kaj iuj aliaj malŝlosos novajn agojn.\nAgoj povas havi koston en provizo por esti klakeblaj, kaj iuj eble bezonas plurajn klakojn sur ili por esti kompletigitaj.",
+      "explanation": "Por unu vico, vi havas 100 klakojn.\nPor unu klako, vi devus elekti agon. Iuj agoj donas al vi kelkajn provizoj, kaj iuj aliaj malŝlosos novajn agojn.\nAgoj povas havi koston en provizo por esti klakeblaj, kaj iuj eble bezonas plurajn klakojn sur ili por esti kompletigitaj.",
       "explanation2": "Elektante kelkajn agojn kompletigos la rakonton.",
-      "explanation3": "Kiam vi klakis 100 fojojn. La ciklo finiĝis kaj vi devas rekomenci de la komenco.\nSed ĉiuj klakoj faritaj en antaŭa cickloj daŭre estos aplikataj al agoj.\nEkzemple, por ago kiu bezonas 2 klakojn: Dum la ciklo #1, vi klakis sur ĝi ĉe klako #10 kaj klaku #11 (kiuj kompletigas la agon). Do ĉe ciklo #2, se vi faras la saman agon ĉe klako #10 tiam la ago estos finita tuj. Kaj ĉe ciklo #3, ĉi tiu ago estos kompletigita ĉe klako #10 eĉ se vi elektis alian agon.\nĈi tiu mekanismo helpas vin progresi pli rapide kaj sekve iri plu en la rakonto per nur 100 klakoj.",
+      "explanation3": "Kiam vi klakis 100 fojojn. La vico finiĝis kaj vi devas rekomenci de la komenco.\nSed ĉiuj klakoj faritaj en antaŭa cickloj daŭre estos aplikataj al agoj.\nEkzemple, por ago kiu bezonas 2 klakojn: Dum la vico #1, vi klakis sur ĝi ĉe klako #10 kaj klaku #11 (kiuj kompletigas la agon). Do ĉe vico #2, se vi faras la saman agon ĉe klako #10 tiam la ago estos finita tuj. Kaj ĉe vico #3, ĉi tiu ago estos kompletigita ĉe klako #10 eĉ se vi elektis alian agon.\nĈi tiu mekanismo helpas vin progresi pli rapide kaj sekve iri plu en la rakonto per nur 100 klakoj.",
       "header": "Kiel ludi **{gameTitle}**?",
       "title": "{gameTitle}: Kiel ludi?"
     }
@@ -172,15 +172,15 @@
   "resources": {
     "click": "Klako",
     "click--icon": "Klako :click:",
-    "cost-free": "",
-    "energy": "",
-    "energy--icon": "",
-    "energy-max": "",
+    "cost-free": "Senpaga",
+    "energy": "Energio",
+    "energy--icon": "Energio :energy:",
+    "energy-max": "Energio max",
     "lost-click": "",
     "lost-click--details": "",
     "lost-click--icon": "",
-    "temporal-energy": "",
-    "temporal-energy--icon": ""
+    "temporal-energy": "Tempora energio",
+    "temporal-energy--icon": "Tempora energio :temporalEnegery:"
   },
   "room": {
     "bedroom1": {

@@ -39,6 +39,7 @@ function addActions(actions: ActionDefinition[]) {
 }
 
 addActions([{
+    id: 'dynamo',
     title: $t('action.dynamo.title'),
     roomId: '',
     fluff: $t('action.dynamo.fluff'),

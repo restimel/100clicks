@@ -135,7 +135,7 @@ function payCost(action: Action) {
 
 function doAction(id: string): boolean {
     const nbClicks = get(clicks);
-    if (nbClicks >= 100) {
+    if (nbClicks >= 100n) {
         return false;
     }
     const action = list.get(id);
@@ -170,15 +170,14 @@ export function useArtifact(name: string, useIt?: boolean) {
     usingArtifact.add(name);
 }
 
-export function clickAction(event: CustomEvent<string>) {
+export function applyAction(id: string) {
     const nbClicks = get(clicks);
-    if (nbClicks >= 100) {
+    if (nbClicks >= 100n) {
         return;
     }
 
     logs.set([]);
 
-    const id = event.detail;
     if (!doAction(id)) {
         return;
     }
@@ -236,4 +235,9 @@ export function clickAction(event: CustomEvent<string>) {
     if (get(clicks) >= 100n) {
         endRun();
     }
+}
+
+export function clickAction(event: CustomEvent<string>) {
+    const id = event.detail;
+    applyAction(id);
 }

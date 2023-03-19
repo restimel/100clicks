@@ -1,9 +1,10 @@
 <script>
 	// import welcome from '$lib/images/svelte-welcome.webp';
 	// import welcome_fallback from '$lib/images/svelte-welcome.png';
-    import Shop from '../components/Shop.svelte';
+    import Cheat from '../components/Cheat.svelte';
     import HeaderPanels from '../components/HeaderPanels.svelte';
     import Rooms from '../components/Rooms.svelte';
+    import Shop from '../components/Shop.svelte';
 </script>
 
 <svelte:head>
@@ -15,6 +16,7 @@
 	<HeaderPanels />
 	<Rooms />
 	<Shop />
+	<Cheat />
 </section>
 
 <style>
@@ -28,7 +30,7 @@
 		max-height: calc(100vh - 50px - 2rem);
 		flex: 1;
 	}
-	.game :global(> *) {
+	.game :global(> :not(aside)) {
 		max-width: 100%;
 		max-height: 100%;
 		width: 100%;

@@ -13,7 +13,7 @@
 
 ## Code structure
 * save current state to restore it at next connection
-* user settings (sounds, localstorage, language, collapsed require)
+* user settings (sounds, localstorage, collapsed require)
 * svelte store helpers → update Array store
 
 ## Bugs

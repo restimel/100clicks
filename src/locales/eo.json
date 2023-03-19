@@ -122,6 +122,11 @@
       "header": "Vico #{run}",
       "title": "Provizoj"
     },
+    "settings": {
+      "header": "Agordoj",
+      "language": "Lingvo",
+      "tooltip": "Difinu viajn agordojn"
+    },
     "shop": {
       "disabled-continue-run": "",
       "end-of-run": "Fino de vico #{run}",
@@ -129,6 +134,11 @@
       "no-artifacts": "",
       "not-enough-TE": "",
       "run-again": ""
+    }
+  },
+  "components": {
+    "dialog": {
+      "close": "Fermu"
     }
   },
   "equipment": {

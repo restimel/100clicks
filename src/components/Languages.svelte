@@ -2,6 +2,14 @@
     import { locale, _ } from 'svelte-i18n';
     import { tooltip } from '../helpers/tooltip';
 	import { extractLocale, languages } from '../locales/i18n';
+    import Portal from './Portal.svelte';
+
+    type Display = 'shortCode' | 'flag';
+
+    export let display: Display = 'shortCode';
+    let ref: HTMLDivElement;
+    let x = 0;
+    let y = 0;
 
     $: currentLanguage = languages.get($locale ?? 'en') ?? {label: '', svg: ''};
 
@@ -16,6 +24,11 @@
     let expandList = false;
     function toggleList() {
         expandList = !expandList;
+        if (expandList) {
+            const rect = ref.getBoundingClientRect();
+            x = rect.left;
+            y = rect.bottom;
+        }
     }
 
     function setlocale(localeId: string) {
@@ -28,34 +41,39 @@
     class="{$$props.class} select-language"
     use:tooltip={currentLanguage.label}
     on:click={toggleList}
+    bind:this={ref}
 >
-    {$locale}
+    {#if display === 'flag'}
+        <span class="flag">
+            {@html currentLanguage.svg || $locale}
+        </span>
+    {:else}
+        {$locale}
+    {/if}
 </div>
 {#if expandList}
-    <div class="expand-language">
-        {#each Array.from(languages) as [localeId, {label, svg}] (localeId)}
-            <div
-                class="language-item"
-                class:active={localeId === $locale}
-                on:click={() => setlocale(localeId)}
-            >
-                <span class="flag">
-                    {@html svg}
-                </span>
-                <span>
-                    {label}
-                </span>
-            </div>
-        {/each}
-    </div>
+    <Portal>
+        <div class="expand-language" style={`--x: ${x}px; --y: ${y}px;`}>
+            {#each Array.from(languages) as [localeId, {label, svg}] (localeId)}
+                <div
+                    class="language-item"
+                    class:active={localeId === $locale}
+                    on:click={() => setlocale(localeId)}
+                >
+                    <span class="flag">
+                        {@html svg}
+                    </span>
+                    <span>
+                        {label}
+                    </span>
+                </div>
+            {/each}
+        </div>
+    </Portal>
 {/if}
 <svelte:window on:click={clickOutside} />
 
 <style>
-    .select-language {
-        cursor: pointer;
-    }
-
     .expand-language {
         position: fixed;
         display: flex;
@@ -64,6 +82,10 @@
         padding: 1em;
         background-color: rgba(255, 255, 255, 0.8);
         box-shadow: 1px 3px 7px black;
+        z-index: calc(var(--mask-z-index, 1000) * 2);
+
+        left: var(--x, 0);
+        top: var(--y, 0);
     }
 
     .language-item {
@@ -77,6 +99,7 @@
         font-weight: bold;
     }
     .flag {
+        display: inline-block;
         width: 17px;
     }
     .language-item:hover .flag {

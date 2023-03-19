@@ -122,6 +122,11 @@
       "header": "Run #{run}",
       "title": "Resources"
     },
+    "settings": {
+      "header": "Settings",
+      "language": "Language",
+      "tooltip": "Define your settings"
+    },
     "shop": {
       "disabled-continue-run": "You should own a temporal machine to run again.",
       "end-of-run": "End of run #{run}",
@@ -129,6 +134,11 @@
       "no-artifacts": "There are no more artifacts. Come back later.",
       "not-enough-TE": "You don't have enough temporal energy. You should get {missing} more.",
       "run-again": "Travel back to next run"
+    }
+  },
+  "components": {
+    "dialog": {
+      "close": "Close"
     }
   },
   "equipment": {

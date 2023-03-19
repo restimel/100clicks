@@ -158,7 +158,7 @@
         height: 100vh;
         z-index: calc(var(--mask-z-index, 1000) - 10);
 
-        background-color: #CCCCCCCC;
+        background-color: var(--mask-bg-color);
     }
 
     header {

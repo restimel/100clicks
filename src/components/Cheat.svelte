@@ -66,24 +66,26 @@
 {#if cheatOpen}
 <aside class="cheat" transition:scale>
 	<header>Fraŭdi</header>
-   <label><button on:click={endRun}>Iri al la fino de la vico</button></label>
-   <label>
+    <label><button on:click={endRun}>Iri al la fino de la vico</button></label>
+    <label>
         Artefakto
         <input bind:value={artifactId} />
         <button on:click={applyArtifact}>Apliki</button>
     </label>
-   <label>
+    <label>
         Ekipaĵo
         <input bind:value={equipmentId} />
         <button on:click={applyEquipment}>Apliki</button>
     </label>
-   <label>
+     <label>
         Tempora energio
         <input type="number" bind:value={temporalEnergyValue} />
         <button on:click={applyTmpEnergy}>Apliki</button>
     </label>
 
-   <label><button class="close" on:click={() => cheatOpen = false}>Fermi</button></label>
+    <label>
+        <button class="close" on:click={() => cheatOpen = false}>Fermi</button>
+    </label>
 </aside>
 <aside class="mask" transition:fade></aside>
 {/if}
@@ -115,7 +117,7 @@
         height: 100vh;
         z-index: calc(var(--mask-z-index, 1000) + 90);
 
-        background-color: #CCCCCCCC;
+        background-color: var(--mask-bg-color);
     }
 
     header {

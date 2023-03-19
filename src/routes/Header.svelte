@@ -5,6 +5,7 @@
 	import github from '$lib/images/github.svg';
     import Icon from '../components/Icon.svelte';
     import Languages from '../components/Languages.svelte';
+    import Settings from '../components/Settings.svelte';
 </script>
 
 <header>
@@ -23,6 +24,9 @@
 			</li>
 			<li>
 				<Languages class="header-item" />
+			</li>
+			<li>
+				<Settings class="header-item" />
 			</li>
 			<li aria-current={$page.url.pathname.startsWith('/howToPlay') ? 'page' : undefined}>
 				<a href="/howToPlay">
@@ -120,6 +124,7 @@
 
 	:global(.header-item),
 	nav a {
+		cursor: pointer;
 		display: flex;
 		height: 100%;
 		align-items: center;
@@ -133,6 +138,7 @@
 		transition: color 0.2s linear;
 	}
 
+	:global(.header-item):hover,
 	a:hover {
 		color: var(--color-theme-1);
 	}

@@ -122,6 +122,11 @@
       "header": "Tour #{run}",
       "title": "Ressources"
     },
+    "settings": {
+      "header": "Paramètres",
+      "language": "Langue",
+      "tooltip": "Définissez vos paramètres"
+    },
     "shop": {
       "disabled-continue-run": "Vous devez posséder une machine temporelle pour recommencer le tour.",
       "end-of-run": "Fin du tour #{run}",
@@ -129,6 +134,11 @@
       "no-artifacts": "Il n'y a pas d'autres artefacts. Revenez plus tard.",
       "not-enough-TE": "Vous n'avez pas assez d'énergie temporelle. Il vous en manque {missing}.",
       "run-again": "Voyager temporellement vers le prochain tour"
+    }
+  },
+  "components": {
+    "dialog": {
+      "close": "Fermer"
     }
   },
   "equipment": {

@@ -26,11 +26,11 @@
 		grid-template-rows: max-content 1fr;
 		grid-template-columns: 100%;
 		max-height: calc(100vh - 50px - 2rem);
+		flex: 1;
 	}
 	.game :global(> *) {
 		max-width: 100%;
 		max-height: 100%;
 		width: 100%;
-		overflow: auto;
 	}
 </style>

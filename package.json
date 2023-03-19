@@ -26,6 +26,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@juggle/resize-observer": "^3.4.0",
 		"svelte-i18n": "^3.6.0"
 	}
 }

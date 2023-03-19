@@ -5,12 +5,18 @@
 * story
 
 ## Game Environment
-* room position (grid/column)
+* reduce action/room size
+* Remove empty room (options?)
 * add past information to know which actions will be clicked
 * sounds
 * Logs color (depending on type (maybe activated with an artifact))
 
 ## Code structure
 * save current state to restore it at next connection
-* user settings (sounds, localstorage, language)
+* user settings (sounds, localstorage, language, collapsed require)
 * svelte store helpers → update Array store
+
+## Bugs
+
+* room position
+    * sometimes it does not compute correct size (kitchen, when action is done)

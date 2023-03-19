@@ -68,7 +68,7 @@ addRooms([{
         ['action', 'laboratory'],
     ],
     color: '#000000',
-    bgColor: '#87CEEB',
+    bgColor: '#B1D9E9',
 }, {
     id: 'kitchen',
     title: $t('room.kitchen.title'),

@@ -52,7 +52,6 @@
     .room-box-cell {
         max-width: 100%;
         width: 100%;
-        margin-bottom: 1em;
     }
 
 	.room-box {

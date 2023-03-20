@@ -11,12 +11,12 @@
 
     type Chunk = {
         content: string | IconDesc;
-        type: 'text' | 'icon' | 'line-feed' | 'italic' | 'bold';
+        type: 'text' | 'icon' | 'line-feed' | 'italic' | 'bold' | 'link';
         title?: string;
     };
 
     function splitText(rawText: string): Chunk[] {
-        const splittedText = rawText.split(/(:\w+:|[\n]|_\w[\s\S]*\w_|\*{2}\w[\s\S]*\w\*{2})/);
+        const splittedText = rawText.split(/(:\w+:|[\n]|_\w[\s\S]*\w_|\*{2}\w[\s\S]*\w\*{2}|\[[^\]\n]+\]\([^)\n]+\))/);
         const chunks: Chunk[] = [];
 
         splittedText.forEach((str) => {
@@ -41,6 +41,13 @@
                 chunks.push({
                     type: 'bold',
                     content: str.slice(2, -2),
+                });
+            } else if (str.startsWith('[') && str.endsWith(')')) {
+                const data = str.match(/^\[(?<text>[^\]\n]+)\]\((?<url>[^)\n]+)\)$/);
+                chunks.push({
+                    type: 'link',
+                    title: data?.groups?.url ?? '',
+                    content: data?.groups?.text ?? '',
                 });
             } else {
                 if (str.trim()) {
@@ -73,6 +80,10 @@
         <span class="text-bold">
             <svelte:self text={content} />
         </span>
+    {:else if type === 'link'}
+        <a target="_blank" href={title}>
+            <svelte:self text={content} />
+        </a>
     {/if}
 {/each}
 

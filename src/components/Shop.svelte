@@ -17,6 +17,7 @@
     import DigitValue from './DigitValue.svelte';
     import Icon from './Icon.svelte';
     import Text from './Text.svelte';
+    import { playSound, stopSound } from '../stores/sound';
 
     const temporalDecimals = 100n;
 
@@ -24,6 +25,9 @@
     $: continueRun = $ownArtifacts.has('TDM');
     $: titleRun = !continueRun ? $_('component.shop.disabled-continue-run') : '';
     $: artifactInitialList = $runOver ? (artifactList = Array.from(artifacts.values()).filter(isDisplayed)) : emptyArray;
+    $: if ($runOver) {
+        playSound('clockTicks', {id: 'runOver'});
+    }
 
     let message = '';
     let timer = 0;
@@ -35,6 +39,7 @@
     function nextRun() {
         if (continueRun) {
             startRun();
+            stopSound('runOver');
         }
     }
 
@@ -49,6 +54,7 @@
                 values: { missing: (cost - $temporalEnergy) / temporalDecimals, },
             };
             timer = window.setTimeout(() => message = '', 5000);
+            playSound('error');
             return;
         }
         $temporalEnergy -= cost;

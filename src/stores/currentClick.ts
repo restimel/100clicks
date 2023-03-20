@@ -25,6 +25,7 @@ import type {
 } from '../stores/types';
 import type { Room } from './rooms';
 import { getEquipment } from './equipments';
+import { playSound } from './sound';
 
 
 /* {{{ exposed variables */
@@ -151,6 +152,11 @@ function doAction(id: string): boolean {
         logs.push(logItem);
     }
 
+    const sound = action.sound;
+    if (sound) {
+        playSound(sound.name, sound);
+    }
+
     return true;
 }
 
@@ -170,22 +176,25 @@ export function useArtifact(name: string, useIt?: boolean) {
     usingArtifact.add(name);
 }
 
-export function applyAction(id: string) {
+export function applyAction(id: string): number {
     const nbClicks = get(clicks);
+    let nbAction = 1;
     if (nbClicks >= 100n) {
-        return;
+        return 0;
     }
 
     logs.set([]);
 
     if (!doAction(id)) {
-        return;
+        return 0;
     }
     if (usingArtifact.has('double')) {
         /* repeat the action */
         if (!doAction(id)) {
             /* If the action cannot be repeated do not use the artifact */
             usingArtifact.delete('double');
+        } else {
+            nbAction++;
         }
     }
 
@@ -235,9 +244,14 @@ export function applyAction(id: string) {
     if (get(clicks) >= 100n) {
         endRun();
     }
+
+    return nbAction;
 }
 
 export function clickAction(event: CustomEvent<string>) {
     const id = event.detail;
-    applyAction(id);
+    const actions = applyAction(id);
+    if (actions) {
+        playSound('action', {repeat: actions});
+    }
 }

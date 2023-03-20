@@ -2,13 +2,29 @@
     import { fade, scale } from 'svelte/transition';
     import { _ } from 'svelte-i18n';
     import { tooltip } from '../helpers/tooltip';
+    import { soundVolume } from '../stores/settings';
     import Icon from './Icon.svelte';
     import Languages from './Languages.svelte';
+    import { playSound } from '../stores/sound';
 
     let settingsOpen = false;
 
     function toggleList() {
         settingsOpen = !settingsOpen;
+    }
+
+    function getIconVolume(value: number): string {
+        if (value <= 0) {
+            return 'fa-solid fa-volume-xmark';
+        }
+        if (value <= 20) {
+            return 'fa-solid fa-volume-off';
+        }
+        if (value <= 70) {
+            return 'fa-solid fa-volume-low';
+        }
+
+        return 'fa-solid fa-volume-high';
     }
 </script>
 
@@ -31,6 +47,27 @@
                 {$_('component.settings.language')}
             </span>
             <Languages class="settings-item" display="flag" />
+
+            <span>
+                {$_('component.settings.sound')}
+            </span>
+            <span>
+                <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    bind:value={$soundVolume}
+                    use:tooltip={`${$soundVolume}%`}
+                />
+                <Icon
+                    class="test-sound"
+                    icon={getIconVolume($soundVolume)}
+                    title={$_('component.settings.test')}
+                    on:click={() => {
+                        playSound('stuck');
+                    }}
+                />
+            </span>
 
 
         </div>
@@ -107,5 +144,9 @@
     .close {
         margin: auto;
         margin-top: 1em;
+    }
+
+    :global(.test-sound) {
+        cursor: pointer;
     }
 </style>

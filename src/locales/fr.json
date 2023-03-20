@@ -125,6 +125,8 @@
     "settings": {
       "header": "Paramètres",
       "language": "Langue",
+      "sound": "Son",
+      "test": "Tester",
       "tooltip": "Définissez vos paramètres"
     },
     "shop": {
@@ -164,11 +166,14 @@
   "page": {
     "about": {
       "author": "Auteur",
+      "credit": "Crédit",
+      "credit-sound-introduction": "Ce jeu utilise ces sons :",
       "header": "À propos de **{gameTitle}**",
       "introduction": "Ceci est un jeu simple développé pour tester Svelte",
       "last-release": "Dernière version",
       "license": "Licence",
       "purpose": "Le but est de progresser dans l'aventure en cliquant sur les actions. \nMais vous n'avez que 100 clics pour le faire. \nCependant après 100 clics, vous redémarrez au début mais tous les clics précédents se déclenchent toujours. \nAinsi avec tous les clics cumulés il est possible de progresser dans l'aventure.",
+      "sound-credit": "\"{title}\" par {author} sur [{site}]({url}) sous licence {license}",
       "title": "{gameTitle} : à propos"
     },
     "howto": {

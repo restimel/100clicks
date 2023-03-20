@@ -42,4 +42,39 @@ export type DisplayedAction = {
     canPayCost: boolean;
 };
 
-type DashboardName = 'run' | 'logs' | 'artifacts' | 'equipments';
+export type DashboardName = 'run' | 'logs' | 'artifacts' | 'equipments';
+
+export type License = 'cc0' | 'by4' | 'by-nc4' | 'by3';
+
+export type SoundCredit = {
+    title: string;
+    author: string;
+    site: string;
+    url: string;
+    license: License;
+    files: string[];
+}
+
+export type SoundAlias = {
+    files?: string[];
+    alias: string[];
+}
+
+type SoundEffect = 'fade-in' | 'fade-out';
+
+export type SoundTrack = {
+    name?: string;
+    variant?: number;
+    id?: string;
+    /** in ms */
+    delay?: number;
+    repeat?: number;
+    /** In percentage, 50 means /2, 200 means ×2 */
+    volume?: number;
+    /** in ms, maximum time to play */
+    duration?: number;
+    /** in ms, start at given time */
+    start?: number;
+    followed?: SoundTrack & {name: string};
+    effect?: SoundEffect;
+};

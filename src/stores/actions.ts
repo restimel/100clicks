@@ -1,7 +1,7 @@
 import { emptyArray, noop } from '../helpers/common';
 import { $t } from '../locales/i18n';
 import { energy, energyMax, ownEquipments } from './run';
-import type { Comparison, Condition, ConditionalItem, Log } from './types';
+import type { Comparison, Condition, ConditionalItem, Log, SoundTrack } from './types';
 
 export type Action = ConditionalItem & {
     type: 'action';
@@ -11,6 +11,7 @@ export type Action = ConditionalItem & {
     cost: Comparison[];
     requirements: Condition[];
     roomId: string;
+    sound?: SoundTrack;
     action: (click: bigint) => Log | void;
 };
 type ActionDefinition = Partial<Action>;
@@ -33,6 +34,7 @@ function addActions(actions: ActionDefinition[]) {
             isHidden: action.isHidden ?? [['isDone', true]],
             requirements: action.requirements ?? emptyArray,
             roomId: action.roomId || '',
+            sound: action.sound,
             action: action.action ?? noop,
         });
     }
@@ -53,6 +55,12 @@ addActions([{
     cost: [
         ['energy', 1n],
     ],
+    sound: {
+        name: 'tape-recorder',
+        variant: 1,
+        effect: 'fade-out',
+        start: 1000,
+    },
     fluff: $t('action.light-on.fluff'),
 }, {
     id: 'laboratory',

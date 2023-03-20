@@ -125,6 +125,8 @@
     "settings": {
       "header": "Agordoj",
       "language": "Lingvo",
+      "sound": "Sono",
+      "test": "Testi",
       "tooltip": "Difinu viajn agordojn"
     },
     "shop": {
@@ -164,11 +166,14 @@
   "page": {
     "about": {
       "author": "Aŭtoro",
+      "credit": "Kredito",
+      "credit-sound-introduction": "Ĉi tiu ludo uzas ĉi tiujn sonojn:",
       "header": "Pri **{gameTitle}**",
       "introduction": "Ĉi tio estas simpla ludo evoluigita por testi Svelte",
       "last-release": "Lasta eldono",
       "license": "Permesilo",
       "purpose": "La celo estas progresi en la aventuro klakante sur agoj. \nSed vi havas nur 100 klakojn por fari tion. \nTamen post 100 klakoj, vi rekomencas ĉe la komenco sed ĉiuj antaŭaj klakoj ankoraŭ ekfunkcias. \nDo kun ĉiuj klakoj akumulitaj eblas progresi tamen la aventuron.",
+      "sound-credit": "\"{title}\" de {author} sur [{site}]({url}) licencita sub {license}",
       "title": "{gameTitle}: pri"
     },
     "howto": {
@@ -190,7 +195,7 @@
     "lost-click--details": "",
     "lost-click--icon": "",
     "temporal-energy": "Tempora energio",
-    "temporal-energy--icon": "Tempora energio :temporalEnegery:"
+    "temporal-energy--icon": "Tempora energio :temporalEnergy:"
   },
   "room": {
     "bedroom1": {

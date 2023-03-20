@@ -11,6 +11,7 @@
 
     import type { SvelteComponent } from 'svelte';
     import type { DashboardName } from '../stores/types';
+    import { playSound } from '../stores/sound';
 
     /* list of dashboard that can be displayed
      * (it also set the display order) */
@@ -41,12 +42,14 @@
     function reduceDashboard(name: DashboardName) {
         hideDashboards.add(name);
         hideDashboards = hideDashboards;
+        playSound('click');
     }
 
     function expandDashboard(evt: CustomEvent<DashboardName>) {
         const name = evt.detail;
         hideDashboards.delete(name);
         hideDashboards = hideDashboards;
+        playSound('click');
     }
 </script>
 

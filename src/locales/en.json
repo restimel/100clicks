@@ -125,6 +125,8 @@
     "settings": {
       "header": "Settings",
       "language": "Language",
+      "sound": "Sound",
+      "test": "Test",
       "tooltip": "Define your settings"
     },
     "shop": {
@@ -164,11 +166,14 @@
   "page": {
     "about": {
       "author": "Author",
+      "credit": "Credit",
+      "credit-sound-introduction": "This game uses these sounds:",
       "header": "About **{gameTitle}**",
       "introduction": "This is a simple game developed to test Svelte",
       "last-release": "Last release",
       "license": "License",
       "purpose": "The goal is to progress in the adventure by clicking on actions. But you have only 100 clicks to do so. However after 100 clicks, you restart at the beginning but all previous clicks ar still triggering. So with all clicks cumulated it is possible to progress though the adventure.",
+      "sound-credit": "\"{title}\" by {author} on [{site}]({url}) licensed under {license}",
       "title": "{gameTitle}: about"
     },
     "howto": {

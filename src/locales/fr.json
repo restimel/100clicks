@@ -125,9 +125,13 @@
     "settings": {
       "header": "Paramètres",
       "language": "Langue",
+      "music": "Musique",
+      "mute": "Couper le son et la musique",
+      "muted": "en sourdine",
       "sound": "Son",
       "test": "Tester",
-      "tooltip": "Définissez vos paramètres"
+      "tooltip": "Définissez vos paramètres",
+      "unmuted": "activé"
     },
     "shop": {
       "disabled-continue-run": "Vous devez posséder une machine temporelle pour recommencer le tour.",

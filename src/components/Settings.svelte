@@ -2,7 +2,7 @@
     import { fade, scale } from 'svelte/transition';
     import { _ } from 'svelte-i18n';
     import { tooltip } from '../helpers/tooltip';
-    import { soundVolume } from '../stores/settings';
+    import { musicVolume, mute, soundVolume } from '../stores/settings';
     import Icon from './Icon.svelte';
     import Languages from './Languages.svelte';
     import { playSound } from '../stores/sound';
@@ -22,6 +22,14 @@
         }
         if (value <= 70) {
             return 'fa-solid fa-volume-low';
+        }
+
+        return 'fa-solid fa-volume-high';
+    }
+
+    function getIconMute(value: boolean): string {
+        if (!value) {
+            return 'fa-solid fa-volume-xmark';
         }
 
         return 'fa-solid fa-volume-high';
@@ -49,6 +57,20 @@
             <Languages class="settings-item" display="flag" />
 
             <span>
+                {$_('component.settings.mute')}
+            </span>
+            <span>
+                <Icon
+                    class="test-sound"
+                    icon={getIconMute($mute)}
+                    title={$_('component.settings.muted')}
+                    on:click={() => {
+                        $mute = !$mute;
+                    }}
+                />
+            </span>
+
+            <span>
                 {$_('component.settings.sound')}
             </span>
             <span>
@@ -69,6 +91,23 @@
                 />
             </span>
 
+            <span>
+                {$_('component.settings.music')}
+            </span>
+            <span>
+                <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    bind:value={$musicVolume}
+                    use:tooltip={`${$musicVolume}%`}
+                />
+                <Icon
+                    class="no-test-sound"
+                    icon={getIconVolume($musicVolume)}
+                    title={$_('component.settings.test')}
+                />
+            </span>
 
         </div>
 

@@ -125,9 +125,13 @@
     "settings": {
       "header": "Settings",
       "language": "Language",
+      "music": "Music",
+      "mute": "Mute sound and music",
+      "muted": "muted",
       "sound": "Sound",
       "test": "Test",
-      "tooltip": "Define your settings"
+      "tooltip": "Define your settings",
+      "unmuted": "unmuted"
     },
     "shop": {
       "disabled-continue-run": "You should own a temporal machine to run again.",

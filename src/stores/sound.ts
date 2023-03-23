@@ -2,8 +2,15 @@
 import { get } from 'svelte/store';
 import sounds from '../credits/sounds';
 import { noop } from '../helpers/common';
-import { soundVolume } from './settings';
-import type { SoundAlias, SoundTrack } from './types';
+import { musicVolume, mute, soundVolume } from './settings';
+import type { SoundAlias, SoundTrack, ThemeAmbient } from './types';
+import { browser } from '$app/environment';
+
+type Stop = () => void;
+type Mode = {
+    mode: 'sound' | 'ambient';
+    next?: (id: string) => void;
+};
 
 const alias = new Map<string, SoundAlias>([
     ['click', {
@@ -17,39 +24,58 @@ const alias = new Map<string, SoundAlias>([
     }],
 ]);
 
-const playingSounds = new Map<string, () => void>();
+const theme: ThemeAmbient = {
+    musics: [{
+        name: 'factory',
+    }],
+    ambients: [],
+};
+
+const playingSounds = new Map<string, Stop>();
 
 export function stopSound(id: string) {
     const stop = playingSounds.get(id);
     stop?.();
 }
 
-function createSound(url: string, options: SoundTrack = {}) {
-    const correctionVolume = (options.volume ?? 100) / 100;
-    const volume = get(soundVolume) / 100 * correctionVolume;
-    if (volume <= 0) {
+function createSound(url: string, options: SoundTrack, mode: Mode) {
+    if (!browser) {
         return;
     }
+    const correctionVolume = (options.volume ?? 100) / 100;
+
     const id = options.id ?? '';
     const maxDuration = options.duration ?? Infinity;
     const startOffset = (options.start ?? 0) / 1000;
     let repeat = options.repeat ?? 1;
+    const globalVolume = mode.mode === 'sound' ? soundVolume : musicVolume;
+    let normalVolume = get(globalVolume);
 
     stopSound(id);
 
     const el = document.createElement('audio');
     el.src = url;
-    el.volume = volume;
+
+    const updateVolume = (value: number) => {
+        const volume = get(mute) ? 0 : value / 100 * correctionVolume;
+
+        el.volume = volume;
+        normalVolume = volume;
+    };
+    const unsubscribeVolume = globalVolume.subscribe(updateVolume);
+    updateVolume(normalVolume);
 
     let effect = noop;
+
     const stop = () => {
         el.pause();
         clearTimeout(durationTimer);
+        playingSounds.delete(id);
         document.body.removeChild(el);
         el.removeEventListener('ended', end);
         el.removeEventListener('abort', stop);
         el.removeEventListener('timeupdate', effect);
-        playingSounds.delete(id);
+        unsubscribeVolume();
     };
     const end = () => {
         if (--repeat > 0) {
@@ -61,6 +87,8 @@ function createSound(url: string, options: SoundTrack = {}) {
         const followed = options.followed;
         if (followed) {
             playSound(followed.name, {id, ...followed});
+        } else if (mode.next) {
+            mode.next(id);
         }
     };
     el.addEventListener('ended', end);
@@ -75,7 +103,7 @@ function createSound(url: string, options: SoundTrack = {}) {
 
                     if (time < threshold) {
                         const ratio = time / threshold;
-                        el.volume = volume * ratio;
+                        el.volume = normalVolume * ratio;
                     }
                 };
                 break;
@@ -87,7 +115,7 @@ function createSound(url: string, options: SoundTrack = {}) {
 
                     if (time > threshold) {
                         const ratio = (duration - time) / (duration - threshold);
-                        el.volume = volume * ratio;
+                        el.volume = normalVolume * ratio;
                     }
                 };
                 break;
@@ -109,7 +137,11 @@ function createSound(url: string, options: SoundTrack = {}) {
     }
 }
 
-export function playSound(id: string, options: SoundTrack = {}): boolean {
+const soundMode: Mode = {
+    mode: 'sound',
+};
+
+export function playSound(id: string, options: SoundTrack = {}, mode = soundMode): boolean {
     const {variant, delay} = options;
     const files: string[] = [];
 
@@ -137,9 +169,40 @@ export function playSound(id: string, options: SoundTrack = {}): boolean {
     }
 
     if (delay) {
-        setTimeout(createSound, delay, files[fileIdx], options);
+        setTimeout(createSound, delay, files[fileIdx], options, mode);
     } else {
-        createSound(files[fileIdx], options);
+        createSound(files[fileIdx], options, mode);
     }
     return true;
+}
+
+
+const ID_MUSIC = 'theme-music';
+const ID_AMBIENT_1 = 'theme-ambient1';
+const ID_AMBIENT_2 = 'theme-ambient2';
+export function playAmbient() {
+    const musics = theme.musics;
+    const ambients = theme.ambients;
+    const next = (id: string) => {
+        const list = id === ID_MUSIC ? musics : ambients;
+        const idx = Math.floor(Math.random() * list.length);
+        const sound = list[idx];
+        const name = sound?.name || '';
+        const additionalDelay = id === ID_MUSIC ? 0 : Math.random() * 60000;
+        const delay = (sound?.delay ?? 0) + additionalDelay;
+
+        if (!name) {
+            return;
+        }
+        playSound(name, {...sound, id, delay}, musicMode);
+    };
+
+    const musicMode: Mode = {
+        mode: 'ambient',
+        next: next,
+    };
+
+    next(ID_MUSIC);
+    next(ID_AMBIENT_1);
+    next(ID_AMBIENT_2);
 }

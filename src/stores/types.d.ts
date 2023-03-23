@@ -75,6 +75,12 @@ export type SoundTrack = {
     duration?: number;
     /** in ms, start at given time */
     start?: number;
-    followed?: SoundTrack & {name: string};
+    followed?: NamedSoundTrack;
     effect?: SoundEffect;
+};
+export type NamedSoundTrack = SoundTrack & {name: string};
+
+export type ThemeAmbient = {
+    musics: NamedSoundTrack[];
+    ambients: NamedSoundTrack[];
 };

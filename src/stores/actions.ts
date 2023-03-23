@@ -1,6 +1,7 @@
 import { emptyArray, noop } from '../helpers/common';
 import { $t } from '../locales/i18n';
 import { energy, energyMax, ownEquipments } from './run';
+import { playAmbient } from './sound';
 import type { Comparison, Condition, ConditionalItem, Log, SoundTrack } from './types';
 
 export type Action = ConditionalItem & {
@@ -62,6 +63,9 @@ addActions([{
         start: 1000,
     },
     fluff: $t('action.light-on.fluff'),
+    action: () => {
+        playAmbient(); // TO REMOVE
+    },
 }, {
     id: 'laboratory',
     title: $t('action.laboratory.title'),

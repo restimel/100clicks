@@ -8,13 +8,17 @@
 * reduce action/room size
 * Remove empty room (options?)
 * add past information to know which actions will be clicked
-* music
+* compose music
 * Logs color (depending on type (maybe activated with an artifact))
 
 ## Code structure
 * save current state to restore it at next connection
-* user settings (music, localstorage, collapsed require)
+* user settings (mute, localstorage, collapsed require)
 * svelte store helpers → update Array store
+* web app
+
+## external
+* Fix svelte-i18n for Bigint
 
 ## Bugs
 

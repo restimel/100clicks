@@ -125,9 +125,13 @@
     "settings": {
       "header": "Agordoj",
       "language": "Lingvo",
+      "music": "Muziko",
+      "mute": "Mutigu sonon kaj muzikon",
+      "muted": "silentigita",
       "sound": "Sono",
       "test": "Testi",
-      "tooltip": "Difinu viajn agordojn"
+      "tooltip": "Difinu viajn agordojn",
+      "unmuted": "resonigita"
     },
     "shop": {
       "disabled-continue-run": "",

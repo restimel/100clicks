@@ -27,8 +27,15 @@ const alias = new Map<string, SoundAlias>([
 const theme: ThemeAmbient = {
     musics: [{
         name: 'factory',
+    }, {
+        name: 'insideMachine',
     }],
-    ambients: [],
+    ambients: [{
+        name: 'steam',
+        delay: 5000,
+    }, {
+        name: 'wind',
+    }],
 };
 
 const playingSounds = new Map<string, Stop>();
@@ -50,20 +57,27 @@ function createSound(url: string, options: SoundTrack, mode: Mode) {
     let repeat = options.repeat ?? 1;
     const globalVolume = mode.mode === 'sound' ? soundVolume : musicVolume;
     let normalVolume = get(globalVolume);
+    let muted = get(mute);
 
     stopSound(id);
 
     const el = document.createElement('audio');
     el.src = url;
 
-    const updateVolume = (value: number) => {
-        const volume = get(mute) ? 0 : value / 100 * correctionVolume;
+    const updateVolume = () => {
+        const volume = muted ? 0 : normalVolume;
 
         el.volume = volume;
-        normalVolume = volume;
     };
-    const unsubscribeVolume = globalVolume.subscribe(updateVolume);
-    updateVolume(normalVolume);
+    const unsubscribeVolume = globalVolume.subscribe((value) => {
+        normalVolume = value / 100 * correctionVolume;
+        updateVolume();
+    });
+    const unsubscribeMuted = mute.subscribe((value) => {
+        muted = value;
+        updateVolume();
+    });
+    updateVolume();
 
     let effect = noop;
 
@@ -76,6 +90,7 @@ function createSound(url: string, options: SoundTrack, mode: Mode) {
         el.removeEventListener('abort', stop);
         el.removeEventListener('timeupdate', effect);
         unsubscribeVolume();
+        unsubscribeMuted();
     };
     const end = () => {
         if (--repeat > 0) {
@@ -97,6 +112,9 @@ function createSound(url: string, options: SoundTrack, mode: Mode) {
         switch (options.effect) {
             case 'fade-in':
                 effect = () => {
+                    if (muted) {
+                        return;
+                    }
                     const duration = Math.min(el.duration - startOffset, maxDuration / 1000);
                     const threshold = duration < 4 ? duration * 0.25 : 1;
                     const time = el.currentTime - startOffset;
@@ -109,6 +127,9 @@ function createSound(url: string, options: SoundTrack, mode: Mode) {
                 break;
             case 'fade-out':
                 effect = () => {
+                    if (muted) {
+                        return;
+                    }
                     const duration = Math.min(el.duration - startOffset, maxDuration / 1000);
                     const threshold = duration < 4 ? duration * 0.75 : duration - 1;
                     const time = el.currentTime - startOffset;

@@ -28,7 +28,7 @@
     }
 
     function getIconMute(value: boolean): string {
-        if (!value) {
+        if (value) {
             return 'fa-solid fa-volume-xmark';
         }
 
@@ -63,7 +63,7 @@
                 <Icon
                     class="test-sound"
                     icon={getIconMute($mute)}
-                    title={$_('component.settings.muted')}
+                    title={$mute ? $_('component.settings.muted') : $_('component.settings.unmuted')}
                     on:click={() => {
                         $mute = !$mute;
                     }}

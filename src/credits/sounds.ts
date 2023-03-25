@@ -8,8 +8,14 @@ import signal7 from '$lib/sounds/signal-7.ogg';
 import tapeRecorder2 from '$lib/sounds/tape-recorder2.ogg';
 import tapeRecorder3 from '$lib/sounds/tape-recorder3.ogg';
 import tapeRecorder4 from '$lib/sounds/tape-recorder4.ogg';
+import steamHisses1 from '$lib/sounds/steam hisses-1.ogg';
+import steamHisses2 from '$lib/sounds/steam hisses-2.ogg';
+import steamHisses3 from '$lib/sounds/steam hisses-3.ogg';
+import steamHisses4 from '$lib/sounds/steam hisses-4.ogg';
+import wind1 from '$lib/sounds/soft-wind.ogg';
 
 import factory from '$lib/sounds/factory-atmo.ogg';
+import insideMachine1 from '$lib/sounds/inside-the-machine-1.ogg';
 
 const sounds = new Map<string, SoundCredit>([
     ['stuck', {
@@ -65,6 +71,29 @@ const sounds = new Map<string, SoundCredit>([
             tapeRecorder4,
         ],
     }],
+    ['steam', {
+        title: 'Steam release sounds',
+        author: 'Bart Kelsey',
+        site: 'OpenGameArt',
+        url: 'https://opengameart.org/content/steam-release-sounds',
+        license: 'cc0',
+        files: [
+            steamHisses1,
+            steamHisses2,
+            steamHisses3,
+            steamHisses4,
+        ],
+    }],
+    ['wind', {
+        title: 'Soft Wind',
+        author: 'Florian Reichelt',
+        site: 'freesound',
+        url: 'https://freesound.org/people/florianreichelt/sounds/459977/',
+        license: 'cc0',
+        files: [
+            wind1,
+        ],
+    }],
 
     /* atmosphere */
     ['factory', {
@@ -75,6 +104,16 @@ const sounds = new Map<string, SoundCredit>([
         license: 'cc0',
         files: [
             factory,
+        ],
+    }],
+    ['insideMachine', {
+        title: 'Inside the machine 1',
+        author: 'digitalperformer',
+        site: 'freesound',
+        url: 'https://freesound.org/people/digitalperformer/sounds/325414/',
+        license: 'cc0',
+        files: [
+            insideMachine1,
         ],
     }],
 ]);

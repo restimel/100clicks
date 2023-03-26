@@ -10,6 +10,7 @@
     import Icon from '../Icon.svelte';
 
     import type { Artifact } from '../../stores/artifacts';
+    import { playSound } from '../../stores/sound';
 
     let passiveArtifact: Array<{artifact: Artifact; count: bigint}> = emptyArray;
     let activeArtifact: Array<{artifact: Artifact; count: bigint}> = emptyArray;
@@ -40,7 +41,10 @@
     <div>
         <span
             class="artifact-type"
-            on:click={() => consumableHidden = !consumableHidden}
+            on:click={() => {
+                playSound('click');
+                consumableHidden = !consumableHidden}
+            }
         >
             {$_('component.artifacts.consumable')}
             {#if consumableHidden}
@@ -59,7 +63,7 @@
                         use:tooltip={$_('component.artifacts.tooltip-details', { values: {
                             title: $_(artifact.title),
                             desc: $_(artifact.desc),
-                            count: Number(count),
+                            count: count.toString(10),
                         }})}
                         transition:blur
                         on:click={() => useArtifact(artifact.id)}
@@ -79,7 +83,10 @@
     <div>
         <span
             class="artifact-type"
-            on:click={() => passiveHidden = !passiveHidden}
+            on:click={() => {
+                playSound('click');
+                passiveHidden = !passiveHidden;
+            }}
         >
             {$_('component.artifacts.passive')}
             {#if passiveHidden}
@@ -96,7 +103,7 @@
                         use:tooltip={$_('component.artifacts.tooltip-details', { values: {
                             title: $_(artifact.title),
                             desc: $_(artifact.desc),
-                            count: Number(count),
+                            count: count.toString(10),
                         }})}
                         transition:blur
                     >

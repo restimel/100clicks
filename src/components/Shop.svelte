@@ -65,7 +65,7 @@
 
 {#if $runOver}
 <aside class="shop" transition:scale>
-	<header>{ $_('component.shop.end-of-run', {values: {run: Number($run)}}) }</header>
+	<header>{ $_('component.shop.end-of-run', {values: {run: $run.toString(10)}}) }</header>
     <div class="fluff">
         {$_('component.shop.fluff')}
     </div>

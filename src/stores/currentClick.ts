@@ -25,7 +25,7 @@ import type {
 } from '../stores/types';
 import type { Room } from './rooms';
 import { getEquipment } from './equipments';
-import { playSound } from './sound';
+import { playSound, stopSound } from './sound';
 
 
 /* {{{ exposed variables */
@@ -165,6 +165,7 @@ export function useArtifact(name: string, useIt?: boolean) {
 
     if (!useArtifact) {
         usingArtifact.delete(name);
+        stopSound('artifactUsage');
         return;
     }
     const artifact = getArtifact(name);
@@ -174,6 +175,7 @@ export function useArtifact(name: string, useIt?: boolean) {
         return;
     }
     usingArtifact.add(name);
+    playSound('artifactUsage');
 }
 
 export function applyAction(id: string): number {
@@ -253,5 +255,8 @@ export function clickAction(event: CustomEvent<string>) {
     const actions = applyAction(id);
     if (actions) {
         playSound('action', {repeat: actions});
+        stopSound('artifactUsage');
+    } else {
+        playSound('error');
     }
 }

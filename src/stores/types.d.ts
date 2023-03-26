@@ -57,13 +57,15 @@ export type SoundCredit = {
 
 export type SoundAlias = {
     files?: string[];
-    alias: string[];
+    alias: Array<string | NamedSoundTrack>;
+    id?: string;
+    repeat?: number;
 }
 
 type SoundEffect = 'fade-in' | 'fade-out';
 
-export type SoundTrack = {
-    name?: string;
+export type NamedSoundTrack = {
+    name: string;
     variant?: number;
     id?: string;
     /** in ms */
@@ -75,10 +77,13 @@ export type SoundTrack = {
     duration?: number;
     /** in ms, start at given time */
     start?: number;
+    /** Start a new sound right after this one */
     followed?: NamedSoundTrack;
-    effect?: SoundEffect;
+    effect?: SoundEffect | SoundEffect[];
+    /* Time in ms when the next is called before the end of current track */
+    beforeEnd?: number;
 };
-export type NamedSoundTrack = SoundTrack & {name: string};
+export type SoundTrack = Partial<NamedSoundTrack>;
 
 export type ThemeAmbient = {
     musics: NamedSoundTrack[];

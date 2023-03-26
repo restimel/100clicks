@@ -8,6 +8,7 @@
     } from '../stores/currentClick';
     import type { Room } from '../stores/rooms';
     import Icon from './Icon.svelte';
+    import { playSound } from '../stores/sound';
 
     export let room: Room;
     let expand = true;
@@ -19,6 +20,7 @@
 
     function changeExpand() {
         expand = !expand;
+        playSound('click');
     }
 </script>
 

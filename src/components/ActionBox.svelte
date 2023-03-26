@@ -6,6 +6,7 @@
     import type { Comparison } from '../stores/types';
     import DigitValue from './DigitValue.svelte';
     import Text from './Text.svelte';
+    import { playSound } from '../stores/sound';
 
     export let id: string;
     export let title: string;
@@ -25,6 +26,8 @@
     function clicked() {
         if (missingRequires === 0) {
             trigger('click', id);
+        } else {
+            playSound('error');
         }
     }
 </script>

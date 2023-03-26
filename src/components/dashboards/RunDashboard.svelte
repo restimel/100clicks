@@ -9,7 +9,7 @@
 
 <div class="dashboard">
     <header>{$_('component.run-dashboard.header', { values: {
-        run: Number($run),
+        run: $run.toString(10),
     }})}</header>
     <div class="dashboard-item">
         <label for="click-dashboard">

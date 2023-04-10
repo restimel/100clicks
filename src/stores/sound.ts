@@ -113,7 +113,7 @@ function audioInfo(el: HTMLAudioElement, options: AudioOptions): AudioInfo {
     }
 }
 
-function addEffects(el: HTMLAudioElement, options: AudioOptions, timeUpdateCb: Array<() => void>, effects: SoundEffect | SoundEffect[]) {
+function addEffects(el: HTMLAudioElement, options: AudioOptions, timeUpdateCb: Set<() => void>, effects: SoundEffect | SoundEffect[]) {
     if (Array.isArray(effects)) {
         effects.forEach((effect) => {
             addEffects(el, options, timeUpdateCb, effect);
@@ -122,7 +122,7 @@ function addEffects(el: HTMLAudioElement, options: AudioOptions, timeUpdateCb: A
     }
     switch (effects) {
         case 'fade-in':
-            timeUpdateCb.push(() => {
+            timeUpdateCb.add(() => {
                 if (options.muted) {
                     return;
                 }
@@ -136,7 +136,7 @@ function addEffects(el: HTMLAudioElement, options: AudioOptions, timeUpdateCb: A
             });
             break;
         case 'fade-out':
-            timeUpdateCb.push(() => {
+            timeUpdateCb.add(() => {
                 if (options.muted) {
                     return;
                 }
@@ -189,33 +189,39 @@ function createSound(url: string, options: SoundTrack, mode: Mode) {
     });
     updateVolume();
 
-    const timeUpdateCb: Array<() => void> = [];
+    const timeUpdateCb: Set<() => void> = new Set();
 
-    let durationTimer = 0;
-    const forceEnd = () => {
-        clearTimeout(durationTimer);
-        el.removeEventListener('durationchange', forceEnd);
 
+    const quickEnd = () => {
         const {duration, time} = audioInfo(el, audioOptions);
-        if (isNaN(duration)) {
-            el.addEventListener('durationchange', forceEnd);
-            return;
+        /* 1ms is to avoid having blank */
+        if (time >= duration - 1) {
+            end();
         }
-
-        durationTimer = setTimeout(end, (duration - time) * 1000) as unknown as number;
+    };
+    const tabVisibility = () => {
+        if (document.visibilityState === 'visible') {
+            el.play();
+        } else {
+            el.pause();
+        }
     };
     const start = () => {
         el.currentTime = audioOptions.startOffset;
         el.play();
         if (repeat || isFinite(audioOptions.maxDuration)) {
-            setTimeout(forceEnd, 1);
+            quickEnd
+            if (!timeUpdateCb.has(quickEnd)) {
+                el.addEventListener('timeupdate', quickEnd);
+                timeUpdateCb.add(quickEnd);
+            }
         }
     };
     const stop = () => {
         el.pause();
-        clearTimeout(durationTimer);
         playingSounds.delete(id);
         ambientList.delete(id);
+        document.removeEventListener('visibilitychange', tabVisibility);
         el.removeEventListener('ended', end);
         el.removeEventListener('abort', stop);
         el.removeEventListener('error', stop);
@@ -227,8 +233,6 @@ function createSound(url: string, options: SoundTrack, mode: Mode) {
         repeat = 0;
     };
     const end = () => {
-        clearTimeout(durationTimer);
-        console.log('end', id);
         if (--repeat > 0) {
             start();
             return;
@@ -250,7 +254,7 @@ function createSound(url: string, options: SoundTrack, mode: Mode) {
         addEffects(el, audioOptions, timeUpdateCb, options.effect);
     }
     if (mode.next && options.beforeEnd) {
-        timeUpdateCb.push(() => {
+        timeUpdateCb.add(() => {
             if (!audioOptions.nextCalled) {
                 const {duration, time} = audioInfo(el, audioOptions);
                 const threshold = duration - options.beforeEnd! / 1000;
@@ -265,6 +269,8 @@ function createSound(url: string, options: SoundTrack, mode: Mode) {
     timeUpdateCb.forEach((cb) => {
         el.addEventListener('timeupdate', cb);
     });
+
+    document.addEventListener('visibilitychange', tabVisibility);
 
     start();
     if (id) {

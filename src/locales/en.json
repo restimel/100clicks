@@ -81,8 +81,8 @@
     },
     "past": {
       "desc": "The next click will be repeated in the previous click round\n_(it will allow to open room faster)_",
-      "fluff": "Even faster that it goes through time.",
-      "title": "Click in time"
+      "fluff": "So fast that it reverses time.",
+      "title": "Time click"
     },
     "tdm": {
       "fluff": "It travels back in time, always on the same amount of time: a run. But it did not replace the temporal line.",
@@ -211,7 +211,7 @@
       "title": "The Control room"
     },
     "corridor": {
-      "fluff": "A corridor made of metal. It leads to several doors",
+      "fluff": "A corridor made of metal. It leads to several doors.",
       "title": "A corridor"
     },
     "corridor-dark": {

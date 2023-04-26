@@ -81,17 +81,17 @@
     },
     "past": {
       "desc": "La sekva klako ripetiĝos en la antaŭa klakrondo\n_(ĝi permesos malfermi ĉambron pli rapide)_",
-      "fluff": "",
-      "title": ""
+      "fluff": "Tiom rapide, ke ĝi retroiras la tempon.",
+      "title": "Tempo klako"
     },
     "tdm": {
-      "fluff": "",
-      "title": ""
+      "fluff": "Ĝi vojaĝas reen en la tempo, ĉiam en la sama kvanto de tempo: vico. Sed ĝi ne anstataŭigis la tempan linion.",
+      "title": "Tempora Dimensia Maŝino"
     },
     "vortex": {
-      "desc": "",
-      "fluff": "",
-      "title": ""
+      "desc": "+10% :temporalEnergy:",
+      "fluff": "Ĝi generas pli da potenco per Tempo.",
+      "title": "Energia vortico"
     }
   },
   "component": {
@@ -134,12 +134,12 @@
       "unmuted": "resonigita"
     },
     "shop": {
-      "disabled-continue-run": "",
+      "disabled-continue-run": "Vi devus posedi tempan maŝinon por rekomenci la vicon.",
       "end-of-run": "Fino de vico #{run}",
-      "fluff": "",
-      "no-artifacts": "",
-      "not-enough-TE": "",
-      "run-again": ""
+      "fluff": "Vi estas laca. Vi devas halti tie! Sed vi malkovras kelkajn strangajn artefaktojn:",
+      "no-artifacts": "Ne plu estas artefaktoj. Revenu poste.",
+      "not-enough-TE": "Vi ne havas sufiĉan tempan energion. Vi devus ricevi {missing} pli.",
+      "run-again": "Vojagi tempe al la sekva vico"
     }
   },
   "components": {
@@ -195,28 +195,28 @@
     "energy": "Energio",
     "energy--icon": "Energio :energy:",
     "energy-max": "Energio max",
-    "lost-click": "",
-    "lost-click--details": "",
-    "lost-click--icon": "",
+    "lost-click": "Perdita klako",
+    "lost-click--details": "Perditaj klakoj estas klakoj en antaŭa kuro, kiuj ne kapablas ripeti siajn agojn",
+    "lost-click--icon": "Perditaj klakoj :lostClick:",
     "temporal-energy": "Tempora energio",
     "temporal-energy--icon": "Tempora energio :temporalEnergy:"
   },
   "room": {
     "bedroom1": {
-      "fluff": "",
-      "title": ""
+      "fluff": "Ĉi tio estas dormoĉambro de ŝipanaro.",
+      "title": "Dormoĉambro"
     },
     "control-room": {
-      "fluff": "",
-      "title": ""
+      "fluff": "La koro de la ŝipo.",
+      "title": "La Kontrolĉambro"
     },
     "corridor": {
-      "fluff": "",
+      "fluff": "Koridoro el metalo. Ĝi kondukas al pluraj pordoj.",
       "title": "Koridoro"
     },
     "corridor-dark": {
-      "fluff": "",
-      "title": ""
+      "fluff": "Estas mallume kaj vi nenion povas vidi.",
+      "title": "Malhela loko"
     },
     "gym-room": {
       "fluff": "Multaj akcesoraĵoj por sporto.",
@@ -224,7 +224,7 @@
     },
     "kitchen": {
       "fluff": "Tablo estas en la centro. \nManĝejo enhavas iom da manĝaĵo.",
-      "title": ""
+      "title": "La kuirejo"
     },
     "laboratory": {
       "fluff": "Ĉambro plenigita de multaj aparatoj: osciloskopoj, bobinoj, mikroskopoj, ...",

@@ -44,6 +44,7 @@
 			href="https://github.com/restimel/100clicks"
 			title={$_('component.header.github')}
 			target="_blank"
+			rel="noreferrer"
 		>
 			<img src={github} alt="GitHub" class="github" />
 		</a>

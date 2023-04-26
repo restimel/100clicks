@@ -15,7 +15,13 @@
     export let cost: Comparison[];
     export let prerequisites: Array<[string, boolean]>;
     export let canPayCost: boolean;
+    /* This attribute is only to fit action class */
     export let roomId: string;
+
+    /* This line is to avoid warning becaus roomId is not used */
+    if (roomId === 'it should never happen') {
+        console.log('oups');
+    }
 
     const trigger = createEventDispatcher<{click: string}>();
 

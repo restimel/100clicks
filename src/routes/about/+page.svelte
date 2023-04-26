@@ -28,7 +28,7 @@
 
     <p>
         { $_('page.about.introduction') }
-        <a href="https://svelte.dev" target="_blank">(Svelte)</a>.
+        <a href="https://svelte.dev" target="_blank" rel="noreferrer">(Svelte)</a>.
     </p>
     <p>
         { $_('page.about.purpose') }
@@ -37,7 +37,9 @@
     <p class="about">
         <span class="about-item">{ $_('page.about.author') }</span><span>Benoît Mariat</span>
         <span class="about-item">{ $_('page.about.last-release') }</span><span>2023-02-19</span>
-        <span class="about-item">{ $_('page.about.license') }</span><span><a href="https://mit-license.org" target="_blank">MIT</a></span>
+
+        <span class="about-item">{ $_('page.about.license') }</span>
+        <span><a href="https://mit-license.org" target="_blank" rel="noreferrer">MIT</a></span>
     </p>
     <h3>{$_('page.about.credit')}</h3>
     <section class="credit">

@@ -81,7 +81,7 @@
             <svelte:self text={content} />
         </span>
     {:else if type === 'link'}
-        <a target="_blank" href={title}>
+        <a target="_blank" href={title} rel="noreferrer">
             <svelte:self text={content} />
         </a>
     {/if}

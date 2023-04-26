@@ -103,7 +103,7 @@
         right: 1em;
         cursor: pointer;
     }
-    .reduce:hover {
+    .header-panels :global(.reduce):hover {
         color: var(--color-theme-2);
     }
 </style>

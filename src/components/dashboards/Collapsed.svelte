@@ -41,12 +41,6 @@
 </div>
 
 <style>
-	header {
-		font-size: 1.5em;
-		text-align: center;
-		margin-bottom: 0.5em;
-	}
-
 	.dashboard-collapsed {
 		display: flex;
         flex-direction: column;

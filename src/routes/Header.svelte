@@ -6,6 +6,7 @@
     import Icon from '../components/Icon.svelte';
     import Languages from '../components/Languages.svelte';
     import Settings from '../components/Settings.svelte';
+    import { base } from '$app/paths';
 </script>
 
 <header>
@@ -17,10 +18,10 @@
 		</svg>
 		<ul>
 			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">{ $_('component.header.game') }</a>
+				<a href={base + '/'}>{ $_('component.header.game') }</a>
 			</li>
 			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href="/about">{ $_('component.header.about') }</a>
+				<a href={base +  '/about'}>{ $_('component.header.about') }</a>
 			</li>
 			<li>
 				<Languages class="header-item" />
@@ -29,7 +30,7 @@
 				<Settings class="header-item" />
 			</li>
 			<li aria-current={$page.url.pathname.startsWith('/howToPlay') ? 'page' : undefined}>
-				<a href="/howToPlay">
+				<a href={base + '/howToPlay'}>
 					<Icon icon="fa-solid fa-question" />
 				</a>
 			</li>

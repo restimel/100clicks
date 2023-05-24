@@ -4,6 +4,10 @@ A simple story game when you have only 100 clicks to finish the story.
 But all actions you done in the past are repeated which helps you to
 accelerate actions.
 
+## Play
+
+https://restimel.github.io/100clicks/
+
 ## Developing
 
 Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:

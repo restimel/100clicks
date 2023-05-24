@@ -44,11 +44,24 @@
                 });
             } else if (str.startsWith('[') && str.endsWith(')')) {
                 const data = str.match(/^\[(?<text>[^\]\n]+)\]\((?<url>[^)\n]+)\)$/);
-                chunks.push({
-                    type: 'link',
-                    title: data?.groups?.url ?? '',
-                    content: data?.groups?.text ?? '',
-                });
+                const url = data?.groups?.url;
+                if (url !== '{url}') {
+                    chunks.push({
+                        type: 'link',
+                        title: url ?? '',
+                        content: data?.groups?.text ?? '',
+                    });
+                } else {
+                    /* Hack in order to Build with Svelte.
+                     * Otherwise the compiler should complain about '{url}' is
+                     * not reachable...
+                     * NOTE: We should never execute these line of code */
+                    chunks.push({
+                        type: 'text',
+                        title: url ?? '',
+                        content: data?.groups?.text ?? '',
+                    });
+                }
             } else {
                 if (str.trim()) {
                     chunks.push({

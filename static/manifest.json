@@ -1,16 +1,16 @@
 {
     "name": "100 clicks",
     "short_name": "100clicks",
-    "start_url": "/",
+    "start_url": "index.html",
     "display": "standalone",
-    "background_color": "#bbffcc",
-    "theme_color": "#ffbbcc",
+    "background_color": "#f5b895",
+    "theme_color": "#c88a65",
     "lang":"en",
     "scope":"/",
     "icons": [{
         "src": "favicon.png",
         "type": "image/png",
-        "sizes": "125x125"
+        "sizes": "128x128"
     }],
     "description": "A game where you should finish the story in less than 100 clicks"
 }

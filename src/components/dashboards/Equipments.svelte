@@ -3,10 +3,10 @@
     import { _ } from 'svelte-i18n';
     import { tooltip } from '../../helpers/tooltip';
     import { ownEquipments } from '../../stores/run';
-    import { getEquipment } from '../../stores/equipments';
+    import { getEquipment } from '../../stores/items/equipments';
     import Icon from '../Icon.svelte';
 
-    import type { Equipment } from '../../stores/equipments';
+    import type { Equipment } from '../../stores/types';
 
     $: equipmentList = Array.from($ownEquipments, (name: string) => {
         return getEquipment(name);

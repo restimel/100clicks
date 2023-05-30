@@ -1,47 +1,9 @@
-import { emptyArray, noop } from '../helpers/common';
-import { $t } from '../locales/i18n';
-import { energy, energyMax, ownEquipments } from './run';
-import { playAmbient } from './sound';
-import type { Comparison, Condition, ConditionalItem, Log, SoundTrack } from './types';
+import { emptyArray } from '../../../helpers/common';
+import { $t } from '../../../locales/i18n';
+import { energy, energyMax, ownEquipments } from '../../run';
+import type { ActionDefinition } from '../../types';
 
-export type Action = ConditionalItem & {
-    type: 'action';
-    title: string;
-    description: string;
-    fluff: string;
-    cost: Comparison[];
-    requirements: Condition[];
-    roomId: string;
-    sound?: SoundTrack;
-    action: (click: bigint) => Log | void;
-};
-type ActionDefinition = Partial<Action>;
-
-const actionList: Map<string, Action> = new Map();
-
-function addActions(actions: ActionDefinition[]) {
-    let idx = 0;
-    for (const action of actions) {
-        const id = action.id?.toLowerCase() ?? `action-${idx}`;
-        idx++;
-        actionList.set(id, {
-            id,
-            type: 'action',
-            title: action.title ?? '',
-            description: action.description ?? '',
-            fluff: action.fluff ?? '',
-            cost: action.cost ?? emptyArray,
-            isVisible: action.isVisible ?? emptyArray,
-            isHidden: action.isHidden ?? [['isDone', true]],
-            requirements: action.requirements ?? emptyArray,
-            roomId: action.roomId || '',
-            sound: action.sound,
-            action: action.action ?? noop,
-        });
-    }
-}
-
-addActions([{
+const actions: ActionDefinition[] = [{
     id: 'dynamo',
     title: $t('action.dynamo.title'),
     roomId: '',
@@ -63,9 +25,6 @@ addActions([{
         start: 1000,
     },
     fluff: $t('action.light-on.fluff'),
-    action: () => {
-        playAmbient(); // TO REMOVE
-    },
 }, {
     id: 'laboratory',
     title: $t('action.laboratory.title'),
@@ -302,20 +261,6 @@ addActions([{
             return ['equipment', 'card-staff-2'];
         }
     },
-}]);
+}];
 
-export const list = actionList;
-
-export function getAction(id: string): Action | undefined {
-    const searchValue = id.toLowerCase();
-    if (actionList.has(searchValue)) {
-        return actionList.get(searchValue);
-    }
-
-    for (const action of actionList.values()) {
-        if (action.title.toLowerCase() === searchValue) {
-            return action;
-        }
-    }
-    return;
-}
+export default actions;

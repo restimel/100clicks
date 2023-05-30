@@ -7,8 +7,8 @@
         clicks, ownArtifacts, ownEquipments, temporalEnergy,
     } from '../stores/run';
     import { applyAction } from '../stores/currentClick';
-    import { artifacts } from '../stores/artifacts';
-    import { equipments } from '../stores/equipments';
+    import { artifacts } from '../stores/items/artifacts';
+    import { equipments } from '../stores/items/equipments';
 
     let cheatOpen = false;
     let artifactId = '';

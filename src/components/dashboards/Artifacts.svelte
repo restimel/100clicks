@@ -4,13 +4,13 @@
     import { emptyArray } from '../../helpers/common';
     import { tooltip } from '../../helpers/tooltip';
     import { ownArtifacts } from '../../stores/run';
-    import { getArtifact } from '../../stores/artifacts';
+    import { getArtifact } from '../../stores/items/artifacts';
     import { useArtifact, usingArtifact } from '../../stores/currentClick';
     import DigitValue from '../DigitValue.svelte';
     import Icon from '../Icon.svelte';
 
-    import type { Artifact } from '../../stores/artifacts';
     import { playSound } from '../../stores/sound';
+    import type { Artifact } from '../../stores/types';
 
     let passiveArtifact: Array<{artifact: Artifact; count: bigint}> = emptyArray;
     let activeArtifact: Array<{artifact: Artifact; count: bigint}> = emptyArray;

@@ -5,6 +5,7 @@ import {
 	writableMap,
 	writableSet,
 } from '../helpers/SvelteStore';
+import { playAmbient } from './sound';
 
 export const run = writable(1n);
 export const runOver = writable(false);
@@ -96,6 +97,8 @@ export function startRun() {
 	run.update((value) => value + 1n);
 	clicks.set(0n);
 	runOver.set(false);
+
+    playAmbient();
 }
 
 export function endRun() {

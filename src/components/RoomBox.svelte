@@ -6,9 +6,9 @@
     import {
         accessibleList as actions,
     } from '../stores/currentClick';
-    import type { Room } from '../stores/rooms';
     import Icon from './Icon.svelte';
     import { playSound } from '../stores/sound';
+    import type { Room } from '../stores/types';
 
     export let room: Room;
     let expand = true;

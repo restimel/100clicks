@@ -1,7 +1,7 @@
 /** Managed conditions for items (actions, rooms, equipments, ...)  */
 
-import { get, writable } from "svelte/store";
-import { getAction } from "./actions";
+import { get, writable } from 'svelte/store';
+import { getAction } from './items/actions';
 import {
     actionClicked,
     actionOpened,
@@ -11,17 +11,17 @@ import {
     ownArtifacts,
     ownEquipments,
     run,
-} from "./run";
+} from './run';
 
-import type { Writable } from "svelte/store";
+import type { Writable } from 'svelte/store';
 import type {
     Comparison,
     Condition,
     ConditionalItem,
     ConditionType,
-} from "./types";
-import { getArtifact } from "./artifacts";
-import { getEquipment } from "./equipments";
+} from './types';
+import { getArtifact } from './items/artifacts';
+import { getEquipment } from './items/equipments';
 
 
 export const conditionMap: Record<ConditionType, Writable<bigint>> = {

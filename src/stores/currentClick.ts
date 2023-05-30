@@ -1,7 +1,7 @@
 import { derived, get } from 'svelte/store';
 import { writableArray, writableSet } from '../helpers/SvelteStore';
-import { getAction, list } from '../stores/actions';
-import { rooms } from './rooms';
+import { getAction, list } from './items/actions';
+import { rooms } from './items/rooms';
 import {
     actionClicked,
     actionOpened,
@@ -14,17 +14,15 @@ import {
     ownEquipments,
 } from '../stores/run';
 import { checkComparison, conditionMap, isDisplayed } from './items';
-import { getArtifact } from './artifacts';
+import { getArtifact } from './items/artifacts';
 
 import type {
     Action,
-} from '../stores/actions';
-import type {
     DisplayedAction,
     Log,
+    Room,
 } from '../stores/types';
-import type { Room } from './rooms';
-import { getEquipment } from './equipments';
+import { getEquipment } from './items/equipments';
 import { playSound, stopSound } from './sound';
 
 
@@ -153,7 +151,7 @@ function doAction(id: string): boolean {
     }
 
     const sound = action.sound;
-    if (sound) {
+    if (sound?.name) {
         playSound(sound.name, sound);
     }
 

@@ -9,9 +9,16 @@
 * Remove empty room (options?)
 * add past information to know which actions will be clicked
 * Logs color (depending on type (maybe activated with an artifact))
-* create a starting page
-    * when starting ambient music could start
-    * stop ambient when in shop
+* Allow to create different stories
+    * Isolate resources
+        * energy
+        * energyMax
+    * Define ConditionType with extended resources
+    * isolate Achievements
+    * Group all item in a Story
+    * Text in shop
+    * Allow user to choose the story
+
 
 ## Code structure
 * save current state to restore it at next connection

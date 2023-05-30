@@ -4,7 +4,7 @@
     import { _ } from 'svelte-i18n'
     import { emptyArray } from '../helpers/common';
     import { tooltip } from '../helpers/tooltip';
-    import { artifacts, type Artifact } from '../stores/artifacts';
+    import { artifacts } from '../stores/items/artifacts';
     import { isDisplayed } from '../stores/items';
 	import {
         ownArtifacts,
@@ -17,7 +17,8 @@
     import DigitValue from './DigitValue.svelte';
     import Icon from './Icon.svelte';
     import Text from './Text.svelte';
-    import { playSound, stopSound } from '../stores/sound';
+    import { playSound, stopAmbient, stopSound } from '../stores/sound';
+    import type { Artifact } from '../stores/types';
 
     const temporalDecimals = 100n;
 
@@ -27,6 +28,7 @@
     $: artifactInitialList = $runOver ? (artifactList = Array.from(artifacts.values()).filter(isDisplayed)) : emptyArray;
     $: if ($runOver) {
         playSound('clockTicks', {id: 'runOver'});
+        stopAmbient();
     }
 
     let message = '';

@@ -4,8 +4,8 @@
 	import {
         accessibleRooms as rooms,
     } from '../stores/currentClick';
-    import type { Room } from '../stores/rooms';
     import RoomBox from './RoomBox.svelte';
+    import type { Room } from '../stores/types';
 
     type RoomRef = {
         id: string;

@@ -1,39 +1,7 @@
-import { emptyArray } from '../helpers/common';
-import { $t } from '../locales/i18n';
-import type {
-    ConditionalItem,
-} from './types';
+import { $t } from '../../../locales/i18n';
+import type { RoomDefinition } from '../../types';
 
-export type Room = ConditionalItem & {
-    type: 'room';
-    title: string;
-    fluff: string;
-    color: string;
-    bgColor: string;
-};
-type RoomDefinition = Partial<Room>;
-
-const roomList: Room[] = [];
-
-function addRooms(rooms: RoomDefinition[]) {
-    let idx = 0;
-    for (const room of rooms) {
-        const id = room.id ?? `room-${idx}`;
-        idx++;
-        roomList.push({
-            id,
-            type: 'room',
-            title: room.title ?? '',
-            fluff: room.fluff ?? '',
-            color: room.color ?? '#000000',
-            bgColor: room.bgColor ?? '#FFFFFF',
-            isVisible: room.isVisible ?? emptyArray,
-            isHidden: room.isHidden ?? emptyArray,
-        });
-    }
-}
-
-addRooms([{
+const rooms: RoomDefinition[] = [{
     id: '',
     title: $t('room.corridor-dark.title'),
     fluff: $t('room.corridor-dark.fluff'),
@@ -114,6 +82,6 @@ addRooms([{
     ],
     color: '#000000',
     bgColor: '#b7c9d1',
-}]);
+}];
 
-export const rooms = roomList;
+export default rooms;

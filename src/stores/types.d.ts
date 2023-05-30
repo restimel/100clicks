@@ -31,6 +31,55 @@ export type ConditionalItem = {
     isHidden: Condition[];
 };
 
+/* {{{ ConditionalItem objects */
+
+export type Room = ConditionalItem & {
+    type: 'room';
+    title: string;
+    fluff: string;
+    color: string;
+    bgColor: string;
+};
+
+export type RoomDefinition = Partial<Room>;
+
+
+export type Action = ConditionalItem & {
+    type: 'action';
+    title: string;
+    description: string;
+    fluff: string;
+    cost: Comparison[];
+    requirements: Condition[];
+    roomId: string;
+    sound?: SoundTrack;
+    action: (click: bigint) => Log | void;
+};
+export type ActionDefinition = Partial<Action>;
+
+
+export type Equipment = ConditionalItem & {
+    type: 'equipment';
+    title: string;
+    fluff: string;
+    icon: IconDesc;
+};
+export type EquipmentDefinition = Partial<Equipment>;
+
+
+export type Artifact = ConditionalItem & {
+    type: 'artifact';
+    title: string;
+    fluff: string;
+    desc: string;
+    icon: IconDesc;
+    usable: boolean;
+    cost: (current: bigint, total: bigint) => bigint;
+};
+export type ArtifactDefinition = Partial<Artifact>;
+
+/* }}} */
+
 export type DisplayedAction = {
     id: string;
     roomId: string;

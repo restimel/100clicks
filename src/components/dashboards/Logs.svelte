@@ -1,12 +1,12 @@
 <script lang="ts">
     import { _ } from 'svelte-i18n';
     import { logs } from '../../stores/currentClick';
-    import { getAction } from '../../stores/actions';
+    import { getAction } from '../../stores/items/actions';
     import Text from '../Text.svelte';
 
     import type { Log } from '../../stores/types';
     import { slide } from 'svelte/transition';
-    import { getEquipment } from '../../stores/equipments';
+    import { getEquipment } from '../../stores/items/equipments';
 
     function sentence([type, value]: Log): string {
         switch (type) {

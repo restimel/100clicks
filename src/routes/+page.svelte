@@ -5,19 +5,29 @@
     import HeaderPanels from '../components/HeaderPanels.svelte';
     import Rooms from '../components/Rooms.svelte';
     import Shop from '../components/Shop.svelte';
+
+	import { startStory, storyReady } from '../stores/story';
+
+	startStory();
 </script>
 
 <svelte:head>
-	<title>100 Cliks</title>
+	<title>100 Clicks</title>
 	<meta name="description" content="game 100 clicks" />
 </svelte:head>
 
+{#if $storyReady}
 <section class="game">
 	<HeaderPanels />
 	<Rooms />
 	<Shop />
 	<Cheat />
 </section>
+{:else}
+<section class="menu-story">
+	...
+</section>
+{/if}
 
 <style>
 	.game {

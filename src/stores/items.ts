@@ -1,36 +1,22 @@
 /** Managed conditions for items (actions, rooms, equipments, ...)  */
 
-import { get, writable } from 'svelte/store';
+import { get } from 'svelte/store';
 import { getAction } from './items/actions';
 import {
     actionClicked,
     actionOpened,
-    energy,
-    energyMax,
-    lostClicks,
     ownArtifacts,
     ownEquipments,
-    run,
+    resources,
 } from './run';
 
-import type { Writable } from 'svelte/store';
 import type {
     Comparison,
     Condition,
     ConditionalItem,
-    ConditionType,
 } from './types';
 import { getArtifact } from './items/artifacts';
 import { getEquipment } from './items/equipments';
-
-
-export const conditionMap: Record<ConditionType, Writable<bigint>> = {
-    'energy': energy,
-    'energyMax': energyMax,
-    'lostClicks': lostClicks,
-    'run': run,
-    'click': writable(0n), /* should not be used */
-};
 
 export function checkComparison(actionId: string, [type, value]: Comparison): boolean {
     if (type === 'click') {
@@ -38,8 +24,8 @@ export function checkComparison(actionId: string, [type, value]: Comparison): bo
         const currentValue = actionClicked.get(actionId) ?? 0n;
         return value > currentValue;
     }
-    const store = conditionMap[type];
-    const currentValue = get(store);
+
+    const currentValue = resources.value(type);
     return currentValue >= value;
 }
 

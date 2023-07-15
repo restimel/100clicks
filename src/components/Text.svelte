@@ -21,7 +21,7 @@
 
         splittedText.forEach((str) => {
             if (str.startsWith(':') && str.endsWith(':')) {
-                const icon = icons[str] ?? icons[':warning:'];
+                const icon = icons.get(str) ?? icons.get(':warning:')!;
                 chunks.push({
                     type: 'icon',
                     content: icon[0],

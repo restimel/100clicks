@@ -262,7 +262,7 @@
     class="rooms-columns"
     bind:this={element}
 >
-    {#each $rooms as room, idx ('room-' + room.id)}
+    {#each $rooms as room, idx (`room-${room.id}`)}
         {@const ref = roomRefs.get(room.id)}
         {#if ref}
             <div class="wrapper-room"

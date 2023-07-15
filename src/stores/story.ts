@@ -1,22 +1,60 @@
-import { writable } from 'svelte/store';
+import { get, writable } from 'svelte/store';
 import { addActions } from './items/actions';
 import { addArtifacts } from './items/artifacts';
 import { addEquipments } from './items/equipments';
 import { addRooms } from './items/rooms';
-import { startRun } from './run';
-import actions from './story/vessel/actions';
-import artifacts from './story/vessel/artifacts';
-import equipments from './story/vessel/equipments';
-import rooms from './story/vessel/rooms';
+import { resources as runResources, saveStoryEffects, startRun } from './run';
+import achievements from './achievements';
+import vesselStory from './story/vessel';
+import type { DashboardItem, Story } from './types';
+
+export const storyList = new Map<string, Story>();
+function addStory(story: Story) {
+    storyList.set(story.id, story);
+}
 
 export const storyReady = writable(false);
+export const activeStory = writable<string>('vessel');
+
+export let dashboard: DashboardItem[] = [];
+
+/* Register stories */
+addStory(vesselStory);
 
 export function startStory() {
-    addActions(actions);
-    addRooms(rooms);
-    addArtifacts(artifacts);
-    addEquipments(equipments);
+    const story = storyList.get(get(activeStory));
 
+    if (!story) {
+        return;
+    }
+
+    const {
+        achievements: initializeAchievement,
+        actions,
+        artifacts,
+        dashboard: storyDashboard,
+        equipments,
+        resources,
+        rooms,
+        setIconText,
+        storyEffects,
+    } = story;
+
+    addActions(actions, true);
+    addRooms(rooms, true);
+    addArtifacts(artifacts, true);
+    addEquipments(equipments, true);
+
+    runResources.initialize(resources);
+    setIconText();
+
+    saveStoryEffects(storyEffects);
+
+    achievements.initialize(initializeAchievement());
+
+    dashboard = storyDashboard;
+
+    /* TODO: do this line only if there are no data in storage */
     startRun();
 
     storyReady.set(true);

@@ -234,5 +234,10 @@
       "fluff": "Dirty place but full of useful tools.",
       "title": "A repair station"
     }
+  },
+  "story": {
+    "vessel": {
+      "name": "The abandonned vessel"
+    }
   }
 }

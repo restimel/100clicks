@@ -1,6 +1,6 @@
 import { emptyArray } from '../../../helpers/common';
 import { $t } from '../../../locales/i18n';
-import { energy, energyMax, ownEquipments } from '../../run';
+import { resources, ownEquipments } from '../../run';
 import type { ActionDefinition } from '../../types';
 
 const actions: ActionDefinition[] = [{
@@ -9,7 +9,7 @@ const actions: ActionDefinition[] = [{
     roomId: '',
     fluff: $t('action.dynamo.fluff'),
     description: $t('action.dynamo.description'),
-    action: () => energy.update((n) => n + 1n),
+    action: () => resources.add('energy', 1n),
     isHidden: emptyArray,
 }, {
     id: 'light on',
@@ -103,7 +103,7 @@ const actions: ActionDefinition[] = [{
     isVisible: [['action', 'Kitchen']],
     requirements: [['action', 'Control room']],
     description: 'Energy: +5:energy:',
-    action: () => energy.update((n) => n + 5n),
+    action: () => resources.add('energy', 5n),
 }, {
     title: $t('action.apples.title'),
     roomId: 'kitchen',
@@ -112,7 +112,7 @@ const actions: ActionDefinition[] = [{
     ],
     isVisible: [['action', 'Kitchen']],
     description: $t('action.apples.description'),
-    action: () => energy.update((n) => n + 2n),
+    action: () => resources.add('energy', 2n),
 }, {
     title: 'Gym tool',
     roomId: 'gym',
@@ -123,7 +123,7 @@ const actions: ActionDefinition[] = [{
     ],
     isVisible: [['action', 'gym room']],
     description: 'Energy max: +1:energyMax:',
-    action: () => energyMax.update((n) => n + 1n),
+    action: () => resources.add('energyMax', 1n),
 }, {
     title: 'Gym tool 2',
     roomId: 'gym',
@@ -137,7 +137,7 @@ const actions: ActionDefinition[] = [{
     ],
     isHidden: emptyArray,
     description: 'Energy max: +10:energyMax:',
-    action: () => energyMax.update((n) => n + 10n),
+    action: () => resources.add('energyMax', 10n),
 }, {
     id: 'ghost analysis',
     title: $t('action.ghost-analysis.title'),
@@ -163,7 +163,7 @@ const actions: ActionDefinition[] = [{
     ],
     isHidden: emptyArray,
     description: $t('action.generator.description'),
-    action: () => energy.update((n) => n + 4n),
+    action: () => resources.add('energy', 4n),
 }, {
     title: $t('action.search-energy-past.title'),
     roomId: 'laboratory',
@@ -176,7 +176,7 @@ const actions: ActionDefinition[] = [{
     ],
     isHidden: emptyArray,
     description: $t('action.search-energy-past.description'),
-    action: () => energy.update((n) => n + 10n),
+    action: () => resources.add('energy', 10n),
 }, {
     id: 'sleeping-ghost',
     title: $t('action.sleeping-ghost.title'),
@@ -195,7 +195,7 @@ const actions: ActionDefinition[] = [{
     ],
     isHidden: emptyArray,
     description: $t('action.sleeping-ghost.description'),
-    action: () => energy.update((n) => n + 25n),
+    action: () => resources.add('energy', 25n),
 }, {
     id: 'reactor',
     title: $t('action.reactor.title'),

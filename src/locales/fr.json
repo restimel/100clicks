@@ -234,5 +234,10 @@
       "fluff": "Un endroit sale mais plein d'outils utiles.",
       "title": "Un poste de réparation"
     }
+  },
+  "story": {
+    "vessel": {
+      "name": "Le navire abandonné"
+    }
   }
 }

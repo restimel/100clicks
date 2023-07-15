@@ -7,13 +7,14 @@ import {
     actionOpened,
     clicks,
     endRun,
-    energy,
     ghostClicks,
     lostClicks,
     ownArtifacts,
     ownEquipments,
+    resources,
+    storyEffects,
 } from '../stores/run';
-import { checkComparison, conditionMap, isDisplayed } from './items';
+import { checkComparison, isDisplayed } from './items';
 import { getArtifact } from './items/artifacts';
 
 import type {
@@ -118,8 +119,7 @@ function payCost(action: Action) {
             actionOpened.$set(id, isDone);
             return;
         }
-        const store = conditionMap[type];
-        store.update(val => val - value);
+        resources.pay(type, value);
     });
 
     /* Register the action as used */
@@ -236,8 +236,8 @@ export function applyAction(id: string): number {
     });
     usingArtifact.update((set) => (set.clear(), set));
 
-    /* Check max */
-    energy.checkMax();
+    /* end action effect */
+    storyEffects.endAction?.(get(clicks));
 
     /* Increment click */
     clicks.update(val => val + 1n);

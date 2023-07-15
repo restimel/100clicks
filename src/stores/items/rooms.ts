@@ -6,7 +6,11 @@ import type {
 
 const roomList: Room[] = [];
 
-export function addRooms(rooms: RoomDefinition[]) {
+export function addRooms(rooms: RoomDefinition[], reset: boolean) {
+    if (reset) {
+        roomList.splice(0, Infinity);
+    }
+
     let idx = 0;
     for (const room of rooms) {
         const id = room.id ?? `room-${idx}`;

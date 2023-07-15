@@ -8,10 +8,10 @@
     import { isDisplayed } from '../stores/items';
 	import {
         ownArtifacts,
+        resources,
         run,
         runOver,
         startRun,
-        temporalEnergy,
         totalOwnArtifacts,
     } from '../stores/run';
     import DigitValue from './DigitValue.svelte';
@@ -21,6 +21,7 @@
     import type { Artifact } from '../stores/types';
 
     const temporalDecimals = 100n;
+    const temporalEnergy = resources.store('temporalEnergy')!;
 
     let artifactList: Artifact[] = emptyArray;
     $: continueRun = $ownArtifacts.has('TDM');
@@ -50,16 +51,17 @@
         const nb = $ownArtifacts.get(id) ?? 0n;
         const total = $totalOwnArtifacts.get(id) ?? 0n;
         const cost = artifact.cost(nb, total) * temporalDecimals;
-        if ($temporalEnergy < cost) {
+        const canPay = resources.pay('temporalEnergy', cost);
+
+        if (!canPay) {
             clearTimeout(timer);
-            message = $_('component.shop.not-enough-TE'), {
-                values: { missing: (cost - $temporalEnergy) / temporalDecimals, },
-            };
+            message = $_('component.shop.not-enough-TE', {
+                values: { missing: Number((cost - resources.value('temporalEnergy')) / temporalDecimals), },
+            });
             timer = window.setTimeout(() => message = '', 5000);
             playSound('error');
             return;
         }
-        $temporalEnergy -= cost;
         ownArtifacts.add(id);
         updateList();
     }

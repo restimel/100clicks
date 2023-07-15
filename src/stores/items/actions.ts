@@ -3,7 +3,11 @@ import type { Action, ActionDefinition } from '../types';
 
 const actionList: Map<string, Action> = new Map();
 
-export function addActions(actions: ActionDefinition[]) {
+export function addActions(actions: ActionDefinition[], reset: boolean) {
+    if (reset) {
+        actionList.clear();
+    }
+
     let idx = 0;
     for (const action of actions) {
         const id = action.id?.toLowerCase() ?? `action-${idx}`;

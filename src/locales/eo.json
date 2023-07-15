@@ -234,5 +234,10 @@
       "fluff": "Malpura loko sed plena de utilaj iloj.",
       "title": "Riparstacio"
     }
+  },
+  "story": {
+    "vessel": {
+      "name": "La forlasita ŝipo"
+    }
   }
 }

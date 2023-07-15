@@ -4,7 +4,7 @@
     import { get } from 'svelte/store';
     import { fade, scale } from 'svelte/transition';
 	import {
-        clicks, ownArtifacts, ownEquipments, temporalEnergy,
+        clicks, ownArtifacts, ownEquipments, resources,
     } from '../stores/run';
     import { applyAction } from '../stores/currentClick';
     import { artifacts } from '../stores/items/artifacts';
@@ -13,7 +13,8 @@
     let cheatOpen = false;
     let artifactId = '';
     let equipmentId = '';
-    let temporalEnergyValue = 0;
+    let resourceName = '';
+    let resourceValue = 0;
 
     function endRun() {
         let protection = 110;
@@ -35,8 +36,8 @@
             ownEquipments.add(equipmentId);
         }
     }
-    function applyTmpEnergy() {
-        temporalEnergy.update((value) => value + BigInt(temporalEnergyValue));
+    function applyresource() {
+        resources.add(resourceName, BigInt(resourceValue));
     }
 
     function listener(event: MouseEvent) {
@@ -78,9 +79,10 @@
         <button on:click={applyEquipment}>Apliki</button>
     </label>
      <label>
-        Tempora energio
-        <input type="number" bind:value={temporalEnergyValue} />
-        <button on:click={applyTmpEnergy}>Apliki</button>
+        Rimedo
+        <input bind:value={resourceName} />
+        <input type="number" bind:value={resourceValue} />
+        <button on:click={applyresource}>Apliki</button>
     </label>
 
     <label>

@@ -1,3 +1,4 @@
+import type { Writable } from 'svelte/store';
 
 export type IconDefinition = {
     /** Example: 'fa-regular fa-hand-pointer' */
@@ -79,6 +80,46 @@ export type Artifact = ConditionalItem & {
 export type ArtifactDefinition = Partial<Artifact>;
 
 /* }}} */
+
+export type ResourcesDefinition = Array<string | [string, bigint | Writable<bigint>]>;
+export type AchievementDefinition = [string, Writable<boolean>];
+
+export type DashboardItem = {
+    condition: string | boolean;
+    label: string;
+    detail?: string;
+    value: string | bigint;
+    valueMax?: string | bigint;
+};
+
+export type StoryEffects = {
+    /* triggered when run is started */
+    startRun?: (runValue: bigint) => void;
+
+    /* triggered when run is ended */
+    endRun?: (runValue: bigint) => void;
+
+    /* Triggered after an action effect */
+    endAction?: (click: bigint) => void;
+};
+
+export type Story = {
+    id: string;
+    name: string;
+
+    actions: ActionDefinition[];
+    artifacts: ArtifactDefinition[];
+    equipments: EquipmentDefinition[];
+    rooms: RoomDefinition[];
+    achievements: () => AchievementDefinition[];
+
+    resources: ResourcesDefinition;
+    setIconText: () => void;
+
+    dashboard: DashboardItem[];
+
+    storyEffects: StoryEffects;
+};
 
 export type DisplayedAction = {
     id: string;

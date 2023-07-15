@@ -1,44 +1,108 @@
 <script lang="ts">
     import { _ } from 'svelte-i18n';
     import { tooltip } from '../../helpers/tooltip';
-    import { clicks, energy, energyMax, lostClicks, run } from '../../stores/run';
-    import { hadEnergy, hadLostClick } from '../../stores/achievements';
+    import { resources, run } from '../../stores/run';
+    import achievements from '../../stores/achievements';
+    import { dashboard } from '../../stores/story';
     import DigitValue from '../DigitValue.svelte';
     import Text from '../Text.svelte';
+    import { get, writable, type Unsubscriber, type Writable } from 'svelte/store';
+    import { onDestroy } from 'svelte';
+
+    type DBItem = {
+        id: string;
+        condition: boolean;
+        detail: string;
+        label: string;
+        value: bigint;
+        valueMax: bigint | undefined;
+    };
+
+    let dashboardList: DBItem[] = [];
+    const subscribeList: Unsubscriber[] = [];
+
+    $: clicks = resources.store('clicks');
+
+    dashboardList = dashboard.map((item, idx) => {
+        const {
+            condition,
+            detail,
+            label,
+            value,
+            valueMax,
+        } = item;
+
+        function getResource(name: bigint | string | undefined): Writable<bigint> | undefined {
+            if (typeof name === 'undefined') {
+                return writable(0n);
+            }
+            if (typeof name === 'bigint') {
+                return writable(name);
+            }
+            return resources.store(name);
+        }
+
+        const id = `dashboard-${typeof value === 'string' ? value : '-'}-${idx}`;
+
+        const storeValue = getResource(value)!;
+        const storeValueMax = getResource(valueMax);
+
+        function conditionValue() {
+            return typeof condition === 'boolean' ? condition : achievements.value(condition);
+        }
+
+        const dbItem: DBItem = {
+            id,
+            condition: conditionValue(),
+            detail: detail ?? '',
+            label: label,
+            value: get(storeValue),
+            valueMax: storeValueMax && get(storeValueMax),
+        };
+
+        subscribeList.push(storeValue.subscribe((value) => {
+            dbItem.value = value;
+            dbItem.condition = conditionValue();
+            if (dashboardList) {
+                dashboardList = dashboardList;
+            }
+        }));
+        if (storeValueMax) {
+            subscribeList.push(storeValueMax.subscribe((value) => {
+                dbItem.valueMax = value;
+                if (dashboardList) {
+                    dashboardList = dashboardList;
+                }
+            }));
+        }
+
+        return dbItem;
+    });
+
+    onDestroy(() => {
+        subscribeList.forEach((unsubscribe) => unsubscribe());
+    });
 </script>
 
 <div class="dashboard">
     <header>{$_('component.run-dashboard.header', { values: {
         run: $run.toString(10),
     }})}</header>
-    <div class="dashboard-item">
-        <label for="click-dashboard">
-            <Text text={$_('resources.click--icon')} />:
-        </label>
-        <output id="click-dashboard">
-            <DigitValue value={$clicks} /> / <DigitValue value={100} />
-        </output>
-    </div>
-    {#if $hadEnergy}
-        <div class="dashboard-item">
-            <label for="energy-dashboard">
-                <Text text={$_('resources.energy--icon')} />:
-            </label>
-            <output id="energy-dashboard">
-                <DigitValue value={$energy} /> / <DigitValue value={$energyMax} />
-            </output>
-        </div>
-    {/if}
-    {#if $hadLostClick}
-        <div class="dashboard-item">
-            <label for="lostClick-dashboard" use:tooltip={$_('resources.lost-click--details')}>
-                <Text text={$_('resources.lost-click--icon')} />:
-            </label>
-            <output id="lostClick-dashboard">
-                <DigitValue value={$lostClicks} />
-            </output>
-        </div>
-    {/if}
+    {#each dashboardList as item}
+        {#if item.condition}
+            <div class="dashboard-item">
+                <label for={item.id} use:tooltip={$_(item.detail)}>
+                    <Text text={$_(item.label)} />:
+                </label>
+                <output id={item.id}>
+                    <DigitValue value={item.value} />
+                    {#if item.valueMax}
+                        / <DigitValue value={item.valueMax} />
+                    {/if}
+                </output>
+            </div>
+        {/if}
+    {/each}
 
     <svg viewBox="10 10 80 80" xmlns="http://www.w3.org/2000/svg" class="wheel" style={`--clicks:${$clicks}`}>
         <circle cx="50" cy="50" r="30" stroke="#3b170b" stroke-width="3" fill="transparent" />

@@ -1,8 +1,11 @@
 # 100clicks
 
+[![GitHub license](https://img.shields.io/github/license/MrRio/jsPDF.svg)](https://github.com/restimel/100clicks/blob/main/LICENSE)
+
 A simple story game when you have only 100 clicks to finish the story.
+Where you should re-play several time to improve your path.
 But all actions you done in the past are repeated which helps you to
-accelerate actions.
+accelerate actions and progress further and further.
 
 ## Play
 

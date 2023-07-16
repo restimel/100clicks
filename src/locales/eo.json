@@ -167,6 +167,14 @@
       "title": "Krajono"
     }
   },
+  "menu": {
+    "story": {
+      "errorSelected": "Vi devus elekti rakonton.",
+      "errorStart": "Pardonu, eraro aperis dum la ŝarĝo de ĉi tiu rakonto.",
+      "header": "Elektu vian rakonton",
+      "start": "Komencu la ludon"
+    }
+  },
   "page": {
     "about": {
       "author": "Aŭtoro",
@@ -237,6 +245,7 @@
   },
   "story": {
     "vessel": {
+      "description": "Vi vekiĝas en forlasita ŝipo. \nVi esploros ĝin kaj reaktivigos ĝin. \nĈu vi povos trovi ĝiajn sekretojn?",
       "name": "La forlasita ŝipo"
     }
   }

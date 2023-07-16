@@ -167,6 +167,14 @@
       "title": "Un crayon"
     }
   },
+  "menu": {
+    "story": {
+      "errorSelected": "Vous devez sélectionner une histoire.",
+      "errorStart": "Désolé, une erreur est apparue lors du chargement de cette histoire.",
+      "header": "Choisissez votre histoire",
+      "start": "Commencer le jeu"
+    }
+  },
   "page": {
     "about": {
       "author": "Auteur",
@@ -237,6 +245,7 @@
   },
   "story": {
     "vessel": {
+      "description": "Vous vous réveillez dans un vaisseau abandonné. \nVous allez l'explorer et le réactiver. \nSaurez-vous découvrir ses secrets ?",
       "name": "Le navire abandonné"
     }
   }

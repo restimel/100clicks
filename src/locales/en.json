@@ -167,6 +167,14 @@
       "title": "A pencil"
     }
   },
+  "menu": {
+    "story": {
+      "errorSelected": "You should select a story.",
+      "errorStart": "Sorry, an error appeared while loading this story. ",
+      "header": "Choose your story",
+      "start": "Start the game"
+    }
+  },
   "page": {
     "about": {
       "author": "Author",
@@ -237,6 +245,7 @@
   },
   "story": {
     "vessel": {
+      "description": "You awake in an abandonned vessel.\nYou will explore it and re-activate it.\nWill you be able to find its secrets?",
       "name": "The abandonned vessel"
     }
   }

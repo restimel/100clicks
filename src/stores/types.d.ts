@@ -104,8 +104,13 @@ export type StoryEffects = {
 };
 
 export type Story = {
+    /** unique id */
     id: string;
+
+    /** title of the story: should be translated */
     name: string;
+    /** description of the story: should be translated */
+    description: string;
 
     actions: ActionDefinition[];
     artifacts: ArtifactDefinition[];

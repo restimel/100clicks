@@ -21,11 +21,12 @@ export let dashboard: DashboardItem[] = [];
 /* Register stories */
 addStory(vesselStory);
 
-export function startStory() {
+export function startStory(): boolean {
+    storyReady.set(false);
     const story = storyList.get(get(activeStory));
 
     if (!story) {
-        return;
+        return false;
     }
 
     const {
@@ -58,4 +59,5 @@ export function startStory() {
     startRun();
 
     storyReady.set(true);
+    return true;
 }

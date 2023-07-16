@@ -13,6 +13,7 @@ import { resources as runResources, ownArtifacts } from '../run';
 const story: Story = {
     id: 'vessel',
     name: $t('story.vessel.name'),
+    description: $t('story.vessel.description'),
     actions,
     artifacts,
     equipments,

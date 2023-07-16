@@ -10,14 +10,12 @@
 * add past information to know which actions will be clicked
 * Logs color (depending on type (maybe activated with an artifact))
 * Allow to create different stories
-    * Isolate resources
-        * energy
-        * energyMax
     * Define ConditionType with extended resources
-    * isolate Achievements
-    * Group all item in a Story
     * Text in shop
-    * Allow user to choose the story
+    * sound
+    * Game achievement
+    * Allow to choose another story
+    * Create another story to assert it works :)
 
 
 ## Code structure

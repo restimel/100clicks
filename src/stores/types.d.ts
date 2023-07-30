@@ -11,11 +11,14 @@ export type IconDefinition = {
 type IconStrDefinition = string | IconDefinition;
 export type IconDesc = IconStrDefinition | IconStrDefinition[];
 
-export type ConditionType = 'energy' | 'energyMax' | 'click' | 'lostClicks'
+export type ConditionType<StoryResource> = StoryResource | 'click' | 'lostClicks'
     | 'run';
-export type Comparison = [ConditionType, bigint];
-export type Condition =
-    Comparison
+export type ConditionSpecialType = 'achievement' | 'action' | 'artifact'
+    | 'equipment' | 'isDone';
+export type Comparison<StoryResource> = [ConditionType<StoryResource>, bigint];
+export type Condition<StoryResource> =
+    Comparison<Exclude<StoryResource, ConditionSpecialType>>
+    | ['achievement', string]
     | ['action', string]
     | ['artifact', string]
     | ['equipment', string]
@@ -25,16 +28,16 @@ export type LogType = 'open' | 'equipment';
 export type Log = [LogType, string];
 
 export type ItemType = 'action' | 'room' | 'artifact' | 'equipment';
-export type ConditionalItem = {
+export type ConditionalItem<StoryResource> = {
     id: string;
     type: ItemType;
-    isVisible: Condition[];
-    isHidden: Condition[];
+    isVisible: Condition<StoryResource>[];
+    isHidden: Condition<StoryResource>[];
 };
 
 /* {{{ ConditionalItem objects */
 
-export type Room = ConditionalItem & {
+export type Room<StoryResource> = ConditionalItem<StoryResource> & {
     type: 'room';
     title: string;
     fluff: string;
@@ -42,33 +45,33 @@ export type Room = ConditionalItem & {
     bgColor: string;
 };
 
-export type RoomDefinition = Partial<Room>;
+export type RoomDefinition<StoryResource> = Partial<Room<StoryResource>>;
 
 
-export type Action = ConditionalItem & {
+export type Action<StoryResource> = ConditionalItem<StoryResource> & {
     type: 'action';
     title: string;
     description: string;
     fluff: string;
-    cost: Comparison[];
-    requirements: Condition[];
+    cost: Comparison<StoryResource>[];
+    requirements: Condition<StoryResource>[];
     roomId: string;
     sound?: SoundTrack;
     action: (click: bigint) => Log | void;
 };
-export type ActionDefinition = Partial<Action>;
+export type ActionDefinition<StoryResource> = Partial<Action<StoryResource>>;
 
 
-export type Equipment = ConditionalItem & {
+export type Equipment<StoryResource> = ConditionalItem<StoryResource> & {
     type: 'equipment';
     title: string;
     fluff: string;
     icon: IconDesc;
 };
-export type EquipmentDefinition = Partial<Equipment>;
+export type EquipmentDefinition<StoryResource> = Partial<Equipment<StoryResource>>;
 
 
-export type Artifact = ConditionalItem & {
+export type Artifact<StoryResource> = ConditionalItem<StoryResource> & {
     type: 'artifact';
     title: string;
     fluff: string;
@@ -77,11 +80,11 @@ export type Artifact = ConditionalItem & {
     usable: boolean;
     cost: (current: bigint, total: bigint) => bigint;
 };
-export type ArtifactDefinition = Partial<Artifact>;
+export type ArtifactDefinition<StoryResource> = Partial<Artifact<StoryResource>>;
 
 /* }}} */
 
-export type ResourcesDefinition = Array<string | [string, bigint | Writable<bigint>]>;
+export type ResourcesDefinition<StoryResource> = Array<StoryResource | [StoryResource, bigint | Writable<bigint>]>;
 export type AchievementDefinition = [string, Writable<boolean>];
 
 export type DashboardItem = {
@@ -126,13 +129,13 @@ export type Story = {
     storyEffects: StoryEffects;
 };
 
-export type DisplayedAction = {
+export type DisplayedAction<StoryResource> = {
     id: string;
     roomId: string;
     title: string;
     description: string;
     fluff: string;
-    cost: Comparison[];
+    cost: Comparison<StoryResource>[];
     prerequisites: Array<[string, boolean]>;
     canPayCost: boolean;
 };

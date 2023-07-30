@@ -9,7 +9,7 @@
 
     type RoomRef = {
         id: string;
-        room: Room;
+        room: Room<string>;
         /* index in $rooms */
         idx: number;
         /* column position */

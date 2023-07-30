@@ -1,7 +1,8 @@
 import { $t } from '../../../locales/i18n';
 import type { RoomDefinition } from '../../types';
+import type { StoryResource } from './resources';
 
-const rooms: RoomDefinition[] = [{
+const rooms: RoomDefinition<StoryResource>[] = [{
     id: '',
     title: $t('room.corridor-dark.title'),
     fluff: $t('room.corridor-dark.fluff'),

@@ -244,6 +244,90 @@
     }
   },
   "story": {
+    "tutorial": {
+      "actions": {
+        "battle": {
+          "fluff": "Sendu ĉiujn viajn trupojn en la ebenaĵon kontraŭ la diabla armeo.",
+          "title": "Batalu"
+        },
+        "battle2": {
+          "fluff": "La malbona armeo estas ene de la malnovaj ruinoj.\nVi devus forigi ĉi tiun lokon.",
+          "title": "Batalu"
+        },
+        "battle3": {
+          "fluff": "Ĉiuj monstroj venas de ĉi tiu malluma kastelo.\nPrenu ĉi tiun lokon por ekstermi la minacon.",
+          "title": "Batalu"
+        },
+        "exploreBattle1": {
+          "fluff": "Vi gajnis la unuan batalon.\nEble inter la mortintoj vi trovos ion pri kiu sendas ĉi tiun armeon.",
+          "title": "Forprenu la kadavrojn"
+        },
+        "exploreBattle2": {
+          "fluff": "Esploru la ruinojn kaj trovu de kie venas ĉi tiuj monstroj.",
+          "title": "Esploru la ruinojn"
+        },
+        "exploreBattle3": {
+          "fluff": "Vi trairas la pordegon kaj esploras la kastelon. \nVi marŝas al la gvidanto de ĉi tiu malbona armeo.",
+          "title": "Esploru la malluman kastelon"
+        },
+        "exploreVillage": {
+          "fluff": "Promenu en la vilaĝon por scii pli pri ĉi tiu loko.",
+          "title": "Esploru vilaĝon"
+        },
+        "finalBattle": {
+          "fluff": "De sia trono, La malhela sinjoro observas vin.\nLi scias, ke li estas venkita.\nVi trairas la grandan salonon por doni al li la lastan baton.",
+          "title": "Batalu la malhelan sinjoron"
+        },
+        "forge": {
+          "fluff": "Ene de la forĝejo, forĝistoj povas konstrui al vi kelkajn glavojn.",
+          "title": "Forĝejo"
+        },
+        "recruitment": {
+          "description": "+1 :peon:",
+          "fluff": "Konvinku kelkajn kuraĝulojn batali kontraŭ la diabla armeo.",
+          "title": "Varbi"
+        },
+        "smallFarm": {
+          "fluff": "Intertraktu kun farmistoj por nutri vian armeon.",
+          "title": "Malgrandaj bienoj"
+        },
+        "townHall": {
+          "fluff": "Diskutu kun la urbestro",
+          "title": "Urbodomo"
+        },
+        "trainWarrior": {
+          "fluff": "Portante armilon, iu ajn povas fariĝi militisto.\nNur esperante, ke li batos en la ĝusta direkto.",
+          "title": "Trajna militisto"
+        },
+        "trainWorker": {
+          "fluff": "Donu bazan formadon al peono.\nEn tago de trejnado, li faros ĝustan laboriston.",
+          "title": "Trejnu laboristoj"
+        }
+      },
+      "description": "Lernilo: novelo por kompreni la ludon.\nVi starigos armeon por batali kontraŭ la armeo de la nekromano.",
+      "name": "La nekromano",
+      "resources": {
+        "peon--icon": "Peon :peon:",
+        "reputation--icon": "Reputacio :reputation:",
+        "sword--icon": "Glavoj :sword:",
+        "warrior--icon": "Glavosoldatoj :warrior:",
+        "worker--icon": "Laboristoj :worker:"
+      },
+      "rooms": {
+        "battleField": {
+          "fluff": "La malbona armeo estas antaŭen",
+          "title": "Batalkampo"
+        },
+        "isolateFarms": {
+          "fluff": " ",
+          "title": "Bienoj"
+        },
+        "village": {
+          "fluff": "Malgranda vilaĝo kiu ankoraŭ ne estas koruptita de la malbona armeo.",
+          "title": "Vilaĝo"
+        }
+      }
+    },
     "vessel": {
       "description": "Vi vekiĝas en forlasita ŝipo. \nVi esploros ĝin kaj reaktivigos ĝin. \nĈu vi povos trovi ĝiajn sekretojn?",
       "name": "La forlasita ŝipo"

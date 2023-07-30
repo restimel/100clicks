@@ -1,9 +1,9 @@
 import { emptyArray, noop } from '../../helpers/common';
 import type { Action, ActionDefinition } from '../types';
 
-const actionList: Map<string, Action> = new Map();
+const actionList: Map<string, Action<string>> = new Map();
 
-export function addActions(actions: ActionDefinition[], reset: boolean) {
+export function addActions(actions: ActionDefinition<string>[], reset: boolean) {
     if (reset) {
         actionList.clear();
     }
@@ -29,9 +29,9 @@ export function addActions(actions: ActionDefinition[], reset: boolean) {
     }
 }
 
-export const list = actionList;
+export const list: Map<string, Action<string>> = actionList;
 
-export function getAction(id: string): Action | undefined {
+export function getAction(id: string): Action<string> | undefined {
     const searchValue = id.toLowerCase();
     if (actionList.has(searchValue)) {
         return actionList.get(searchValue);

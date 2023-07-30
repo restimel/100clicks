@@ -2,8 +2,9 @@ import { emptyArray } from '../../../helpers/common';
 import { $t } from '../../../locales/i18n';
 import { resources, ownEquipments } from '../../run';
 import type { ActionDefinition } from '../../types';
+import type { StoryResource } from './resources';
 
-const actions: ActionDefinition[] = [{
+const actions: ActionDefinition<StoryResource>[] = [{
     id: 'dynamo',
     title: $t('action.dynamo.title'),
     roomId: '',

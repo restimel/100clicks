@@ -79,6 +79,10 @@
         return dbItem;
     });
 
+    $: dashboardListFiltered = dashboardList.filter((item) => {
+        return item.condition;
+    });
+
     onDestroy(() => {
         subscribeList.forEach((unsubscribe) => unsubscribe());
     });
@@ -88,8 +92,8 @@
     <header>{$_('component.run-dashboard.header', { values: {
         run: $run.toString(10),
     }})}</header>
-    {#each dashboardList as item}
-        {#if item.condition}
+    <section class="dashboard-list" style={`--nb-columns: ${Math.ceil(dashboardListFiltered.length / 3)}`}>
+        {#each dashboardListFiltered as item}
             <div class="dashboard-item">
                 <label for={item.id} use:tooltip={$_(item.detail)}>
                     <Text text={$_(item.label)} />:
@@ -101,8 +105,8 @@
                     {/if}
                 </output>
             </div>
-        {/if}
-    {/each}
+        {/each}
+    </section>
 
     <svg viewBox="10 10 80 80" xmlns="http://www.w3.org/2000/svg" class="wheel" style={`--clicks:${$clicks}`}>
         <circle cx="50" cy="50" r="30" stroke="#3b170b" stroke-width="3" fill="transparent" />
@@ -125,9 +129,19 @@
         margin-bottom: 0.5em;
     }
 
+    .dashboard-list {
+        column-count: var(--nb-columns);
+        min-width: calc(var(--nb-columns) * 150px)
+    }
+
     .dashboard-item {
         display: flex;
         flex-direction: row;
+    }
+
+    .dashboard-item > label,
+    .dashboard-item > output {
+        white-space: nowrap;
     }
 
     .wheel {

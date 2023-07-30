@@ -3,6 +3,8 @@ import { icons } from '../../../helpers/icons';
 import { $t } from '../../../locales/i18n';
 import type { ResourcesDefinition } from '../../types';
 
+export type StoryResource = 'energy' | 'energyMax' | 'temporalEnergy';
+
 /* {{{ energy */
 
 function createEnergy() {
@@ -30,7 +32,7 @@ export const energy = createEnergy();
 
 /* }}} */
 
-export const resources: ResourcesDefinition = [
+export const resources: ResourcesDefinition<StoryResource> = [
     ['energy', energy],
     ['energyMax', energyMax],
     'temporalEnergy',

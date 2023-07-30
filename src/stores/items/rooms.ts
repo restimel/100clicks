@@ -4,9 +4,9 @@ import type {
     RoomDefinition,
 } from '../types';
 
-const roomList: Room[] = [];
+const roomList: Room<string>[] = [];
 
-export function addRooms(rooms: RoomDefinition[], reset: boolean) {
+export function addRooms(rooms: RoomDefinition<string>[], reset: boolean) {
     if (reset) {
         roomList.splice(0, Infinity);
     }

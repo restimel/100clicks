@@ -244,6 +244,90 @@
     }
   },
   "story": {
+    "tutorial": {
+      "actions": {
+        "battle": {
+          "fluff": "Send all your troops in the plain against the devil army.",
+          "title": "Fight"
+        },
+        "battle2": {
+          "fluff": "The evil army is inside the old ruins.\nYou should clear off this place.",
+          "title": "Fight"
+        },
+        "battle3": {
+          "fluff": "All the monsters are coming from this dark castle.\nTake this place to wip out the menace.",
+          "title": "Fight"
+        },
+        "exploreBattle1": {
+          "fluff": "You won the first battle.\nMaybe among the dead you will find something about who send this army.",
+          "title": "Scavenge the corpses"
+        },
+        "exploreBattle2": {
+          "fluff": "Explore the ruins and find from where these monsters are coming from.",
+          "title": "Explore the ruins"
+        },
+        "exploreBattle3": {
+          "fluff": "You go through the gate and explore the castle.\nYou walk to the leader of this evil army.",
+          "title": "Explore the dark castle"
+        },
+        "exploreVillage": {
+          "fluff": "Walk inside the village to know more about this place.",
+          "title": "Explore village"
+        },
+        "finalBattle": {
+          "fluff": "From his throne, The dark lord is watching you.\nHe knows that he has been defeated.\nYou walk through the great hall to give him the last blow.",
+          "title": "Fight the dark lord"
+        },
+        "forge": {
+          "fluff": "Inside the forge, smiths can build you some swords.",
+          "title": "A forge"
+        },
+        "recruitment": {
+          "description": "+1 :peon:",
+          "fluff": "Convince some brave to battle against the devil army.",
+          "title": "Recruit"
+        },
+        "smallFarm": {
+          "fluff": "Negociate with farmers to feed your army.",
+          "title": "Small farms"
+        },
+        "townHall": {
+          "fluff": "Discuss with the mayor",
+          "title": "Town hall"
+        },
+        "trainWarrior": {
+          "fluff": "By wearing a weapon, anyone can become a warrior.\nOnly hoping he will strike in the correct direction.",
+          "title": "Train warrior"
+        },
+        "trainWorker": {
+          "fluff": "Give basic formation to a peon.\nIn a day of training, he will do a correct worker.",
+          "title": "Train worker"
+        }
+      },
+      "description": "Tutorial: A short story to understand the game.\nYou will rise an army to battle the necroman's army.",
+      "name": "The necroman",
+      "resources": {
+        "peon--icon": "Peon :peon:",
+        "reputation--icon": "Reputation :reputation:",
+        "sword--icon": "Swords :sword:",
+        "warrior--icon": "Warriors :warrior:",
+        "worker--icon": "Workers :worker:"
+      },
+      "rooms": {
+        "battleField": {
+          "fluff": "The evil army is ahead",
+          "title": "Battle field"
+        },
+        "isolateFarms": {
+          "fluff": " ",
+          "title": "Farms"
+        },
+        "village": {
+          "fluff": "A small village which is still not corrupted by the evil army.",
+          "title": "Village"
+        }
+      }
+    },
     "vessel": {
       "description": "You awake in an abandonned vessel.\nYou will explore it and re-activate it.\nWill you be able to find its secrets?",
       "name": "The abandonned vessel"

@@ -19,6 +19,7 @@ import { getArtifact } from './items/artifacts';
 
 import type {
     Action,
+    Comparison,
     DisplayedAction,
     Log,
     Room,
@@ -31,7 +32,7 @@ import { playSound, stopSound } from './sound';
 
 export const accessibleRooms = derived(
     [clicks],
-    (): Room[] =>
+    (): Room<string>[] =>
 {
     const values = rooms.filter(isDisplayed);
     return values;
@@ -39,10 +40,10 @@ export const accessibleRooms = derived(
 
 export const accessibleList = derived(
     [actionClicked, clicks],
-    ([$actionClicked]): DisplayedAction[] =>
+    ([$actionClicked]): DisplayedAction<string>[] =>
 {
     const values = Array.from(list.values()).filter(isDisplayed);
-    const updatedActions: DisplayedAction[] = values.map((action) => {
+    const updatedActions: DisplayedAction<string>[] = values.map((action) => {
         const id = action.id;
         return {
             id: action.id,
@@ -61,7 +62,7 @@ export const accessibleList = derived(
             prerequisites: action.requirements.map((condition) => {
                 switch (condition[0]) {
                     case 'action': {
-                        const targetAction = getAction(condition[1]);
+                        const targetAction = getAction(condition[1] as string);
                         if (!targetAction) {
                             return [condition[1], false];
                         }
@@ -71,13 +72,13 @@ export const accessibleList = derived(
                         return [actionName, isDone];
                     }
                     case 'artifact': {
-                        const id = condition[1];
+                        const id = condition[1] as string;
                         const hasArtifact = get(ownArtifacts).get(id);
                         const artifactName = getArtifact(id)?.title ?? id;
                         return [artifactName, !!hasArtifact];
                     }
                     case 'equipment': {
-                        const id = condition[1];
+                        const id = condition[1] as string;
                         const hasEquipment = ownEquipments.has(id);
                         const equipmentName = getEquipment(id)?.title ?? id;
                         return [equipmentName, !!hasEquipment];
@@ -86,14 +87,14 @@ export const accessibleList = derived(
                         return [action.title, true];
                     }
                     default: {
-                        const isDone = checkComparison(id, condition);
+                        const isDone = checkComparison(id, condition as Comparison<string>);
                         const [name, value] = condition;
                         const label = `${name.at(0)?.toUpperCase()}${name.slice(1)}: ${value}:${name}:`;
                         return [label, isDone];
                     }
                 }
             }),
-        }
+        } as DisplayedAction<string>;
     });
     return updatedActions;
 });
@@ -103,11 +104,11 @@ export const usingArtifact = writableSet<string>();
 
 /* }}} */
 
-function checkCost(action: Action): boolean {
+function checkCost(action: Action<string>): boolean {
     const id = action.id;
     return action.cost.every(checkComparison.bind(null, id));
 }
-function payCost(action: Action) {
+function payCost(action: Action<string>) {
     const id = action.id;
     const nbClick = (actionClicked.get(id) ?? 0n) + 1n;
     action.cost.forEach(([type, value]) => {

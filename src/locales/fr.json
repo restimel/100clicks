@@ -244,6 +244,90 @@
     }
   },
   "story": {
+    "tutorial": {
+      "actions": {
+        "battle": {
+          "fluff": "Envoyez toutes vos troupes dans la plaine contre l'armée diabolique.",
+          "title": "Combattre"
+        },
+        "battle2": {
+          "fluff": "L'armée maléfique est à l'intérieur des vieilles ruines.\nVous devriez nettoyer cet endroit.",
+          "title": "Combattre"
+        },
+        "battle3": {
+          "fluff": "Tous les monstres viennent de ce château sombre.\nPrenez cet endroit pour anéantir la menace.",
+          "title": "Combattre"
+        },
+        "exploreBattle1": {
+          "fluff": "Vous avez remorpté la première bataille.\nPeut-être que parmi les morts, vous trouverez quelque chose sur celui qui a envoyé cette armée.",
+          "title": "Fouillez les cadavres"
+        },
+        "exploreBattle2": {
+          "fluff": "Explorez les ruines et trouvez d'où viennent ces monstres.",
+          "title": "Explorer les ruines"
+        },
+        "exploreBattle3": {
+          "fluff": "Vous franchissez la porte et explorez le château. \nVous marchez vers le chef de cette armée maléfique.",
+          "title": "Explorez le sombre château"
+        },
+        "exploreVillage": {
+          "fluff": "Promenez-vous dans le village pour en savoir plus sur cet endroit.",
+          "title": "Découvrir le village"
+        },
+        "finalBattle": {
+          "fluff": "De son trône, le seigneur des ténèbres vous regarde.\nIl sait qu'il a été vaincu.\nVous traversez la grande salle pour lui donner le dernier coup.",
+          "title": "Combattez le seigneur des ténèbres"
+        },
+        "forge": {
+          "fluff": "A l'intérieur de la forge, les forgerons peuvent vous fabriquer des épées.",
+          "title": "Une forge"
+        },
+        "recruitment": {
+          "description": "+1 :peon:",
+          "fluff": "Convainquez des braves de se battre contre l'armée diabolique.",
+          "title": "Recruter"
+        },
+        "smallFarm": {
+          "fluff": "Négociez avec les fermiers pour nourrir votre armée.",
+          "title": "Petites fermes"
+        },
+        "townHall": {
+          "fluff": "Discuter avec le maire",
+          "title": "Mairie"
+        },
+        "trainWarrior": {
+          "fluff": "En portant une arme, n'importe qui peut devenir un guerrier.\nEn espérant seulement qu'il frappera dans la bonne direction.",
+          "title": "Former un guerrier"
+        },
+        "trainWorker": {
+          "fluff": "Donner une formation de base à une recrue.\nEn une journée de formation, il fera un ouvrier correct.",
+          "title": "Former un travailleur"
+        }
+      },
+      "description": "Tutoriel : Une petite histoire pour comprendre le jeu.\nVous monterez une armée pour combattre l'armée du nécroman.",
+      "name": "Le nécroman",
+      "resources": {
+        "peon--icon": "Personne :peon:",
+        "reputation--icon": "Réputation :reputation:",
+        "sword--icon": "Épées :sword:",
+        "warrior--icon": "Guerriers :warrior:",
+        "worker--icon": "Ouvriers :worker:"
+      },
+      "rooms": {
+        "battleField": {
+          "fluff": "L'armée maléfique est devant",
+          "title": "Champ de bataille"
+        },
+        "isolateFarms": {
+          "fluff": " ",
+          "title": "Fermes"
+        },
+        "village": {
+          "fluff": "Un petit village qui n'est toujours pas corrompu par l'armée maléfique.",
+          "title": "Village"
+        }
+      }
+    },
     "vessel": {
       "description": "Vous vous réveillez dans un vaisseau abandonné. \nVous allez l'explorer et le réactiver. \nSaurez-vous découvrir ses secrets ?",
       "name": "Le navire abandonné"

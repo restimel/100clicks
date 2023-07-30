@@ -10,7 +10,7 @@
     import { playSound } from '../stores/sound';
     import type { Room } from '../stores/types';
 
-    export let room: Room;
+    export let room: Room<string>;
     let expand = true;
 
     $: actionList = $actions.filter(({roomId}) => roomId === room.id);

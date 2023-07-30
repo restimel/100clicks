@@ -12,7 +12,7 @@
     export let title: string;
     export let description: string;
     export let fluff: string;
-    export let cost: Comparison[];
+    export let cost: Comparison<string>[];
     export let prerequisites: Array<[string, boolean]>;
     export let canPayCost: boolean;
     /* This attribute is only to fit action class */

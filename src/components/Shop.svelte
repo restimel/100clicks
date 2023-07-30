@@ -23,7 +23,7 @@
     const temporalDecimals = 100n;
     const temporalEnergy = resources.store('temporalEnergy')!;
 
-    let artifactList: Artifact[] = emptyArray;
+    let artifactList: Artifact<string>[] = emptyArray;
     $: continueRun = $ownArtifacts.has('TDM');
     $: titleRun = !continueRun ? $_('component.shop.disabled-continue-run') : '';
     $: artifactInitialList = $runOver ? (artifactList = Array.from(artifacts.values()).filter(isDisplayed)) : emptyArray;
@@ -46,7 +46,7 @@
         }
     }
 
-    function buy(artifact: Artifact) {
+    function buy(artifact: Artifact<string>) {
         const id = artifact.id;
         const nb = $ownArtifacts.get(id) ?? 0n;
         const total = $totalOwnArtifacts.get(id) ?? 0n;

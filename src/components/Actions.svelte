@@ -4,7 +4,7 @@
     import ActionBox from './ActionBox.svelte';
 	import type { DisplayedAction } from '../stores/types';
 
-    export let list: DisplayedAction[];
+    export let list: DisplayedAction<string>[];
 </script>
 
 <div class="actions">

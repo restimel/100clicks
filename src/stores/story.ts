@@ -6,6 +6,7 @@ import { addRooms } from './items/rooms';
 import { resources as runResources, saveStoryEffects, startRun } from './run';
 import achievements from './achievements';
 import vesselStory from './story/vessel';
+import tutorialStory from './story/tutorial';
 import type { DashboardItem, Story } from './types';
 
 export const storyList = new Map<string, Story>();
@@ -19,6 +20,7 @@ export const activeStory = writable<string>('vessel');
 export let dashboard: DashboardItem[] = [];
 
 /* Register stories */
+addStory(tutorialStory);
 addStory(vesselStory);
 
 export function startStory(): boolean {

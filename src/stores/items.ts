@@ -18,7 +18,7 @@ import type {
 import { getArtifact } from './items/artifacts';
 import { getEquipment } from './items/equipments';
 
-export function checkComparison(actionId: string, [type, value]: Comparison): boolean {
+export function checkComparison(actionId: string, [type, value]: Comparison<string>): boolean {
     if (type === 'click') {
         /* compare with number of clicks */
         const currentValue = actionClicked.get(actionId) ?? 0n;
@@ -29,7 +29,7 @@ export function checkComparison(actionId: string, [type, value]: Comparison): bo
     return currentValue >= value;
 }
 
-export function checkCondition(item: ConditionalItem, condition: Condition): boolean {
+export function checkCondition<T = string>(item: ConditionalItem<T>, condition: Condition<T>): boolean {
     switch (condition[0]) {
         case 'isDone': {
             if (item.type === "action") {
@@ -43,7 +43,7 @@ export function checkCondition(item: ConditionalItem, condition: Condition): boo
             }
         }
         case 'action': {
-            const targetAction = getAction(condition[1]);
+            const targetAction = getAction(condition[1] as string);
             if (!targetAction) {
                 return false;
             }
@@ -51,7 +51,7 @@ export function checkCondition(item: ConditionalItem, condition: Condition): boo
             return !!actionOpened.get(actionId);
         }
         case 'artifact': {
-            const targetArtifact = getArtifact(condition[1]);
+            const targetArtifact = getArtifact(condition[1] as string);
             if (!targetArtifact) {
                 return false;
             }
@@ -59,19 +59,21 @@ export function checkCondition(item: ConditionalItem, condition: Condition): boo
             return !!get(ownArtifacts).get(artifactId);
         }
         case 'equipment': {
-            const targetEquipment = getEquipment(condition[1]);
+            const targetEquipment = getEquipment(condition[1] as string);
             if (!targetEquipment) {
                 return false;
             }
             const equipmentId = targetEquipment.id;
             return ownEquipments.has(equipmentId);
         }
+        case 'achievement':
+            return false;
         default:
-            return checkComparison(item.id, condition);
+            return checkComparison(item.id, condition as Comparison<string>);
     }
 }
 
-export function isDisplayed(item: ConditionalItem): boolean {
+export function isDisplayed(item: ConditionalItem<string>): boolean {
     const isVisible = item.isVisible.every(checkCondition.bind(null, item));
     const isHidden = !isVisible || item.isHidden.some(checkCondition.bind(null, item));
     return isVisible && !isHidden;

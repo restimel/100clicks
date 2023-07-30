@@ -4,14 +4,14 @@ import type {
     ArtifactDefinition,
 } from '../types';
 
-const artifactList: Map<string, Artifact> = new Map();
+const artifactList: Map<string, Artifact<string>> = new Map();
 
 function free() {
     return 0n;
 }
 
 // const defaultIcon = 'M50 100a50 50 0 1 1 0 -100a50 50 0 1 1 0 100zM50 19a6.5 6.5 0 0 0 0 14a6.5 6.5 0 0 0 0 -14zM50 50a23.5 23.5 0 0 0 0 47.8a47.8 47.8 0 0 0 0 -95.6a23.5 23.5 0 0 1 0 47.8zM50 66.5a6.5 6.5 0 0 0 0 14a6.5 6.5 0 0 0 0 -14z';
-export function addArtifacts(artifacts: ArtifactDefinition[], reset: boolean) {
+export function addArtifacts(artifacts: ArtifactDefinition<string>[], reset: boolean) {
     if (reset) {
         artifactList.clear();
     }
@@ -37,7 +37,7 @@ export function addArtifacts(artifacts: ArtifactDefinition[], reset: boolean) {
 
 export const artifacts = artifactList;
 
-export function getArtifact(id: string): Artifact | undefined {
+export function getArtifact(id: string): Artifact<string> | undefined {
     if (artifactList.has(id)) {
         return artifactList.get(id);
     }

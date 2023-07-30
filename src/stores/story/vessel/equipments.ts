@@ -1,7 +1,8 @@
 import { $t } from '../../../locales/i18n';
 import type { EquipmentDefinition } from '../../types';
+import type { StoryResource } from './resources';
 
-const equipments: EquipmentDefinition[] = [{
+const equipments: EquipmentDefinition<StoryResource>[] = [{
     id: 'card-staff-1',
     title: $t('equipment.card1.title'),
     fluff: $t('equipment.card1.fluff'),

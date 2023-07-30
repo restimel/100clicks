@@ -99,7 +99,7 @@ function createResources() {
 			setValue(resourceName, resourceValue - value, true);
 			return true;
 		},
-		initialize: (values: ResourcesDefinition) => {
+		initialize: (values: ResourcesDefinition<string>) => {
 			const resources: Record<string, Writable<bigint>> = {
 				clicks: clicks,
 				lostClicks: lostClicks,

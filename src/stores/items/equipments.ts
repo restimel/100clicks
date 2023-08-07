@@ -5,10 +5,12 @@ import type {
     EquipmentDefinition,
 } from '../types';
 
-const equipmentList: Map<string, Equipment<string>> = new Map();
+type StoryResource = string;
+
+const equipmentList: Map<string, Equipment<StoryResource>> = new Map();
 
 // const defaultIcon = 'M50 100a50 50 0 1 1 0 -100a50 50 0 1 1 0 100zM50 19a6.5 6.5 0 0 0 0 14a6.5 6.5 0 0 0 0 -14zM50 50a23.5 23.5 0 0 0 0 47.8a47.8 47.8 0 0 0 0 -95.6a23.5 23.5 0 0 1 0 47.8zM50 66.5a6.5 6.5 0 0 0 0 14a6.5 6.5 0 0 0 0 -14z';
-export function addEquipments(equipments: EquipmentDefinition<string>[], reset: boolean) {
+export function addEquipments(equipments: EquipmentDefinition<StoryResource>[], reset: boolean) {
     if (reset) {
         equipmentList.clear();
     }
@@ -31,7 +33,7 @@ export function addEquipments(equipments: EquipmentDefinition<string>[], reset: 
 
 export const equipments = equipmentList;
 
-export function getEquipment(id: string): Equipment<string> | undefined {
+export function getEquipment(id: string): Equipment<StoryResource> | undefined {
     const searchValue = id.toLowerCase();
 
     if (equipmentList.has(searchValue)) {

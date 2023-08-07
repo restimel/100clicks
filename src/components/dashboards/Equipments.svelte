@@ -5,16 +5,27 @@
     import { ownEquipments } from '../../stores/run';
     import { getEquipment } from '../../stores/items/equipments';
     import Icon from '../Icon.svelte';
+    import Text from '../Text.svelte';
 
-    import type { Equipment } from '../../stores/types';
+    import type { Equipment, EquipmentsPanel } from '../../stores/types';
+
+    type StoryResource = string;
+
+    export let panel: EquipmentsPanel<StoryResource>;
 
     $: equipmentList = Array.from($ownEquipments, (name: string) => {
         return getEquipment(name);
-    }).filter((map) => !!map) as Equipment[];
+    }).filter((map) => !!map) as Equipment<StoryResource>[];
 </script>
 
 <div class="equipment-dashboard">
-	<header>{$_('component.equipments.header')}</header>
+    <header>
+        {#if panel.header}
+            <Text text={$_(panel.header)} />
+        {:else}
+            {$_('component.equipments.header')}
+        {/if}
+    </header>
     <div class="equipment-dashboard__item-list" transition:slide>
         {#each equipmentList as equipment (equipment.id)}
             <div

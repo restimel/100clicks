@@ -7,17 +7,19 @@ import { resources as runResources, saveStoryEffects, startRun } from './run';
 import achievements from './achievements';
 import vesselStory from './story/vessel';
 import tutorialStory from './story/tutorial';
-import type { DashboardItem, Story } from './types';
+import type { Panel, Story } from './types';
 
-export const storyList = new Map<string, Story>();
-function addStory(story: Story) {
+type StoryResource = string;
+
+export const storyList = new Map<string, Story<StoryResource>>();
+function addStory(story: Story<StoryResource>) {
     storyList.set(story.id, story);
 }
 
 export const storyReady = writable(false);
 export const activeStory = writable<string>('vessel');
 
-export let dashboard: DashboardItem[] = [];
+export let panels: Panel<StoryResource>[] = [];
 
 /* Register stories */
 addStory(tutorialStory);
@@ -35,7 +37,7 @@ export function startStory(): boolean {
         achievements: initializeAchievement,
         actions,
         artifacts,
-        dashboard: storyDashboard,
+        panels: storyPanels,
         equipments,
         resources,
         rooms,
@@ -55,7 +57,7 @@ export function startStory(): boolean {
 
     achievements.initialize(initializeAchievement());
 
-    dashboard = storyDashboard;
+    panels = storyPanels;
 
     /* TODO: do this line only if there are no data in storage */
     startRun();

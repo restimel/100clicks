@@ -26,13 +26,15 @@ import type {
 } from '../stores/types';
 import { getEquipment } from './items/equipments';
 import { playSound, stopSound } from './sound';
+import { noop } from 'svelte/internal';
 
+type StoryResource = string;
 
 /* {{{ exposed variables */
 
 export const accessibleRooms = derived(
     [clicks],
-    (): Room<string>[] =>
+    (): Room<StoryResource>[] =>
 {
     const values = rooms.filter(isDisplayed);
     return values;
@@ -40,10 +42,10 @@ export const accessibleRooms = derived(
 
 export const accessibleList = derived(
     [actionClicked, clicks],
-    ([$actionClicked]): DisplayedAction<string>[] =>
+    ([$actionClicked]): DisplayedAction<StoryResource>[] =>
 {
     const values = Array.from(list.values()).filter(isDisplayed);
-    const updatedActions: DisplayedAction<string>[] = values.map((action) => {
+    const updatedActions: DisplayedAction<StoryResource>[] = values.map((action) => {
         const id = action.id;
         return {
             id: action.id,
@@ -87,14 +89,14 @@ export const accessibleList = derived(
                         return [action.title, true];
                     }
                     default: {
-                        const isDone = checkComparison(id, condition as Comparison<string>);
+                        const isDone = checkComparison(id, condition as Comparison<StoryResource>);
                         const [name, value] = condition;
                         const label = `${name.at(0)?.toUpperCase()}${name.slice(1)}: ${value}:${name}:`;
                         return [label, isDone];
                     }
                 }
             }),
-        } as DisplayedAction<string>;
+        } as DisplayedAction<StoryResource>;
     });
     return updatedActions;
 });
@@ -104,11 +106,11 @@ export const usingArtifact = writableSet<string>();
 
 /* }}} */
 
-function checkCost(action: Action<string>): boolean {
+function checkCost(action: Action<StoryResource>): boolean {
     const id = action.id;
     return action.cost.every(checkComparison.bind(null, id));
 }
-function payCost(action: Action<string>) {
+function payCost(action: Action<StoryResource>) {
     const id = action.id;
     const nbClick = (actionClicked.get(id) ?? 0n) + 1n;
     action.cost.forEach(([type, value]) => {
@@ -138,7 +140,19 @@ function doAction(id: string): boolean {
     if (nbClicks >= 100n) {
         return false;
     }
-    const action = list.get(id);
+    const action = list.get(id) ?? (id === 'cheat-end' ? {
+        id: 'cheat-end',
+        type: 'action',
+        title: '',
+        description: '',
+        fluff: '',
+        cost: [],
+        requirements: [],
+        roomId: '',
+        action: noop,
+        isVisible: [],
+        isHidden: [],
+    } as Action<string> : undefined);
 
     if (!action || !isDisplayed(action) || !checkCost(action)) {
         return false;

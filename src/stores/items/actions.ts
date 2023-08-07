@@ -1,9 +1,11 @@
 import { emptyArray, noop } from '../../helpers/common';
 import type { Action, ActionDefinition } from '../types';
 
-const actionList: Map<string, Action<string>> = new Map();
+type StoryResource = string;
 
-export function addActions(actions: ActionDefinition<string>[], reset: boolean) {
+const actionList: Map<string, Action<StoryResource>> = new Map();
+
+export function addActions(actions: ActionDefinition<StoryResource>[], reset: boolean) {
     if (reset) {
         actionList.clear();
     }
@@ -29,9 +31,9 @@ export function addActions(actions: ActionDefinition<string>[], reset: boolean) 
     }
 }
 
-export const list: Map<string, Action<string>> = actionList;
+export const list: Map<string, Action<StoryResource>> = actionList;
 
-export function getAction(id: string): Action<string> | undefined {
+export function getAction(id: string): Action<StoryResource> | undefined {
     const searchValue = id.toLowerCase();
     if (actionList.has(searchValue)) {
         return actionList.get(searchValue);

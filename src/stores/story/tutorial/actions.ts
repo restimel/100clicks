@@ -44,11 +44,8 @@ const actions: ActionDefinition<StoryResource>[] = [{
     roomId: 'battle field',
     title: $t('story.tutorial.actions.exploreBattle1.title'),
     fluff: $t('story.tutorial.actions.exploreBattle1.fluff'),
-    requirements: [
-        ['warrior', 1n],
-    ],
     action: () => {
-        console.log('todo battle', resources.value('warrior'));
+        resources.reset('monster', 200n);
     },
     isVisible: [
         ['achievement', 'win1'],
@@ -66,6 +63,7 @@ const actions: ActionDefinition<StoryResource>[] = [{
     },
     isVisible: [
         ['achievement', 'win1'],
+        ['action', 'exploreBattle1'],
     ],
     isHidden: [
         ['achievement', 'win2'],
@@ -75,11 +73,8 @@ const actions: ActionDefinition<StoryResource>[] = [{
     roomId: 'battle field',
     title: $t('story.tutorial.actions.exploreBattle2.title'),
     fluff: $t('story.tutorial.actions.exploreBattle2.fluff'),
-    requirements: [
-        ['warrior', 1n],
-    ],
     action: () => {
-        console.log('todo battle', resources.value('warrior'));
+        resources.reset('monster', 1000n);
     },
     isVisible: [
         ['achievement', 'win2'],
@@ -91,6 +86,7 @@ const actions: ActionDefinition<StoryResource>[] = [{
     fluff: $t('story.tutorial.actions.battle3.fluff'),
     requirements: [
         ['warrior', 1n],
+        ['action', 'exploreBattle2'],
     ],
     action: () => {
         battle();
@@ -106,12 +102,6 @@ const actions: ActionDefinition<StoryResource>[] = [{
     roomId: 'battle field',
     title: $t('story.tutorial.actions.exploreBattle3.title'),
     fluff: $t('story.tutorial.actions.exploreBattle3.fluff'),
-    requirements: [
-        ['warrior', 1n],
-    ],
-    action: () => {
-        console.log('todo battle', resources.value('warrior'));
-    },
     isVisible: [
         ['achievement', 'win3'],
     ],
@@ -160,10 +150,11 @@ const actions: ActionDefinition<StoryResource>[] = [{
     roomId: 'village',
     title: $t('story.tutorial.actions.forge.title'),
     fluff: $t('story.tutorial.actions.forge.fluff'),
+    description: $t('story.tutorial.actions.forge.description'),
     cost: [
         ['worker', 1n],
     ],
-    action: () => resources.add('sword', 1n),
+    action: () => resources.add('sword', 10n),
     isVisible: [
         ['action', 'explore village'],
     ],
@@ -211,7 +202,7 @@ const actions: ActionDefinition<StoryResource>[] = [{
     action: (click: bigint) => {
         if (click % 5n === 0n) {
             resources.add('peonMax', 1n);
-            // return ['resource', 'peonMax', 1n];
+            return ['resource', 'peonMax|1'];
         }
     },
     isHidden: emptyArray,

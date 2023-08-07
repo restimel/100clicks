@@ -8,12 +8,17 @@
     import { useArtifact, usingArtifact } from '../../stores/currentClick';
     import DigitValue from '../DigitValue.svelte';
     import Icon from '../Icon.svelte';
+    import Text from '../Text.svelte';
 
     import { playSound } from '../../stores/sound';
-    import type { Artifact } from '../../stores/types';
+    import type { Artifact, ArtifactsPanel } from '../../stores/types';
 
-    let passiveArtifact: Array<{artifact: Artifact; count: bigint}> = emptyArray;
-    let activeArtifact: Array<{artifact: Artifact; count: bigint}> = emptyArray;
+    type StoryResource = string;
+
+    export let panel: ArtifactsPanel<StoryResource>;
+
+    let passiveArtifact: Array<{artifact: Artifact<StoryResource>; count: bigint}> = emptyArray;
+    let activeArtifact: Array<{artifact: Artifact<StoryResource>; count: bigint}> = emptyArray;
     $: {
         passiveArtifact = [];
         activeArtifact = [];
@@ -36,7 +41,13 @@
 </script>
 
 <div class="artifact-dashboard">
-	<header>{$_('component.artifacts.header')}</header>
+    <header>
+        {#if panel.header}
+            <Text text={$_(panel.header)} />
+        {:else}
+            {$_('component.artifacts.header')}
+        {/if}
+    </header>
     {#if activeArtifact.length}
     <div>
         <span

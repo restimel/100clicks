@@ -18,10 +18,14 @@ export const lostClicks = writable(0n);
 /** List of equipment acquired during the run */
 export const ownEquipments = writableSet<string>();
 
+type StoryResource = string;
+
 function createResources() {
 	const storeValues = writable<Record<string, Writable<bigint>>>({});
 	const { subscribe, set, update } = storeValues;
 	let defaultValues = new Map<string, bigint>();
+
+	const shopCurrency = writable<bigint>(0n);
 
 	function getStore(resourceName: string): Writable<bigint> | undefined {
 		const values = get(storeValues);
@@ -99,10 +103,11 @@ function createResources() {
 			setValue(resourceName, resourceValue - value, true);
 			return true;
 		},
-		initialize: (values: ResourcesDefinition<string>) => {
+		initialize: (values: ResourcesDefinition<StoryResource>) => {
 			const resources: Record<string, Writable<bigint>> = {
 				clicks: clicks,
 				lostClicks: lostClicks,
+				shopCurrency: shopCurrency,
 			};
 			const initValues: Array<[string, bigint]> = values.map((value) => {
 				if (typeof value === 'string') {
@@ -171,9 +176,6 @@ export const ownArtifacts = (() => {
 		},
 	};
 })();
-
-// TODO to remove
-// export const temporalEnergy = writable(0n);
 
 /* }}} */
 

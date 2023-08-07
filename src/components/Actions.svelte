@@ -4,7 +4,9 @@
     import ActionBox from './ActionBox.svelte';
 	import type { DisplayedAction } from '../stores/types';
 
-    export let list: DisplayedAction<string>[];
+    type StoryResource = string;
+
+    export let list: DisplayedAction<StoryResource>[];
 </script>
 
 <div class="actions">

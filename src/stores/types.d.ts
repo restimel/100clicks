@@ -24,15 +24,15 @@ export type Condition<StoryResource> =
     | ['equipment', string]
     | ['isDone', boolean];
 
-export type LogType = 'open' | 'equipment';
+export type LogType = 'open' | 'equipment' | 'resource';
 export type Log = [LogType, string];
 
-export type ItemType = 'action' | 'room' | 'artifact' | 'equipment';
+export type ItemType = 'action' | 'room' | 'artifact' | 'equipment' | 'panel';
 export type ConditionalItem<StoryResource> = {
     id: string;
     type: ItemType;
-    isVisible: Condition<StoryResource>[];
-    isHidden: Condition<StoryResource>[];
+    isVisible: boolean | Condition<StoryResource>[];
+    isHidden: boolean | Condition<StoryResource>[];
 };
 
 /* {{{ ConditionalItem objects */
@@ -83,9 +83,7 @@ export type Artifact<StoryResource> = ConditionalItem<StoryResource> & {
 export type ArtifactDefinition<StoryResource> = Partial<Artifact<StoryResource>>;
 
 /* }}} */
-
-export type ResourcesDefinition<StoryResource> = Array<StoryResource | [StoryResource, bigint | Writable<bigint>]>;
-export type AchievementDefinition = [string, Writable<boolean>];
+/* {{{ Panels */
 
 export type DashboardItem = {
     condition: string | boolean;
@@ -94,6 +92,40 @@ export type DashboardItem = {
     value: string | bigint;
     valueMax?: string | bigint;
 };
+
+export type PanelType = 'dashboard' | 'logs' | 'artifacts' | 'equipments';
+
+type BasePanel<StoryResource> = ConditionalItem<StoryResource> & {
+    type: 'panel',
+    panelType: PanelType;
+    header: string;
+}
+
+type DashboardPanel<StoryResource> = BasePanel<StoryResource> & {
+    panelType: 'dashboard';
+    content: DashboardItem[];
+};
+
+type LogsPanel<StoryResource> = BasePanel<StoryResource> & {
+    panelType: 'logs';
+};
+
+type ArtifactsPanel<StoryResource> = BasePanel<StoryResource> & {
+    panelType: 'artifacts';
+};
+
+type EquipmentsPanel<StoryResource> = BasePanel<StoryResource> & {
+    panelType: 'equipments';
+};
+
+export type Panel<StoryResource> = DashboardPanel<StoryResource>
+    | LogsPanel<StoryResource> | ArtifactsPanel<StoryResource>
+    | EquipmentsPanel<StoryResource>;
+
+/* }}} */
+
+export type ResourcesDefinition<StoryResource> = Array<StoryResource | [StoryResource, bigint | Writable<bigint>]>;
+export type AchievementDefinition = [string, Writable<boolean>];
 
 export type StoryEffects = {
     /* triggered when run is started */
@@ -106,7 +138,7 @@ export type StoryEffects = {
     endAction?: (click: bigint) => void;
 };
 
-export type Story = {
+export type Story<StoryResource> = {
     /** unique id */
     id: string;
 
@@ -115,16 +147,16 @@ export type Story = {
     /** description of the story: should be translated */
     description: string;
 
-    actions: ActionDefinition[];
-    artifacts: ArtifactDefinition[];
-    equipments: EquipmentDefinition[];
-    rooms: RoomDefinition[];
+    actions: ActionDefinition<StoryResource>[];
+    artifacts: ArtifactDefinition<StoryResource>[];
+    equipments: EquipmentDefinition<StoryResource>[];
+    rooms: RoomDefinition<StoryResource>[];
     achievements: () => AchievementDefinition[];
 
-    resources: ResourcesDefinition;
+    resources: ResourcesDefinition<StoryResource>;
     setIconText: () => void;
 
-    dashboard: DashboardItem[];
+    panels: Panel<StoryResource>[];
 
     storyEffects: StoryEffects;
 };
@@ -139,8 +171,6 @@ export type DisplayedAction<StoryResource> = {
     prerequisites: Array<[string, boolean]>;
     canPayCost: boolean;
 };
-
-export type DashboardName = 'run' | 'logs' | 'artifacts' | 'equipments';
 
 export type License = 'cc0' | 'by4' | 'by-nc4' | 'by3';
 

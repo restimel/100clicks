@@ -19,7 +19,7 @@
     function endRun() {
         let protection = 110;
         while (get(clicks) < 100n && --protection) {
-            applyAction('dynamo');
+            applyAction('cheat-end');
         }
         if (!protection) {
             console.warn('Estas problema por fari la dinamo agon.');

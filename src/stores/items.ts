@@ -17,8 +17,11 @@ import type {
 } from './types';
 import { getArtifact } from './items/artifacts';
 import { getEquipment } from './items/equipments';
+import achievements from './achievements';
 
-export function checkComparison(actionId: string, [type, value]: Comparison<string>): boolean {
+type StoryResource = string;
+
+export function checkComparison(actionId: string, [type, value]: Comparison<StoryResource>): boolean {
     if (type === 'click') {
         /* compare with number of clicks */
         const currentValue = actionClicked.get(actionId) ?? 0n;
@@ -29,7 +32,7 @@ export function checkComparison(actionId: string, [type, value]: Comparison<stri
     return currentValue >= value;
 }
 
-export function checkCondition<T = string>(item: ConditionalItem<T>, condition: Condition<T>): boolean {
+export function checkCondition<T = StoryResource>(item: ConditionalItem<T>, condition: Condition<T>): boolean {
     switch (condition[0]) {
         case 'isDone': {
             if (item.type === "action") {
@@ -66,15 +69,27 @@ export function checkCondition<T = string>(item: ConditionalItem<T>, condition: 
             const equipmentId = targetEquipment.id;
             return ownEquipments.has(equipmentId);
         }
-        case 'achievement':
+        case 'achievement': {
+            return achievements.value(condition[1] as string);
+        }
+        case 'panel':
             return false;
         default:
-            return checkComparison(item.id, condition as Comparison<string>);
+            return checkComparison(item.id, condition as Comparison<StoryResource>);
     }
 }
 
-export function isDisplayed(item: ConditionalItem<string>): boolean {
-    const isVisible = item.isVisible.every(checkCondition.bind(null, item));
-    const isHidden = !isVisible || item.isHidden.some(checkCondition.bind(null, item));
+export function isDisplayed(item: ConditionalItem<StoryResource>): boolean {
+    const isVisibleProp = item.isVisible;
+    const isVisible = typeof isVisibleProp === 'boolean'
+        ? isVisibleProp
+        : isVisibleProp.every(checkCondition.bind(null, item));
+
+    const isHiddenProp = item.isHidden;
+    const isHidden = !isVisible || (typeof isHiddenProp === 'boolean'
+            ? isHiddenProp
+            : isHiddenProp.some(checkCondition.bind(null, item))
+    );
+
     return isVisible && !isHidden;
 }

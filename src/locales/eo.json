@@ -89,7 +89,7 @@
       "title": "Tempora Dimensia Maŝino"
     },
     "vortex": {
-      "desc": "+10% :temporalEnergy:",
+      "desc": "+10% :shopCurrency:",
       "fluff": "Ĝi generas pli da potenco per Tempo.",
       "title": "Energia vortico"
     }
@@ -116,7 +116,8 @@
     "logs": {
       "action-complete": "Ago \"{name}\" estis plenumita",
       "equipment-found": "Vi trovis la eron \"{name}\"",
-      "header": "Ŝtipoj"
+      "header": "Ŝtipoj",
+      "resource-increase": "Ŝanĝo de rimedo: {value} :{resource}:"
     },
     "run-dashboard": {
       "header": "Vico #{run}",
@@ -207,7 +208,7 @@
     "lost-click--details": "Perditaj klakoj estas klakoj en antaŭa kuro, kiuj ne kapablas ripeti siajn agojn",
     "lost-click--icon": "Perditaj klakoj :lostClick:",
     "temporal-energy": "Tempora energio",
-    "temporal-energy--icon": "Tempora energio :temporalEnergy:"
+    "temporal-energy--icon": "Tempora energio :shopCurrency:"
   },
   "room": {
     "bedroom1": {
@@ -279,6 +280,7 @@
           "title": "Batalu la malhelan sinjoron"
         },
         "forge": {
+          "description": "+10 :sword:",
           "fluff": "Ene de la forĝejo, forĝistoj povas konstrui al vi kelkajn glavojn.",
           "title": "Forĝejo"
         },
@@ -304,13 +306,45 @@
           "title": "Trejnu laboristoj"
         }
       },
+      "artifact": {
+        "farmers": {
+          "dec": "+1 :peonMax:",
+          "fluff": "Ĉi tiuj farmistoj povas aliĝi al via forto por nutri pli grandan komunumon.",
+          "title": "Farmistoj"
+        },
+        "tdm": {
+          "fluff": "Granda tempomago akceptas helpi vin en via serĉo.\nLi revenigos vin en la tempo por batali denove la malbonan armeon.\n\nKaj vi ricevos la helpon de viaj pasintaj agoj.",
+          "title": "Tempomago"
+        },
+        "vortex": {
+          "desc": "+10% :shopCurrency:",
+          "fluff": "Ĝi generas pli da potenco per Tempo.",
+          "title": "Tempo potenco"
+        }
+      },
       "description": "Lernilo: novelo por kompreni la ludon.\nVi starigos armeon por batali kontraŭ la armeo de la nekromano.",
-      "name": "La nekromano",
+      "name": "Lernilo: La nekromano",
+      "panels": {
+        "army": {
+          "title": "Via armeo"
+        },
+        "enemy": {
+          "title": "La malbona armeo"
+        }
+      },
       "resources": {
+        "monster": "Monstro",
+        "monster--icon": "Monstroj :monster:",
+        "peon": "Peon",
         "peon--icon": "Peon :peon:",
+        "peon-max": "Peon maksimume",
+        "reputation": "Reputacio",
         "reputation--icon": "Reputacio :reputation:",
+        "sword": "Glavo",
         "sword--icon": "Glavoj :sword:",
+        "warrior": "Glavosoldato",
         "warrior--icon": "Glavosoldatoj :warrior:",
+        "worker": "Laboristo",
         "worker--icon": "Laboristoj :worker:"
       },
       "rooms": {

@@ -9,8 +9,9 @@ import rooms from './tutorial/rooms';
 import achievements from './tutorial/achievements';
 
 import { resources as runResources, ownArtifacts } from '../run';
+import type { StoryResource } from './tutorial/resources';
 
-const story: Story = {
+const story: Story<StoryResource> = {
     id: 'tutorial',
     name: $t('story.tutorial.name'),
     description: $t('story.tutorial.description'),
@@ -23,42 +24,102 @@ const story: Story = {
     resources,
     setIconText,
 
-    dashboard: [
-        {
-            condition: true,
-            label: $t('resources.click--icon'),
-            value: 'clicks',
-            valueMax: 100n,
-        }, {
-            condition: true,
-            label: $t('story.tutorial.resources.peon--icon'),
-            value: 'peon',
-            valueMax: 'peonMax',
-        }, {
-            condition: true,
-            label: $t('story.tutorial.resources.worker--icon'),
-            value: 'worker',
-        }, {
-            condition: 'hadWarrior',
-            label: $t('story.tutorial.resources.warrior--icon'),
-            value: 'warrior',
-        }, {
-            condition: true,
-            label: $t('story.tutorial.resources.sword--icon'),
-            value: 'sword',
-        }, {
-            condition: 'hadReputation',
-            label: $t('story.tutorial.resources.reputation--icon'),
-            value: 'reputation',
-        },
-    ],
+    panels: [{
+        type: 'panel',
+        id: 'dashboard',
+        header: '',
+        panelType: 'dashboard',
+        isVisible: true,
+        isHidden: false,
+        content: [
+            {
+                condition: true,
+                label: $t('resources.click--icon'),
+                value: 'clicks',
+                valueMax: 100n,
+            }, {
+                condition: 'hadReputation',
+                label: $t('story.tutorial.resources.reputation--icon'),
+                value: 'reputation',
+            },
+        ],
+    }, {
+        type: 'panel',
+        panelType: 'dashboard',
+        id: 'army',
+        header: $t('story.tutorial.panels.army.title'),
+        isVisible: true,
+        isHidden: false,
+        content: [
+            {
+                condition: true,
+                label: $t('story.tutorial.resources.peon--icon'),
+                value: 'peon',
+                valueMax: 'peonMax',
+            }, {
+                condition: true,
+                label: $t('story.tutorial.resources.worker--icon'),
+                value: 'worker',
+            }, {
+                condition: 'hadWarrior',
+                label: $t('story.tutorial.resources.warrior--icon'),
+                value: 'warrior',
+            }, {
+                condition: true,
+                label: $t('story.tutorial.resources.sword--icon'),
+                value: 'sword',
+            },
+        ],
+    }, {
+        type: 'panel',
+        panelType: 'dashboard',
+        id: 'enemy',
+        header: $t('story.tutorial.panels.enemy.title'),
+        isVisible: true,
+        isHidden: [['achievement', 'win3']],
+        content: [
+            {
+                condition: true,
+                label: $t('story.tutorial.resources.monster--icon'),
+                value: 'monster',
+            },
+        ],
+    }, {
+        type: 'panel',
+        id: 'artifacts',
+        header: '',
+        panelType: 'artifacts',
+        isVisible: [['achievement', 'hadArtifact']],
+        isHidden: false,
+    }, {
+        type: 'panel',
+        id: 'equipments',
+        header: '',
+        panelType: 'equipments',
+        isVisible: false,
+        isHidden: false,
+    }, {
+        type: 'panel',
+        id: 'logs',
+        header: '',
+        panelType: 'logs',
+        isVisible: true,
+        isHidden: false,
+    }],
 
     storyEffects: {
+        startRun: () => {
+            runResources.add('peonMax', get(ownArtifacts).get('farmers') ?? 0n);
+        },
         endRun: () => {
-            const bonusTEnergy = 100n + (get(ownArtifacts).get('vortex') ?? 0n) * 10n;
-            const gainTEnergy = runResources.value('energy') * bonusTEnergy / 100n;
+            const shopDecimals = 100n;
+            const base = 100n;
+            const bonusShop = base + (get(ownArtifacts).get('vortex') ?? 0n) * 10n;
+            const gainRatio = 4n;
+            const gainShop = runResources.value('lostClicks') * bonusShop * shopDecimals / (base * gainRatio);
+            const realGain = gainShop < shopDecimals ? shopDecimals : gainShop;
 
-            runResources.add('temporalEnergy', gainTEnergy);
+            runResources.add('shopCurrency', realGain);
         },
     },
 };

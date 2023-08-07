@@ -8,49 +8,87 @@
     import Equipments from './dashboards/Equipments.svelte';
     import Collapsed from './dashboards/Collapsed.svelte';
     import Icon from './Icon.svelte';
-
-    import type { SvelteComponent } from 'svelte';
-    import type { DashboardName } from '../stores/types';
     import { playSound } from '../stores/sound';
+    import { panels } from '../stores/story';
+    import { isDisplayed } from '../stores/items';
+    import { clicks } from '../stores/run';
+
+    import { onDestroy, type SvelteComponentTyped } from 'svelte';
+    import type { BasePanel, Panel, PanelType } from '../stores/types';
+
+    type StoryResource = string;
+
+    type PanelInfo = {
+        displayed: boolean;
+        panel: Panel<StoryResource>;
+    }
 
     /* list of dashboard that can be displayed
      * (it also set the display order) */
-	let displayDashboards: Map<DashboardName, boolean> = new Map([
-        ['run', true],
-        ['artifacts', true],
-        ['equipments', true],
-        ['logs', true],
-    ]);
+	let displayDashboards: Map<string, PanelInfo> = new Map();
+
+    buildDisplayDashboards();
+    function buildDisplayDashboards(): Map<string, PanelInfo> {
+        let hasChanged = false;
+
+        const dspPanels = new Map(panels.map((panel) => {
+            const displayed = isDisplayed(panel);
+            const origPanel = displayDashboards.get(panel.id);
+
+            if (origPanel?.displayed !== displayed) {
+                hasChanged = true;
+            }
+
+            return [panel.id, {
+                displayed: displayed,
+                panel: panel,
+            }];
+        }));
+
+
+        if (hasChanged || dspPanels.size !== displayDashboards.size) {
+            displayDashboards = dspPanels;
+        }
+
+        return displayDashboards;
+    }
+    const unsubscribeRun = clicks.subscribe(buildDisplayDashboards);
 
     /* list of dashboards that are collapsed */
-    let hideDashboards: Set<DashboardName> = new Set();
-    $: collapsedDashboards = Array.from(hideDashboards).filter((name) => {
-        return hideDashboards.has(name) && displayDashboards.get(name);
+    let hideDashboards: Set<string> = new Set();
+    $: collapsedDashboards = Array.from(hideDashboards).filter((id) => {
+        return hideDashboards.has(id) && displayDashboards.get(id)?.displayed;
     });
 
     $: expandedDashboard = Array.from(displayDashboards.keys()).filter((dashboard) => {
-        return displayDashboards.get(dashboard) && !hideDashboards.has(dashboard);
+        return displayDashboards.get(dashboard)?.displayed && !hideDashboards.has(dashboard);
     });
 
-    const dashboards: Map<DashboardName, typeof SvelteComponent> = new Map([
-        ['run', Run],
-        ['artifacts', Artifacts],
-        ['equipments', Equipments],
-        ['logs', Logs],
+    type PanelComponent = typeof SvelteComponentTyped<{panel: BasePanel<StoryResource>}>;
+
+    const dashboards: Map<PanelType, PanelComponent> = new Map([
+        ['dashboard', Run as PanelComponent],
+        ['artifacts', Artifacts as PanelComponent],
+        ['equipments', Equipments as PanelComponent],
+        ['logs', Logs as PanelComponent],
     ]);
 
-    function reduceDashboard(name: DashboardName) {
-        hideDashboards.add(name);
+    function reduceDashboard(id: string) {
+        hideDashboards.add(id);
         hideDashboards = hideDashboards;
         playSound('click');
     }
 
-    function expandDashboard(evt: CustomEvent<DashboardName>) {
+    function expandDashboard(evt: CustomEvent<string>) {
         const name = evt.detail;
         hideDashboards.delete(name);
         hideDashboards = hideDashboards;
         playSound('click');
     }
+
+    onDestroy(() => {
+        unsubscribeRun();
+    });
 </script>
 
 <div class="header-panels">
@@ -62,17 +100,22 @@
         </div>
     {/if}
     {#each expandedDashboard as dashboard (dashboard)}
+        {@const panel = displayDashboards.get(dashboard)}
         <div class="dashboard-item"
             in:receive={{key: dashboard}}
             out:send={{key: dashboard}}
             animate:flip
         >
-            <svelte:component this={dashboards.get(dashboard)} />
+            {#if panel}
+            <svelte:component this={dashboards.get(panel.panel.panelType)}
+                panel={panel.panel}
+            />
             <Icon
                 icon="fa-solid fa-circle-minus"
                 class="reduce"
                 on:click={() => reduceDashboard(dashboard)}
             />
+            {/if}
         </div>
     {/each}
 </div>

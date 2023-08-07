@@ -89,7 +89,7 @@
       "title": "Machine Dimensionnelle Temporelle"
     },
     "vortex": {
-      "desc": "+10% :temporalEnergy:",
+      "desc": "+10% :shopCurrency:",
       "fluff": "Génère plus de force à travers le Temps.",
       "title": "Vortex d'énergie"
     }
@@ -116,7 +116,8 @@
     "logs": {
       "action-complete": "L'action \"{name}\" a été réalisée",
       "equipment-found": "Vous avez trouvé l'objet \"{name}\"",
-      "header": "Registre"
+      "header": "Registre",
+      "resource-increase": "Changement de ressource : {value} :{resource}:"
     },
     "run-dashboard": {
       "header": "Tour #{run}",
@@ -207,7 +208,7 @@
     "lost-click--details": "Les clics perdus correspondent aux clics des tours précédents qui n'ont pas pu répéter leurs actions.",
     "lost-click--icon": "Clics perdus :lostClick:",
     "temporal-energy": "Énergie temporelle",
-    "temporal-energy--icon": "Énergie temporelle :temporalEnergy:"
+    "temporal-energy--icon": "Énergie temporelle :shopCurrency:"
   },
   "room": {
     "bedroom1": {
@@ -279,6 +280,7 @@
           "title": "Combattez le seigneur des ténèbres"
         },
         "forge": {
+          "description": "+10 :sword:",
           "fluff": "A l'intérieur de la forge, les forgerons peuvent vous fabriquer des épées.",
           "title": "Une forge"
         },
@@ -304,13 +306,45 @@
           "title": "Former un travailleur"
         }
       },
+      "artifact": {
+        "farmers": {
+          "dec": "+1 :peonMax:",
+          "fluff": "Ces fermiers peuvent se joindre à vous pour nourrir une plus grande communauté.",
+          "title": "Des fermiers"
+        },
+        "tdm": {
+          "fluff": "Un grand mage du Temps accepte de vous aider dans votre quête.\nIl vous ramènera dans le temps pour combattre à nouveau l'armée maléfique.\n\nEt vous obtiendrez l'aide de vos actions passées.",
+          "title": "Mage du temps"
+        },
+        "vortex": {
+          "desc": "+10% :shopCurrency:",
+          "fluff": "Génère plus de force à travers le temps.",
+          "title": "Puissance temporelle"
+        }
+      },
       "description": "Tutoriel : Une petite histoire pour comprendre le jeu.\nVous monterez une armée pour combattre l'armée du nécroman.",
-      "name": "Le nécroman",
+      "name": "Tutoriel : Le nécroman",
+      "panels": {
+        "army": {
+          "title": "Votre armée"
+        },
+        "enemy": {
+          "title": "L'armée du mal"
+        }
+      },
       "resources": {
+        "monster": "Monstre",
+        "monster--icon": "Monstres :monster:",
+        "peon": "Personne",
         "peon--icon": "Personne :peon:",
+        "peon-max": "Maximum de peronnes",
+        "reputation": "Réputation",
         "reputation--icon": "Réputation :reputation:",
+        "sword": "Épée",
         "sword--icon": "Épées :sword:",
+        "warrior": "Guerrier",
         "warrior--icon": "Guerriers :warrior:",
+        "worker": "Ouvrier",
         "worker--icon": "Ouvriers :worker:"
       },
       "rooms": {

@@ -20,8 +20,8 @@
     import { playSound, stopAmbient, stopSound } from '../stores/sound';
     import type { Artifact } from '../stores/types';
 
-    const temporalDecimals = 100n;
-    const temporalEnergy = resources.store('temporalEnergy')!;
+    const currencyDecimals = 100n;
+    const shopCurrency = resources.store('shopCurrency')!;
 
     let artifactList: Artifact<string>[] = emptyArray;
     $: continueRun = $ownArtifacts.has('TDM');
@@ -50,13 +50,13 @@
         const id = artifact.id;
         const nb = $ownArtifacts.get(id) ?? 0n;
         const total = $totalOwnArtifacts.get(id) ?? 0n;
-        const cost = artifact.cost(nb, total) * temporalDecimals;
-        const canPay = resources.pay('temporalEnergy', cost);
+        const cost = artifact.cost(nb, total) * currencyDecimals;
+        const canPay = resources.pay('shopCurrency', cost);
 
         if (!canPay) {
             clearTimeout(timer);
             message = $_('component.shop.not-enough-TE', {
-                values: { missing: Number((cost - resources.value('temporalEnergy')) / temporalDecimals), },
+                values: { missing: Number((cost - resources.value('shopCurrency')) / currencyDecimals), },
             });
             timer = window.setTimeout(() => message = '', 5000);
             playSound('error');
@@ -73,11 +73,11 @@
     <div class="fluff">
         {$_('component.shop.fluff')}
     </div>
-    {#if $temporalEnergy > 0n}
+    {#if $shopCurrency > 0n}
         <label class="shop-currency">
             <Text text={$_('resources.temporal-energy--icon')} />:
             <output>
-                <DigitValue value={$temporalEnergy / temporalDecimals} />
+                <DigitValue value={$shopCurrency / currencyDecimals} />
             </output>
         </label>
     {/if}
@@ -88,7 +88,7 @@
         {@const cost = artifact.cost(nb, total)}
 		    <div
                 class="shop-item"
-                class:disabled={(cost * temporalDecimals) > $temporalEnergy}
+                class:disabled={(cost * currencyDecimals) > $shopCurrency}
                 on:click={buy.bind(null, artifact)}
                 out:slide={{ duration: 200 }}
                 animate:flip={{duration: 400}}
@@ -110,7 +110,7 @@
                     {#if cost === 0n}
                         {$_('resources.cost-free')}
                     {:else}
-                        <Text text="{cost}:temporalEnergy:" />
+                        <Text text="{cost}:shopCurrency:" />
                     {/if}
                 </button>
                 {#if nb}

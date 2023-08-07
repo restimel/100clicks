@@ -3,11 +3,17 @@
     import { tooltip } from '../../helpers/tooltip';
     import { resources, run } from '../../stores/run';
     import achievements from '../../stores/achievements';
-    import { dashboard } from '../../stores/story';
     import DigitValue from '../DigitValue.svelte';
     import Text from '../Text.svelte';
     import { get, writable, type Unsubscriber, type Writable } from 'svelte/store';
     import { onDestroy } from 'svelte';
+    import type { DashboardPanel } from '../../stores/types';
+
+    type StoryResource = string;
+
+    export let panel: DashboardPanel<StoryResource>;
+
+    $: dashboard = panel.content;
 
     type DBItem = {
         id: string;
@@ -23,7 +29,7 @@
 
     $: clicks = resources.store('clicks');
 
-    dashboardList = dashboard.map((item, idx) => {
+    $: dashboardList = dashboard.map((item, idx) => {
         const {
             condition,
             detail,
@@ -89,9 +95,15 @@
 </script>
 
 <div class="dashboard">
-    <header>{$_('component.run-dashboard.header', { values: {
-        run: $run.toString(10),
-    }})}</header>
+    <header>
+        {#if panel.header}
+            <Text text={$_(panel.header)} />
+        {:else}
+            {$_('component.run-dashboard.header', { values: {
+                run: $run.toString(10),
+            }})}
+        {/if}
+    </header>
     <section class="dashboard-list" style={`--nb-columns: ${Math.ceil(dashboardListFiltered.length / 3)}`}>
         {#each dashboardListFiltered as item}
             <div class="dashboard-item">
@@ -108,6 +120,7 @@
         {/each}
     </section>
 
+    {#if !panel.header}
     <svg viewBox="10 10 80 80" xmlns="http://www.w3.org/2000/svg" class="wheel" style={`--clicks:${$clicks}`}>
         <circle cx="50" cy="50" r="30" stroke="#3b170b" stroke-width="3" fill="transparent" />
         <line x1="50" y1="20" x2="50" y2="80" stroke="#3b170b" stroke-width="6" />
@@ -120,6 +133,7 @@
         <circle cx="50" cy="50" r="1" stroke="none" fill="white" />
         <circle cx="50" cy="50" r="30" stroke="#a88e5a" stroke-width="0.5" fill="transparent" />
     </svg>
+    {/if}
 </div>
 
 <style>

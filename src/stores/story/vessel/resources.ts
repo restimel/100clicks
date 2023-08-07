@@ -3,7 +3,7 @@ import { icons } from '../../../helpers/icons';
 import { $t } from '../../../locales/i18n';
 import type { ResourcesDefinition } from '../../types';
 
-export type StoryResource = 'energy' | 'energyMax' | 'temporalEnergy';
+export type StoryResource = 'energy' | 'energyMax' | 'shopCurrency';
 
 /* {{{ energy */
 
@@ -35,12 +35,10 @@ export const energy = createEnergy();
 export const resources: ResourcesDefinition<StoryResource> = [
     ['energy', energy],
     ['energyMax', energyMax],
-    'temporalEnergy',
 ];
 
 export function setIconText() {
     icons.set(':energy:', ['fa-solid fa-bolt-lightning', $t('resources.energy')]);
     icons.set(':energyMax:', [['fa-solid fa-circle fa-stack-2x', 'fa-solid fa-bolt-lightning fa-stack-1x fa-inverse'], $t('resources.energy-max')]);
-    icons.set(':temporalEnergy:', [['fa-solid fa-calendar fa-stack-2x', 'fa-solid fa-bolt-lightning fa-stack-1x fa-inverse'], $t('resources.temporal-energy')]);
-    icons.set(':tEnergy:', [['fa-solid fa-calendar fa-stack-2x', 'fa-solid fa-bolt-lightning fa-stack-1x fa-inverse'], $t('resources.temporal-energy')]);
+    icons.set(':shopCurrency:', [['fa-solid fa-calendar fa-stack-2x', 'fa-solid fa-bolt-lightning fa-stack-1x fa-inverse'], $t('resources.temporal-energy')]);
 }

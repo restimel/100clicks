@@ -89,7 +89,7 @@
       "title": "Temporal Dimensional Machine"
     },
     "vortex": {
-      "desc": "+10% :temporalEnergy:",
+      "desc": "+10% :shopCurrency:",
       "fluff": "It generates more power through Time.",
       "title": "Energy vortex"
     }
@@ -116,7 +116,8 @@
     "logs": {
       "action-complete": "Action \"{name}\" has been completed",
       "equipment-found": "You found the item \"{name}\"",
-      "header": "Logs"
+      "header": "Logs",
+      "resource-increase": "Resource change: {value} :{resource}:"
     },
     "run-dashboard": {
       "header": "Run #{run}",
@@ -207,7 +208,7 @@
     "lost-click--details": "Lost clicks are clicks in previous run which are not able to repeat their actions",
     "lost-click--icon": "Lost clicks :lostClick:",
     "temporal-energy": "Temporal energy",
-    "temporal-energy--icon": "Temporal energy :temporalEnergy:"
+    "temporal-energy--icon": "Temporal energy :shopCurrency:"
   },
   "room": {
     "bedroom1": {
@@ -279,6 +280,7 @@
           "title": "Fight the dark lord"
         },
         "forge": {
+          "description": "+10 :sword:",
           "fluff": "Inside the forge, smiths can build you some swords.",
           "title": "A forge"
         },
@@ -304,13 +306,45 @@
           "title": "Train worker"
         }
       },
+      "artifact": {
+        "farmers": {
+          "dec": "+1 :peonMax:",
+          "fluff": "These farmers may join your force to feed a bigger community.",
+          "title": "Farmers"
+        },
+        "tdm": {
+          "fluff": "A great Time mage accepts to help you in your quest.\nHe will bring you back in time to fight again the evil army.\n\nAnd you will get the help of your past actions.",
+          "title": "Time mage"
+        },
+        "vortex": {
+          "desc": "+10% :shopCurrency:",
+          "fluff": "It generates more power through Time.",
+          "title": "Time power"
+        }
+      },
       "description": "Tutorial: A short story to understand the game.\nYou will rise an army to battle the necroman's army.",
-      "name": "The necroman",
+      "name": "Tutorial: The necroman",
+      "panels": {
+        "army": {
+          "title": "Your army"
+        },
+        "enemy": {
+          "title": "The evil army"
+        }
+      },
       "resources": {
+        "monster": "Monster",
+        "monster--icon": "Monsters :monster:",
+        "peon": "Peon",
         "peon--icon": "Peon :peon:",
+        "peon-max": "Peon maximum",
+        "reputation": "Reputation",
         "reputation--icon": "Reputation :reputation:",
+        "sword": "Sword",
         "sword--icon": "Swords :sword:",
+        "warrior": "Warior",
         "warrior--icon": "Warriors :warrior:",
+        "worker": "Worker",
         "worker--icon": "Workers :worker:"
       },
       "rooms": {

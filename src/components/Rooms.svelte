@@ -7,9 +7,11 @@
     import RoomBox from './RoomBox.svelte';
     import type { Room } from '../stores/types';
 
+    type StoryResource = string;
+
     type RoomRef = {
         id: string;
-        room: Room<string>;
+        room: Room<StoryResource>;
         /* index in $rooms */
         idx: number;
         /* column position */

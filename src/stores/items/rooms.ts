@@ -4,9 +4,11 @@ import type {
     RoomDefinition,
 } from '../types';
 
-const roomList: Room<string>[] = [];
+type StoryResource = string;
 
-export function addRooms(rooms: RoomDefinition<string>[], reset: boolean) {
+const roomList: Room<StoryResource>[] = [];
+
+export function addRooms(rooms: RoomDefinition<StoryResource>[], reset: boolean) {
     if (reset) {
         roomList.splice(0, Infinity);
     }

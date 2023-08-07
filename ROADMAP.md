@@ -10,12 +10,15 @@
 * add past information to know which actions will be clicked
 * Logs color (depending on type (maybe activated with an artifact))
 * Allow to create different stories
-    * Define ConditionType with extended resources
+    * (done) Define ConditionType with extended resources
     * Text in shop
+    * (done) resources in shop
     * sound
-    * Game achievement
-    * Allow to choose another story
+    * (done) Game achievement
+    * (done) Allow to choose another story
+    * (done) dashboard
     * Create another story to assert it works :)
+    * Add a back to story choice button
 
 
 ## Code structure

@@ -2,8 +2,8 @@ import { icons } from '../../../helpers/icons';
 import { $t } from '../../../locales/i18n';
 import type { ResourcesDefinition } from '../../types';
 
-export type StoryResource = 'peon' | 'peonMax' | 'warrior' | 'worker' | 'sword'
-    | 'reputation' | 'monster';
+export type StoryResource = 'shopCurrency' | 'peon' | 'peonMax' | 'warrior' |
+    'worker' | 'sword' | 'reputation' | 'monster';
 
 export const resources: ResourcesDefinition<StoryResource> = [
     'peon',
@@ -12,7 +12,7 @@ export const resources: ResourcesDefinition<StoryResource> = [
     'worker',
     'sword',
     'reputation',
-    ['monster', 100n],
+    ['monster', 50n],
 ];
 
 export function setIconText() {
@@ -23,4 +23,5 @@ export function setIconText() {
     icons.set(':sword:', ['fa-solid fa-shield', $t('story.tutorial.resources.sword')]);
     icons.set(':reputation:', ['fa-solid fa-award', $t('story.tutorial.resources.reputation')]);
     icons.set(':monster:', ['fa-solid fa-skull', $t('story.tutorial.resources.monster')]);
+    icons.set(':shopCurrency:', ['fa-solid fa-sack-dollar', $t('story.tutorial.resources.shopCurrency')]);
 }

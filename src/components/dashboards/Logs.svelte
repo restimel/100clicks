@@ -4,9 +4,13 @@
     import { getAction } from '../../stores/items/actions';
     import Text from '../Text.svelte';
 
-    import type { Log } from '../../stores/types';
+    import type { Log, LogsPanel } from '../../stores/types';
     import { slide } from 'svelte/transition';
     import { getEquipment } from '../../stores/items/equipments';
+
+    type StoryResource = string;
+
+    export let panel: LogsPanel<StoryResource>;
 
     function sentence([type, value]: Log): string {
         switch (type) {
@@ -24,6 +28,13 @@
                     name,
                 }});
             }
+            case 'resource': {
+                const [resource, val] = value.split('|');
+                return $_('component.logs.resource-increase', { values: {
+                    resource,
+                    value: +val > 0 ? `+${val}` : val,
+                }});
+            }
             default:
                 return `:warning: type "${type}"" not managed`;
         }
@@ -31,7 +42,13 @@
 </script>
 
 <div class="log-dashboard">
-	<header>{$_('component.logs.header')}</header>
+    <header>
+        {#if panel.header}
+            <Text text={$_(panel.header)} />
+        {:else}
+            {$_('component.logs.header')}
+        {/if}
+    </header>
     {#each $logs as log (log)}
         <div class="log-dashboard__item" transition:slide>
             <Text text={($_) && sentence(log)} />

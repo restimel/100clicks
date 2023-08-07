@@ -24,10 +24,10 @@ type StoryDesc = {
     shopDescription: ShopDescription;
 }
 
-export const story: StoryDesc = {
+export const storyDesc = writable<StoryDesc>({
     panels: [],
     shopDescription: {} as unknown as ShopDescription,
-};
+});
 
 /* Register stories */
 addStory(tutorialStory);
@@ -66,8 +66,10 @@ export function startStory(): boolean {
 
     achievements.initialize(initializeAchievement());
 
-    story.panels = storyPanels;
-    story.shopDescription = shopDescription;
+    storyDesc.set({
+        panels: storyPanels,
+        shopDescription: shopDescription,
+    });
 
     /* TODO: do this line only if there are no data in storage */
     startRun();

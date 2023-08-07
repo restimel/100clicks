@@ -1,5 +1,6 @@
 <script lang="ts">
     import { flip } from 'svelte/animate';
+    import { get } from 'svelte/store';
     import { fade, scale, slide } from 'svelte/transition';
     import { _ } from 'svelte-i18n'
     import { emptyArray } from '../helpers/common';
@@ -14,14 +15,14 @@
         startRun,
         totalOwnArtifacts,
     } from '../stores/run';
-    import { story } from '../stores/story'
+    import { storyDesc } from '../stores/story'
     import DigitValue from './DigitValue.svelte';
     import Icon from './Icon.svelte';
     import Text from './Text.svelte';
     import { playSound, stopAmbient, stopSound } from '../stores/sound';
     import type { Artifact } from '../stores/types';
 
-    const shopDescription = story.shopDescription;
+    const shopDescription = get(storyDesc).shopDescription;
     const currencyDecimals = 100n;
     const shopCurrency = resources.store('shopCurrency')!;
 

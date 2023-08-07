@@ -1,5 +1,6 @@
 <script lang="ts">
     import { flip } from 'svelte/animate';
+    import { get } from 'svelte/store';
     import { scale } from 'svelte/transition';
     import { receive, send } from '../helpers/transitionMove';
     import Run from './dashboards/RunDashboard.svelte';
@@ -9,7 +10,7 @@
     import Collapsed from './dashboards/Collapsed.svelte';
     import Icon from './Icon.svelte';
     import { playSound } from '../stores/sound';
-    import { story } from '../stores/story';
+    import { storyDesc } from '../stores/story';
     import { isDisplayed } from '../stores/items';
     import { clicks } from '../stores/run';
 
@@ -23,7 +24,7 @@
         panel: Panel<StoryResource>;
     }
 
-    const panels = story.panels;
+    const panels = get(storyDesc).panels;
 
     /* list of dashboard that can be displayed
      * (it also set the display order) */

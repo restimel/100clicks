@@ -7,7 +7,7 @@ import { resources as runResources, saveStoryEffects, startRun } from './run';
 import achievements from './achievements';
 import vesselStory from './story/vessel';
 import tutorialStory from './story/tutorial';
-import type { Panel, Story } from './types';
+import type { Panel, ShopDescription, Story } from './types';
 
 type StoryResource = string;
 
@@ -19,7 +19,15 @@ function addStory(story: Story<StoryResource>) {
 export const storyReady = writable(false);
 export const activeStory = writable<string>('vessel');
 
-export let panels: Panel<StoryResource>[] = [];
+type StoryDesc = {
+    panels: Panel<StoryResource>[];
+    shopDescription: ShopDescription;
+}
+
+export const story: StoryDesc = {
+    panels: [],
+    shopDescription: {} as unknown as ShopDescription,
+};
 
 /* Register stories */
 addStory(tutorialStory);
@@ -43,6 +51,7 @@ export function startStory(): boolean {
         rooms,
         setIconText,
         storyEffects,
+        shopDescription,
     } = story;
 
     addActions(actions, true);
@@ -57,7 +66,8 @@ export function startStory(): boolean {
 
     achievements.initialize(initializeAchievement());
 
-    panels = storyPanels;
+    story.panels = storyPanels;
+    story.shopDescription = shopDescription;
 
     /* TODO: do this line only if there are no data in storage */
     startRun();

@@ -364,7 +364,14 @@
     },
     "vessel": {
       "description": "Vi vekiĝas en forlasita ŝipo. \nVi esploros ĝin kaj reaktivigos ĝin. \nĈu vi povos trovi ĝiajn sekretojn?",
-      "name": "La forlasita ŝipo"
+      "name": "La forlasita ŝipo",
+      "shop": {
+        "disabledContinueRun": "Vi devus posedi tempan maŝinon por rekomenci la vicon.",
+        "emptyShop": "Ne plu estas artefaktoj. Revenu poste.",
+        "fluff": "Vi estas laca. Vi devas halti tie! Sed vi malkovras kelkajn strangajn artefaktojn:",
+        "notEnoughCurrency": "Vi ne havas sufiĉan tempan energion. Vi devus ricevi {missing} pli.",
+        "runAgain": "Vojagi tempe al la sekva vico"
+      }
     }
   }
 }

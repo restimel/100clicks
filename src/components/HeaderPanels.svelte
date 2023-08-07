@@ -9,7 +9,7 @@
     import Collapsed from './dashboards/Collapsed.svelte';
     import Icon from './Icon.svelte';
     import { playSound } from '../stores/sound';
-    import { panels } from '../stores/story';
+    import { story } from '../stores/story';
     import { isDisplayed } from '../stores/items';
     import { clicks } from '../stores/run';
 
@@ -22,6 +22,8 @@
         displayed: boolean;
         panel: Panel<StoryResource>;
     }
+
+    const panels = story.panels;
 
     /* list of dashboard that can be displayed
      * (it also set the display order) */

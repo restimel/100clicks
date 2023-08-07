@@ -364,7 +364,14 @@
     },
     "vessel": {
       "description": "You awake in an abandonned vessel.\nYou will explore it and re-activate it.\nWill you be able to find its secrets?",
-      "name": "The abandonned vessel"
+      "name": "The abandonned vessel",
+      "shop": {
+        "disabledContinueRun": "You should own a time machine to run again.",
+        "emptyShop": "There are no more artifacts. Come back later.",
+        "fluff": "You are tired. You have to stop there! But you discover some odd artifacts:",
+        "notEnoughCurrency": "You don't have enough temporal energy. You should get {missing} more.",
+        "runAgain": "Travel back to next run"
+      }
     }
   }
 }

@@ -364,7 +364,14 @@
     },
     "vessel": {
       "description": "Vous vous réveillez dans un vaisseau abandonné. \nVous allez l'explorer et le réactiver. \nSaurez-vous découvrir ses secrets ?",
-      "name": "Le navire abandonné"
+      "name": "Le navire abandonné",
+      "shop": {
+        "disabledContinueRun": "Vous devez posséder une machine temporelle pour recommencer le tour.",
+        "emptyShop": "Il n'y a pas d'autres artefacts. Revenez plus tard.",
+        "fluff": "La fatigue est là. Vous devez vous arrêter ! Mais vous découvrez quelques artefacts étranges :",
+        "notEnoughCurrency": "Vous n'avez pas assez d'énergie temporelle. Il vous en manque {missing}.",
+        "runAgain": "Voyager temporellement vers le prochain tour"
+      }
     }
   }
 }

@@ -138,6 +138,21 @@ export type StoryEffects = {
     endAction?: (click: bigint) => void;
 };
 
+export type ShopDescription = {
+    /** Description of the end of a run */
+    fluff: string;
+    /** To tell how much money is available */
+    currentMoney: string;
+    /** Text displayed on continue button when it is disabled because there is still no TDM artifact */
+    disabledContinueRun: string;
+    /** Text displayed when there is not enough resources to buy shop item */
+    notEnoughCurrency: string;
+    /** Text displayed when there is no more artifact to buy */
+    emptyShop: string;
+    /** Text displayed on button to start new run */
+    runAgain: string;
+};
+
 export type Story<StoryResource> = {
     /** unique id */
     id: string;
@@ -146,6 +161,9 @@ export type Story<StoryResource> = {
     name: string;
     /** description of the story: should be translated */
     description: string;
+
+    /** texts displayed in shop: should be translated */
+    shopDescription: ShopDescription;
 
     actions: ActionDefinition<StoryResource>[];
     artifacts: ArtifactDefinition<StoryResource>[];

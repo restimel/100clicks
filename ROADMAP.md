@@ -11,7 +11,7 @@
 * Logs color (depending on type (maybe activated with an artifact))
 * Allow to create different stories
     * (done) Define ConditionType with extended resources
-    * Text in shop
+    * (done) Text in shop
     * (done) resources in shop
     * sound
     * (done) Game achievement

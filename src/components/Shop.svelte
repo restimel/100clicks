@@ -14,18 +14,20 @@
         startRun,
         totalOwnArtifacts,
     } from '../stores/run';
+    import { story } from '../stores/story'
     import DigitValue from './DigitValue.svelte';
     import Icon from './Icon.svelte';
     import Text from './Text.svelte';
     import { playSound, stopAmbient, stopSound } from '../stores/sound';
     import type { Artifact } from '../stores/types';
 
+    const shopDescription = story.shopDescription;
     const currencyDecimals = 100n;
     const shopCurrency = resources.store('shopCurrency')!;
 
     let artifactList: Artifact<string>[] = emptyArray;
     $: continueRun = $ownArtifacts.has('TDM');
-    $: titleRun = !continueRun ? $_('component.shop.disabled-continue-run') : '';
+    $: titleRun = !continueRun ? $_(shopDescription.disabledContinueRun) : '';
     $: artifactInitialList = $runOver ? (artifactList = Array.from(artifacts.values()).filter(isDisplayed)) : emptyArray;
     $: if ($runOver) {
         playSound('clockTicks', {id: 'runOver'});
@@ -55,7 +57,7 @@
 
         if (!canPay) {
             clearTimeout(timer);
-            message = $_('component.shop.not-enough-TE', {
+            message = $_(shopDescription.notEnoughCurrency, {
                 values: { missing: Number((cost - resources.value('shopCurrency')) / currencyDecimals), },
             });
             timer = window.setTimeout(() => message = '', 5000);
@@ -71,11 +73,11 @@
 <aside class="shop" transition:scale>
 	<header>{ $_('component.shop.end-of-run', {values: {run: $run.toString(10)}}) }</header>
     <div class="fluff">
-        {$_('component.shop.fluff')}
+        {$_(shopDescription.fluff)}
     </div>
     {#if $shopCurrency > 0n}
         <label class="shop-currency">
-            <Text text={$_('resources.temporal-energy--icon')} />:
+            <Text text={$_(shopDescription.currentMoney)} />:
             <output>
                 <DigitValue value={$shopCurrency / currencyDecimals} />
             </output>
@@ -120,7 +122,7 @@
         {/each}
         {#if artifactList.length === 0}
             <p class="empty-shop" transition:fade>
-                {$_('component.shop.no-artifacts')}
+                {$_(shopDescription.emptyShop)}
             </p>
         {/if}
 	</div>
@@ -129,7 +131,7 @@
     {/if}
     <div class="next-run">
         <button class:disabled={!continueRun} use:tooltip={titleRun} on:click={nextRun}>
-            {$_('component.shop.run-again')}
+            {$_(shopDescription.runAgain)}
         </button>
     </div>
 </aside>

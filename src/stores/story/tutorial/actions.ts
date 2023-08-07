@@ -14,6 +14,7 @@ function battle() {
     } else {
         resources.add('warrior', -monster);
         resources.reset('monster', 0n);
+        resources.add('reputation', 100n);
     }
 }
 

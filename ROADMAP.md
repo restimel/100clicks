@@ -18,7 +18,7 @@
     * (done) Allow to choose another story
     * (done) dashboard
     * Create another story to assert it works :)
-    * Add a back to story choice button
+    * (done) Add a back to story choice button
 
 
 ## Code structure

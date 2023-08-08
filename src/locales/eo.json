@@ -110,6 +110,10 @@
     },
     "header": {
       "about": "Pri",
+      "confirm-change-game": {
+        "content": "Vi estas ŝanĝonta rakonton. \nĈi tio ĉesos la nunan rakonton kaj vi devus rekomenci de la komenco.",
+        "title": "Ĉu vi volas ĉesigi ĉi tiun rakonton?"
+      },
       "game": "Ludo",
       "github": "Akiru la fontkodon en Github"
     },
@@ -145,7 +149,9 @@
   },
   "components": {
     "dialog": {
-      "close": "Fermu"
+      "cancel": "Nuligi",
+      "close": "Fermu",
+      "confirm": "Konfirmu"
     }
   },
   "equipment": {
@@ -188,6 +194,11 @@
       "purpose": "La celo estas progresi en la aventuro klakante sur agoj. \nSed vi havas nur 100 klakojn por fari tion. \nTamen post 100 klakoj, vi rekomencas ĉe la komenco sed ĉiuj antaŭaj klakoj ankoraŭ ekfunkcias. \nDo kun ĉiuj klakoj akumulitaj eblas progresi tamen la aventuron.",
       "sound-credit": "\"{title}\" de {author} sur [{site}]({url}) licencita sub {license}",
       "title": "{gameTitle}: pri"
+    },
+    "game": {
+      "actions": {
+        "change-story": "Ŝanĝi rakonton"
+      }
     },
     "howto": {
       "explanation": "Por unu vico, vi havas 100 klakojn.\nPor unu klako, vi devus elekti agon. Iuj agoj donas al vi kelkajn provizoj, kaj iuj aliaj malŝlosos novajn agojn.\nAgoj povas havi koston en provizo por esti klakeblaj, kaj iuj eble bezonas plurajn klakojn sur ili por esti kompletigitaj.",

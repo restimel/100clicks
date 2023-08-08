@@ -110,6 +110,10 @@
     },
     "header": {
       "about": "About",
+      "confirm-change-game": {
+        "content": "You are about to change story.\nThis will stop the current story and you should restart from the begining.",
+        "title": "Do you want to stop this story?"
+      },
       "game": "Game",
       "github": "Get the source code on Github"
     },
@@ -145,7 +149,9 @@
   },
   "components": {
     "dialog": {
-      "close": "Close"
+      "cancel": "Cancel",
+      "close": "Close",
+      "confirm": "Confirm"
     }
   },
   "equipment": {
@@ -188,6 +194,11 @@
       "purpose": "The goal is to progress in the adventure by clicking on actions. But you have only 100 clicks to do so. However after 100 clicks, you restart at the beginning but all previous clicks ar still triggering. So with all clicks cumulated it is possible to progress though the adventure.",
       "sound-credit": "\"{title}\" by {author} on [{site}]({url}) licensed under {license}",
       "title": "{gameTitle}: about"
+    },
+    "game": {
+      "actions": {
+        "change-story": "Change story"
+      }
     },
     "howto": {
       "explanation": "For one run, you have 100 clicks.\nFor one click, you should choose an action. Some actions give you some ressources, and some other will unlock new actions.\nActions may have a cost in ressource to be clickable, and some may need several clicks on them to be completed.",

@@ -110,6 +110,10 @@
     },
     "header": {
       "about": "À propos",
+      "confirm-change-game": {
+        "content": "Vous êtes sur le point de changer d'histoire. \nCela arrêtera l'histoire en cours et vous devrez recommencer depuis le début.",
+        "title": "Voulez-vous arrêter cette histoire ?"
+      },
       "game": "Jeu",
       "github": "Voir le code source sur Github"
     },
@@ -145,7 +149,9 @@
   },
   "components": {
     "dialog": {
-      "close": "Fermer"
+      "cancel": "Annuler",
+      "close": "Fermer",
+      "confirm": "Confirmer"
     }
   },
   "equipment": {
@@ -188,6 +194,11 @@
       "purpose": "Le but est de progresser dans l'aventure en cliquant sur les actions. \nMais vous n'avez que 100 clics pour le faire. \nCependant après 100 clics, vous redémarrez au début mais tous les clics précédents se déclenchent toujours. \nAinsi avec tous les clics cumulés il est possible de progresser dans l'aventure.",
       "sound-credit": "\"{title}\" par {author} sur [{site}]({url}) sous licence {license}",
       "title": "{gameTitle} : à propos"
+    },
+    "game": {
+      "actions": {
+        "change-story": "Changer d'histoire"
+      }
     },
     "howto": {
       "explanation": "Pour un tour, vous avez 100 clics.\nPour un clic, vous devez choisir une action. Certaines actions vous donnent des ressources, et d'autres débloquent de nouvelles actions.\nLes actions peuvent avoir un coût en ressource pour être cliquables, et certaines peuvent nécessiter plusieurs clics dessus pour être réalisées.",

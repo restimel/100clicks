@@ -4,6 +4,7 @@
 	// import logo from '$lib/images/svelte-logo.svg';
 	import github from '$lib/images/github.svg';
     import Icon from '../components/Icon.svelte';
+    import Game from '../components/Game.svelte';
     import Languages from '../components/Languages.svelte';
     import Settings from '../components/Settings.svelte';
     import { base } from '$app/paths';
@@ -18,7 +19,7 @@
 		</svg>
 		<ul>
 			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a href={base + '/'}>{ $_('component.header.game') }</a>
+				<Game class="header-item" base ={base} link="/" />
 			</li>
 			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
 				<a href={base +  '/about'}>{ $_('component.header.about') }</a>
@@ -125,7 +126,7 @@
 	}
 
 	:global(.header-item),
-	nav a {
+	nav :global(a) {
 		cursor: pointer;
 		display: flex;
 		height: 100%;
@@ -141,6 +142,7 @@
 	}
 
 	:global(.header-item):hover,
+	:global(.header-item:hover a),
 	a:hover {
 		color: var(--color-theme-1);
 	}

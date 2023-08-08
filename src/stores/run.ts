@@ -149,12 +149,13 @@ export const ghostClicks = writableArray<Map<string, bigint>>(new Array(100));
 
 export const totalOwnArtifacts = writableIncMap<string>();
 export const ownArtifacts = (() => {
-	const { subscribe, set, update } = writable<Map<string, bigint>>(new Map());
+	const { subscribe, set, update, clear } = writableMap<string, bigint>();
 
 	return {
 		subscribe,
 		set,
 		update,
+		clear,
 		add: (id: string) => {
 			update((map) => {
 				const value = map.get(id) ?? 0n;
@@ -204,4 +205,19 @@ export function endRun() {
 	storyEffects.endRun?.(get(run));
 
 	runOver.set(true);
+}
+
+export function resetRun() {
+    run.set(0n);
+    runOver.set(false);
+    clicks.set(0n);
+    lostClicks.set(0n);
+    ownEquipments.clear();
+    resources.initialize([]);
+	actionOpened.clear();
+	actionClicked.clear();
+	ghostClicks.set(new Array(100));
+	totalOwnArtifacts.clear();
+	ownArtifacts.clear();
+	storyEffects = {};
 }

@@ -295,9 +295,21 @@
           "fluff": "A l'intérieur de la forge, les forgerons peuvent vous fabriquer des épées.",
           "title": "Une forge"
         },
+        "mayor1": {
+          "fluff": "Le maire est préoccupé par l'armée du mal.",
+          "title": "Rencontrez le maire"
+        },
+        "mayor2": {
+          "fluff": "Convaincre le maire de construire une plus grande armée.",
+          "title": "Convaincre le maire"
+        },
+        "mayor3": {
+          "fluff": "Chaque conseiller peut vous aider à recruter plus de personnes.",
+          "title": "Convaincre les élus"
+        },
         "recruitment": {
-          "description": "+1 :peon:",
-          "fluff": "Convainquez des braves de se battre contre l'armée diabolique.",
+          "description": "+{value} :peon:",
+          "fluff": "Convaincre des braves de se battre contre l'armée diabolique.",
           "title": "Recruter"
         },
         "smallFarm": {
@@ -319,7 +331,7 @@
       },
       "artifact": {
         "farmers": {
-          "dec": "+1 :peonMax:",
+          "desc": "+1 :peonMax:\n+1 :warriorMax;",
           "fluff": "Ces fermiers peuvent se joindre à vous pour nourrir une plus grande communauté.",
           "title": "Des fermiers"
         },
@@ -355,6 +367,7 @@
         "sword--icon": "Épées :sword:",
         "warrior": "Guerrier",
         "warrior--icon": "Guerriers :warrior:",
+        "warrior-max": "Maximum de guerriers",
         "worker": "Ouvrier",
         "worker--icon": "Ouvriers :worker:"
       },
@@ -371,6 +384,13 @@
           "fluff": "Un petit village qui n'est toujours pas corrompu par l'armée maléfique.",
           "title": "Village"
         }
+      },
+      "shop": {
+        "disabledContinueRun": "Il faut de la magie pour voyager dans le temps",
+        "emptyShop": "Revenez plus tard pour trouver plus d'aides.",
+        "fluff": "Vous ne vous êtes pas débarrassé de l'armée maléfique à temps.\nMais rien n'est perdu. Vous pouvez redémarrer et devenir plus fort.",
+        "notEnoughCurrency": "Pas assez de réputation. Vous avez besoin de {missing} :reputation: en plus.",
+        "runAgain": "Combattez à nouveau contre l'armée maléfique"
       }
     },
     "vessel": {

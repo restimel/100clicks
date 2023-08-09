@@ -295,8 +295,20 @@
           "fluff": "Inside the forge, smiths can build you some swords.",
           "title": "A forge"
         },
+        "mayor1": {
+          "fluff": "The mayor is concern about the evil army.",
+          "title": "Meet the mayor"
+        },
+        "mayor2": {
+          "fluff": "Convince the mayor about building a bigger army.",
+          "title": "Convince the mayor"
+        },
+        "mayor3": {
+          "fluff": "Each councillors may help you to recruit more people.",
+          "title": "Convince councillors"
+        },
         "recruitment": {
-          "description": "+1 :peon:",
+          "description": "+{value} :peon:",
           "fluff": "Convince some brave to battle against the devil army.",
           "title": "Recruit"
         },
@@ -319,7 +331,7 @@
       },
       "artifact": {
         "farmers": {
-          "dec": "+1 :peonMax:",
+          "desc": "+1 :peonMax:\n+1 :warriorMax;",
           "fluff": "These farmers may join your force to feed a bigger community.",
           "title": "Farmers"
         },
@@ -355,6 +367,7 @@
         "sword--icon": "Swords :sword:",
         "warrior": "Warior",
         "warrior--icon": "Warriors :warrior:",
+        "warrior-max": "Maximum of warriors",
         "worker": "Worker",
         "worker--icon": "Workers :worker:"
       },
@@ -371,6 +384,13 @@
           "fluff": "A small village which is still not corrupted by the evil army.",
           "title": "Village"
         }
+      },
+      "shop": {
+        "disabledContinueRun": "You need magic to travel through time",
+        "emptyShop": "Come back later to find more helps.",
+        "fluff": "You have not get rid of the evil army in time.\nBut nothing is lost. You can restart and become stronger.",
+        "notEnoughCurrency": "Not enough reputation. You need {missing} :reputation: more.",
+        "runAgain": "Fight again against the evil army"
       }
     },
     "vessel": {

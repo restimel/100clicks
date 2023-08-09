@@ -51,7 +51,7 @@ export type RoomDefinition<StoryResource> = Partial<Room<StoryResource>>;
 export type Action<StoryResource> = ConditionalItem<StoryResource> & {
     type: 'action';
     title: string;
-    description: string;
+    description: string | (() => string);
     fluff: string;
     cost: Comparison<StoryResource>[];
     requirements: Condition<StoryResource>[];
@@ -124,7 +124,11 @@ export type Panel<StoryResource> = DashboardPanel<StoryResource>
 
 /* }}} */
 
-export type ResourcesDefinition<StoryResource> = Array<StoryResource | [StoryResource, bigint | Writable<bigint>]>;
+type RsrcDef<StoryResource> = StoryResource
+    | [StoryResource, bigint | Writable<bigint>]
+    /* If the boolean value is true, then do not reset the resource at run start */
+    | [StoryResource, bigint | Writable<bigint>, boolean];
+export type ResourcesDefinition<StoryResource> = RsrcDef<StoryResource>[];
 export type AchievementDefinition = [string, Writable<boolean>];
 
 export type StoryEffects = {

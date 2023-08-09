@@ -59,7 +59,7 @@
         if (!canPay) {
             clearTimeout(timer);
             message = $_(shopDescription.notEnoughCurrency, {
-                values: { missing: Number((cost - resources.value('shopCurrency')) / currencyDecimals), },
+                values: { missing: Number((cost - resources.value('shopCurrency')) / currencyDecimals) || 1, },
             });
             timer = window.setTimeout(() => message = '', 5000);
             playSound('error');

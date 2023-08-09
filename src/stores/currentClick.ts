@@ -47,11 +47,12 @@ export const accessibleList = derived(
     const values = Array.from(list.values()).filter(isDisplayed);
     const updatedActions: DisplayedAction<StoryResource>[] = values.map((action) => {
         const id = action.id;
+        const description = typeof action.description === 'function' ? action.description() : action.description;
         return {
             id: action.id,
             roomId: action.roomId,
             title: action.title,
-            description: action.description,
+            description: description,
             fluff: action.fluff,
             cost: action.cost.map(([type, amount]) => {
                 if (type === 'click') {

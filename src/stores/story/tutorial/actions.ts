@@ -1,5 +1,7 @@
+import { get } from 'svelte/store';
 import { emptyArray } from '../../../helpers/common';
 import { $t } from '../../../locales/i18n';
+import { _ } from 'svelte-i18n';
 import { resources } from '../../run';
 import type { ActionDefinition } from '../../types';
 import type { StoryResource } from './resources';
@@ -23,8 +25,14 @@ const actions: ActionDefinition<StoryResource>[] = [{
     title: $t('story.tutorial.actions.recruitment.title'),
     roomId: 'village',
     fluff: $t('story.tutorial.actions.recruitment.fluff'),
-    description: $t('story.tutorial.actions.recruitment.description'),
-    action: () => resources.add('peon', 1n),
+    description: () => get(_)($t('story.tutorial.actions.recruitment.description'), {
+        values: {
+            value: Number(resources.value('recruitPeon')),
+        },
+    }),
+    action: () => {
+        resources.add('peon', resources.value('recruitPeon'));
+    },
     isHidden: emptyArray,
 }, {
     id: 'battle',
@@ -184,6 +192,9 @@ const actions: ActionDefinition<StoryResource>[] = [{
     isVisible: [
         ['action', 'mayor1'],
     ],
+    cost: [
+        ['click', 5n],
+    ],
 }, {
     id: 'mayor3',
     roomId: 'village',
@@ -192,6 +203,12 @@ const actions: ActionDefinition<StoryResource>[] = [{
     isVisible: [
         ['action', 'mayor2'],
     ],
+    cost: [
+        ['click', 4n],
+    ],
+    action: () => {
+        resources.add('recruitPeon', 1n);
+    },
 }, {
     id: 'small farms',
     roomId: 'isolate farms',
@@ -203,6 +220,7 @@ const actions: ActionDefinition<StoryResource>[] = [{
     action: (click: bigint) => {
         if (click % 5n === 0n) {
             resources.add('peonMax', 1n);
+            resources.add('warriorMax', 1n);
             return ['resource', 'peonMax|1'];
         }
     },

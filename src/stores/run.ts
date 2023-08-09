@@ -109,23 +109,30 @@ function createResources() {
 				lostClicks: lostClicks,
 				shopCurrency: shopCurrency,
 			};
-			const initValues: Array<[string, bigint]> = values.map((value) => {
+			const initValues: Array<[string, bigint]> = values.reduce((list, value) => {
 				if (typeof value === 'string') {
 					const store = writable(0n);
 					resources[value] = store;
-					return [value, 0n];
+					list.push([value, 0n]);
+					return list;
 				}
 
-				const [defaultName, defaultValue] = value;
+				const [defaultName, defaultValue, doNotResetValue] = value;
 				if (typeof defaultValue === 'bigint') {
 					const store = writable(defaultValue);
 					resources[defaultName] = store;
-					return [defaultName, defaultValue];
+					if (!doNotResetValue) {
+						list.push([defaultName, defaultValue]);
+					}
+					return list
 				}
 				resources[defaultName] = defaultValue;
 
-				return [defaultName, get(defaultValue)];
-			});
+				if (!doNotResetValue) {
+					list.push([defaultName, get(defaultValue)]);
+				}
+				return list;
+			}, [] as Array<[string, bigint]>);
 			defaultValues = new Map(initValues);
 			defaultValues.set('clicks', 0n);
 			defaultValues.set('lostClicks', 0n);

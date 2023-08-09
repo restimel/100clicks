@@ -21,7 +21,7 @@ const artifacts: ArtifactDefinition<StoryResource>[] = [{
     id: 'farmers',
     title: $t('story.tutorial.artifact.farmers.title'),
     fluff: $t('story.tutorial.artifact.farmers.fluff'),
-    desc: $t('story.tutorial.artifact.farmers.dec'),
+    desc: $t('story.tutorial.artifact.farmers.desc'),
     icon: 'fa-solid fa-wheat-awn',
     isVisible: [['artifact', 'TDM']],
     isHidden: emptyArray,

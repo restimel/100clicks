@@ -295,8 +295,20 @@
           "fluff": "Ene de la forĝejo, forĝistoj povas konstrui al vi kelkajn glavojn.",
           "title": "Forĝejo"
         },
+        "mayor1": {
+          "fluff": "La urbestro zorgas pri la malbona armeo.",
+          "title": "Renkontu la urbestron"
+        },
+        "mayor2": {
+          "fluff": "Konvinku la urbestron pri konstruado de pli granda armeo.",
+          "title": "Konvinku la urbestron"
+        },
+        "mayor3": {
+          "fluff": "Ĉiu konsilisto povas helpi vin varbi pli da homoj.",
+          "title": "Konvinki konsilistoj"
+        },
         "recruitment": {
-          "description": "+1 :peon:",
+          "description": "+{value} :peon:",
           "fluff": "Konvinku kelkajn kuraĝulojn batali kontraŭ la diabla armeo.",
           "title": "Varbi"
         },
@@ -319,7 +331,7 @@
       },
       "artifact": {
         "farmers": {
-          "dec": "+1 :peonMax:",
+          "desc": "+1 :peonMax:\n+1 :warriorMax;",
           "fluff": "Ĉi tiuj farmistoj povas aliĝi al via forto por nutri pli grandan komunumon.",
           "title": "Farmistoj"
         },
@@ -355,6 +367,7 @@
         "sword--icon": "Glavoj :sword:",
         "warrior": "Glavosoldato",
         "warrior--icon": "Glavosoldatoj :warrior:",
+        "warrior-max": "Maksimumo de glavosoldatoj",
         "worker": "Laboristo",
         "worker--icon": "Laboristoj :worker:"
       },
@@ -371,6 +384,13 @@
           "fluff": "Malgranda vilaĝo kiu ankoraŭ ne estas koruptita de la malbona armeo.",
           "title": "Vilaĝo"
         }
+      },
+      "shop": {
+        "disabledContinueRun": "Vi bezonas magion por vojaĝi tra la tempo",
+        "emptyShop": "Revenu poste por trovi pliajn helpojn.",
+        "fluff": "Vi ne forigis la malbonan armeon ĝustatempe.\nSed nenio estas perdita. Vi povas rekomenci kaj fariĝi pli forta.",
+        "notEnoughCurrency": "Ne sufiĉa reputacio. Vi bezonas {missing} :reputation: pli.",
+        "runAgain": "Batalu denove kontraŭ la malbona armeo"
       }
     },
     "vessel": {

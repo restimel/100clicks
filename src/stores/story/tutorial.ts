@@ -46,7 +46,14 @@ const story: Story<StoryResource> = {
                 value: 'clicks',
                 valueMax: 100n,
             }, {
+                condition: 'hadLostClick',
+                detail: $t('resources.lost-click--details'),
+                label: $t('resources.lost-click--icon'),
+                value: 'clicks',
+                valueMax: 100n,
+            }, {
                 condition: 'hadReputation',
+                detail: $t('story.tutorial.resources.reputation--detail'),
                 label: $t('story.tutorial.resources.reputation--icon'),
                 value: 'reputation',
             },
@@ -72,6 +79,7 @@ const story: Story<StoryResource> = {
                 condition: 'hadWarrior',
                 label: $t('story.tutorial.resources.warrior--icon'),
                 value: 'warrior',
+                valueMax: 'warriorMax',
             }, {
                 condition: true,
                 label: $t('story.tutorial.resources.sword--icon'),
@@ -118,6 +126,7 @@ const story: Story<StoryResource> = {
     storyEffects: {
         startRun: () => {
             runResources.add('peonMax', get(ownArtifacts).get('farmers') ?? 0n);
+            runResources.add('warriorMax', get(ownArtifacts).get('farmers') ?? 0n);
         },
         endRun: () => {
             const shopDecimals = 100n;

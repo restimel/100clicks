@@ -22,6 +22,7 @@
         label: string;
         value: bigint;
         valueMax: bigint | undefined;
+        decimals: bigint;
     };
 
     let dashboardList: DBItem[] = [];
@@ -36,6 +37,7 @@
             label,
             value,
             valueMax,
+            decimals,
         } = item;
 
         function getResource(name: bigint | string | undefined): Writable<bigint> | undefined {
@@ -64,6 +66,7 @@
             label: label,
             value: get(storeValue),
             valueMax: storeValueMax && get(storeValueMax),
+            decimals: decimals ?? 1n,
         };
 
         subscribeList.push(storeValue.subscribe((value) => {
@@ -111,9 +114,9 @@
                     <Text text={$_(item.label)} />:
                 </label>
                 <output id={item.id}>
-                    <DigitValue value={item.value} />
+                    <DigitValue value={item.value / item.decimals} />
                     {#if item.valueMax}
-                        / <DigitValue value={item.valueMax} />
+                        / <DigitValue value={item.valueMax / item.decimals} />
                     {/if}
                 </output>
             </div>

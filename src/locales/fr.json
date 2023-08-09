@@ -331,7 +331,7 @@
       },
       "artifact": {
         "farmers": {
-          "desc": "+1 :peonMax:\n+1 :warriorMax;",
+          "desc": "+1 :peonMax:\n+1 :warriorMax:",
           "fluff": "Ces fermiers peuvent se joindre à vous pour nourrir une plus grande communauté.",
           "title": "Des fermiers"
         },
@@ -362,7 +362,8 @@
         "peon--icon": "Personne :peon:",
         "peon-max": "Maximum de peronnes",
         "reputation": "Réputation",
-        "reputation--icon": "Réputation :reputation:",
+        "reputation--detail": "Les points de réputation sont gagnés avec des actions honorables, et à la fin du tour avec des clics perdus.",
+        "reputation--icon": "Réputation :shopCurrency:",
         "sword": "Épée",
         "sword--icon": "Épées :sword:",
         "warrior": "Guerrier",
@@ -389,7 +390,7 @@
         "disabledContinueRun": "Il faut de la magie pour voyager dans le temps",
         "emptyShop": "Revenez plus tard pour trouver plus d'aides.",
         "fluff": "Vous ne vous êtes pas débarrassé de l'armée maléfique à temps.\nMais rien n'est perdu. Vous pouvez redémarrer et devenir plus fort.",
-        "notEnoughCurrency": "Pas assez de réputation. Vous avez besoin de {missing} :reputation: en plus.",
+        "notEnoughCurrency": "Pas assez de réputation. Vous avez besoin de {missing} :shopCurrency: en plus.",
         "runAgain": "Combattez à nouveau contre l'armée maléfique"
       }
     },

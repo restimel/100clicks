@@ -1,13 +1,11 @@
 import { icons } from '../../../helpers/icons';
 import { $t } from '../../../locales/i18n';
-import { resources as runResources } from '../../run';
 import type { ResourcesDefinition } from '../../types';
 
 export type StoryResource = 'shopCurrency' | 'peon' | 'peonMax' |
     'warrior' | 'warriorMax' |
-    'worker' | 'sword' | 'reputation' | 'monster' | 'recruitPeon';
+    'worker' | 'sword' | 'monster' | 'recruitPeon';
 
-const reputation = runResources.store('shopCurrency');
 export const resources: ResourcesDefinition<StoryResource> = [
     'peon',
     ['peonMax', 20n],
@@ -15,7 +13,6 @@ export const resources: ResourcesDefinition<StoryResource> = [
     ['warriorMax', 20n],
     'worker',
     'sword',
-    ['reputation', reputation ?? 0n, true],
     ['monster', 50n],
     ['recruitPeon', 1n],
 ];
@@ -28,6 +25,5 @@ export function setIconText() {
     icons.set(':worker:', [['fa-solid fa-person-digging'], $t('story.tutorial.resources.worker')]);
     icons.set(':sword:', ['fa-solid fa-shield', $t('story.tutorial.resources.sword')]);
     icons.set(':monster:', ['fa-solid fa-skull', $t('story.tutorial.resources.monster')]);
-    icons.set(':reputation:', ['fa-solid fa-award', $t('story.tutorial.resources.reputation')]);
     icons.set(':shopCurrency:', ['fa-solid fa-award', $t('story.tutorial.resources.reputation')]);
 }

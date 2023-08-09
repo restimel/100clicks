@@ -11,7 +11,7 @@ export default function createAchievement(): AchievementDefinition[] {
     return [
         ['hadWarrior', hasValue('warrior')],
         ['hadSword', hasValue('sword')],
-        ['hadReputation', hasValue('reputation')],
+        ['hadReputation', hasValue('shopCurrency')],
         ['win1', win1],
         ['win2', win2],
         ['win3', win3],

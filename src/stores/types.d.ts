@@ -91,6 +91,7 @@ export type DashboardItem = {
     detail?: string;
     value: string | bigint;
     valueMax?: string | bigint;
+    decimals?: bigint;
 };
 
 export type PanelType = 'dashboard' | 'logs' | 'artifacts' | 'equipments';

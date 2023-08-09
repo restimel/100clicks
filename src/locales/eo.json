@@ -331,7 +331,7 @@
       },
       "artifact": {
         "farmers": {
-          "desc": "+1 :peonMax:\n+1 :warriorMax;",
+          "desc": "+1 :peonMax:\n+1 :warriorMax:",
           "fluff": "Ĉi tiuj farmistoj povas aliĝi al via forto por nutri pli grandan komunumon.",
           "title": "Farmistoj"
         },
@@ -362,7 +362,8 @@
         "peon--icon": "Peon :peon:",
         "peon-max": "Peon maksimume",
         "reputation": "Reputacio",
-        "reputation--icon": "Reputacio :reputation:",
+        "reputation--detail": "Reputaciaj punktoj estas akiritaj per honoraj agoj, kaj ĉe la fino de vico per perditaj klakoj.",
+        "reputation--icon": "Reputacio :shopCurrency:",
         "sword": "Glavo",
         "sword--icon": "Glavoj :sword:",
         "warrior": "Glavosoldato",
@@ -389,7 +390,7 @@
         "disabledContinueRun": "Vi bezonas magion por vojaĝi tra la tempo",
         "emptyShop": "Revenu poste por trovi pliajn helpojn.",
         "fluff": "Vi ne forigis la malbonan armeon ĝustatempe.\nSed nenio estas perdita. Vi povas rekomenci kaj fariĝi pli forta.",
-        "notEnoughCurrency": "Ne sufiĉa reputacio. Vi bezonas {missing} :reputation: pli.",
+        "notEnoughCurrency": "Ne sufiĉa reputacio. Vi bezonas {missing} :shopCurrency: pli.",
         "runAgain": "Batalu denove kontraŭ la malbona armeo"
       }
     },

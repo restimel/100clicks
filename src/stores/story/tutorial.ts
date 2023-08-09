@@ -49,13 +49,13 @@ const story: Story<StoryResource> = {
                 condition: 'hadLostClick',
                 detail: $t('resources.lost-click--details'),
                 label: $t('resources.lost-click--icon'),
-                value: 'clicks',
-                valueMax: 100n,
+                value: 'lostClicks',
             }, {
                 condition: 'hadReputation',
                 detail: $t('story.tutorial.resources.reputation--detail'),
                 label: $t('story.tutorial.resources.reputation--icon'),
-                value: 'reputation',
+                value: 'shopCurrency',
+                decimals: 100n,
             },
         ],
     }, {

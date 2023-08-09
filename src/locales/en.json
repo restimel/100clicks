@@ -331,7 +331,7 @@
       },
       "artifact": {
         "farmers": {
-          "desc": "+1 :peonMax:\n+1 :warriorMax;",
+          "desc": "+1 :peonMax:\n+1 :warriorMax:",
           "fluff": "These farmers may join your force to feed a bigger community.",
           "title": "Farmers"
         },
@@ -362,7 +362,8 @@
         "peon--icon": "Peon :peon:",
         "peon-max": "Peon maximum",
         "reputation": "Reputation",
-        "reputation--icon": "Reputation :reputation:",
+        "reputation--detail": "Reputation points are gained with honourous actions, and at the end of run with lost clicks.",
+        "reputation--icon": "Reputation :shopCurrency:",
         "sword": "Sword",
         "sword--icon": "Swords :sword:",
         "warrior": "Warior",
@@ -389,7 +390,7 @@
         "disabledContinueRun": "You need magic to travel through time",
         "emptyShop": "Come back later to find more helps.",
         "fluff": "You have not get rid of the evil army in time.\nBut nothing is lost. You can restart and become stronger.",
-        "notEnoughCurrency": "Not enough reputation. You need {missing} :reputation: more.",
+        "notEnoughCurrency": "Not enough reputation. You need {missing} :shopCurrency: more.",
         "runAgain": "Fight again against the evil army"
       }
     },

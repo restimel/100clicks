@@ -92,7 +92,7 @@ const story: Story<StoryResource> = {
         id: 'enemy',
         header: $t('story.tutorial.panels.enemy.title'),
         isVisible: true,
-        isHidden: [['achievement', 'win3']],
+        isHidden: [['equipment', 'win-battle3']],
         content: [
             {
                 condition: true,

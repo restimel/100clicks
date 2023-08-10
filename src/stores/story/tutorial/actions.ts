@@ -2,7 +2,7 @@ import { get } from 'svelte/store';
 import { emptyArray } from '../../../helpers/common';
 import { $t } from '../../../locales/i18n';
 import { _ } from 'svelte-i18n';
-import { resources } from '../../run';
+import { ownEquipments, resources } from '../../run';
 import type { ActionDefinition } from '../../types';
 import type { StoryResource } from './resources';
 
@@ -17,6 +17,16 @@ function battle() {
         resources.add('warrior', -monster);
         resources.reset('monster', 0n);
         resources.add('shopCurrency', 100n);
+    }
+
+    if (resources.value('monster') <= 0n) {
+        if (!ownEquipments.has('win-battle1')) {
+            ownEquipments.add('win-battle1')
+        } else if (!ownEquipments.has('win-battle2')) {
+            ownEquipments.add('win-battle2')
+        } else if (!ownEquipments.has('win-battle3')) {
+            ownEquipments.add('win-battle3')
+        }
     }
 }
 
@@ -34,6 +44,7 @@ const actions: ActionDefinition<StoryResource>[] = [{
         resources.add('peon', resources.value('recruitPeon'));
     },
     isHidden: emptyArray,
+    doneWhenHidden: true,
 }, {
     id: 'battle',
     roomId: 'battle field',
@@ -46,8 +57,9 @@ const actions: ActionDefinition<StoryResource>[] = [{
         battle();
     },
     isHidden: [
-        ['achievement', 'win1'],
+        ['equipment', 'win-battle1'],
     ],
+    doneWhenHidden: true,
 }, {
     id: 'exploreBattle1',
     roomId: 'battle field',
@@ -57,7 +69,7 @@ const actions: ActionDefinition<StoryResource>[] = [{
         resources.reset('monster', 200n);
     },
     isVisible: [
-        ['achievement', 'win1'],
+        ['action', 'battle'],
     ],
 }, {
     id: 'battle2',
@@ -71,12 +83,12 @@ const actions: ActionDefinition<StoryResource>[] = [{
         battle();
     },
     isVisible: [
-        ['achievement', 'win1'],
         ['action', 'exploreBattle1'],
     ],
     isHidden: [
-        ['achievement', 'win2'],
+        ['equipment', 'win-battle2']
     ],
+    doneWhenHidden: true,
 }, {
     id: 'exploreBattle2',
     roomId: 'battle field',
@@ -86,7 +98,7 @@ const actions: ActionDefinition<StoryResource>[] = [{
         resources.reset('monster', 1000n);
     },
     isVisible: [
-        ['achievement', 'win2'],
+        ['action', 'battle2'],
     ],
 }, {
     id: 'battle3',
@@ -101,18 +113,19 @@ const actions: ActionDefinition<StoryResource>[] = [{
         battle();
     },
     isVisible: [
-        ['achievement', 'win2'],
+        ['action', 'battle2'],
     ],
     isHidden: [
-        ['achievement', 'win3'],
+        ['equipment', 'win-battle3']
     ],
+    doneWhenHidden: true,
 }, {
     id: 'exploreBattle3',
     roomId: 'battle field',
     title: $t('story.tutorial.actions.exploreBattle3.title'),
     fluff: $t('story.tutorial.actions.exploreBattle3.fluff'),
     isVisible: [
-        ['achievement', 'win3'],
+        ['action', 'battle3'],
     ],
 }, {
     id: 'finalBattle',
@@ -138,6 +151,7 @@ const actions: ActionDefinition<StoryResource>[] = [{
     ],
     action: () => resources.add('worker', 1n),
     isHidden: emptyArray,
+    doneWhenHidden: true,
 }, {
     id: 'train warrior',
     roomId: 'village',
@@ -149,6 +163,7 @@ const actions: ActionDefinition<StoryResource>[] = [{
     ],
     action: () => resources.add('warrior', 1n),
     isHidden: emptyArray,
+    doneWhenHidden: true,
 }, {
     id: 'explore village',
     roomId: 'village',
@@ -168,6 +183,7 @@ const actions: ActionDefinition<StoryResource>[] = [{
         ['action', 'explore village'],
     ],
     isHidden: emptyArray,
+    doneWhenHidden: true,
 }, {
     id: 'town hall',
     roomId: 'village',
@@ -225,6 +241,7 @@ const actions: ActionDefinition<StoryResource>[] = [{
         }
     },
     isHidden: emptyArray,
+    doneWhenHidden: true,
 }];
 
 export default actions;

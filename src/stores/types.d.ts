@@ -58,6 +58,7 @@ export type Action<StoryResource> = ConditionalItem<StoryResource> & {
     roomId: string;
     sound?: SoundTrack;
     action: (click: bigint) => Log | void;
+    doneWhenHidden?: boolean;
 };
 export type ActionDefinition<StoryResource> = Partial<Action<StoryResource>>;
 

@@ -127,7 +127,7 @@ function payCost(action: Action<StoryResource>) {
     });
 
     /* Register the action as used */
-    if (!actionOpened.has(id)) {
+    if (!actionOpened.has(id) && (!action.doneWhenHidden || !isDisplayed(action))) {
         logs.push(['open', id]);
         actionOpened.$set(id, true);
     }
@@ -152,7 +152,8 @@ function doAction(id: string): boolean {
         roomId: '',
         action: noop,
         isVisible: [],
-        isHidden: [],
+        isHidden: false,
+        doneWhenHidden: true,
     } as Action<string> : undefined);
 
     if (!action || !isDisplayed(action) || !checkCost(action)) {
@@ -161,6 +162,12 @@ function doAction(id: string): boolean {
 
     payCost(action);
     const logItem = action.action(actionClicked.get(action.id) ?? 1n);
+
+    /* Register the action as used (need to be done after action) */
+    if (action.doneWhenHidden && !actionOpened.has(id) && !isDisplayed(action)) {
+        logs.push(['open', id]);
+        actionOpened.$set(id, true);
+    }
 
     if (Array.isArray(logItem)) {
         logs.push(logItem);

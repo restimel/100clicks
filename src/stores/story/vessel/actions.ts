@@ -12,6 +12,7 @@ const actions: ActionDefinition<StoryResource>[] = [{
     description: $t('action.dynamo.description'),
     action: () => resources.add('energy', 1n),
     isHidden: emptyArray,
+    doneWhenHidden: true,
 }, {
     id: 'light on',
     title: $t('action.light-on.title'),
@@ -137,6 +138,7 @@ const actions: ActionDefinition<StoryResource>[] = [{
         ['action', 'gym room'],
     ],
     isHidden: emptyArray,
+    doneWhenHidden: true,
     description: 'Energy max: +10:energyMax:',
     action: () => resources.add('energyMax', 10n),
 }, {
@@ -163,6 +165,7 @@ const actions: ActionDefinition<StoryResource>[] = [{
         ['action', 'Repair station'],
     ],
     isHidden: emptyArray,
+    doneWhenHidden: true,
     description: $t('action.generator.description'),
     action: () => resources.add('energy', 4n),
 }, {
@@ -176,6 +179,7 @@ const actions: ActionDefinition<StoryResource>[] = [{
         ['action', 'Ghost analysis'],
     ],
     isHidden: emptyArray,
+    doneWhenHidden: true,
     description: $t('action.search-energy-past.description'),
     action: () => resources.add('energy', 10n),
 }, {
@@ -195,6 +199,7 @@ const actions: ActionDefinition<StoryResource>[] = [{
         ['action', 'Ghost analysis'],
     ],
     isHidden: emptyArray,
+    doneWhenHidden: true,
     description: $t('action.sleeping-ghost.description'),
     action: () => resources.add('energy', 25n),
 }, {

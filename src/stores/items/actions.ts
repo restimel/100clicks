@@ -27,6 +27,7 @@ export function addActions(actions: ActionDefinition<StoryResource>[], reset: bo
             roomId: action.roomId || '',
             sound: action.sound,
             action: action.action ?? noop,
+            doneWhenHidden: action.doneWhenHidden || false,
         });
     }
 }

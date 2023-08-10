@@ -157,6 +157,8 @@ export type ShopDescription = {
     emptyShop: string;
     /** Text displayed on button to start new run */
     runAgain: string;
+    /** Explain how the shopCurrency are gained */
+    gainExplanation: () => string;
 };
 
 export type Story<StoryResource> = {

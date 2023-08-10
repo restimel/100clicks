@@ -389,6 +389,8 @@
       "shop": {
         "disabledContinueRun": "Il faut de la magie pour voyager dans le temps",
         "emptyShop": "Revenez plus tard pour trouver plus d'aides.",
+        "explanation": "{initialValue} :shopCurrency:\n+ {lostClicks} :lostClicks: × 1/4 = {gainLostClick} :shopCurrency:\n+ {multiple}% = {gainMultiple} :shopCurrency:\n( gain = + {gainTotal} :shopCurrency: )\n----------------\ntotal = {total} :shopCurrency:",
+        "explanation-bonus": "{initialValue} :shopCurrency:\n+ {lostClicks} :lostClicks: × 1/4 = {gainLostClick} :shopCurrency:\n+ {multiple}% = {gainMultiple} :shopCurrency:\n+ bonus = {bonus} :shopCurrency:\n( gain = + {gainTotal} :shopCurrency: )\n----------------\ntotal = {total} :shopCurrency:",
         "fluff": "Vous ne vous êtes pas débarrassé de l'armée maléfique à temps.\nMais rien n'est perdu. Vous pouvez redémarrer et devenir plus fort.",
         "notEnoughCurrency": "Pas assez de réputation. Vous avez besoin de {missing} :shopCurrency: en plus.",
         "runAgain": "Combattez à nouveau contre l'armée maléfique"
@@ -400,6 +402,7 @@
       "shop": {
         "disabledContinueRun": "Vous devez posséder une machine temporelle pour recommencer le tour.",
         "emptyShop": "Il n'y a pas d'autres artefacts. Revenez plus tard.",
+        "explanation": "{initialValue} :shopCurrency:\n+ {energy} :energy: × 1/100 = {gainEnergy} :shopCurrency:\n+ {multiple}% = {gainMultiple} :shopCurrency:\n( gain = {gainTotal} :shopCurrency: )\n----------------\ntotal = {total} :shopCurrency:",
         "fluff": "La fatigue est là. Vous devez vous arrêter ! Mais vous découvrez quelques artefacts étranges :",
         "notEnoughCurrency": "Vous n'avez pas assez d'énergie temporelle. Il vous en manque {missing}.",
         "runAgain": "Voyager temporellement vers le prochain tour"

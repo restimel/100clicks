@@ -1,5 +1,6 @@
-import { $t } from '../../locales/i18n';
 import { get } from 'svelte/store';
+import { $t } from '../../locales/i18n';
+import { _ } from 'svelte-i18n';
 import type { Story } from '../types';
 import actions from './vessel/actions';
 import artifacts from './vessel/artifacts';
@@ -22,6 +23,33 @@ const story: Story<StoryResource> = {
         notEnoughCurrency: $t('story.vessel.shop.notEnoughCurrency'),
         emptyShop: $t('story.vessel.shop.emptyShop'),
         runAgain:  $t('story.vessel.shop.runAgain'),
+        gainExplanation: () => {
+            const decimals = 100;
+            const energy = runResources.value('energy');
+            const gainEnergy = Number(energy) / decimals;
+
+            const vortexBonus = (get(ownArtifacts).get('vortex') ?? 0n) * 10n;
+            const gainVortex = energy * vortexBonus / 100n;
+            const gainMultiple = Number(gainVortex) / decimals;
+
+            const bonusTEnergy = 100n + vortexBonus;
+            const realGain = energy * bonusTEnergy / 100n;
+
+            const total = runResources.value('shopCurrency');
+            const initialValue = Number(total - realGain) / decimals;
+
+            return get(_)($t('story.vessel.shop.explanation'), {
+                values: {
+                    initialValue,
+                    energy: Number(energy),
+                    gainEnergy,
+                    multiple: Number(vortexBonus),
+                    gainMultiple,
+                    gainTotal: Number(realGain) / decimals,
+                    total: Number(total) / decimals,
+                },
+            });
+        },
     },
     actions,
     artifacts,

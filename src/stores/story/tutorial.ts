@@ -1,5 +1,6 @@
-import { $t } from '../../locales/i18n';
 import { get } from 'svelte/store';
+import { $t } from '../../locales/i18n';
+import { _ } from 'svelte-i18n';
 import type { Story } from '../types';
 import actions from './tutorial/actions';
 import artifacts from './tutorial/artifacts';
@@ -10,6 +11,21 @@ import achievements from './tutorial/achievements';
 
 import { resources as runResources, ownArtifacts } from '../run';
 import type { StoryResource } from './tutorial/resources';
+
+/**
+ * @return [total, baseGain, bonusGain]
+ */
+function gainReputation(lostClicks: bigint, vortex: bigint): [bigint, bigint, bigint] {
+    const shopDecimals = 100n;
+    const base = 100n;
+    const bonusShop = base + vortex * 10n;
+    const gainRatio = 4n;
+    const baseValue = lostClicks * shopDecimals;
+    const gainShop = baseValue * bonusShop / (base * gainRatio);
+    const realGain = gainShop < shopDecimals ? shopDecimals : gainShop;
+
+    return [realGain, baseValue / gainRatio, realGain - gainShop];
+}
 
 const story: Story<StoryResource> = {
     id: 'tutorial',
@@ -22,6 +38,50 @@ const story: Story<StoryResource> = {
         notEnoughCurrency: $t('story.tutorial.shop.notEnoughCurrency'),
         emptyShop: $t('story.tutorial.shop.emptyShop'),
         runAgain:  $t('story.tutorial.shop.runAgain'),
+        gainExplanation: () => {
+            const decimals = 100;
+            const lostClicks = runResources.value('lostClicks');
+            const vortex = get(ownArtifacts).get('vortex') ?? 0n;
+
+            const [realGain, baseGain, bonusGain] = gainReputation(
+                lostClicks,
+                vortex
+            );
+
+            const gainLostClick = Number(baseGain) / decimals;
+            const multiple = Number(vortex) * 10;
+            const gainMultiple = Number(realGain - baseGain - bonusGain) / decimals;
+            const gainTotal = Number(realGain) / decimals;
+            const total = runResources.value('shopCurrency');
+            const initialValue = Number(total - realGain) / decimals;
+
+
+            if (bonusGain) {
+                const bonus = Number(bonusGain) / decimals;
+                return get(_)($t('story.tutorial.shop.explanation-bonus'), { values: {
+                    initialValue,
+                    lostClicks: Number(lostClicks),
+                    gainLostClick,
+                    multiple,
+                    gainMultiple,
+                    bonus,
+                    gainTotal,
+                    total: Number(total) / decimals,
+                } });
+            }
+
+            return get(_)($t('story.tutorial.shop.explanation'), {
+                values: {
+                    initialValue,
+                    lostClicks: Number(lostClicks),
+                    gainLostClick,
+                    multiple,
+                    gainMultiple,
+                    gainTotal,
+                    total: Number(total) / decimals,
+                },
+            });
+        },
     },
     actions,
     artifacts,
@@ -129,12 +189,10 @@ const story: Story<StoryResource> = {
             runResources.add('warriorMax', get(ownArtifacts).get('farmers') ?? 0n);
         },
         endRun: () => {
-            const shopDecimals = 100n;
-            const base = 100n;
-            const bonusShop = base + (get(ownArtifacts).get('vortex') ?? 0n) * 10n;
-            const gainRatio = 4n;
-            const gainShop = runResources.value('lostClicks') * bonusShop * shopDecimals / (base * gainRatio);
-            const realGain = gainShop < shopDecimals ? shopDecimals : gainShop;
+            const [realGain] = gainReputation(
+                runResources.value('lostClicks'),
+                get(ownArtifacts).get('vortex') ?? 0n
+            );
 
             runResources.add('shopCurrency', realGain);
         },

@@ -389,6 +389,8 @@
       "shop": {
         "disabledContinueRun": "Vi bezonas magion por vojaĝi tra la tempo",
         "emptyShop": "Revenu poste por trovi pliajn helpojn.",
+        "explanation": "{initialValue} :shopCurrency:\n+ {lostClicks} :lostClicks: × 1/4 = {gainLostClick} :shopCurrency:\n+ {multiple}% = {gainMultiple} :shopCurrency:\n( gajno = {gainTotal} :shopCurrency: )\n----------------\ntotalo = {total} :shopCurrency:",
+        "explanation-bonus": "{initialValue} :shopCurrency:\n+ {lostClicks} :lostClicks: × 1/4 = {gainLostClick} :shopCurrency:\n+ {multiple}% = {gainMultiple} :shopCurrency:\ngratifiko = {bonus} :shopCurrency:\n( gajno = + {gainTotal} :shopCurrency: )\n----------------\ntotalo = {total} :shopCurrency:",
         "fluff": "Vi ne forigis la malbonan armeon ĝustatempe.\nSed nenio estas perdita. Vi povas rekomenci kaj fariĝi pli forta.",
         "notEnoughCurrency": "Ne sufiĉa reputacio. Vi bezonas {missing} :shopCurrency: pli.",
         "runAgain": "Batalu denove kontraŭ la malbona armeo"
@@ -400,6 +402,7 @@
       "shop": {
         "disabledContinueRun": "Vi devus posedi tempan maŝinon por rekomenci la vicon.",
         "emptyShop": "Ne plu estas artefaktoj. Revenu poste.",
+        "explanation": "{initialValue} :shopCurrency:\n+ {energy} :energy: × 1/100 = {gainEnergy} :shopCurrency:\n+ {multiple}% = {gainMultiple} :shopCurrency:\n( gajno = {gainTotal} :shopCurrency: )\n----------------\ntotalo = {total} :shopCurrency:",
         "fluff": "Vi estas laca. Vi devas halti tie! Sed vi malkovras kelkajn strangajn artefaktojn:",
         "notEnoughCurrency": "Vi ne havas sufiĉan tempan energion. Vi devus ricevi {missing} pli.",
         "runAgain": "Vojagi tempe al la sekva vico"

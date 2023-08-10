@@ -192,8 +192,8 @@ const actions: ActionDefinition<StoryResource>[] = [{
         ['energy', 5n],
     ],
     requirements: [
-        ['action', 'Bedroom 1'],
-        ['action', 'Bedroom 2'],
+        ['action', 'bedroom1'],
+        ['action', 'bedroom2'],
     ],
     isVisible: [
         ['action', 'Ghost analysis'],

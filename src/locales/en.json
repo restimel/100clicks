@@ -389,6 +389,8 @@
       "shop": {
         "disabledContinueRun": "You need magic to travel through time",
         "emptyShop": "Come back later to find more helps.",
+        "explanation": "{initialValue} :shopCurrency:\n+ {lostClicks} :lostClicks: × 1/4 = {gainLostClick} :shopCurrency:\n+ {multiple}% = {gainMultiple} :shopCurrency:\n( gain = + {gainTotal} :shopCurrency: )\n----------------\ntotal = {total} :shopCurrency:",
+        "explanation-bonus": "{initialValue} :shopCurrency:\n+ {lostClicks} :lostClicks: × 1/4 = {gainLostClick} :shopCurrency:\n+ {multiple}% = {gainMultiple} :shopCurrency:\n+ bonus = {bonus} :shopCurrency:\n( gain = + {gainTotal} :shopCurrency: )\n----------------\ntotal = {total} :shopCurrency:",
         "fluff": "You have not get rid of the evil army in time.\nBut nothing is lost. You can restart and become stronger.",
         "notEnoughCurrency": "Not enough reputation. You need {missing} :shopCurrency: more.",
         "runAgain": "Fight again against the evil army"
@@ -400,6 +402,7 @@
       "shop": {
         "disabledContinueRun": "You should own a time machine to run again.",
         "emptyShop": "There are no more artifacts. Come back later.",
+        "explanation": "{initialValue} :shopCurrency:\n+ {energy} :energy: × 1/100 = {gainEnergy} :shopCurrency:\n+ {multiple}% = {gainMultiple} :shopCurrency:\n( gain = + {gainTotal} :shopCurrency: )\n----------------\ntotal = {total} :shopCurrency:",
         "fluff": "You are tired. You have to stop there! But you discover some odd artifacts:",
         "notEnoughCurrency": "You don't have enough temporal energy. You should get {missing} more.",
         "runAgain": "Travel back to next run"

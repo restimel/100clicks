@@ -77,7 +77,7 @@
         {$_(shopDescription.fluff)}
     </div>
     {#if $shopCurrency > 0n}
-        <label class="shop-currency">
+        <label class="shop-currency" use:tooltip={shopDescription.gainExplanation()}>
             <Text text={$_(shopDescription.currentMoney)} />:
             <output>
                 <DigitValue value={$shopCurrency / currencyDecimals} />

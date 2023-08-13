@@ -13,6 +13,7 @@ import achievements from './achievements';
 import vesselStory from './story/vessel';
 import tutorialStory from './story/tutorial';
 import type { GameOverDescription, Panel, ShopDescription, Story } from './types';
+import { stopAmbient } from './sound';
 
 type StoryResource = string;
 
@@ -96,4 +97,5 @@ export function endStory() {
 
 export function stopStory() {
     storyReady.set(false);
+    stopAmbient();
 }

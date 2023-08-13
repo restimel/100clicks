@@ -12,7 +12,7 @@ import {
 import achievements from './achievements';
 import vesselStory from './story/vessel';
 import tutorialStory from './story/tutorial';
-import type { Panel, ShopDescription, Story } from './types';
+import type { GameOverDescription, Panel, ShopDescription, Story } from './types';
 
 type StoryResource = string;
 
@@ -23,10 +23,12 @@ function addStory(story: Story<StoryResource>) {
 
 export const storyReady = writable(false);
 export const activeStory = writable<string>('vessel');
+export const gameOver = writable(false);
 
 type StoryDesc = {
     panels: Panel<StoryResource>[];
     shopDescription: ShopDescription;
+    gameOver: GameOverDescription;
 }
 
 export const storyDesc = writable<StoryDesc>({
@@ -46,6 +48,7 @@ export function startStory(): boolean {
         return false;
     }
 
+    gameOver.set(false);
     resetRun();
 
     const {
@@ -59,6 +62,7 @@ export function startStory(): boolean {
         setIconText,
         storyEffects,
         shopDescription,
+        gameOver: gameOverDescription,
     } = story;
 
     addActions(actions, true);
@@ -76,6 +80,7 @@ export function startStory(): boolean {
     storyDesc.set({
         panels: storyPanels,
         shopDescription: shopDescription,
+        gameOver: gameOverDescription,
     });
 
     /* TODO: do this line only if there are no data in storage */
@@ -83,6 +88,10 @@ export function startStory(): boolean {
 
     storyReady.set(true);
     return true;
+}
+
+export function endStory() {
+    gameOver.set(true);
 }
 
 export function stopStory() {

@@ -49,7 +49,7 @@
 			[1e30, 'Q'],
 		];
 		const idx = suffixes.findIndex(([base]) => nb < base) - 1;
-		const [divider, suffix] = suffixes[idx];
+		const [divider, suffix] = suffixes[idx] ?? [1, ''];
 		const value = nb / divider;
 		const decimals = 10** (2 - Math.floor(Math.log10(value)));
 		const truncValue = Math.round(value * decimals) / decimals

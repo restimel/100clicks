@@ -5,6 +5,7 @@ import { _ } from 'svelte-i18n';
 import { ownEquipments, resources } from '../../run';
 import type { ActionDefinition } from '../../types';
 import type { StoryResource } from './resources';
+import { endStory } from '../../story';
 
 function battle() {
     const monster = resources.value('monster');
@@ -136,7 +137,7 @@ const actions: ActionDefinition<StoryResource>[] = [{
         ['warrior', 100n],
     ],
     action: () => {
-        console.log('todo last battle', resources.value('warrior'));
+        endStory();
     },
     isVisible: [
         ['action', 'exploreBattle3'],

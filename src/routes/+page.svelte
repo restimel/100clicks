@@ -4,7 +4,8 @@
     import Rooms from '../components/Rooms.svelte';
     import Shop from '../components/Shop.svelte';
     import StoryMenu from '../components/StoryMenu.svelte';
-    import { storyReady	} from '../stores/story';
+    import StoryEnd from '../components/StoryEnd.svelte';
+    import { storyReady, gameOver } from '../stores/story';
 </script>
 
 <svelte:head>
@@ -13,12 +14,16 @@
 </svelte:head>
 
 {#if $storyReady}
-	<section class="game">
-		<HeaderPanels />
-		<Rooms />
-		<Shop />
-		<Cheat />
-	</section>
+    {#if $gameOver}
+        <StoryEnd />
+    {:else}
+        <section class="game">
+            <HeaderPanels />
+            <Rooms />
+            <Shop />
+            <Cheat />
+        </section>
+    {/if}
 {:else}
 	<StoryMenu />
 {/if}

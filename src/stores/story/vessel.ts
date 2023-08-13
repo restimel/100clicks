@@ -9,7 +9,7 @@ import {resources, setIconText} from './vessel/resources';
 import rooms from './vessel/rooms';
 import achievements from './vessel/achievements';
 
-import { resources as runResources, ownArtifacts } from '../run';
+import { resources as runResources, ownArtifacts, run } from '../run';
 import type {StoryResource} from './vessel/resources';
 
 const story: Story<StoryResource> = {
@@ -50,6 +50,25 @@ const story: Story<StoryResource> = {
                 },
             });
         },
+    },
+    gameOver: {
+        fluff: $t('story.vessel.gameOver.fluff'),
+        score: [{
+            label: $t('story.vessel.gameover.score-label'),
+            value: () => {
+                return get(run);
+            },
+            score: (value: bigint) => {
+                const target = 20;
+                const range = 5;
+
+                const refValue = Math.max(Number(value) - target, 1);
+                const score = Math.floor(Math.log(refValue)/Math.log(range))
+                const stars = Math.max(0, 5 - score) as Stars;
+
+                return stars;
+            },
+        }],
     },
     actions,
     artifacts,

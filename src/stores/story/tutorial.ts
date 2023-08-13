@@ -1,7 +1,7 @@
 import { get } from 'svelte/store';
 import { $t } from '../../locales/i18n';
 import { _ } from 'svelte-i18n';
-import type { Story } from '../types';
+import type { Stars, Story } from '../types';
 import actions from './tutorial/actions';
 import artifacts from './tutorial/artifacts';
 import equipments from './tutorial/equipments';
@@ -9,7 +9,7 @@ import {resources, setIconText} from './tutorial/resources';
 import rooms from './tutorial/rooms';
 import achievements from './tutorial/achievements';
 
-import { resources as runResources, ownArtifacts } from '../run';
+import { resources as runResources, ownArtifacts, run } from '../run';
 import type { StoryResource } from './tutorial/resources';
 
 /**
@@ -29,6 +29,7 @@ function gainReputation(lostClicks: bigint, vortex: bigint): [bigint, bigint, bi
 
 const story: Story<StoryResource> = {
     id: 'tutorial',
+    version: '0.9.0',
     name: $t('story.tutorial.name'),
     description: $t('story.tutorial.description'),
     shopDescription: {
@@ -82,6 +83,25 @@ const story: Story<StoryResource> = {
                 },
             });
         },
+    },
+    gameOver: {
+        fluff: $t('story.tutorial.gameOver.fluff'),
+        score: [{
+            label: $t('story.tutorial.gameover.score-label'),
+            value: () => {
+                return get(run);
+            },
+            score: (value: bigint) => {
+                const target = 10;
+                const range = 3;
+
+                const refValue = Math.max(Number(value) - target, 1);
+                const score = Math.floor(Math.log(refValue)/Math.log(range))
+                const stars = Math.max(0, 5 - score) as Stars;
+
+                return stars;
+            },
+        }],
     },
     actions,
     artifacts,

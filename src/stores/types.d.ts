@@ -161,6 +161,23 @@ export type ShopDescription = {
     gainExplanation: () => string;
 };
 
+export type Stars = 0 | 1 | 2 | 3 | 4 | 5;
+export type ScoreItem = {
+    label: string;
+    detail?: string;
+    value: string | bigint | (() => string | bigint);
+    decimals?: bigint;
+    score: (value: bigint) => Stars,
+};
+
+export type GameOverDescription = {
+    /** Final text */
+    fluff: string;
+
+    /** Score computation */
+    score: ScoreItem[];
+};
+
 export type Story<StoryResource> = {
     /** unique id */
     id: string;
@@ -172,6 +189,9 @@ export type Story<StoryResource> = {
 
     /** texts displayed in shop: should be translated */
     shopDescription: ShopDescription;
+
+    /** Texts displayed in the final dialog */
+    gameOver: GameOverDescription;
 
     actions: ActionDefinition<StoryResource>[];
     artifacts: ArtifactDefinition<StoryResource>[];

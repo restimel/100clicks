@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onDestroy, afterUpdate } from 'svelte';
     import { ResizeObserver } from '../helpers/Browser';
-	import {
+    import {
         accessibleRooms as rooms,
     } from '../stores/currentClick';
     import RoomBox from './RoomBox.svelte';

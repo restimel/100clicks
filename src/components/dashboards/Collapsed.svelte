@@ -41,18 +41,18 @@
 </div>
 
 <style>
-	.dashboard-collapsed {
-		display: flex;
+    .dashboard-collapsed {
+        display: flex;
         flex-direction: column;
-	}
+    }
 
-	.dashboard-collapsed__item {
-		display: flex;
+    .dashboard-collapsed__item {
+        display: flex;
         flex-direction: row;
         justify-content: space-between;
 
         cursor: pointer;
-	}
+    }
     .dashboard-collapsed__item:hover {
         color: var(--color-theme-2);
         border-bottom: 1px solid var(--color-fg-dashboard);

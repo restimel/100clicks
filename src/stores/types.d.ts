@@ -182,6 +182,14 @@ export type Story<StoryResource> = {
     /** unique id */
     id: string;
 
+    /** Story version
+     * X.Y.Z
+     * X: major change (if == 0, the story is not really finished)
+     * Y: important change
+     * Z: minor change
+     */
+    version: string;
+
     /** title of the story: should be translated */
     name: string;
     /** description of the story: should be translated */

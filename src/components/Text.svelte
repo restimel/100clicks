@@ -5,7 +5,7 @@
 
     import type { IconDesc } from '../stores/types';
 
-	export let text: string;
+    export let text: string;
 
     $: chunkText = splitText(text);
 

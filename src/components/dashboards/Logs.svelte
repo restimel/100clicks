@@ -57,14 +57,14 @@
 </div>
 
 <style>
-	header {
-		font-size: 1.5em;
-		text-align: center;
-		margin-bottom: 0.5em;
-	}
+    header {
+        font-size: 1.5em;
+        text-align: center;
+        margin-bottom: 0.5em;
+    }
 
-	.log-dashboard__item {
-		display: flex;
+    .log-dashboard__item {
+        display: flex;
         flex-direction: row;
-	}
+    }
 </style>

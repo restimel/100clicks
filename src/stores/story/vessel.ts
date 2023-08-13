@@ -14,6 +14,7 @@ import type {StoryResource} from './vessel/resources';
 
 const story: Story<StoryResource> = {
     id: 'vessel',
+    version: '0.5.0',
     name: $t('story.vessel.name'),
     description: $t('story.vessel.description'),
     shopDescription: {

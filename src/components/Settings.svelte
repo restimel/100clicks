@@ -134,7 +134,7 @@
 
         padding: 1em;
         border: 2px solid var(--color-border-settings);
-	    border-radius: 1em;
+        border-radius: 1em;
         box-shadow: 1px 2px 10px black;
         background-color: var(--color-bg-settings);
         color: var(--color-fg-settings);

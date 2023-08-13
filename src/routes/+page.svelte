@@ -25,7 +25,7 @@
         </section>
     {/if}
 {:else}
-	<StoryMenu />
+    <StoryMenu />
 {/if}
 
 <style>

@@ -7,7 +7,7 @@
     import { tooltip } from '../helpers/tooltip';
     import { artifacts } from '../stores/items/artifacts';
     import { isDisplayed } from '../stores/items';
-	import {
+    import {
         ownArtifacts,
         resources,
         run,
@@ -72,7 +72,7 @@
 
 {#if $runOver}
 <aside class="shop" transition:scale>
-	<header>{ $_('component.shop.end-of-run', {values: {run: $run.toString(10)}}) }</header>
+    <header>{ $_('component.shop.end-of-run', {values: {run: $run.toString(10)}}) }</header>
     <div class="fluff">
         {$_(shopDescription.fluff)}
     </div>
@@ -84,12 +84,12 @@
             </output>
         </label>
     {/if}
-	<div class="shop-list">
+    <div class="shop-list">
         {#each artifactList as artifact (artifact.id)}
         {@const nb = $ownArtifacts.get(artifact.id) ?? 0n}
         {@const total = $totalOwnArtifacts.get(artifact.id) ?? 0n}
         {@const cost = artifact.cost(nb, total)}
-		    <div
+            <div
                 class="shop-item"
                 class:disabled={(cost * currencyDecimals) > $shopCurrency}
                 on:click={buy.bind(null, artifact)}
@@ -126,7 +126,7 @@
                 {$_(shopDescription.emptyShop)}
             </p>
         {/if}
-	</div>
+    </div>
     {#if message}
         <div class="message" transition:fade>{message}</div>
     {/if}
@@ -153,7 +153,7 @@
 
         padding: 1em;
         border: 2px solid var(--color-fg-shop);
-	    border-radius: 1em;
+        border-radius: 1em;
         box-shadow: 1px 2px 10px black;
         background-color: var(--color-bg-shop);
         color: var(--color-fg-shop);

@@ -5,8 +5,8 @@
 
     const dispatch = createEventDispatcher<{click: void}>();
 
-	export let icon: IconDesc;
-	export let title: string = '';
+    export let icon: IconDesc;
+    export let title: string = '';
 
     $: icons = Array.isArray(icon) ? icon : [icon];
     $: iconsDef = icons.map((icon): IconDefinition => {

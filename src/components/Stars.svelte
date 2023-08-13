@@ -1,7 +1,7 @@
 <script lang="ts">
-	export let value: number;
+    export let value: number;
 
-	$: starValue = Math.max(5, Math.min(0, Math.round(value)));
+    $: starValue = Math.max(5, Math.min(0, Math.round(value)));
     $: stars = (new Array(starValue)).fill('⭐').join('');
 </script>
 

@@ -1,8 +1,8 @@
 <script lang="ts">
     import { flip } from 'svelte/animate';
-	import { clickAction } from '../stores/currentClick';
+    import { clickAction } from '../stores/currentClick';
     import ActionBox from './ActionBox.svelte';
-	import type { DisplayedAction } from '../stores/types';
+    import type { DisplayedAction } from '../stores/types';
 
     type StoryResource = string;
 
@@ -21,12 +21,12 @@
 </div>
 
 <style>
-	.actions {
-		display: grid;
+    .actions {
+        display: grid;
         grid-template-columns: repeat(auto-fill, minmax(calc(var(--action-box-width) + 2em), 1fr));
         gap: 1em;
         max-width: 100%;
-	}
+    }
     .wrapper {
         max-width: 100%;
     }

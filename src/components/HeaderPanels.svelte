@@ -28,7 +28,7 @@
 
     /* list of dashboard that can be displayed
      * (it also set the display order) */
-	let displayDashboards: Map<string, PanelInfo> = new Map();
+    let displayDashboards: Map<string, PanelInfo> = new Map();
 
     buildDisplayDashboards();
     function buildDisplayDashboards(): Map<string, PanelInfo> {
@@ -133,14 +133,14 @@
     .dashboard-item {
         position: relative;
         width: 300px;
-		height: 100px;
-		padding: 1em;
-		border: 2px solid var(--color-border-dashboard);
-		border-top-right-radius: 1em;
-		border-top-left-radius: 1em;
-		color: var(--color-fg-dashboard);
-		background-color: var(--color-bg-dashboard);
-		box-shadow: inset 1px 2px 10px var(--color-border-dashboard);
+        height: 100px;
+        padding: 1em;
+        border: 2px solid var(--color-border-dashboard);
+        border-top-right-radius: 1em;
+        border-top-left-radius: 1em;
+        color: var(--color-fg-dashboard);
+        background-color: var(--color-bg-dashboard);
+        box-shadow: inset 1px 2px 10px var(--color-border-dashboard);
     }
 
     .header-panels :global(.reduce) {

@@ -1,9 +1,9 @@
 import { get, writable } from 'svelte/store';
 import {
-	writableArray,
-	writableIncMap,
-	writableMap,
-	writableSet,
+    writableArray,
+    writableIncMap,
+    writableMap,
+    writableSet,
 } from '../helpers/SvelteStore';
 import { playAmbient } from './sound';
 import type { Writable } from 'svelte/store';
@@ -21,124 +21,124 @@ export const ownEquipments = writableSet<string>();
 type StoryResource = string;
 
 function createResources() {
-	const storeValues = writable<Record<string, Writable<bigint>>>({});
-	const { subscribe, set, update } = storeValues;
-	let defaultValues = new Map<string, bigint>();
+    const storeValues = writable<Record<string, Writable<bigint>>>({});
+    const { subscribe, set, update } = storeValues;
+    let defaultValues = new Map<string, bigint>();
 
-	const shopCurrency = writable<bigint>(0n);
+    const shopCurrency = writable<bigint>(0n);
 
-	function getStore(resourceName: string): Writable<bigint> | undefined {
-		const values = get(storeValues);
-		return values[resourceName];
-	}
+    function getStore(resourceName: string): Writable<bigint> | undefined {
+        const values = get(storeValues);
+        return values[resourceName];
+    }
 
-	function getValue(resourceName: string): bigint | undefined {
-		const resource = getStore(resourceName);
-		if (resource) {
-			return get(resource);
-		}
-	}
+    function getValue(resourceName: string): bigint | undefined {
+        const resource = getStore(resourceName);
+        if (resource) {
+            return get(resource);
+        }
+    }
 
-	function setValue(resourceName: string, value: bigint, noCheck = false) {
-		const resource = getStore(resourceName);
-		resource?.set(value);
+    function setValue(resourceName: string, value: bigint, noCheck = false) {
+        const resource = getStore(resourceName);
+        resource?.set(value);
 
-		if (!noCheck) {
-			checkMax(resourceName);
-		}
-	}
+        if (!noCheck) {
+            checkMax(resourceName);
+        }
+    }
 
-	function checkMax(resourceName: string) {
-		const max = getValue(resourceName + 'Max');
-		if (max === undefined) {
-			return;
-		}
+    function checkMax(resourceName: string) {
+        const max = getValue(resourceName + 'Max');
+        if (max === undefined) {
+            return;
+        }
 
-		/* undefined should be converted to 0n */
-		const value = getValue(resourceName) as bigint;
-		if (value > max) {
-			setValue(resourceName, max, true);
-		}
-	}
+        /* undefined should be converted to 0n */
+        const value = getValue(resourceName) as bigint;
+        if (value > max) {
+            setValue(resourceName, max, true);
+        }
+    }
 
-	function reset(resourceName: string, value?: bigint) {
-		const resourceValue = getValue(resourceName);
-		if (resourceValue === undefined) {
-			return;
-		}
-		const defaultValue = value ?? defaultValues.get(resourceName) ?? 0n;
-		setValue(resourceName, defaultValue, true);
-	}
+    function reset(resourceName: string, value?: bigint) {
+        const resourceValue = getValue(resourceName);
+        if (resourceValue === undefined) {
+            return;
+        }
+        const defaultValue = value ?? defaultValues.get(resourceName) ?? 0n;
+        setValue(resourceName, defaultValue, true);
+    }
 
-	function resetAll() {
-		for (const [resourceName, defaultValue] of defaultValues) {
-			reset(resourceName, defaultValue);
-		}
-	}
+    function resetAll() {
+        for (const [resourceName, defaultValue] of defaultValues) {
+            reset(resourceName, defaultValue);
+        }
+    }
 
-	return {
-		subscribe,
-		set,
-		update,
-		store: getStore,
-		value: (resourceName: string): bigint => {
-			const resourceValue = getValue(resourceName);
-			return resourceValue ?? 0n;
-		},
-		add: (resourceName: string, value = 1n) => {
-			const resourceValue = getValue(resourceName);
-			if (resourceValue === undefined) {
-				return;
-			}
-			setValue(resourceName, resourceValue + value);
-		},
-		reset,
-		resetAll,
-		pay: (resourceName: string, value: bigint): boolean => {
-			/* undefined should be converted to 0n */
-			const resourceValue = getValue(resourceName) as bigint;
-			if (resourceValue < value) {
-				return false;
-			}
-			setValue(resourceName, resourceValue - value, true);
-			return true;
-		},
-		initialize: (values: ResourcesDefinition<StoryResource>) => {
-			const resources: Record<string, Writable<bigint>> = {
-				clicks: clicks,
-				lostClicks: lostClicks,
-				shopCurrency: shopCurrency,
-			};
-			const initValues: Array<[string, bigint]> = values.reduce((list, value) => {
-				if (typeof value === 'string') {
-					const store = writable(0n);
-					resources[value] = store;
-					list.push([value, 0n]);
-					return list;
-				}
+    return {
+        subscribe,
+        set,
+        update,
+        store: getStore,
+        value: (resourceName: string): bigint => {
+            const resourceValue = getValue(resourceName);
+            return resourceValue ?? 0n;
+        },
+        add: (resourceName: string, value = 1n) => {
+            const resourceValue = getValue(resourceName);
+            if (resourceValue === undefined) {
+                return;
+            }
+            setValue(resourceName, resourceValue + value);
+        },
+        reset,
+        resetAll,
+        pay: (resourceName: string, value: bigint): boolean => {
+            /* undefined should be converted to 0n */
+            const resourceValue = getValue(resourceName) as bigint;
+            if (resourceValue < value) {
+                return false;
+            }
+            setValue(resourceName, resourceValue - value, true);
+            return true;
+        },
+        initialize: (values: ResourcesDefinition<StoryResource>) => {
+            const resources: Record<string, Writable<bigint>> = {
+                clicks: clicks,
+                lostClicks: lostClicks,
+                shopCurrency: shopCurrency,
+            };
+            const initValues: Array<[string, bigint]> = values.reduce((list, value) => {
+                if (typeof value === 'string') {
+                    const store = writable(0n);
+                    resources[value] = store;
+                    list.push([value, 0n]);
+                    return list;
+                }
 
-				const [defaultName, defaultValue, doNotResetValue] = value;
-				if (typeof defaultValue === 'bigint') {
-					const store = writable(defaultValue);
-					resources[defaultName] = store;
-					if (!doNotResetValue) {
-						list.push([defaultName, defaultValue]);
-					}
-					return list
-				}
-				resources[defaultName] = defaultValue;
+                const [defaultName, defaultValue, doNotResetValue] = value;
+                if (typeof defaultValue === 'bigint') {
+                    const store = writable(defaultValue);
+                    resources[defaultName] = store;
+                    if (!doNotResetValue) {
+                        list.push([defaultName, defaultValue]);
+                    }
+                    return list
+                }
+                resources[defaultName] = defaultValue;
 
-				if (!doNotResetValue) {
-					list.push([defaultName, get(defaultValue)]);
-				}
-				return list;
-			}, [] as Array<[string, bigint]>);
-			defaultValues = new Map(initValues);
-			defaultValues.set('clicks', 0n);
-			defaultValues.set('lostClicks', 0n);
-			set(resources);
-		},
-	};
+                if (!doNotResetValue) {
+                    list.push([defaultName, get(defaultValue)]);
+                }
+                return list;
+            }, [] as Array<[string, bigint]>);
+            defaultValues = new Map(initValues);
+            defaultValues.set('clicks', 0n);
+            defaultValues.set('lostClicks', 0n);
+            set(resources);
+        },
+    };
 }
 export const resources = createResources();
 
@@ -156,33 +156,33 @@ export const ghostClicks = writableArray<Map<string, bigint>>(new Array(100));
 
 export const totalOwnArtifacts = writableIncMap<string>();
 export const ownArtifacts = (() => {
-	const { subscribe, set, update, clear } = writableMap<string, bigint>();
+    const { subscribe, set, update, clear } = writableMap<string, bigint>();
 
-	return {
-		subscribe,
-		set,
-		update,
-		clear,
-		add: (id: string) => {
-			update((map) => {
-				const value = map.get(id) ?? 0n;
-				map.set(id, value + 1n);
-				totalOwnArtifacts.inc(id, 1n);
-				return map;
-			});
-		},
-		use: (id: string) => {
-			update((map) => {
-				const value = map.get(id) ?? 0n;
-				if (value <= 1n) {
-					map.delete(id);
-				} else {
-					map.set(id, value - 1n);
-				}
-				return map;
-			});
-		},
-	};
+    return {
+        subscribe,
+        set,
+        update,
+        clear,
+        add: (id: string) => {
+            update((map) => {
+                const value = map.get(id) ?? 0n;
+                map.set(id, value + 1n);
+                totalOwnArtifacts.inc(id, 1n);
+                return map;
+            });
+        },
+        use: (id: string) => {
+            update((map) => {
+                const value = map.get(id) ?? 0n;
+                if (value <= 1n) {
+                    map.delete(id);
+                } else {
+                    map.set(id, value - 1n);
+                }
+                return map;
+            });
+        },
+    };
 })();
 
 /* }}} */
@@ -190,28 +190,28 @@ export const ownArtifacts = (() => {
 export let storyEffects: StoryEffects = {};
 
 export function saveStoryEffects(effects: StoryEffects) {
-	storyEffects = effects;
+    storyEffects = effects;
 }
 
 export function startRun() {
-	actionOpened.clear();
-	actionClicked.clear();
-	ownEquipments.clear();
+    actionOpened.clear();
+    actionClicked.clear();
+    ownEquipments.clear();
 
-	resources.resetAll();
+    resources.resetAll();
 
-	run.update((value) => value + 1n);
-	runOver.set(false);
+    run.update((value) => value + 1n);
+    runOver.set(false);
 
     playAmbient();
 
-	storyEffects.startRun?.(get(run));
+    storyEffects.startRun?.(get(run));
 }
 
 export function endRun() {
-	storyEffects.endRun?.(get(run));
+    storyEffects.endRun?.(get(run));
 
-	runOver.set(true);
+    runOver.set(true);
 }
 
 export function resetRun() {
@@ -221,10 +221,10 @@ export function resetRun() {
     lostClicks.set(0n);
     ownEquipments.clear();
     resources.initialize([]);
-	actionOpened.clear();
-	actionClicked.clear();
-	ghostClicks.set(new Array(100));
-	totalOwnArtifacts.clear();
-	ownArtifacts.clear();
-	storyEffects = {};
+    actionOpened.clear();
+    actionClicked.clear();
+    ghostClicks.set(new Array(100));
+    totalOwnArtifacts.clear();
+    ownArtifacts.clear();
+    storyEffects = {};
 }

@@ -56,7 +56,7 @@
         width: 100%;
     }
 
-	.room-box {
+    .room-box {
         position: relative;
         width: calc(var(--action-box-width) + 2em);
         max-width: 100%;
@@ -67,10 +67,10 @@
         border: 2px solid var(--color-room, var(--color-theme-2));
         background-color: var(--color-bg-room, var(--color-bg-0));
         background-image: radial-gradient(
-			50% 50% at 50% 50%,
-			rgba(255, 255, 255, 0.45) 0%,
-			rgba(0, 0, 0, 0.1) 100%
-		);
+            50% 50% at 50% 50%,
+            rgba(255, 255, 255, 0.45) 0%,
+            rgba(0, 0, 0, 0.1) 100%
+        );
         color: var(--color-room, var(--color-text));
         box-shadow: 0 3px 10px #000000FF;
 
@@ -81,7 +81,7 @@
         grid-row: auto / span var(--room-size);
         align-content: center;
         align-items: center;
-	}
+    }
     .room-box.collapsed {
         grid-template-rows: max-content;
         grid-template-columns: 1fr;

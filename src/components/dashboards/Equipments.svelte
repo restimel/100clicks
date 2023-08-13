@@ -43,12 +43,12 @@
 </div>
 
 <style>
-	header {
-		font-size: 1.5em;
-		text-align: center;
-	}
+    header {
+        font-size: 1.5em;
+        text-align: center;
+    }
 
-	.equipment-dashboard__item-list {
+    .equipment-dashboard__item-list {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -56,7 +56,7 @@
         align-content: space-around;
         align-items: flex-end;
         justify-content: flex-start;
-	}
+    }
 
     .equipment-dashboard__item {
         cursor: default;

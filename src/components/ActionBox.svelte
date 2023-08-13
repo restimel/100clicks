@@ -44,7 +44,7 @@
     on:click={clicked}
     transition:scale|local={{duration: 200}}
 >
-	<div class="action-box__title">
+    <div class="action-box__title">
         <Text text={$_(title)} />
     </div>
     {#if prerequisites.length > 0}
@@ -68,12 +68,12 @@
         </ul>
     </div>
     {/if}
-	<div class="action-box__description">
+    <div class="action-box__description">
         <Text text={$_(description)} />
-	</div>
-	<div class="action-box__fluff">
+    </div>
+    <div class="action-box__fluff">
         {$_(fluff)}
-	</div>
+    </div>
     <div class="cost" use:tooltip={'cost'} class:requirement-missing={!canPayCost}>
         {#each cost as [type, value]}
             <DigitValue value={value} /><Text text={`:${type}:`} />
@@ -82,7 +82,7 @@
 </div>
 
 <style>
-	.action-box {
+    .action-box {
         position: relative;
         cursor: not-allowed;
         user-select: none;
@@ -96,7 +96,7 @@
         display: grid;
         grid-template-rows: max-content 1fr max-content max-content;
         grid-template-areas: "title" "requirement" "description" "fluff";
-	}
+    }
     .action-box.active {
         cursor: pointer;
         background: var(--color-bg-action);

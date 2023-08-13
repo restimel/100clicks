@@ -3,7 +3,7 @@
     import { onDestroy, onMount } from 'svelte';
     import { get } from 'svelte/store';
     import { fade, scale } from 'svelte/transition';
-	import {
+    import {
         clicks, ownArtifacts, ownEquipments, resources,
     } from '../stores/run';
     import { applyAction } from '../stores/currentClick';
@@ -66,7 +66,7 @@
 
 {#if cheatOpen}
 <aside class="cheat" transition:scale>
-	<header>Fraŭdi</header>
+    <header>Fraŭdi</header>
     <label><button on:click={endRun}>Iri al la fino de la vico</button></label>
     <label>
         Artefakto
@@ -106,7 +106,7 @@
 
         padding: 1em;
         border: 2px solid var(--color-fg-shop);
-	    border-radius: 1em;
+        border-radius: 1em;
         box-shadow: 1px 2px 10px black;
         background-color: var(--color-bg-shop);
         color: var(--color-fg-shop);

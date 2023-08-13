@@ -9,15 +9,15 @@
     } from '../stores/story';
     import { playSound } from '../stores/sound';
 
-	let selectedStory = '';
-	let message = '';
+    let selectedStory = '';
+    let message = '';
 
     $: listStory = Array.from(storyList.values());
 
-	function chooseStory(id: string) {
+    function chooseStory(id: string) {
         message = '';
         selectedStory = id;
-	}
+    }
 
     function start() {
         message = '';
@@ -45,14 +45,17 @@
     </header>
 
     {#each listStory as story}
-		<button
+        <button
             class:selected={selectedStory === story.id}
             use:tooltip={$_(story.description)}
-			on:click={() => chooseStory(story.id)}
-		>
-			{$_(story.name)}
-		</button>
-	{/each}
+            on:click={() => chooseStory(story.id)}
+        >
+            {$_(story.name)}
+            <span class="story-version">
+                {story.version}
+            </span>
+        </button>
+    {/each}
 
     <button
         class="story-start"
@@ -101,6 +104,7 @@
 }
 
 .story-menu > button {
+    position: relative;
     display: block;
     width: 100%;
     padding: 0.5em;
@@ -126,6 +130,14 @@
     cursor: not-allowed;
     background-color: var(--color-bg-artifact--disabled);
     opacity: 0.5;
+}
+
+.story-version {
+    font-size: 0.5em;
+    font-style: italic;
+    position: absolute;
+    bottom: 0.5em;
+    right: 1em;
 }
 
 .story-menu > .error {

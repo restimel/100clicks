@@ -1,179 +1,179 @@
 @import '@fontsource/fira-mono';
 
 :root {
-	--font-body: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-	--font-mono: 'Fira Mono', monospace;
+    --font-body: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+        Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    --font-mono: 'Fira Mono', monospace;
 
-	--column-width: 42rem;
-	--column-margin-top: 4rem;
+    --column-width: 42rem;
+    --column-margin-top: 4rem;
 
-	--color-success: #4CAF50;
-	--color-warning: #FFA500;
-	--color-error: #FF5151;
+    --color-success: #4CAF50;
+    --color-warning: #FFA500;
+    --color-error: #FF5151;
 
-	--color-bg-0: #E8A87C;
-	--color-bg-1: #F5B895;
-	--color-bg-2: #C88A65;
+    --color-bg-0: #E8A87C;
+    --color-bg-1: #F5B895;
+    --color-bg-2: #C88A65;
 
-	--color-theme-1: #900C3F;
-	--color-theme-2: #708090;
+    --color-theme-1: #900C3F;
+    --color-theme-2: #708090;
 
-	--color-missing: #7B0000;
-	--color-satisfied: #556B2F;
+    --color-missing: #7B0000;
+    --color-satisfied: #556B2F;
 
-	--color-text: rgba(0, 0, 0, 0.7);
-	--color-text-selected: rgba(100, 50, 0, 0.7);
-	--color-text-disabled: rgba(0, 0, 0, 0.3);
+    --color-text: rgba(0, 0, 0, 0.7);
+    --color-text-selected: rgba(100, 50, 0, 0.7);
+    --color-text-disabled: rgba(0, 0, 0, 0.3);
 
-	--color-wood-3: #EAE0C8; /* hêtre */
-	--color-wood-4: #F5DEB3; /* peuplier */
-	--color-wood-5: #FFE4C4; /* érable */
-	--color-wood-2: #DEB887; /* bouleau */
-	--color-wood-1: #D2B48C; /* merisier */
-	--color-bg-action: repeating-linear-gradient(to bottom,
-		var(--color-wood-1) 0,
-		var(--color-wood-1) 25px,
-		var(--color-wood-2) 25px,
-		var(--color-wood-2) 50px
-	);
-	--color-bg-action--disabled: repeating-linear-gradient(to bottom,
-		var(--color-wood-3) 0,
-		var(--color-wood-3) 20px,
-		var(--color-wood-4) 20px,
-		var(--color-wood-4) 45px,
-		var(--color-wood-5) 45px,
-		var(--color-wood-5) 65px
-	);
-	--color-bg-action--active: repeating-linear-gradient(to bottom,
-		var(--color-wood-3) 0,
-		var(--color-wood-3) 25px,
-		var(--color-wood-5) 25px,
-		var(--color-wood-5) 50px
-	);
+    --color-wood-3: #EAE0C8; /* hêtre */
+    --color-wood-4: #F5DEB3; /* peuplier */
+    --color-wood-5: #FFE4C4; /* érable */
+    --color-wood-2: #DEB887; /* bouleau */
+    --color-wood-1: #D2B48C; /* merisier */
+    --color-bg-action: repeating-linear-gradient(to bottom,
+        var(--color-wood-1) 0,
+        var(--color-wood-1) 25px,
+        var(--color-wood-2) 25px,
+        var(--color-wood-2) 50px
+    );
+    --color-bg-action--disabled: repeating-linear-gradient(to bottom,
+        var(--color-wood-3) 0,
+        var(--color-wood-3) 20px,
+        var(--color-wood-4) 20px,
+        var(--color-wood-4) 45px,
+        var(--color-wood-5) 45px,
+        var(--color-wood-5) 65px
+    );
+    --color-bg-action--active: repeating-linear-gradient(to bottom,
+        var(--color-wood-3) 0,
+        var(--color-wood-3) 25px,
+        var(--color-wood-5) 25px,
+        var(--color-wood-5) 50px
+    );
 
-	--color-bg-dashboard: #1F1F1FCC;
-	--color-fg-dashboard: #e7c5a8;
-	--color-border-dashboard: #CD7F32EE;
+    --color-bg-dashboard: #1F1F1FCC;
+    --color-fg-dashboard: #e7c5a8;
+    --color-border-dashboard: #CD7F32EE;
 
-	--color-bg-shop: #43464B;
-	--color-fg-shop: #ECECEC;
-	--color-bg-artifact: #8F8C8C;
-	--color-bg-artifact--selected: #A9A6A6;
-	--color-bg-artifact--disabled: #D9D9D9;
+    --color-bg-shop: #43464B;
+    --color-fg-shop: #ECECEC;
+    --color-bg-artifact: #8F8C8C;
+    --color-bg-artifact--selected: #A9A6A6;
+    --color-bg-artifact--disabled: #D9D9D9;
 
-	--color-bg-settings: #8C8C8C;
-	--color-fg-settings: #FFFFFF;
-	--color-border-settings: #DA8A67;
-	--color-header-settings: #D4AF37;
+    --color-bg-settings: #8C8C8C;
+    --color-fg-settings: #FFFFFF;
+    --color-border-settings: #DA8A67;
+    --color-header-settings: #D4AF37;
 
-	font-family: var(--font-body);
-	color: var(--color-text);
+    font-family: var(--font-body);
+    color: var(--color-text);
 
-	/* structure (should not be changed) */
-	--action-box-width: 270px;
-	--shop-box-size: 200px;
-	--mask-z-index: 1000;
-	--mask-bg-color: #CCCCCCCC;
+    /* structure (should not be changed) */
+    --action-box-width: 270px;
+    --shop-box-size: 200px;
+    --mask-z-index: 1000;
+    --mask-bg-color: #CCCCCCCC;
 }
 
 body {
-	min-height: 100vh;
-	margin: 0;
-	background-attachment: fixed;
-	background-color: var(--color-bg-1);
-	background-size: 100vw 100vh;
-	background-image: radial-gradient(
-			50% 50% at 50% 50%,
-			rgba(255, 255, 255, 0.75) 0%,
-			rgba(255, 255, 255, 0) 100%
-		),
-		linear-gradient(180deg, var(--color-bg-0) 0%, var(--color-bg-1) 15%, var(--color-bg-2) 50%);
+    min-height: 100vh;
+    margin: 0;
+    background-attachment: fixed;
+    background-color: var(--color-bg-1);
+    background-size: 100vw 100vh;
+    background-image: radial-gradient(
+            50% 50% at 50% 50%,
+            rgba(255, 255, 255, 0.75) 0%,
+            rgba(255, 255, 255, 0) 100%
+        ),
+        linear-gradient(180deg, var(--color-bg-0) 0%, var(--color-bg-1) 15%, var(--color-bg-2) 50%);
 }
 
 h1,
 h2,
 p {
-	font-weight: 400;
+    font-weight: 400;
 }
 
 p {
-	line-height: 1.5;
+    line-height: 1.5;
 }
 
 a {
-	color: var(--color-theme-1);
-	text-decoration: none;
+    color: var(--color-theme-1);
+    text-decoration: none;
 }
 
 a:hover {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
 h1 {
-	font-size: 2rem;
-	text-align: center;
+    font-size: 2rem;
+    text-align: center;
 }
 
 h2 {
-	font-size: 1rem;
+    font-size: 1rem;
 }
 
 pre {
-	font-size: 16px;
-	font-family: var(--font-mono);
-	background-color: rgba(255, 255, 255, 0.45);
-	border-radius: 3px;
-	box-shadow: 2px 2px 6px rgb(255 255 255 / 25%);
-	padding: 0.5em;
-	overflow-x: auto;
-	color: var(--color-text);
+    font-size: 16px;
+    font-family: var(--font-mono);
+    background-color: rgba(255, 255, 255, 0.45);
+    border-radius: 3px;
+    box-shadow: 2px 2px 6px rgb(255 255 255 / 25%);
+    padding: 0.5em;
+    overflow-x: auto;
+    color: var(--color-text);
 }
 
 .text-column {
-	display: flex;
-	max-width: 48rem;
-	flex: 0.6;
-	flex-direction: column;
-	justify-content: center;
-	margin: 0 auto;
+    display: flex;
+    max-width: 48rem;
+    flex: 0.6;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
 }
 
 input,
 button {
-	font-size: inherit;
-	font-family: inherit;
+    font-size: inherit;
+    font-family: inherit;
 }
 
 button {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 button:focus:not(:focus-visible) {
-	outline: none;
+    outline: none;
 }
 
 button.disabled {
-	cursor: not-allowed;
-	opacity: 0.5;
-	color: gray;
-	/* Do not set pointer-events: none; in order to let tooltip work */
+    cursor: not-allowed;
+    opacity: 0.5;
+    color: gray;
+    /* Do not set pointer-events: none; in order to let tooltip work */
 }
 
 @media (min-width: 720px) {
-	h1 {
-		font-size: 2.4rem;
-	}
+    h1 {
+        font-size: 2.4rem;
+    }
 }
 
 .visually-hidden {
-	border: 0;
-	clip: rect(0 0 0 0);
-	height: auto;
-	margin: 0;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	width: 1px;
-	white-space: nowrap;
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: auto;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap;
 }

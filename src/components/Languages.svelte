@@ -1,7 +1,7 @@
 <script lang="ts">
     import { locale, _ } from 'svelte-i18n';
     import { tooltip } from '../helpers/tooltip';
-	import { extractLocale, languages } from '../locales/i18n';
+    import { extractLocale, languages } from '../locales/i18n';
     import Portal from './Portal.svelte';
 
     type Display = 'shortCode' | 'flag';

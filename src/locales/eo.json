@@ -267,7 +267,7 @@
     }
   },
   "story": {
-    "tutorial": {
+    "necromancer": {
       "actions": {
         "battle": {
           "fluff": "Sendu ĉiujn viajn trupojn en la ebenaĵon kontraŭ la diabla armeo.",
@@ -356,8 +356,8 @@
           "title": "Tempo potenco"
         }
       },
-      "description": "Lernilo: novelo por kompreni la ludon.\nVi starigos armeon por batali kontraŭ la armeo de la nekromano.",
-      "name": "Lernilo: La nekromano",
+      "description": "novelo por kompreni la ludon.\nVi starigos armeon por batali kontraŭ la armeo de la nekromano.",
+      "name": "La nekromano",
       "panels": {
         "army": {
           "title": "Via armeo"

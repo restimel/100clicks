@@ -2,15 +2,15 @@ import { get } from 'svelte/store';
 import { $t } from '../../locales/i18n';
 import { _ } from 'svelte-i18n';
 import type { Stars, Story } from '../types';
-import actions from './tutorial/actions';
-import artifacts from './tutorial/artifacts';
-import equipments from './tutorial/equipments';
-import {resources, setIconText} from './tutorial/resources';
-import rooms from './tutorial/rooms';
-import achievements from './tutorial/achievements';
+import actions from './necromancer/actions';
+import artifacts from './necromancer/artifacts';
+import equipments from './necromancer/equipments';
+import {resources, setIconText} from './necromancer/resources';
+import rooms from './necromancer/rooms';
+import achievements from './necromancer/achievements';
 
 import { resources as runResources, ownArtifacts, run } from '../run';
-import type { StoryResource } from './tutorial/resources';
+import type { StoryResource } from './necromancer/resources';
 
 /**
  * @return [total, baseGain, bonusGain]
@@ -28,17 +28,17 @@ function gainReputation(lostClicks: bigint, vortex: bigint): [bigint, bigint, bi
 }
 
 const story: Story<StoryResource> = {
-    id: 'tutorial',
+    id: 'necromancer',
     version: '0.9.0',
-    name: $t('story.tutorial.name'),
-    description: $t('story.tutorial.description'),
+    name: $t('story.necromancer.name'),
+    description: $t('story.necromancer.description'),
     shopDescription: {
-        fluff: $t('story.tutorial.shop.fluff'),
-        currentMoney: $t('story.tutorial.resources.reputation--icon'),
-        disabledContinueRun: $t('story.tutorial.shop.disabledContinueRun'),
-        notEnoughCurrency: $t('story.tutorial.shop.notEnoughCurrency'),
-        emptyShop: $t('story.tutorial.shop.emptyShop'),
-        runAgain:  $t('story.tutorial.shop.runAgain'),
+        fluff: $t('story.necromancer.shop.fluff'),
+        currentMoney: $t('story.necromancer.resources.reputation--icon'),
+        disabledContinueRun: $t('story.necromancer.shop.disabledContinueRun'),
+        notEnoughCurrency: $t('story.necromancer.shop.notEnoughCurrency'),
+        emptyShop: $t('story.necromancer.shop.emptyShop'),
+        runAgain:  $t('story.necromancer.shop.runAgain'),
         gainExplanation: () => {
             const decimals = 100;
             const lostClicks = runResources.value('lostClicks');
@@ -59,7 +59,7 @@ const story: Story<StoryResource> = {
 
             if (bonusGain) {
                 const bonus = Number(bonusGain) / decimals;
-                return get(_)($t('story.tutorial.shop.explanation-bonus'), { values: {
+                return get(_)($t('story.necromancer.shop.explanation-bonus'), { values: {
                     initialValue,
                     lostClicks: Number(lostClicks),
                     gainLostClick,
@@ -71,7 +71,7 @@ const story: Story<StoryResource> = {
                 } });
             }
 
-            return get(_)($t('story.tutorial.shop.explanation'), {
+            return get(_)($t('story.necromancer.shop.explanation'), {
                 values: {
                     initialValue,
                     lostClicks: Number(lostClicks),
@@ -85,9 +85,9 @@ const story: Story<StoryResource> = {
         },
     },
     gameOver: {
-        fluff: $t('story.tutorial.gameOver.fluff'),
+        fluff: $t('story.necromancer.gameOver.fluff'),
         score: [{
-            label: $t('story.tutorial.gameover.score-label'),
+            label: $t('story.necromancer.gameover.score-label'),
             value: () => {
                 return get(run);
             },
@@ -132,8 +132,8 @@ const story: Story<StoryResource> = {
                 value: 'lostClicks',
             }, {
                 condition: 'hadReputation',
-                detail: $t('story.tutorial.resources.reputation--detail'),
-                label: $t('story.tutorial.resources.reputation--icon'),
+                detail: $t('story.necromancer.resources.reputation--detail'),
+                label: $t('story.necromancer.resources.reputation--icon'),
                 value: 'shopCurrency',
                 decimals: 100n,
             },
@@ -142,27 +142,27 @@ const story: Story<StoryResource> = {
         type: 'panel',
         panelType: 'dashboard',
         id: 'army',
-        header: $t('story.tutorial.panels.army.title'),
+        header: $t('story.necromancer.panels.army.title'),
         isVisible: true,
         isHidden: false,
         content: [
             {
                 condition: true,
-                label: $t('story.tutorial.resources.peon--icon'),
+                label: $t('story.necromancer.resources.peon--icon'),
                 value: 'peon',
                 valueMax: 'peonMax',
             }, {
                 condition: true,
-                label: $t('story.tutorial.resources.worker--icon'),
+                label: $t('story.necromancer.resources.worker--icon'),
                 value: 'worker',
             }, {
                 condition: 'hadWarrior',
-                label: $t('story.tutorial.resources.warrior--icon'),
+                label: $t('story.necromancer.resources.warrior--icon'),
                 value: 'warrior',
                 valueMax: 'warriorMax',
             }, {
                 condition: true,
-                label: $t('story.tutorial.resources.sword--icon'),
+                label: $t('story.necromancer.resources.sword--icon'),
                 value: 'sword',
             },
         ],
@@ -170,13 +170,13 @@ const story: Story<StoryResource> = {
         type: 'panel',
         panelType: 'dashboard',
         id: 'enemy',
-        header: $t('story.tutorial.panels.enemy.title'),
+        header: $t('story.necromancer.panels.enemy.title'),
         isVisible: true,
         isHidden: [['equipment', 'win-battle3']],
         content: [
             {
                 condition: true,
-                label: $t('story.tutorial.resources.monster--icon'),
+                label: $t('story.necromancer.resources.monster--icon'),
                 value: 'monster',
             },
         ],

@@ -11,7 +11,7 @@ import {
 } from './run';
 import achievements from './achievements';
 import vesselStory from './story/vessel';
-import tutorialStory from './story/tutorial';
+import necromancerStory from './story/necromancer';
 import type { GameOverDescription, Panel, ShopDescription, Story } from './types';
 import { stopAmbient } from './sound';
 
@@ -38,7 +38,7 @@ export const storyDesc = writable<StoryDesc>({
 });
 
 /* Register stories */
-addStory(tutorialStory);
+addStory(necromancerStory);
 addStory(vesselStory);
 
 export function startStory(): boolean {

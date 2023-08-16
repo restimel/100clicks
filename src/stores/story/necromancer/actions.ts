@@ -33,10 +33,10 @@ function battle() {
 
 const actions: ActionDefinition<StoryResource>[] = [{
     id: 'recruitment',
-    title: $t('story.tutorial.actions.recruitment.title'),
+    title: $t('story.necromancer.actions.recruitment.title'),
     roomId: 'village',
-    fluff: $t('story.tutorial.actions.recruitment.fluff'),
-    description: () => get(_)($t('story.tutorial.actions.recruitment.description'), {
+    fluff: $t('story.necromancer.actions.recruitment.fluff'),
+    description: () => get(_)($t('story.necromancer.actions.recruitment.description'), {
         values: {
             value: Number(resources.value('recruitPeon')),
         },
@@ -49,8 +49,8 @@ const actions: ActionDefinition<StoryResource>[] = [{
 }, {
     id: 'battle',
     roomId: 'battle field',
-    title: $t('story.tutorial.actions.battle.title'),
-    fluff: $t('story.tutorial.actions.battle.fluff'),
+    title: $t('story.necromancer.actions.battle.title'),
+    fluff: $t('story.necromancer.actions.battle.fluff'),
     requirements: [
         ['warrior', 1n],
     ],
@@ -64,8 +64,8 @@ const actions: ActionDefinition<StoryResource>[] = [{
 }, {
     id: 'exploreBattle1',
     roomId: 'battle field',
-    title: $t('story.tutorial.actions.exploreBattle1.title'),
-    fluff: $t('story.tutorial.actions.exploreBattle1.fluff'),
+    title: $t('story.necromancer.actions.exploreBattle1.title'),
+    fluff: $t('story.necromancer.actions.exploreBattle1.fluff'),
     action: () => {
         resources.reset('monster', 200n);
     },
@@ -75,8 +75,8 @@ const actions: ActionDefinition<StoryResource>[] = [{
 }, {
     id: 'battle2',
     roomId: 'battle field',
-    title: $t('story.tutorial.actions.battle2.title'),
-    fluff: $t('story.tutorial.actions.battle2.fluff'),
+    title: $t('story.necromancer.actions.battle2.title'),
+    fluff: $t('story.necromancer.actions.battle2.fluff'),
     requirements: [
         ['warrior', 1n],
     ],
@@ -93,8 +93,8 @@ const actions: ActionDefinition<StoryResource>[] = [{
 }, {
     id: 'exploreBattle2',
     roomId: 'battle field',
-    title: $t('story.tutorial.actions.exploreBattle2.title'),
-    fluff: $t('story.tutorial.actions.exploreBattle2.fluff'),
+    title: $t('story.necromancer.actions.exploreBattle2.title'),
+    fluff: $t('story.necromancer.actions.exploreBattle2.fluff'),
     action: () => {
         resources.reset('monster', 1000n);
     },
@@ -104,8 +104,8 @@ const actions: ActionDefinition<StoryResource>[] = [{
 }, {
     id: 'battle3',
     roomId: 'battle field',
-    title: $t('story.tutorial.actions.battle3.title'),
-    fluff: $t('story.tutorial.actions.battle3.fluff'),
+    title: $t('story.necromancer.actions.battle3.title'),
+    fluff: $t('story.necromancer.actions.battle3.fluff'),
     requirements: [
         ['warrior', 1n],
         ['action', 'exploreBattle2'],
@@ -123,16 +123,16 @@ const actions: ActionDefinition<StoryResource>[] = [{
 }, {
     id: 'exploreBattle3',
     roomId: 'battle field',
-    title: $t('story.tutorial.actions.exploreBattle3.title'),
-    fluff: $t('story.tutorial.actions.exploreBattle3.fluff'),
+    title: $t('story.necromancer.actions.exploreBattle3.title'),
+    fluff: $t('story.necromancer.actions.exploreBattle3.fluff'),
     isVisible: [
         ['action', 'battle3'],
     ],
 }, {
     id: 'finalBattle',
     roomId: 'battle field',
-    title: $t('story.tutorial.actions.finalBattle.title'),
-    fluff: $t('story.tutorial.actions.finalBattle.fluff'),
+    title: $t('story.necromancer.actions.finalBattle.title'),
+    fluff: $t('story.necromancer.actions.finalBattle.fluff'),
     cost: [
         ['warrior', 100n],
     ],
@@ -145,8 +145,8 @@ const actions: ActionDefinition<StoryResource>[] = [{
 }, {
     id: 'train worker',
     roomId: 'village',
-    title: $t('story.tutorial.actions.trainWorker.title'),
-    fluff: $t('story.tutorial.actions.trainWorker.fluff'),
+    title: $t('story.necromancer.actions.trainWorker.title'),
+    fluff: $t('story.necromancer.actions.trainWorker.fluff'),
     cost: [
         ['peon', 1n],
     ],
@@ -156,8 +156,8 @@ const actions: ActionDefinition<StoryResource>[] = [{
 }, {
     id: 'train warrior',
     roomId: 'village',
-    title: $t('story.tutorial.actions.trainWarrior.title'),
-    fluff: $t('story.tutorial.actions.trainWarrior.fluff'),
+    title: $t('story.necromancer.actions.trainWarrior.title'),
+    fluff: $t('story.necromancer.actions.trainWarrior.fluff'),
     cost: [
         ['peon', 1n],
         ['sword', 1n],
@@ -168,14 +168,14 @@ const actions: ActionDefinition<StoryResource>[] = [{
 }, {
     id: 'explore village',
     roomId: 'village',
-    title: $t('story.tutorial.actions.exploreVillage.title'),
-    fluff: $t('story.tutorial.actions.exploreVillage.fluff'),
+    title: $t('story.necromancer.actions.exploreVillage.title'),
+    fluff: $t('story.necromancer.actions.exploreVillage.fluff'),
 }, {
     id: 'forge',
     roomId: 'village',
-    title: $t('story.tutorial.actions.forge.title'),
-    fluff: $t('story.tutorial.actions.forge.fluff'),
-    description: $t('story.tutorial.actions.forge.description'),
+    title: $t('story.necromancer.actions.forge.title'),
+    fluff: $t('story.necromancer.actions.forge.fluff'),
+    description: $t('story.necromancer.actions.forge.description'),
     cost: [
         ['worker', 1n],
     ],
@@ -188,24 +188,24 @@ const actions: ActionDefinition<StoryResource>[] = [{
 }, {
     id: 'town hall',
     roomId: 'village',
-    title: $t('story.tutorial.actions.townHall.title'),
-    fluff: $t('story.tutorial.actions.townHall.fluff'),
+    title: $t('story.necromancer.actions.townHall.title'),
+    fluff: $t('story.necromancer.actions.townHall.fluff'),
     isVisible: [
         ['action', 'explore village'],
     ],
 }, {
     id: 'mayor1',
     roomId: 'village',
-    title: $t('story.tutorial.actions.mayor1.title'),
-    fluff: $t('story.tutorial.actions.mayor1.fluff'),
+    title: $t('story.necromancer.actions.mayor1.title'),
+    fluff: $t('story.necromancer.actions.mayor1.fluff'),
     isVisible: [
         ['action', 'town hall'],
     ],
 }, {
     id: 'mayor2',
     roomId: 'village',
-    title: $t('story.tutorial.actions.mayor2.title'),
-    fluff: $t('story.tutorial.actions.mayor2.fluff'),
+    title: $t('story.necromancer.actions.mayor2.title'),
+    fluff: $t('story.necromancer.actions.mayor2.fluff'),
     isVisible: [
         ['action', 'mayor1'],
     ],
@@ -215,8 +215,8 @@ const actions: ActionDefinition<StoryResource>[] = [{
 }, {
     id: 'mayor3',
     roomId: 'village',
-    title: $t('story.tutorial.actions.mayor3.title'),
-    fluff: $t('story.tutorial.actions.mayor3.fluff'),
+    title: $t('story.necromancer.actions.mayor3.title'),
+    fluff: $t('story.necromancer.actions.mayor3.fluff'),
     isVisible: [
         ['action', 'mayor2'],
     ],
@@ -229,8 +229,8 @@ const actions: ActionDefinition<StoryResource>[] = [{
 }, {
     id: 'small farms',
     roomId: 'isolate farms',
-    title: $t('story.tutorial.actions.smallFarm.title'),
-    fluff: $t('story.tutorial.actions.smallFarm.fluff'),
+    title: $t('story.necromancer.actions.smallFarm.title'),
+    fluff: $t('story.necromancer.actions.smallFarm.fluff'),
     cost: [
         ['click', 50n],
     ],

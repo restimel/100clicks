@@ -267,7 +267,7 @@
     }
   },
   "story": {
-    "tutorial": {
+    "necromancer": {
       "actions": {
         "battle": {
           "fluff": "Envoyez toutes vos troupes dans la plaine contre l'armée diabolique.",
@@ -356,8 +356,8 @@
           "title": "Puissance temporelle"
         }
       },
-      "description": "Tutoriel : Une petite histoire pour comprendre le jeu.\nVous monterez une armée pour combattre l'armée du nécroman.",
-      "name": "Tutoriel : Le nécroman",
+      "description": "Une petite histoire pour comprendre le jeu.\nVous monterez une armée pour combattre l'armée du nécroman.",
+      "name": "Le nécroman",
       "panels": {
         "army": {
           "title": "Votre armée"

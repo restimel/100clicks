@@ -267,7 +267,7 @@
     }
   },
   "story": {
-    "tutorial": {
+    "necromancer": {
       "actions": {
         "battle": {
           "fluff": "Send all your troops in the plain against the devil army.",
@@ -356,8 +356,8 @@
           "title": "Time power"
         }
       },
-      "description": "Tutorial: A short story to understand the game.\nYou will rise an army to battle the necroman's army.",
-      "name": "Tutorial: The necroman",
+      "description": "A short story to understand the game.\nYou will rise an army to battle the necroman's army.",
+      "name": "The necroman",
       "panels": {
         "army": {
           "title": "Your army"

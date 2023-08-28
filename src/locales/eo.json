@@ -226,11 +226,13 @@
     "energy": "Energio",
     "energy--icon": "Energio :energy:",
     "energy-max": "Energio max",
+    "lock": "bloki",
     "lost-click": "Perdita klako",
     "lost-click--details": "Perditaj klakoj estas klakoj en antaŭa kuro, kiuj ne kapablas ripeti siajn agojn",
     "lost-click--icon": "Perditaj klakoj :lostClick:",
     "temporal-energy": "Tempora energio",
-    "temporal-energy--icon": "Tempora energio :shopCurrency:"
+    "temporal-energy--icon": "Tempora energio :shopCurrency:",
+    "unlock": "malbloki"
   },
   "room": {
     "bedroom1": {

@@ -226,11 +226,13 @@
     "energy": "Energy",
     "energy--icon": "Energy :energy:",
     "energy-max": "Energy max",
+    "lock": "lock",
     "lost-click": "Lost click",
     "lost-click--details": "Lost clicks are clicks in previous run which are not able to repeat their actions",
     "lost-click--icon": "Lost clicks :lostClick:",
     "temporal-energy": "Temporal energy",
-    "temporal-energy--icon": "Temporal energy :shopCurrency:"
+    "temporal-energy--icon": "Temporal energy :shopCurrency:",
+    "unlock": "unlock"
   },
   "room": {
     "bedroom1": {

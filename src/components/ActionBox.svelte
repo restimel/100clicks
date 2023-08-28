@@ -72,7 +72,7 @@
         <Text text={$_(description)} />
     </div>
     <div class="action-box__fluff">
-        {$_(fluff)}
+        <Text text={$_(fluff)} />
     </div>
     <div class="cost" use:tooltip={'cost'} class:requirement-missing={!canPayCost}>
         {#each cost as [type, value]}

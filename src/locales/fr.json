@@ -226,11 +226,13 @@
     "energy": "Énergie",
     "energy--icon": "Énergie :energy:",
     "energy-max": "Énergie max",
+    "lock": "verrouille",
     "lost-click": "Clic perdu",
     "lost-click--details": "Les clics perdus correspondent aux clics des tours précédents qui n'ont pas pu répéter leurs actions.",
     "lost-click--icon": "Clics perdus :lostClick:",
     "temporal-energy": "Énergie temporelle",
-    "temporal-energy--icon": "Énergie temporelle :shopCurrency:"
+    "temporal-energy--icon": "Énergie temporelle :shopCurrency:",
+    "unlock": "déverrouille"
   },
   "room": {
     "bedroom1": {

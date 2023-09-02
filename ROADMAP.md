@@ -19,6 +19,7 @@
     * (done) dashboard
     * Create another story to assert it works :)
     * (done) Add a back to story choice button
+* statistics
 
 ## Code structure
 * save current state to restore it at next connection

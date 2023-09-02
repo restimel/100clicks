@@ -1,16 +1,17 @@
 import { get } from 'svelte/store';
 import { $t } from '../../locales/i18n';
 import { _ } from 'svelte-i18n';
-import type { Story } from '../types';
 import actions from './vessel/actions';
 import artifacts from './vessel/artifacts';
 import equipments from './vessel/equipments';
 import {resources, setIconText} from './vessel/resources';
 import rooms from './vessel/rooms';
 import achievements from './vessel/achievements';
-
+import panels from './vessel/panels';
 import { resources as runResources, ownArtifacts, run } from '../run';
+
 import type {StoryResource} from './vessel/resources';
+import type { Stars, Story } from '../types';
 
 const story: Story<StoryResource> = {
     id: 'vessel',
@@ -81,53 +82,7 @@ const story: Story<StoryResource> = {
     setIconText,
 
 
-    panels: [{
-        type: 'panel',
-        id: 'dashboard',
-        header: '',
-        panelType: 'dashboard',
-        isVisible: true,
-        isHidden: false,
-        content: [
-            {
-                condition: true,
-                label: $t('resources.click--icon'),
-                value: 'clicks',
-                valueMax: 100n,
-            }, {
-                condition: 'hadEnergy',
-                label: $t('resources.energy--icon'),
-                value: 'energy',
-                valueMax: 'energyMax',
-            }, {
-                condition: 'hadLostClick',
-                detail: $t('resources.lost-click--details'),
-                label: $t('resources.lost-click--icon'),
-                value: 'lostClicks',
-            },
-        ],
-    }, {
-        type: 'panel',
-        id: 'artifacts',
-        header: '',
-        panelType: 'artifacts',
-        isVisible: true,
-        isHidden: false,
-    }, {
-        type: 'panel',
-        id: 'equipments',
-        header: '',
-        panelType: 'equipments',
-        isVisible: [['achievement', 'hadEquipment']],
-        isHidden: false,
-    }, {
-        type: 'panel',
-        id: 'logs',
-        header: '',
-        panelType: 'logs',
-        isVisible: true,
-        isHidden: false,
-    }],
+    panels: panels,
 
     storyEffects: {
         endRun: () => {

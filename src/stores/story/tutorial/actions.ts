@@ -66,6 +66,21 @@ const actions: ActionDefinition<StoryResource>[] = [
     fluff: $t('story.tutorial.actions.tuto7.nextStep'),
     isVisible: [['action', 'tutorial6']],
 }, {
+    id: 'run2-tutorial1',
+    title: $t('story.tutorial.actions.run2-tutorial1.title'),
+    roomId: 'explanation',
+    description: $t('story.tutorial.actions.run2-tutorial1.explanation'),
+    isVisible: [['artifact', 'TDM']],
+}, {
+    id: 'run2-tutorial2',
+    title: $t('story.tutorial.actions.run2-tutorial2.title'),
+    roomId: 'explanation',
+    description: $t('story.tutorial.actions.run2-tutorial2.explanation'),
+    isVisible: [
+        ['action', 'run2-tutorial1'],
+        ['achievement', 'hadLostClick'],
+    ],
+}, {
     id: 'information1',
     title: $t('story.tutorial.actions.info1.title'),
     roomId: 'explanation',

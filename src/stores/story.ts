@@ -10,8 +10,11 @@ import {
     startRun
 } from './run';
 import achievements from './achievements';
+
 import vesselStory from './story/vessel';
 import necromancerStory from './story/necromancer';
+import tutorialStory from './story/tutorial';
+
 import type { GameOverDescription, Panel, ShopDescription, Story } from './types';
 import { stopAmbient } from './sound';
 
@@ -35,9 +38,11 @@ type StoryDesc = {
 export const storyDesc = writable<StoryDesc>({
     panels: [],
     shopDescription: {} as unknown as ShopDescription,
+    gameOver: {} as unknown as GameOverDescription,
 });
 
 /* Register stories */
+addStory(tutorialStory);
 addStory(necromancerStory);
 addStory(vesselStory);
 

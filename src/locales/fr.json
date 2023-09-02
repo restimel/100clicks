@@ -409,6 +409,96 @@
         "runAgain": "Combattez à nouveau contre l'armée maléfique"
       }
     },
+    "tutorial": {
+      "actions": {
+        "improve": {
+          "description": ":unlock : améliorations",
+          "title": "Recherche"
+        },
+        "info1": {
+          "explanation": "{justify}Il ne devrait pas être possible de terminer une histoire en seulement 1 tour.\n\nAlors n'hésitez pas à explorer et vous pourrez alors optimiser votre parcours.{/justify}",
+          "title": "Information"
+        },
+        "info2": {
+          "explanation": "{justify}Certaines ressources peuvent avoir une quantité maximale de stockage.\n\nPar exemple, :point: est plafonné à 50.\n\nSi vous gagnez plus de ces ressources, le dépassement sera perdu.\nSouvent, il existe des possibilités d'augmenter cette valeur maximale.{/justify}"
+        },
+        "lastAction": {
+          "title": "Terminer l'histoire 3/3"
+        },
+        "midAction": {
+          "title": "Terminer l'histoire 2/3"
+        },
+        "morePoint": {
+          "description": "Obtenez 1 :point: de plus",
+          "title": "Obtenez plus de ressources"
+        },
+        "point": {
+          "description": "+{value}:point:",
+          "fluff": "Action basique que vous devrez répéter plusieurs fois",
+          "title": "Obtenir une ressource"
+        },
+        "startEnd": {
+          "fluff": "Lorsque vous sentez que vous avez bien compris comment cela fonctionne, vous pouvez essayer de relever ce défi.",
+          "title": "Terminer l'histoire 1/3"
+        },
+        "transform": {
+          "description": "+{value}:usedPoint:",
+          "fluff": "Transformer une ressource en une autre",
+          "title": "Convertir la ressource"
+        },
+        "tuto1": {
+          "explanation": "{justify}Dans ce jeu, vous devrez terminer l'histoire en cliquant sur les actions.\nVous n'aurez que 100 clics pour terminer l'histoire.\nC'est court mais vous aurez de l'aide.{/justify}",
+          "nextStep": "{center}Cliquez sur cette case pour continuer{/center}",
+          "title": "Bienvenue !"
+        },
+        "tuto2": {
+          "explanation": "{justify}Les actions sont affichées dans cette zone.\nLa plupart d'entre elles apparaîtront lorsque d'autres actions seront terminées.\nUne action terminée disparaîtra.\n\nCertaines actions nécessitent des conditions particulières pour être réalisées. Nous verrons ce point plus tard.\n\nChaque fois que vous utiliserez une action, elle consommera 1 clic (:click:).{/justify}",
+          "nextStep": "{center}Cliquez sur cette action pour continuer{/center}",
+          "title": "Les actions"
+        },
+        "tuto3": {
+          "explanation": "{justify}Au-dessus de cette zone, il y a des panneaux.\n\nIls affichent des informations qui peuvent être utiles pour suivre votre progression dans l'histoire.\n\nPar exemple, vous pouvez voir combien de clics vous avez déjà consommés pour ce tour.\nN'ayez pas peur de ça, explorer (et donc consommer des clics) fait partie du jeu.\n\nQuand vous atteignez **100** clics, le tour est terminé. Vous pourez en recommencer un autre.\n\nCertains panneaux peuvent apparaître lorsque des conditions sont remplies.{/justify}",
+          "nextStep": "{center}Cliquez sur cette action pour continuer{/center}",
+          "title": "Les panneaux"
+        },
+        "tuto4": {
+          "explanation": "{justify}Le coût des actions est écrit en haut à droite.\n\nPar défaut, elles coûtent 1 clic (1 :click:). \nMais pour certaines actions, vous devrez cliquer plusieurs fois pour accomplir l'action.\nParfois vous aurez un gain sur chaque clic, parfois vous n'aurez la récompense que lorsque l'action sera terminée.{/justify}",
+          "nextStep": "{center}Cliquez deux fois sur cette action pour continuer{/center}",
+          "title": "Les actions"
+        },
+        "tuto5": {
+          "explanation": "{justify}Certaines actions ont un coût en ressources.\n\nLes ressources dépendent de l'histoire et peuvent être différentes pour chaque histoire.\n\nPar exemple, cette action nécessite 1 :point:\nVous devez produire cette ressource pour continuer le tutoriel.\n\nLors de l'utilisation de l'action, la ressource sera consommée.\n\nSi l'action nécessite plusieurs clics, la ressource sera consommée pour chaque clic.{/justify}",
+          "nextStep": "{center}Obtenez 1 :point: puis cliquez sur cette action{/center}",
+          "title": "Actions"
+        },
+        "tuto6": {
+          "description": "Obtenez 1 :usedPoint: puis cliquez sur cette action pour continuer",
+          "explanation": "{justify}Certaines actions peuvent avoir des exigences.\nDans ce cas, vous verrez l'action mais vous ne pouvez pas l'exécuter tant que vous n'avez pas toutes les conditions requises.\n\nPar exemple, pour terminer cette action, vous devez avoir 1 :usedPoint :\n\nLes ressources pour l'exigence ne seront **pas** consommées.{/justify}",
+          "title": "Les actions"
+        }
+      },
+      "description": "Une histoire très courte pour expliquer comment jouer au jeu.",
+      "name": "Tutoriel",
+      "resources": {
+        "point": "Ressource de base",
+        "point--icon": "Ressource de base :point:",
+        "point-max": "Maximum de ressource de base",
+        "shopCurrency": "Récompense de fin de tour",
+        "used-point": "Ressource transformée",
+        "used-point--icon": "Ressource transformée :usedPoint:"
+      },
+      "rooms": {
+        "explanation": {
+          "title": "Instructions"
+        },
+        "improvement": {
+          "title": "Améliorations"
+        },
+        "main": {
+          "title": "Actions"
+        }
+      }
+    },
     "vessel": {
       "description": "Vous vous réveillez dans un vaisseau abandonné. \nVous allez l'explorer et le réactiver. \nSaurez-vous découvrir ses secrets ?",
       "name": "Le navire abandonné",

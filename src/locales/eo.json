@@ -409,6 +409,96 @@
         "runAgain": "Batalu denove kontraŭ la malbona armeo"
       }
     },
+    "tutorial": {
+      "actions": {
+        "improve": {
+          "description": ":unlock: plibonigoj",
+          "title": "Esplorado"
+        },
+        "info1": {
+          "explanation": "{justify}Ne devus esti eble fini rakonton en nur 1 vico.\n\nDo ne hezitu esplori kaj tiam vi povos optimumigi vian vicon.{/justify}",
+          "title": "Informoj"
+        },
+        "info2": {
+          "explanation": "{justify}Iuj rimedoj povas havi maksimuman kvanton da stokado.\n\nEkzemple, :point: estas limigitaj al 50.\n\nSe vi gajnas pli da ĉi tiuj rimedoj, la supero estos perdita.\nĜenerale estas eblecoj pliigi ĉi tiun maksimuman valoron.{/justify}"
+        },
+        "lastAction": {
+          "title": "Kompletu la rakonton 3/3"
+        },
+        "midAction": {
+          "title": "Kompletu la rakonton 2/3"
+        },
+        "morePoint": {
+          "description": "Akiru 1 :point: pli",
+          "title": "Akiru pli da rimedoj"
+        },
+        "point": {
+          "description": "+{value}:point:",
+          "fluff": "Baza ago, kiun vi devos ripeti multfoje",
+          "title": "Akiru rimedon"
+        },
+        "startEnd": {
+          "fluff": "Kiam vi sentas, ke vi komprenas kiel ĝi funkcias, vi povas provi plenumi ĉi tiun defion.",
+          "title": "Kompletu la rakonton 1/3"
+        },
+        "transform": {
+          "description": "+{value}:usedPoint:",
+          "fluff": "Transformu rimedon en alian",
+          "title": "Konverti rimedon"
+        },
+        "tuto1": {
+          "explanation": "{justify}En ĉi tiu ludo vi devos fini la rakonton alklakante agojn.\nVi havos nur 100 klakojn por fini la rakonton.\nĜi estas mallonga sed vi havos iom da helpo.{/justify}",
+          "nextStep": "{center}Alklaku ĉi tiun skatolon por daŭrigi{/center}",
+          "title": "Bonvenon!"
+        },
+        "tuto2": {
+          "explanation": "{justify}Agoj estas montrataj en ĉi tiu areo.\nPlej multaj el ili aperos kiam iuj aliaj agoj finiĝos.\nFinita ago malaperos.\n\nIuj agoj bezonas apartajn kondiĉojn por esti plenumitaj. Ni vidos ĉi tiun punkton poste.\n\nĈiufoje kiam vi uzas agon, ĝi konsumos 1 klakon (:click:).{/justify}",
+          "nextStep": "{center}Alklaku ĉi tiun agon por daŭrigi{/center}",
+          "title": "Agoj"
+        },
+        "tuto3": {
+          "explanation": "{justify}Super ĉi tiu areo, estas paneloj.\n\nIli montras iujn informojn, kiuj povas esti utilaj por rigardi vian progreson en la rakonto.\n\nEkzemple, vi povas vidi kiom da klakoj vi jam konsumis por ĉi tiu vico.\nNe timu pri tio, esplori (kaj tiel konsumi klakojn) estas parto de la ludo.\n\nKiam vi atingis **100** klakojn, la vico finiĝis. \nVi povos komenci alian.\n\nIuj paneloj povas aperi kiam kondiĉoj estas plenumitaj.{/justify}",
+          "nextStep": "{center}Alklaku ĉi tiun agon por daŭrigi{/center}",
+          "title": "Paneloj"
+        },
+        "tuto4": {
+          "explanation": "{justify}Kosto de agoj estas skribita supre dekstre.\n\nDefaŭlte, ili kostas 1 klako (1 :click:). \nSed por iuj agoj vi devos klaki plurajn fojojn por plenumi la agon.\nKelkfoje vi havos gajnon je ĉiu klako, foje vi havos la rekompencon nur kiam la ago finiĝos.{/justify}",
+          "nextStep": "{center}Alklaku ĉi tiun agon dufoje por daŭrigi{/center}",
+          "title": "Agoj"
+        },
+        "tuto5": {
+          "explanation": "{justify}Iuj agoj havas koston en rimedoj.\n\nRimedoj dependas de rakonto kaj povas esti malsamaj por ĉiu rakonto.\n\nEkzemple, ĉi tiu ago bezonas 1 :point:\nVi devas produkti ĉi tiun rimedon por daŭrigi la lernilon.\n\nKiam vi uzas la agon, la rimedo estos konsumita.\n\nSe la ago bezonas plurajn klakojn, la rimedo estos konsumita por ĉiu klako.{/justify}",
+          "nextStep": "{center}Akiru 1 :point: tiam alklaku ĉi tiun agon{/center}",
+          "title": "Agoj"
+        },
+        "tuto6": {
+          "description": "Akiru 1 :usedPoint: kaj tiam alklaku ĉi tiun agon por daŭrigi",
+          "explanation": "{justify}Iuj agoj povas havi postulon.\n\nEn tia kazo, vi vidos la agon sed vi ne povas plenumi ĝin dum vi ne havas ĉiujn postulojn.\n\nEkzemple, por plenumi ĉi tiun agon vi devas havi 1 :usedPoint:\n\nRimedoj por la postulo **ne** estos konsumitaj.{/justify}",
+          "title": "Agoj"
+        }
+      },
+      "description": "Tre mallonga rakonto por klarigi kiel ludi la ludon.",
+      "name": "Lernilo",
+      "resources": {
+        "point": "Baza rimedo",
+        "point--icon": "Baza rimedo :point:",
+        "point-max": "Maksimumo de baza rimedo",
+        "shopCurrency": "Premio ĉe la fino de vico",
+        "used-point": "Transformita rimedo",
+        "used-point--icon": "Transformita rimedo :usedPoint:"
+      },
+      "rooms": {
+        "explanation": {
+          "title": "Instrukcioj"
+        },
+        "improvement": {
+          "title": "Pliboniĝoj"
+        },
+        "main": {
+          "title": "Agoj"
+        }
+      }
+    },
     "vessel": {
       "description": "Vi vekiĝas en forlasita ŝipo. \nVi esploros ĝin kaj reaktivigos ĝin. \nĈu vi povos trovi ĝiajn sekretojn?",
       "name": "La forlasita ŝipo",

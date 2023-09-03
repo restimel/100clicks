@@ -6,10 +6,10 @@
     import { receive, send } from '../../helpers/transitionMove';
     import Icon from '../Icon.svelte';
     import Text from '../Text.svelte';
-    import type { DashboardName } from '../../stores/types';
 
-    const dispatch = createEventDispatcher<{expand: DashboardName}>();
+    type DashboardName = string;
 
+    const dispatch = createEventDispatcher<{expand: string}>();
 
     export let list: DashboardName[] = emptyArray;
 

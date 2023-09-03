@@ -12,7 +12,6 @@ const artifacts: ArtifactDefinition<StoryResource>[] = [{
 }, {
     id: 'vortex',
     title: $t('story.tutorial.artifact.vortex.title'),
-    fluff: $t('story.tutorial.artifact.vortex.fluff'),
     desc: $t('story.tutorial.artifact.vortex.desc'),
     isVisible: [['artifact', 'TDM']],
     isHidden: emptyArray,

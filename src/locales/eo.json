@@ -437,6 +437,14 @@
           "fluff": "Baza ago, kiun vi devos ripeti multfoje",
           "title": "Akiru rimedon"
         },
+        "run2-tutorial1": {
+          "explanation": "|justify|Vi rekomencas la rakonton de la komenco.\n\nSed ĉiu ago, kiun vi faris en antaŭa vico, estos ripetita denove.\n\nĜi signifas, ke se vi devis klaki 10 fojojn sur ago, kaj vi faris ĝin en la unua vico. \nEn la dua vico vi nur devas klaki 5 fojojn sur ĝi (aŭ fari ion alian dum ĉi tiu tempo kaj atendi ke la dek klakoj estas faritaj de antaŭaj vicoj).\n\nDo ĉiu vico estos pli facila kaj alportas vin pli kaj pli en la rakonto.|/justify|",
+          "title": "Dua vico"
+        },
+        "run2-tutorial2": {
+          "explanation": "|justify|Perditaj klakoj estas klakoj kiuj estis faritaj en antaŭa vico sed ne povas esti faritaj en nuna.\nĈi tio povus esti aŭ ĉar la ago jam estis kompleta aŭ ĉar la kondiĉo ne plu estas plenumitaj.\n\nPerditaj klakoj estas rimedoj uzeblaj en multaj rakontoj.|/justify|",
+          "title": "Perditaj klakoj"
+        },
         "startEnd": {
           "fluff": "Kiam vi sentas, ke vi komprenas kiel ĝi funkcias, vi povas provi plenumi ĉi tiun defion.",
           "title": "Kompletu la rakonton 1/3"
@@ -477,12 +485,26 @@
           "title": "Agoj"
         }
       },
+      "artifact": {
+        "tdm": {
+          "fluff": "Kun ĉi tiu artefakto, vi povas ripeti la rakonton",
+          "title": "Tempomaŝino"
+        },
+        "vortex": {
+          "desc": "Pliigi gajnon de :shopCurrency:",
+          "title": "Amplifilo"
+        }
+      },
       "description": "Tre mallonga rakonto por klarigi kiel ludi la ludon.",
+      "gameOver": {
+        "fluff": "Vi sukcese finis la rakonton pri \"Instruilo\".\nVi nun pretas ludi por pli longaj rakontoj."
+      },
       "name": "Lernilo",
       "resources": {
         "point": "Baza rimedo",
         "point--icon": "Baza rimedo :point:",
         "point-max": "Maksimumo de baza rimedo",
+        "reputation--icon": "premio :shopCurrency:",
         "shopCurrency": "Premio ĉe la fino de vico",
         "used-point": "Transformita rimedo",
         "used-point--icon": "Transformita rimedo :usedPoint:"
@@ -497,6 +519,13 @@
         "main": {
           "title": "Agoj"
         }
+      },
+      "shop": {
+        "disabledContinueRun": "Por daŭrigi vi devas aĉeti la Artefakton \"Tempomaŝino\"",
+        "emptyShop": "Ne plu disponebla artefakto.\nRevenu poste.",
+        "fluff": "Vi finis la vicon.\n\nĈi tie vi povus aĉeti iun artefaktonj por helpi vin pri la sekva vico.",
+        "notEnoughCurrency": "Ne sufiĉas premio. Vi bezonas {missing}:shopCurrency: pli.",
+        "runAgain": "Komencu novan vicon"
       }
     },
     "vessel": {

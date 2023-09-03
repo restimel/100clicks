@@ -437,6 +437,14 @@
           "fluff": "Action basique que vous devrez répéter plusieurs fois",
           "title": "Obtenir une ressource"
         },
+        "run2-tutorial1": {
+          "explanation": "|justify|Vous recommencez l'histoire depuis le début.\n\nMais chaque action que vous avez effectuée lors de l'exécution précédente sera répétée à nouveau.\n\nCela signifie que si vous deviez cliquer 10 fois sur une action, et que vous l'aviez fait dès le premier tour. \nAu deuxième passage il vous suffit de cliquer 5 fois dessus (ou de faire autre chose pendant ce temps et d'attendre que les dix clics soient effectués par les passages précédents).\n\nAinsi, chaque tour sera plus facile et vous amènera de plus en plus loin dans l'histoire.|/justify|",
+          "title": "Deuxième tour"
+        },
+        "run2-tutorial2": {
+          "explanation": "|justify|Les clics perdus sont des clics qui ont été effectués lors du tour précédent mais qui ne peuvent pas être réalisé lors du tour actuel.\nCela peut être dû soit au fait que l'action était déjà terminée, soit au fait que les conditions ne sont plus remplies.\n\nLes clics perdus sont des ressources qui peuvent être utilisées dans de nombreuses histoires.|/justify|",
+          "title": "Clics perdus"
+        },
         "startEnd": {
           "fluff": "Lorsque vous sentez que vous avez bien compris comment cela fonctionne, vous pouvez essayer de relever ce défi.",
           "title": "Terminer l'histoire 1/3"
@@ -477,12 +485,26 @@
           "title": "Les actions"
         }
       },
+      "artifact": {
+        "tdm": {
+          "fluff": "Avec cet artefact, vous pouvez répéter l'histoire",
+          "title": "Machine temporelle"
+        },
+        "vortex": {
+          "desc": "Augmente le gain de :shopCurrency:",
+          "title": "Amplificateur"
+        }
+      },
       "description": "Une histoire très courte pour expliquer comment jouer au jeu.",
+      "gameOver": {
+        "fluff": "Vous avez terminé avec succès l'histoire du \"Tutoriel\".\nVous êtes maintenant prêt à jouer pour des histoires plus longues."
+      },
       "name": "Tutoriel",
       "resources": {
         "point": "Ressource de base",
         "point--icon": "Ressource de base :point:",
         "point-max": "Maximum de ressource de base",
+        "reputation--icon": "récompense :shopCurrency:",
         "shopCurrency": "Récompense de fin de tour",
         "used-point": "Ressource transformée",
         "used-point--icon": "Ressource transformée :usedPoint:"
@@ -497,6 +519,13 @@
         "main": {
           "title": "Actions"
         }
+      },
+      "shop": {
+        "disabledContinueRun": "Pour continuer, vous devez acheter l'artefact \"Machine temporelle\"",
+        "emptyShop": "Plus d'artefact disponible.\nRevenez plus tard.",
+        "fluff": "Vous avez terminé le tour.\n\nIci, vous pouvez acheter des artefacts pour vous aider pour le prochain tour.",
+        "notEnoughCurrency": "Pas assez de récompenses. Vous avez besoin de {missing}:shopCurrency: de plus.",
+        "runAgain": "Commencer un nouveau tour"
       }
     },
     "vessel": {

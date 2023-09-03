@@ -437,6 +437,14 @@
           "fluff": "Basic action that you will have to repeat many time",
           "title": "Get a resource"
         },
+        "run2-tutorial1": {
+          "explanation": "|justify|You restart the story from the beginning.\n\nBut every action you have done in previous run will be repeated again.\n\nIt means that if you had to click 10 times on an action, and you did it on the first run. On the second run you only have to click 5 times on it (or do something else during this time and wait that the ten clicks are done by previous runs).\n\nSo every run will be easier and brings you further and further in the story.|/justify|",
+          "title": "Second run"
+        },
+        "run2-tutorial2": {
+          "explanation": "|justify|Lost clicks are clicks that were done in previous run but cannot be done in current.\nThis could be either because the action was already complete or because the condition are no more fulfilled.\n\nLost clicks are resources that can be used in many stories.|/justify|",
+          "title": "Lost clicks"
+        },
         "startEnd": {
           "fluff": "When you feel that you understand how it works, you can try to complete this challenge.",
           "title": "Complete the story 1/3"
@@ -477,12 +485,26 @@
           "title": "Actions"
         }
       },
+      "artifact": {
+        "tdm": {
+          "fluff": "With this artifact, you can repeat the story",
+          "title": "Time machine"
+        },
+        "vortex": {
+          "desc": "Increase gain of :shopCurrency:",
+          "title": "Amplifier"
+        }
+      },
       "description": "A very short story to explain how to play the game.",
+      "gameOver": {
+        "fluff": "You have finished successfully tht \"Tutorial\" story.\nYou are now ready to play for more longer stories."
+      },
       "name": "Tutorial",
       "resources": {
         "point": "Basic resource",
         "point--icon": "Basic resource :point:",
         "point-max": "Maximum of basic resource",
+        "reputation--icon": "award :shopCurrency:",
         "shopCurrency": "Award at the end of run",
         "used-point": "Transformed resource",
         "used-point--icon": "Transformed resource :usedPoint:"
@@ -497,6 +519,13 @@
         "main": {
           "title": "Actions"
         }
+      },
+      "shop": {
+        "disabledContinueRun": "To continue you must purchase the Artifact \"Time machine\"",
+        "emptyShop": "No more available artifacts.\nCome back later.",
+        "fluff": "You have end the run.\n\nHere you could purchase some artifacts to help you on next run.",
+        "notEnoughCurrency": "Not enough award. You need {missing}:shopCurrency: more.",
+        "runAgain": "Start new run"
       }
     },
     "vessel": {

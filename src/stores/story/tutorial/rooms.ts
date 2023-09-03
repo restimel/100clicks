@@ -5,24 +5,18 @@ import type { StoryResource } from './resources';
 const rooms: RoomDefinition<StoryResource>[] = [{
     id: 'explanation',
     title: $t('story.tutorial.rooms.explanation.title'),
-    fluff: $t('story.tutorial.rooms.explanation.fluff'),
-    // color: '#CCCCCC',
-    // bgColor: '#3B3B3B',
+    bgColor: '#e0e8f0',
 }, {
     id: 'main',
     title: $t('story.tutorial.rooms.main.title'),
-    fluff: $t('story.tutorial.rooms.main.fluff'),
-    // color: '#CCCCCC',
-    // bgColor: '#3B3B3B',
+    bgColor: '#fdbe4c',
 }, {
     id: 'improvement',
     title: $t('story.tutorial.rooms.improvement.title'),
-    fluff: $t('story.tutorial.rooms.improvement.fluff'),
     isVisible: [
         ['action', 'improve'],
     ],
-    // color: '#CCCCCC',
-    // bgColor: '#3B3B3B',
+    bgColor: '#baf3bc',
 }];
 
 export default rooms;
